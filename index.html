@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COS 216 EO3 — Complete Study Notes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <nav class="breadcrumb">
+      <a href="#top">COS 216</a><span>›</span>
+      <a href="#top">Semester Test EO3</a><span>›</span>
+      <span>Complete Study Notes</span>
+    </nav>
+    <h1 id="top">COS 216 — EO3 Complete Study Notes</h1>
+    <p class="subtitle">University of Pretoria · Computer Science. Lectures 30–40 — the web &amp; mobile frameworks plus the Advanced Security lecture — with line-by-line explained examples, common mistakes, direct W3Schools links, and the lectured questions from the 2021 EO3 paper fully worked.</p>
+    <div class="hero-actions">
+      <a class="action" href="#pp2021">Jump to 2021 Past Paper</a>
+      <a class="action secondary" href="#scope">What can be tested?</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="layout">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <div class="panel nav-panel">
+      <p class="nav-title">Frameworks &amp; Languages</p>
+      <ul class="nav-list">
+        <li><a href="#ts">TypeScript (L30)</a></li>
+        <li><a href="#ng">Angular (L31)</a></li>
+        <li><a href="#react">React (L32)</a></li>
+        <li><a href="#ionic">Ionic &amp; Mobile (L33–36)</a></li>
+        <li><a href="#bs">Bootstrap (L37)</a></li>
+        <li><a href="#django">Django (L40)</a></li>
+      </ul>
+      <p class="nav-title">Data &amp; Concepts</p>
+      <ul class="nav-list">
+        <li><a href="#mongo">MongoDB (L38)</a></li>
+        <li><a href="#sec">Web Security (L39)</a></li>
+      </ul>
+      <p class="nav-title">Exam Practice</p>
+      <ul class="nav-list">
+        <li><a href="#pp2021">2021 Past Paper</a></li>
+        <li><a href="#mock1">Mock Test 1</a></li>
+        <li><a href="#mock2">Mock Test 2</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- ================= CONTENT ================= -->
+  <div class="content">
+
+  <!-- SCOPE / HOW TO USE -->
+  <section class="study-section scope" id="scope">
+    <div class="section-inner">
+      <p class="section-kicker"><span class="badge scope">Exam scope</span></p>
+      <h2>What the EO3 actually tests</h2>
+      <p>The EO3 is the <strong>second-semester theory + coding test</strong> built on lectures 30–40 (the web/mobile frameworks plus the Advanced Security lecture). These notes cover that lecture material. From the 2021 paper, the lectured topics split roughly like this:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Topic</th><th>2021 questions</th><th>Weight</th><th>Where in these notes</th></tr></thead>
+          <tbody>
+            <tr><td>TypeScript (interfaces, types)</td><td>Q5 (14)</td><td>High</td><td><a href="#ts">TypeScript</a></td></tr>
+            <tr><td>Angular (template logic)</td><td>Q14 (10)</td><td>High</td><td><a href="#ng">Angular</a></td></tr>
+            <tr><td>Bootstrap (add classes)</td><td>Q9 (13)</td><td>High</td><td><a href="#bs">Bootstrap</a></td></tr>
+            <tr><td>Ionic / Mobile (HTTP + storage)</td><td>Q15 (13), Q7 (6), Q8 (3)</td><td>High</td><td><a href="#ionic">Ionic &amp; Mobile</a></td></tr>
+            <tr><td>MongoDB (aggregation)</td><td>Q10 (9)</td><td>Medium</td><td><a href="#mongo">MongoDB</a></td></tr>
+            <tr><td>Web security (XXE, cookies)</td><td>Q13 (3), Q4 (3)</td><td>Medium</td><td><a href="#sec">Web Security</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ Not covered here</span>
+        <p>The 2021 paper also had short questions on cloud hosting, scaling, DNS and privacy/"new internet" topics. These are <strong>not part of the L30–40 lecture slides</strong>, so they are intentionally left out of these notes — check your earlier course material for them.</p>
+      </div>
+      <div class="callout exam">
+        <span class="callout-title">🎯 Read this first</span>
+        <p>The paper is <strong>80 marks in 2.5 hours</strong>, questions shown one at a time in random order. You may use online resources, so <strong>keep the official docs and W3Schools open</strong> — but the clock is tight, so know the patterns cold. The biggest single mark-earners are the <strong>TypeScript interface</strong>, the <strong>Angular template</strong>, the <strong>Bootstrap conversion</strong> and the <strong>Ionic HTTP function</strong>. Master those four and you have ~50 marks.</p>
+      </div>
+      <div class="control-bar">
+        <button class="collapse-button" type="button" onclick="setAll(true)">Expand all</button>
+        <button class="collapse-button" type="button" onclick="setAll(false)">Collapse all</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TYPESCRIPT ================= -->
+  <details class="collapsible" open id="ts">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">L30</span>
+          <h2>TypeScript</h2>
+          <p>Typed superset of JavaScript. The interface question is worth the most marks of any single question — learn it precisely.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="w3links">
+        <a class="w3link" href="https://www.w3schools.com/typescript/index.php">TypeScript tutorial</a>
+        <a class="w3link" href="https://www.w3schools.com/typescript/typescript_simple_types.php">Simple types</a>
+        <a class="w3link" href="https://www.w3schools.com/typescript/typescript_aliases_and_interfaces.php">Aliases &amp; interfaces</a>
+        <a class="w3link" href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html">Official handbook</a>
+      </div>
+
+      <div class="callout def">
+        <span class="callout-title">📌 Version used in this module</span>
+        <p><strong>TypeScript 5.x</strong> (the L30 slide cites v6.0.3). The syntax in these notes — interfaces, union/literal types, optional <code>?</code>, generics — has been stable for years and is identical across TS 4 / 5 / 6, so nothing version-specific can trip you up here.</p>
+      </div>
+
+      <h3>What &amp; why</h3>
+      <ul>
+        <li><strong>Open-source, released October 2012 by Microsoft.</strong></li>
+        <li>A <strong>strict superset of JavaScript</strong> — every valid <code>.js</code> file is valid TypeScript. It adds <em>optional static typing</em> on top.</li>
+        <li>Cannot run in a browser directly — it is <strong>transpiled</strong> (compiled) to plain JavaScript by the <code>tsc</code> compiler.</li>
+        <li>Designed for <strong>large-scale applications</strong> where type errors caught at compile time save you from runtime bugs.</li>
+        <li>Files end in <code>.ts</code> (or <code>.tsx</code> for files containing JSX). Compiler options live in <code>tsconfig.json</code>. It is <strong>transpiled</strong> to JavaScript with the <code>tsc</code> compiler.</li>
+      </ul>
+
+      <div class="callout def">
+        <span class="callout-title">Definition you may be asked to state</span>
+        <p>"TypeScript is an open-source, strongly-typed <strong>superset of JavaScript</strong> developed by Microsoft that compiles (transpiles) to plain JavaScript and adds static type checking, interfaces and modern language features."</p>
+      </div>
+
+      <h3>Primitive types</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Example</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><code>string</code></td><td><code>"COS216"</code></td><td>Text. Single, double or back-tick (template) quotes.</td></tr>
+            <tr><td><code>number</code></td><td><code>785</code>, <code>3.14</code></td><td>One type for ints <em>and</em> floats.</td></tr>
+            <tr><td><code>boolean</code></td><td><code>true</code></td><td><code>true</code> / <code>false</code> only.</td></tr>
+            <tr><td><code>any</code></td><td><code>let x: any</code></td><td>Turns type-checking <em>off</em> for that variable. Avoid unless forced.</td></tr>
+            <tr><td><code>undefined</code></td><td><code>undefined</code></td><td>Declared but not assigned.</td></tr>
+            <tr><td><code>null</code></td><td><code>null</code></td><td>Intentionally empty.</td></tr>
+            <tr><td><code>void</code></td><td>function returns nothing</td><td>Used as a function return type.</td></tr>
+            <tr><td><code>T[]</code></td><td><code>number[]</code></td><td>Array of a type. Also written <code>Array&lt;number&gt;</code>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Implicit vs explicit typing</h3>
+      <div class="callout tip">
+        <span class="callout-title">💡 Key distinction</span>
+        <p><strong>Implicit (inferred):</strong> TypeScript guesses the type from the value you assign. <strong>Explicit:</strong> you write <code>: type</code> yourself. Once a type is fixed (either way) you cannot assign a different type.</p>
+      </div>
+<pre><code><span class="cm">// IMPLICIT — inferred as number from the value 23</span>
+<span class="kw">let</span> a = <span class="num">23</span>;
+a = <span class="str">"Hi"</span>;            <span class="cm">// ❌ ERROR: Type 'string' is not assignable to type 'number'</span>
+
+<span class="cm">// EXPLICIT annotations</span>
+<span class="kw">let</span> name: <span class="type">string</span> = <span class="str">"COS216"</span>;
+<span class="kw">let</span> count: <span class="type">number</span> = <span class="num">0</span>;
+<span class="kw">let</span> active: <span class="type">boolean</span> = <span class="kw">true</span>;
+
+<span class="cm">// 'any' opts out of checking — legal but defeats the point of TS</span>
+<span class="kw">let</span> b: <span class="type">any</span> = <span class="num">23</span>;
+b = <span class="str">"Hi"</span>;            <span class="cm">// ✅ allowed because type is 'any'</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>let a = 23;</code> — you never wrote a type, so TypeScript <em>infers</em> one from the value <code>23</code>. It silently decides "<code>a</code> is a number" forever.</li>
+          <li><code>a = "Hi";</code> — now you try to put text into that number variable, so the compiler stops you with an error. This is the whole point of TS: the mistake is caught before the program runs.</li>
+          <li><code>let name: string = "COS216";</code> (and the two lines below it) — here you <em>explicitly</em> write the type after a colon. <code>name</code> can only ever hold a string, <code>count</code> only a number, <code>active</code> only true/false.</li>
+          <li><code>let b: any = 23;</code> then <code>b = "Hi";</code> — declaring <code>any</code> turns checking <strong>off</strong> for that variable, so switching it from a number to a string is allowed. It works, but you've thrown away the safety, so only use <code>any</code> when you genuinely don't know the type.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Mistakes to avoid</span>
+        <ul class="compact-list">
+          <li>Using <code>any</code> everywhere — it silently disables the safety the exam is testing for. Only worth marks when the spec literally says "can be anything".</li>
+          <li>Confusing <strong>type annotation</strong> (<code>let x: number</code>) with <strong>type assertion</strong> (<code>let x = y as number</code>).</li>
+          <li>Writing <code>String</code>/<code>Number</code>/<code>Boolean</code> (capitalised wrapper objects) instead of the lowercase primitives <code>string</code>/<code>number</code>/<code>boolean</code>.</li>
+        </ul>
+      </div>
+
+      <h3>Custom (union) types &amp; literal types</h3>
+      <div class="callout tip">
+        <span class="callout-title">💡 The single most exam-relevant feature</span>
+        <p>A <strong>union</strong> (<code>|</code>) means "one of these". A <strong>string-literal union</strong> restricts a value to an exact set of strings — this is how the exam expects you to model things like assessment type or period.</p>
+      </div>
+<pre><code><span class="kw">type</span> <span class="type">Style</span> = <span class="str">'italic'</span> | <span class="str">'bold'</span> | <span class="str">'normal'</span>;
+<span class="kw">let</span> font: <span class="type">Style</span>;
+font = <span class="str">'underline'</span>;   <span class="cm">// ❌ ERROR — only the three listed strings are allowed</span>
+font = <span class="str">'bold'</span>;        <span class="cm">// ✅</span>
+
+<span class="cm">// union of two primitive types — "either a string OR a number"</span>
+<span class="kw">let</span> code: <span class="type">string</span> | <span class="type">number</span>;
+code = <span class="str">"COS216"</span>;       <span class="cm">// ✅</span>
+code = <span class="num">216</span>;            <span class="cm">// ✅</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>type Style = 'italic' | 'bold' | 'normal';</code> — creates your own named type. The <code>|</code> means "OR", so a <code>Style</code> value is allowed to be <em>only</em> one of those three exact words.</li>
+          <li><code>let font: Style;</code> — declares <code>font</code> as that type, so the compiler now polices what you put in it.</li>
+          <li><code>font = 'underline';</code> — rejected, because <code>'underline'</code> isn't in the allowed list of three.</li>
+          <li><code>font = 'bold';</code> — accepted, because it matches one of the allowed words.</li>
+          <li><code>let code: string | number;</code> — a union of two <em>types</em> rather than words: <code>code</code> may hold either a string or a number, which is exactly how you model "can be alphanumeric or numeric" in the interface question.</li>
+        </ul>
+      </div>
+
+      <h3>Enums</h3>
+      <p>An <strong>enum</strong> names a set of constants. Numeric enums auto-increment from 0; string enums keep their string value.</p>
+<pre><code><span class="kw">enum</span> <span class="type">PizzaTopping</span> { TOMATO, BBQ, NONE, CREAM }  <span class="cm">// 0,1,2,3</span>
+<span class="kw">enum</span> <span class="type">PizzaSize</span>    { S = <span class="str">'s'</span>, M = <span class="str">'m'</span>, L = <span class="str">'l'</span>, XL = <span class="str">'xl'</span> }
+<span class="kw">let</span> t = <span class="type">PizzaTopping</span>.BBQ;   <span class="cm">// 1</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>enum PizzaTopping { TOMATO, BBQ, NONE, CREAM }</code> — a numeric enum. You didn't give values, so TypeScript numbers them automatically starting at 0: TOMATO=0, BBQ=1, NONE=2, CREAM=3.</li>
+          <li><code>enum PizzaSize { S = 's', ... }</code> — a string enum: here you set each member's value yourself, so <code>PizzaSize.M</code> is the string <code>'m'</code>.</li>
+          <li><code>let t = PizzaTopping.BBQ;</code> — reads a member by its name; <code>t</code> ends up holding <code>1</code> (BBQ's auto-assigned number).</li>
+        </ul>
+      </div>
+      <div class="callout tip">
+        <span class="callout-title">💡 Enum vs string-literal union</span>
+        <p>Both restrict to a set of values. Prefer a <strong>string-literal union</strong> when the spec says a field "can only be 'A' or 'B'" — it is exactly what the markers expect for interface fields. Use an <strong>enum</strong> when you need named constants used throughout the code.</p>
+      </div>
+
+      <h3>Interfaces — the big one</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 Worth 14 marks in 2021 (Q5)</span>
+        <p>You will be given a plain-English spec of an object and asked to write a <strong>strongly-typed interface</strong>. Marks are awarded per correctly-typed field. Memorise the mapping from English → type.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Spec wording</th><th>TypeScript</th></tr></thead>
+          <tbody>
+            <tr><td>"can be alphanumeric <em>or</em> numeric"</td><td><code>code: string | number</code></td></tr>
+            <tr><td>"a name / description (text)"</td><td><code>name: string</code></td></tr>
+            <tr><td>"a list of X (codes / tags)"</td><td><code>tags: string[]</code></td></tr>
+            <tr><td>"can only be 'A' or 'B'"</td><td><code>assessment: 'A' | 'B'</code></td></tr>
+            <tr><td>"an optional minimum mark"</td><td><code>submin?: number</code></td></tr>
+            <tr><td>"a flag / whether it is active"</td><td><code>active: boolean</code></td></tr>
+            <tr><td>"a year"</td><td><code>year: number</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+<pre><code><span class="cm">// This is the EXACT 2021 Q5 answer — the Module interface</span>
+<span class="kw">interface</span> <span class="type">Module</span> {
+  code: <span class="type">string</span> | <span class="type">number</span>,             <span class="cm">// alphanumeric OR numeric</span>
+  name: <span class="type">string</span>,
+  description: <span class="type">string</span>,
+  prerequisites: <span class="type">string</span>[],            <span class="cm">// array of module codes</span>
+  assessment: <span class="str">'SUMMATIVE'</span> | <span class="str">'FORMATIVE'</span>,
+  year: <span class="type">number</span>,
+  period: <span class="str">'Q1'</span> | <span class="str">'Q2'</span> | <span class="str">'S1'</span> | <span class="str">'Q3'</span> | <span class="str">'Q4'</span> | <span class="str">'S2'</span>,
+  submin?: <span class="type">number</span>,                    <span class="cm">// optional — the '?' is the mark</span>
+  active: <span class="type">boolean</span>
+}
+
+<span class="cm">// using it — every required field must be present and correctly typed</span>
+<span class="kw">const</span> cos216: <span class="type">Module</span> = {
+  code: <span class="num">216</span>, name: <span class="str">"Concurrent Systems"</span>, description: <span class="str">"..."</span>,
+  prerequisites: [<span class="str">"COS110"</span>, <span class="str">"COS212"</span>], assessment: <span class="str">'SUMMATIVE'</span>,
+  year: <span class="num">2</span>, period: <span class="str">'S1'</span>, active: <span class="kw">true</span>   <span class="cm">// submin omitted — OK, it's optional</span>
+};</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, field by field</span>
+        <p>An <code>interface</code> is a <strong>shape/contract</strong>: it lists what fields an object must have and what type each one is. It produces no real code — it only tells the compiler how to check objects you label as a <code>Module</code>.</p>
+        <ol>
+          <li><code>interface Module {</code> — starts the contract named <code>Module</code>.</li>
+          <li><code>code: string | number,</code> — the field <code>code</code> may be a string <em>or</em> a number (this is how "alphanumeric or numeric" is written).</li>
+          <li><code>name: string,</code> and <code>description: string,</code> — plain text fields.</li>
+          <li><code>prerequisites: string[],</code> — the <code>[]</code> means "an array (list) of". So this holds many module-code strings, e.g. <code>["COS110","COS212"]</code>. "A list of…" always becomes an array.</li>
+          <li><code>assessment: 'SUMMATIVE' | 'FORMATIVE',</code> — a string-literal union: this field can only be one of those two exact words, nothing else.</li>
+          <li><code>year: number,</code> — a plain number (a year is just a number, not a Date).</li>
+          <li><code>period: 'Q1' | 'Q2' | ...,</code> — same idea as assessment, but with six allowed values.</li>
+          <li><code>submin?: number,</code> — the <code>?</code> makes this field <strong>optional</strong>: an object can leave it out and still be a valid <code>Module</code>.</li>
+          <li><code>active: boolean</code> — true/false flag. Note: no comma after the last field, then <code>}</code> closes the interface.</li>
+          <li>The <code>const cos216: Module = { … }</code> block then <em>uses</em> the interface: by labelling the object <code>: Module</code>, the compiler checks every required field is present and correctly typed. <code>submin</code> is left out, which is fine because it was optional.</li>
+        </ol>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Exact mistakes a real 2021 script made (and lost marks)</span>
+        <ul class="compact-list">
+          <li><code>prerequisites: string</code> instead of <code>string[]</code> — "a list of" <strong>always</strong> means an array.</li>
+          <li><code>year: Date()</code> — the spec said "a year", which is a <code>number</code>, not a Date.</li>
+          <li>Forgetting the <code>?</code> on the optional <code>submin</code> field.</li>
+          <li>Quoting the literal-union values inconsistently, or using <code>=</code> instead of <code>:</code> between field and type.</li>
+        </ul>
+      </div>
+
+      <h3>Classes</h3>
+<pre><code><span class="kw">class</span> <span class="type">Point</span> {
+  <span class="cm">// 'public' in the constructor declares AND assigns the field in one line</span>
+  constructor(<span class="kw">public</span> x: <span class="type">number</span>, <span class="kw">public</span> y: <span class="type">number</span>) {}
+
+  add(p: <span class="type">Point</span>): <span class="type">Point</span> {
+    <span class="kw">return new</span> <span class="type">Point</span>(<span class="kw">this</span>.x + p.x, <span class="kw">this</span>.y + p.y);
+  }
+}
+<span class="kw">const</span> p3 = <span class="kw">new</span> <span class="type">Point</span>(<span class="num">0</span>, <span class="num">10</span>).add(<span class="kw">new</span> <span class="type">Point</span>(<span class="num">10</span>, <span class="num">20</span>)); <span class="cm">// {x:10, y:30}</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>class Point {</code> — defines a blueprint for "point" objects.</li>
+          <li><code>constructor(public x: number, public y: number) {}</code> — the constructor runs when you create a point. Writing <code>public</code> in front of each parameter is a TypeScript shortcut that <em>both</em> declares the fields <code>x</code> and <code>y</code> <em>and</em> stores the passed-in values into them — so you don't need separate <code>this.x = x</code> lines.</li>
+          <li><code>add(p: Point): Point { ... }</code> — a method that takes another point <code>p</code> and returns a new point. The <code>: Point</code> after the brackets says "this method gives back a Point".</li>
+          <li><code>return new Point(this.x + p.x, this.y + p.y);</code> — builds a brand-new point whose coordinates are the two points added together. <code>this</code> means "the point you called <code>.add</code> on".</li>
+          <li>The last line creates point (0,10), adds point (10,20) to it, and stores the result (10,30) in <code>p3</code>.</li>
+        </ul>
+      </div>
+      <p>Access modifiers: <code>public</code> (default), <code>private</code> (only inside the class), <code>protected</code> (class + subclasses), <code>readonly</code> (assign once).</p>
+
+      <h3>Typed functions, tuples &amp; generics</h3>
+<pre><code><span class="cm">// typed function: param types + return type</span>
+<span class="kw">function</span> <span class="fn">pow</span>(x: <span class="type">number</span>, y: <span class="type">number</span>): <span class="type">number</span> { <span class="kw">return</span> Math.pow(x, y); }
+<span class="fn">pow</span>(<span class="str">'a'</span>, <span class="str">'b'</span>);   <span class="cm">// ❌ COMPILE error — caught before it ever runs</span>
+
+<span class="cm">// tuple: fixed-length array with a type per position</span>
+<span class="kw">let</span> row: [<span class="type">string</span>, <span class="type">number</span>] = [<span class="str">"age"</span>, <span class="num">21</span>];
+
+<span class="cm">// generic: works with any type T, decided at use-time</span>
+<span class="kw">class</span> <span class="type">Box</span>&lt;T&gt; { constructor(<span class="kw">public</span> value: T) {} }
+<span class="kw">let</span> n = <span class="kw">new</span> <span class="type">Box</span>(<span class="num">216</span>);  <span class="cm">// inferred Box&lt;number&gt;</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>function pow(x: number, y: number): number</code> — a typed function: both inputs must be numbers and it promises to return a number. So <code>pow('a','b')</code> is rejected at compile time because strings aren't numbers.</li>
+          <li><code>let row: [string, number] = ["age", 21];</code> — a <strong>tuple</strong>: a fixed-length array where each position has its own type. Slot 0 must be a string, slot 1 must be a number.</li>
+          <li><code>class Box&lt;T&gt; { ... }</code> — a <strong>generic</strong> class. <code>T</code> is a placeholder for "whatever type you use it with", decided later.</li>
+          <li><code>let n = new Box(216);</code> — because you passed a number, TypeScript fills in <code>T = number</code>, making this a <code>Box&lt;number&gt;</code>. The same class would work with strings, objects, etc.</li>
+        </ul>
+      </div>
+
+      <h3>Loops: <code>for…in</code> vs <code>for…of</code></h3>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ Classic trick question</span>
+        <p><code>for…in</code> gives <strong>keys / indices</strong>. <code>for…of</code> gives <strong>values</strong>.</p>
+      </div>
+<pre><code><span class="kw">let</span> list = [<span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>];
+<span class="kw">for</span> (<span class="kw">let</span> i <span class="kw">in</span> list)  console.log(i);  <span class="cm">// 0 1 2  (indices)</span>
+<span class="kw">for</span> (<span class="kw">let</span> v <span class="kw">of</span> list)  console.log(v);  <span class="cm">// 4 5 6  (values)</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>let list = [4, 5, 6];</code> — an array with values 4, 5, 6 sitting at positions (indices) 0, 1, 2.</li>
+          <li><code>for (let i in list)</code> — <code>for…in</code> walks the <strong>positions</strong>, so <code>i</code> is 0, then 1, then 2.</li>
+          <li><code>for (let v of list)</code> — <code>for…of</code> walks the <strong>values</strong>, so <code>v</code> is 4, then 5, then 6.</li>
+          <li>Memory hook: "<strong>in</strong>dices" vs "values <strong>of</strong>". Mixing these up is a classic exam trap.</li>
+        </ul>
+      </div>
+
+      <h3>Modules: export / import</h3>
+<pre><code><span class="cm">// point.ts</span>
+<span class="kw">export class</span> <span class="type">Point</span> { constructor(<span class="kw">public</span> x: <span class="type">number</span>) {} }
+
+<span class="cm">// main.ts  — note: NO .ts extension in the import path</span>
+<span class="kw">import</span> { <span class="type">Point</span> } <span class="kw">from</span> <span class="str">'./point'</span>;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>export class Point { ... }</code> — the <code>export</code> keyword makes this class <strong>visible to other files</strong>. Without it, the class is private to <code>point.ts</code>.</li>
+          <li><code>import { Point } from './point';</code> — pulls that exported <code>Point</code> into <code>main.ts</code> so you can use it here. <code>./point</code> is the file path (same folder); you leave off the <code>.ts</code> extension.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= ANGULAR ================= -->
+  <details class="collapsible" open id="ng">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">L31</span>
+          <h2>Angular</h2>
+          <p>Google's TypeScript framework. The exam gives you a finished <code>.ts</code> component and asks for the HTML template — *ngFor, *ngIf/ng-template and [ngStyle] are the whole game.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="w3links">
+        <a class="w3link" href="https://angular.dev/tutorials/learn-angular">Official Angular tutorial</a>
+        <a class="w3link" href="https://angular.dev/guide/templates">Template syntax</a>
+        <a class="w3link" href="https://angular.dev/guide/directives">Directives (ngIf/ngFor)</a>
+      </div>
+
+      <div class="callout def">
+        <span class="callout-title">📌 Version used in this module — read carefully</span>
+        <p>The L31 slide cites <strong>Angular 21.2.9</strong>, <em>but the course teaches (and the 2021 exam was marked in) the classic <strong>NgModule</strong> style</em>: an <code>app.module.ts</code> with <code>@NgModule</code>, <code>FormsModule</code> for <code>ngModel</code>, and templates using <code>ng-template [ngIf]</code>. Stick to that style in your answers.</p>
+        <p style="margin-top:8px"><strong>What changed in modern Angular (v17+):</strong> standalone components are now the default (no NgModule needed), and the new built-in control flow <code>@if</code> / <code>@for</code> replaces <code>*ngIf</code> / <code>*ngFor</code>. These notes show the <code>*ngIf</code>/<code>*ngFor</code>/<code>ng-template</code> syntax because that is what the exam expects — but if a marker accepts modern syntax, <code>@for (g of games; track g.id) { … }</code> is the v17+ equivalent.</p>
+      </div>
+
+      <h3>Overview</h3>
+      <ul>
+        <li>Open-source, released (as Angular 2+) <strong>2016 by Google</strong>; a complete rewrite of the older AngularJS.</li>
+        <li>Written in <strong>TypeScript + HTML + CSS</strong>; needs <strong>Node.js</strong> to build/serve.</li>
+        <li>A full <strong>framework</strong> (routing, forms, HTTP, DI all included) — contrast with React, which is a library.</li>
+      </ul>
+
+      <h3>Anatomy of a component</h3>
+      <div class="callout tip">
+        <span class="callout-title">💡 Three parts</span>
+        <p>Every component = an <strong>import</strong>, a <strong>@Component decorator</strong> (links template + styles to the class), and the <strong>class</strong> (your data + methods).</p>
+      </div>
+<pre><code><span class="kw">import</span> { Component } <span class="kw">from</span> <span class="str">'@angular/core'</span>;
+
+<span class="dec">@Component</span>({
+  selector: <span class="str">'app-home'</span>,                  <span class="cm">// the HTML tag &lt;app-home&gt;</span>
+  templateUrl: <span class="str">'./home.component.html'</span>,
+  styleUrls: [<span class="str">'./home.component.css'</span>]
+})
+<span class="kw">export class</span> <span class="type">HomeComponent</span> {
+  counter: <span class="type">number</span> = <span class="num">0</span>;
+  name: <span class="type">string</span> = <span class="str">""</span>;
+  count() { <span class="kw">this</span>.counter++; }
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>import { Component } from '@angular/core';</code> — brings in the <code>@Component</code> tool from Angular so you can use it below.</li>
+          <li><code>@Component({ ... })</code> — a <strong>decorator</strong>: it sits above the class and adds Angular configuration to it. Everything in the braces tells Angular how this component is wired up.</li>
+          <li><code>selector: 'app-home'</code> — the custom HTML tag for this component; writing <code>&lt;app-home&gt;</code> anywhere drops this component in.</li>
+          <li><code>templateUrl</code> / <code>styleUrls</code> — point to the HTML file (its visual layout) and the CSS file(s) (its styling). <code>styleUrls</code> is an array because a component can have several stylesheets.</li>
+          <li><code>export class HomeComponent { ... }</code> — the actual class holding the component's data and logic. <code>counter</code> and <code>name</code> are data fields the template can show; <code>count()</code> is a method that adds 1 to <code>counter</code> (<code>this</code> means "this component instance").</li>
+        </ul>
+      </div>
+
+      <h3>Data binding — the four kinds</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Binding</th><th>Syntax</th><th>Direction</th></tr></thead>
+          <tbody>
+            <tr><td>Interpolation</td><td><code>{{ counter }}</code></td><td>TS → HTML</td></tr>
+            <tr><td>Property binding</td><td><code>[disabled]="isBusy"</code></td><td>TS → HTML</td></tr>
+            <tr><td>Event binding</td><td><code>(click)="count()"</code></td><td>HTML → TS</td></tr>
+            <tr><td>Two-way</td><td><code>[(ngModel)]="name"</code></td><td>both ways</td></tr>
+          </tbody>
+        </table>
+      </div>
+<pre><code>&lt;button (click)=<span class="str">"count()"</span>&gt;Click Me&lt;/button&gt;
+&lt;p&gt;You clicked {{ counter }} times.&lt;/p&gt;
+
+&lt;input type=<span class="str">"text"</span> [(ngModel)]=<span class="str">"name"</span>&gt;
+&lt;p&gt;Hi {{ name }}!&lt;/p&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>&lt;button (click)="count()"&gt;</code> — <strong>event binding</strong>. The round brackets mean "when this event happens". So clicking the button runs the component's <code>count()</code> method (which adds 1 to <code>counter</code>).</li>
+          <li><code>{{ counter }}</code> — <strong>interpolation</strong>: drops the current value of <code>counter</code> into the page as text. It updates automatically whenever <code>counter</code> changes.</li>
+          <li><code>&lt;input [(ngModel)]="name"&gt;</code> — <strong>two-way binding</strong>. The <code>[()]</code> ("banana in a box") keeps the textbox and the <code>name</code> field in sync <em>both ways</em>: typing updates <code>name</code>, and changing <code>name</code> in code updates the textbox.</li>
+          <li><code>&lt;p&gt;Hi {{ name }}!&lt;/p&gt;</code> — shows whatever you typed live, because it reads the same <code>name</code> field.</li>
+        </ul>
+      </div>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ ngModel needs a module</span>
+        <p><code>[(ngModel)]</code> only works if <strong>FormsModule</strong> is imported in your module / standalone component imports. Interpolation <code>{{ }}</code> is also called the "moustache" / "handlebars" syntax.</p>
+      </div>
+
+      <h3>Conditionals: *ngIf and ng-template</h3>
+      <p>The exam's Angular question expects you to show one button <em>or</em> another depending on state. The lecture style uses <code>ng-template</code> with <code>[ngIf]</code>:</p>
+<pre><code>&lt;ng-template [ngIf]=<span class="str">"counter &gt; 5"</span> [ngIfElse]=<span class="str">"none"</span>&gt;
+  Clicking too much!
+&lt;/ng-template&gt;
+&lt;ng-template #none&gt;Not clicking enough.&lt;/ng-template&gt;
+
+<span class="cm">&lt;!-- shorthand form (also valid) --&gt;</span>
+&lt;p *ngIf=<span class="str">"counter &gt; 5"</span>&gt;Clicking too much!&lt;/p&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>&lt;ng-template [ngIf]="counter &gt; 5" [ngIfElse]="none"&gt;</code> — only shows its contents <em>if</em> the condition <code>counter &gt; 5</code> is true. If it's false, Angular shows the template named by <code>[ngIfElse]</code> instead.</li>
+          <li><code>&lt;ng-template #none&gt;...&lt;/ng-template&gt;</code> — the <code>#none</code> is a <strong>template reference</strong> (a label). This is the "else" block that <code>[ngIfElse]="none"</code> pointed at.</li>
+          <li><code>&lt;p *ngIf="counter &gt; 5"&gt;</code> — the shorthand: the <code>*</code> does the same show/hide on a single element without writing a full <code>ng-template</code>. Use this when you don't need an else branch.</li>
+        </ul>
+      </div>
+
+      <h3>Lists: *ngFor</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 Highest-frequency Angular topic</span>
+        <p>Know <code>*ngFor="let item of array"</code> and how to read properties with <code>item.property</code> inside the loop.</p>
+      </div>
+<pre><code><span class="cm">// component</span>
+music = [
+  { title: <span class="str">'Track 1'</span>, rank: <span class="num">500</span> },
+  { title: <span class="str">'Track 2'</span>, rank: <span class="num">302</span> }
+];
+
+<span class="cm">&lt;!-- template --&gt;</span>
+&lt;div *ngFor=<span class="str">"let m of music"</span>&gt;
+  &lt;p&gt;{{ m.title }} — rank {{ m.rank }}&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>music = [ {…}, {…} ];</code> — in the component, an array of objects, each with a <code>title</code> and a <code>rank</code>.</li>
+          <li><code>&lt;div *ngFor="let m of music"&gt;</code> — repeats this <code>&lt;div&gt;</code> once for <em>every</em> item in <code>music</code>. Each time round, <code>m</code> is the current object (first <code>Track 1</code>, then <code>Track 2</code>).</li>
+          <li><code>{{ m.title }} — rank {{ m.rank }}</code> — inside the loop you read fields off the current item with a dot, so each repeat prints that item's own title and rank.</li>
+        </ul>
+      </div>
+
+      <h3>Dynamic styling: [ngStyle], [ngClass], [class.x]</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 "Use Angular CSS only" = use [ngStyle]</span>
+        <p>When the question says <em>"do not use traditional CSS, only Angular CSS"</em>, it wants <code>[ngStyle]</code> with a conditional (ternary) expression — exactly the colour-by-count requirement in Q14.</p>
+      </div>
+<pre><code><span class="cm">&lt;!-- inline style decided by a condition --&gt;</span>
+&lt;p [ngStyle]=<span class="str">"{'color': count &gt; 10 ? 'red' : 'green'}"</span>&gt;Status&lt;/p&gt;
+
+<span class="cm">&lt;!-- toggle a single class --&gt;</span>
+&lt;p [class.active]=<span class="str">"count &gt; 10"</span>&gt;Text&lt;/p&gt;
+
+<span class="cm">&lt;!-- multiple classes from a method --&gt;</span>
+&lt;p [ngClass]=<span class="str">"setClasses()"</span>&gt;Text&lt;/p&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>[ngStyle]="{'color': count &gt; 10 ? 'red' : 'green'}"</code> — sets inline CSS from code. The part <code>count &gt; 10 ? 'red' : 'green'</code> is a <strong>ternary</strong> ("if-else in one line"): if <code>count</code> is over 10 the colour is red, otherwise green. The text recolours by itself as <code>count</code> changes.</li>
+          <li><code>[class.active]="count &gt; 10"</code> — adds the CSS class <code>active</code> only while the condition is true, and removes it when false.</li>
+          <li><code>[ngClass]="setClasses()"</code> — calls a component method that returns an object saying which classes should be on/off; use this when several classes depend on conditions.</li>
+        </ul>
+      </div>
+
+      <h3>Worked example — the 2021 cart (Q14)</h3>
+      <p>Given a component with <code>videogames</code> (each <code>{title, price, cart}</code>), <code>cartCount</code>, and <code>addToCart()/removeFromCart()</code>, write the template:</p>
+<pre><code><span class="cm">&lt;!-- grey when empty, lightgreen otherwise; show counts --&gt;</span>
+&lt;p [ngStyle]=<span class="str">"{'color': cartCount === 0 ? 'grey' : 'lightgreen'}"</span>&gt;
+  Total: {{ videogames.length }} | In cart: {{ cartCount }}
+&lt;/p&gt;
+
+&lt;div *ngFor=<span class="str">"let game of videogames"</span>&gt;
+  &lt;p&gt;{{ game.title }} — R{{ game.price }}&lt;/p&gt;
+  &lt;ng-template [ngIf]=<span class="str">"!game.cart"</span>&gt;
+    &lt;button (click)=<span class="str">"addToCart(game)"</span>&gt;Add to Cart&lt;/button&gt;
+  &lt;/ng-template&gt;
+  &lt;ng-template [ngIf]=<span class="str">"game.cart"</span>&gt;
+    &lt;button (click)=<span class="str">"removeFromCart(game)"</span>&gt;Remove from Cart!&lt;/button&gt;
+  &lt;/ng-template&gt;
+&lt;/div&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line (this is the full Q14 answer)</span>
+        <ol>
+          <li><code>&lt;p [ngStyle]="{'color': cartCount === 0 ? 'grey' : 'lightgreen'}"&gt;</code> — colours this paragraph grey when the cart is empty (<code>cartCount === 0</code>) and lightgreen once it has items. This satisfies the "must use Angular CSS, not normal CSS" rule.</li>
+          <li><code>Total: {{ videogames.length }} | In cart: {{ cartCount }}</code> — prints how many games exist in total (<code>.length</code> of the array) and how many are in the cart.</li>
+          <li><code>&lt;div *ngFor="let game of videogames"&gt;</code> — loops once per game; <code>game</code> is the current one.</li>
+          <li><code>&lt;p&gt;{{ game.title }} — R{{ game.price }}&lt;/p&gt;</code> — shows that game's title and price.</li>
+          <li><code>&lt;ng-template [ngIf]="!game.cart"&gt;</code> — the <code>!</code> means "not". So this block shows only when the game is <em>not</em> in the cart, giving an "Add to Cart" button. Clicking it runs <code>addToCart(game)</code>, passing the current game.</li>
+          <li><code>&lt;ng-template [ngIf]="game.cart"&gt;</code> — the opposite: when the game <em>is</em> in the cart, show "Remove from Cart!" which calls <code>removeFromCart(game)</code>.</li>
+        </ol>
+        <p>Net effect: each game shows exactly one button, the right one for its current state, and the counter paragraph recolours automatically.</p>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Mistakes to avoid (real script lost 7.5/10 here)</span>
+        <ul class="compact-list">
+          <li>Writing Ionic tags (<code>&lt;ion-list&gt;</code>) for an <strong>Angular web</strong> question — read which framework is asked.</li>
+          <li><code>videogames.count</code> — JS/TS arrays use <code>.length</code>, not <code>.count</code>.</li>
+          <li>Forgetting to pass the loop item: <code>addToCart(game)</code>, not <code>addToCart()</code>.</li>
+          <li>Using plain CSS / a <code>style="..."</code> attribute when told to use Angular CSS — use <code>[ngStyle]</code>.</li>
+        </ul>
+      </div>
+
+      <h3>Routing (know it exists)</h3>
+<pre><code><span class="kw">const</span> routes: <span class="type">Routes</span> = [
+  { path: <span class="str">'home'</span>, component: <span class="type">HomeComponent</span> },
+  { path: <span class="str">''</span>, redirectTo: <span class="str">'home'</span>, pathMatch: <span class="str">'full'</span> }
+];</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>const routes: Routes = [ ... ]</code> — a list that maps URL paths to components.</li>
+          <li><code>{ path: 'home', component: HomeComponent }</code> — when the URL is <code>/home</code>, show <code>HomeComponent</code>.</li>
+          <li><code>{ path: '', redirectTo: 'home', pathMatch: 'full' }</code> — when the URL is empty (the site root), redirect to <code>/home</code>. <code>pathMatch: 'full'</code> means "only redirect when the whole path is empty", not just the start.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= REACT ================= -->
+  <details class="collapsible" open id="react">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">L32</span>
+          <h2>React</h2>
+          <p>Meta's UI <em>library</em> (not a full framework). Component-based, state-driven, declarative, written in JSX.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="w3links">
+        <a class="w3link" href="https://www.w3schools.com/react/default.asp">W3Schools React</a>
+        <a class="w3link" href="https://react.dev/learn">Official React docs</a>
+        <a class="w3link" href="https://react.dev/reference/react/useState">useState reference</a>
+      </div>
+
+      <div class="callout def">
+        <span class="callout-title">📌 Version used in this module</span>
+        <p><strong>React 18 / 19</strong> with <strong>function components + Hooks</strong> (the slide teaches the <code>useState</code> hook). Class components (<code>class X extends React.Component</code> with <code>this.state</code>/<code>setState</code>) are the old pre-16.8 style — <strong>do not</strong> mix them in. Hooks (<code>useState</code>, <code>useEffect</code>) only work inside function components.</p>
+      </div>
+
+      <h3>What is React?</h3>
+      <ul>
+        <li>A <strong>JavaScript library</strong> for building user interfaces, by <strong>Meta/Facebook</strong>.</li>
+        <li><strong>Component-based</strong> (reusable pieces), <strong>state-driven</strong> (UI re-renders when state changes), <strong>declarative</strong> (describe <em>what</em> the UI is, not <em>how</em> to update the DOM).</li>
+        <li>Uses <strong>JSX</strong> — HTML-like syntax inside JavaScript. Each component returns <strong>one</strong> parent element.</li>
+      </ul>
+
+      <h3>Components &amp; props (typed)</h3>
+<pre><code><span class="kw">type</span> <span class="type">MovieCardProps</span> = { title: <span class="type">string</span>; year: <span class="type">number</span>; };
+
+<span class="kw">function</span> <span class="fn">MovieCard</span>({ title, year }: <span class="type">MovieCardProps</span>) {
+  <span class="kw">return</span> (
+    &lt;div&gt;
+      &lt;h2&gt;{title}&lt;/h2&gt;
+      &lt;p&gt;{year}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+&lt;MovieCard title=<span class="str">"Inception"</span> year={<span class="num">2010</span>} /&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>type MovieCardProps = { title: string; year: number; };</code> — describes the <strong>props</strong> (inputs) this component accepts: a text title and a numeric year.</li>
+          <li><code>function MovieCard({ title, year }: MovieCardProps) {</code> — a component is just a function. The <code>{ title, year }</code> pulls those two props straight out of the object passed in, and <code>: MovieCardProps</code> type-checks them.</li>
+          <li><code>return ( &lt;div&gt;...&lt;/div&gt; );</code> — returns the JSX (the visual output). Everything must sit inside one parent <code>&lt;div&gt;</code>.</li>
+          <li><code>{title}</code> / <code>{year}</code> — the braces drop a JavaScript value into the markup, so the props show up on screen.</li>
+          <li><code>&lt;MovieCard title="Inception" year={2010} /&gt;</code> — using the component: strings are passed in quotes, numbers in braces. Reusing it with different props gives different cards.</li>
+        </ul>
+      </div>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ JSX gotchas</span>
+        <ul class="compact-list">
+          <li>JS values go in single braces: <code>{title}</code>. Strings can use quotes: <code>title="Inception"</code>; numbers need braces: <code>year={2010}</code>.</li>
+          <li>Use <code>className</code>, not <code>class</code> (class is a reserved JS word).</li>
+          <li>Return one root element — wrap siblings in a <code>&lt;div&gt;</code> or a fragment <code>&lt;&gt;…&lt;/&gt;</code>.</li>
+        </ul>
+      </div>
+
+      <h3>State — the useState hook</h3>
+<pre><code><span class="kw">import</span> { useState } <span class="kw">from</span> <span class="str">'react'</span>;
+
+<span class="kw">function</span> <span class="fn">Counter</span>() {
+  <span class="kw">const</span> [count, setCount] = useState&lt;<span class="type">number</span>&gt;(<span class="num">0</span>);
+  <span class="cm">//     ^value   ^setter             ^type   ^initial value</span>
+  <span class="kw">return</span> (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + <span class="num">1</span>)}&gt;+&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>import { useState } from 'react';</code> — brings in the <code>useState</code> hook, React's way to give a component memory that survives re-renders.</li>
+          <li><code>const [count, setCount] = useState&lt;number&gt;(0);</code> — creates a piece of state starting at <code>0</code>. It hands back two things: <code>count</code> (the current value) and <code>setCount</code> (the only correct way to change it). <code>&lt;number&gt;</code> says the state is a number.</li>
+          <li><code>&lt;p&gt;Count: {count}&lt;/p&gt;</code> — shows the current value.</li>
+          <li><code>onClick={() =&gt; setCount(count + 1)}</code> — when the button is clicked, call <code>setCount</code> with the new value (current + 1). Calling the setter tells React to re-run the component and repaint with the new number.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Mistakes to avoid</span>
+        <ul class="compact-list">
+          <li>Never mutate state directly (<code>count++</code> or <code>arr.push()</code>). Always call the setter and pass a new value/array.</li>
+          <li>Calling a handler instead of passing it: <code>onClick={handleClick}</code> ✅ vs <code>onClick={handleClick()}</code> ❌ (the second runs on render).</li>
+          <li>Calling a hook conditionally or inside a loop — hooks must run at the top level of the component, every render.</li>
+        </ul>
+      </div>
+
+      <h3>Rendering lists &amp; conditionals</h3>
+<pre><code><span class="cm">// each list item needs a unique key</span>
+{movies.map(m =&gt; &lt;MovieCard key={m.id} title={m.title} year={m.year} /&gt;)}
+
+<span class="cm">// conditional rendering</span>
+{isLoggedIn &amp;&amp; &lt;Dashboard /&gt;}              <span class="cm">// show if true</span>
+{isLoading ? &lt;Spinner /&gt; : &lt;Results /&gt;}   <span class="cm">// ternary either/or</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>movies.map(m =&gt; &lt;MovieCard ... /&gt;)</code> — <code>.map</code> turns each item in the <code>movies</code> array into a <code>&lt;MovieCard&gt;</code>, producing a list of components (React's equivalent of Angular's <code>*ngFor</code>).</li>
+          <li><code>key={m.id}</code> — every item in a rendered list needs a unique <code>key</code> so React can track which item changed; skipping it causes bugs and warnings.</li>
+          <li><code>{isLoggedIn &amp;&amp; &lt;Dashboard /&gt;}</code> — "logical AND" shortcut: if <code>isLoggedIn</code> is true, render <code>&lt;Dashboard/&gt;</code>; if false, render nothing.</li>
+          <li><code>{isLoading ? &lt;Spinner /&gt; : &lt;Results /&gt;}</code> — a ternary: show the spinner while loading, otherwise show the results.</li>
+        </ul>
+      </div>
+
+      <h3>React vs Angular (common compare question)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Feature</th><th>React</th><th>Angular</th></tr></thead>
+          <tbody>
+            <tr><td>Type</td><td>Library (UI only)</td><td>Full framework</td></tr>
+            <tr><td>By</td><td>Meta / Facebook</td><td>Google</td></tr>
+            <tr><td>Language</td><td>JavaScript / JSX (+ TS)</td><td>TypeScript</td></tr>
+            <tr><td>Data binding</td><td>One-way (state → UI)</td><td>Two-way (<code>[(ngModel)]</code>)</td></tr>
+            <tr><td>Files</td><td>HTML+JS+CSS together in <code>.jsx/.tsx</code></td><td>Separate <code>.html</code>, <code>.ts</code>, <code>.css</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= IONIC / MOBILE ================= -->
+  <details class="collapsible" open id="ionic">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">L33–36</span>
+          <h2>Ionic &amp; Hybrid / Native Mobile</h2>
+          <p>Write-once hybrid apps in web tech. The exam's HTTP-and-display function is worth big marks — and the 2021 version used <strong>Ionic Native</strong>, not Capacitor.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="w3links">
+        <a class="w3link" href="https://ionicframework.com/docs">Ionic docs</a>
+        <a class="w3link" href="https://capacitorjs.com/docs/apis">Capacitor plugin APIs</a>
+        <a class="w3link" href="https://ionicframework.com/docs/native">Ionic Native list</a>
+      </div>
+
+      <div class="callout def">
+        <span class="callout-title">📌 Versions — and a crucial exam difference</span>
+        <p>Current Ionic is <strong>Ionic 7/8 with Capacitor</strong> (plugins from <code>@capacitor/*</code>) — this is what the current L36 slides teach. <strong>But the 2021 exam (Q15) was written for Ionic 5 with Cordova + Ionic Native</strong>, which used <code>this.http.sendRequest(...)</code> (<code>@ionic-native/http</code>) and <code>this.nativeStorage.getItem(...)</code> (<code>@ionic-native/native-storage</code>), injected via the constructor. <strong>Both styles are shown below</strong> — match whichever the question's given code implies.</p>
+      </div>
+
+      <h3>Hybrid mobile — concept</h3>
+      <p>A <strong>hybrid app</strong> is built with web technologies (HTML/CSS/JS) and wrapped so it runs as a native app. One codebase → many platforms.</p>
+      <div class="two-col">
+        <div class="callout def">
+          <span class="callout-title">Advantages</span>
+          <ul class="compact-list"><li>One codebase, many platforms</li><li>Uses familiar web tech</li><li>Cheaper, faster to market</li></ul>
+        </div>
+        <div class="callout warn">
+          <span class="callout-title">Disadvantages</span>
+          <ul class="compact-list"><li>Slower than native</li><li>Harder to debug</li><li>Limited access to native features</li></ul>
+        </div>
+      </div>
+
+      <h3>Framework comparison</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Framework</th><th>By</th><th>Language</th></tr></thead>
+          <tbody>
+            <tr><td>Flutter</td><td>Google</td><td>Dart (C++ engine)</td></tr>
+            <tr><td>React Native</td><td>Meta</td><td>React (JS, C++)</td></tr>
+            <tr><td>Cordova</td><td>Apache</td><td>HTML/CSS/JS</td></tr>
+            <tr><td>Xamarin</td><td>Microsoft</td><td>C# / .NET</td></tr>
+            <tr><td><strong>Ionic</strong></td><td>Drifty Co</td><td>HTML/CSS/JS + Angular/React/Vue</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>HTTP request + display — the exam pattern</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 Q15 (13 marks) — retrieve a key, POST, bind to template</span>
+        <p>The pattern: get config (an API key) from storage → make a POST with a JSON body → store <code>response.data.data</code> on a class field → the template <code>*ngFor</code>s over it.</p>
+      </div>
+<pre><code><span class="cm">// ===== CURRENT style: Capacitor (Ionic 7/8) =====</span>
+<span class="kw">import</span> { CapacitorHttp, HttpOptions, HttpResponse } <span class="kw">from</span> <span class="str">'@capacitor/core'</span>;
+<span class="kw">import</span> { Preferences } <span class="kw">from</span> <span class="str">'@capacitor/preferences'</span>;  <span class="cm">// modern storage</span>
+
+data: <span class="type">any</span>[] = [];
+
+<span class="kw">async</span> <span class="fn">doPost</span>() {
+  <span class="kw">const</span> { value: apikey } = <span class="kw">await</span> Preferences.get({ key: <span class="str">'apikey'</span> });
+  <span class="kw">const</span> options: <span class="type">HttpOptions</span> = {
+    url: <span class="str">'https://test.games.com/metadata'</span>,
+    headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },
+    data: { id: <span class="num">216</span>, apikey }
+  };
+  <span class="kw">const</span> res: <span class="type">HttpResponse</span> = <span class="kw">await</span> CapacitorHttp.post(options);
+  <span class="kw">this</span>.data = res.data.data;
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line (Capacitor version)</span>
+        <ol>
+          <li>The two <code>import</code> lines bring in <code>CapacitorHttp</code> (to make web requests from the native app) and <code>Preferences</code> (Capacitor's key-value storage).</li>
+          <li><code>data: any[] = [];</code> — a class field that will hold the results, starting empty so the template has something to loop over.</li>
+          <li><code>async doPost() {</code> — <code>async</code> lets us use <code>await</code> inside, which pauses until each slow operation finishes (cleaner than nested callbacks).</li>
+          <li><code>const { value: apikey } = await Preferences.get({ key: 'apikey' });</code> — reads the saved API key out of storage and renames the returned <code>value</code> to <code>apikey</code>.</li>
+          <li><code>const options = { url, headers, data }</code> — builds the request: the address to call, a header saying we're sending JSON, and the JSON body (here the id and the apikey).</li>
+          <li><code>const res = await CapacitorHttp.post(options);</code> — actually sends the POST and waits for the reply.</li>
+          <li><code>this.data = res.data.data;</code> — stores the array from the response onto the component so the template can show it. (<code>res.data</code> is the body; <code>.data</code> inside it is this API's array.)</li>
+        </ol>
+      </div>
+<pre><code><span class="cm">// ===== 2021-EXAM style: Cordova + Ionic Native (Ionic 5) =====</span>
+<span class="cm">// HTTP and NativeStorage injected in the constructor</span>
+constructor(<span class="kw">public</span> http: <span class="type">HTTP</span>, <span class="kw">public</span> nativeStorage: <span class="type">NativeStorage</span>) {}
+
+id: <span class="type">number</span>; name: <span class="type">string</span>; screenshots: <span class="type">string</span>[] = [];
+
+doPost() {
+  <span class="kw">this</span>.nativeStorage.getItem(<span class="str">'apikey'</span>).then(apikey =&gt; {
+    <span class="kw">this</span>.http.sendRequest(<span class="str">'https://test.games.com/metadata'</span>, {
+      method: <span class="str">'post'</span>,
+      data: { id: <span class="num">216</span>, apikey: apikey },
+      headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> }
+    }).then(response =&gt; {
+      <span class="kw">const</span> body = JSON.parse(response.data);
+      <span class="kw">this</span>.id          = body.data.id;
+      <span class="kw">this</span>.name        = body.data.name;
+      <span class="kw">this</span>.screenshots = body.data.screenshots;
+    });
+  });
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line (the actual 2021 Q15 stack)</span>
+        <ol>
+          <li><code>constructor(public http: HTTP, public nativeStorage: NativeStorage) {}</code> — Angular's dependency injection hands you ready-made <code>http</code> and <code>nativeStorage</code> objects to use. Writing <code>public</code> stores them as fields automatically.</li>
+          <li><code>id; name; screenshots = [];</code> — the three fields the template will display.</li>
+          <li><code>this.nativeStorage.getItem('apikey').then(apikey =&gt; {</code> — reads the stored key. <code>getItem</code> is asynchronous and returns a <strong>Promise</strong>, so you wait for it with <code>.then(...)</code>; the saved value arrives as <code>apikey</code>.</li>
+          <li><code>this.http.sendRequest(url, { method:'post', data:{…}, headers:{…} })</code> — sends a native POST: the URL, the method, the JSON body (id + apikey), and a JSON content-type header.</li>
+          <li><code>.then(response =&gt; {</code> — runs once the server replies (again a Promise).</li>
+          <li><code>const body = JSON.parse(response.data);</code> — the native HTTP plugin gives the body back as a <em>string</em>, so <code>JSON.parse</code> turns it into a usable object.</li>
+          <li>The three <code>this.id / this.name / this.screenshots = body.data.*</code> lines copy each piece out of the reply onto the component, which makes the template show them.</li>
+        </ol>
+      </div>
+<pre><code><span class="cm">&lt;!-- template (given in the exam) --&gt;</span>
+&lt;ion-content&gt;
+  &lt;ion-item&gt;ID: {{ id }} &lt;br&gt; Name: {{ name }}&lt;/ion-item&gt;
+  &lt;ion-item *ngFor=<span class="str">"let s of screenshots"</span>&gt;
+    &lt;ion-img [src]=<span class="str">"s"</span>&gt;&lt;/ion-img&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-content&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What the template does, line by line</span>
+        <ul>
+          <li><code>&lt;ion-content&gt;</code> — the scrollable body of an Ionic page; your content goes inside it.</li>
+          <li><code>&lt;ion-item&gt;ID: {{ id }} ... Name: {{ name }}&lt;/ion-item&gt;</code> — shows the two single values bound earlier with interpolation.</li>
+          <li><code>&lt;ion-item *ngFor="let s of screenshots"&gt;</code> — repeats an item for each URL in the <code>screenshots</code> array; <code>s</code> is the current URL.</li>
+          <li><code>&lt;ion-img [src]="s"&gt;</code> — the square brackets bind the image's <code>src</code> to the variable <code>s</code>, so each loop shows a different screenshot.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Mistakes to avoid (a real script scored 2/13)</span>
+        <ul class="compact-list">
+          <li>Inventing the response shape — read the JSON you are given. Here data is at <code>body.data.id</code>, <code>body.data.screenshots</code>, not <code>response.data.message</code>.</li>
+          <li>Forgetting that <code>nativeStorage.getItem()</code> and <code>sendRequest()</code> return <strong>Promises</strong> — you must <code>.then(...)</code> (or <code>await</code>) them and assign inside the callback.</li>
+          <li>Not binding <em>all three</em> fields the template uses (<code>id</code>, <code>name</code>, <code>screenshots</code>) — each is worth marks.</li>
+        </ul>
+      </div>
+
+      <h3>Other Capacitor plugins (know they exist)</h3>
+<pre><code><span class="cm">// Toast</span>
+<span class="kw">import</span> { Toast } <span class="kw">from</span> <span class="str">'@capacitor/toast'</span>;
+<span class="kw">await</span> Toast.show({ text: <span class="str">'Saved!'</span> });
+
+<span class="cm">// Geolocation (manifest: ACCESS_FINE_LOCATION / ACCESS_COARSE_LOCATION)</span>
+<span class="kw">import</span> { Geolocation } <span class="kw">from</span> <span class="str">'@capacitor/geolocation'</span>;
+<span class="kw">const</span> pos = <span class="kw">await</span> Geolocation.getCurrentPosition();
+
+<span class="cm">// Filesystem (read/write/delete)</span>
+<span class="kw">import</span> { Filesystem, Directory, Encoding } <span class="kw">from</span> <span class="str">'@capacitor/filesystem'</span>;
+<span class="kw">await</span> Filesystem.writeFile({ path: <span class="str">'a.txt'</span>, data: <span class="str">'hi'</span>,
+  directory: Directory.Documents, encoding: Encoding.UTF8 });
+
+<span class="cm">// Share</span>
+<span class="kw">import</span> { Share } <span class="kw">from</span> <span class="str">'@capacitor/share'</span>;
+<span class="kw">await</span> Share.share({ title: <span class="str">'Cool'</span>, text: <span class="str">'See this'</span>, url: <span class="str">'https://...'</span> });</code></pre>
+      <div class="explain">
+        <span class="explain-title">What each plugin call does</span>
+        <ul>
+          <li><strong>Toast</strong> — <code>Toast.show({ text })</code> pops up a small message at the bottom of the screen that fades away on its own.</li>
+          <li><strong>Geolocation</strong> — <code>Geolocation.getCurrentPosition()</code> asks the device for the user's GPS coordinates (needs the location permissions noted in the comment).</li>
+          <li><strong>Filesystem</strong> — <code>Filesystem.writeFile({ path, data, directory, encoding })</code> saves a file on the device; <code>Directory.Documents</code> is where, and <code>Encoding.UTF8</code> means save as plain text.</li>
+          <li><strong>Share</strong> — <code>Share.share({ title, text, url })</code> opens the phone's native "share" sheet so the user can send the content to another app.</li>
+          <li>Each plugin is <code>await</code>ed because it talks to the device and finishes asynchronously.</li>
+        </ul>
+      </div>
+
+      <h3>Android native building blocks (theory)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Block</th><th>What it is</th></tr></thead>
+          <tbody>
+            <tr><td>Activity</td><td>A single screen (a class)</td></tr>
+            <tr><td>View</td><td>A UI element (button, label)</td></tr>
+            <tr><td>Intent</td><td>Message to start an activity/service, dial, open a page</td></tr>
+            <tr><td>Service</td><td>Background work, no UI</td></tr>
+            <tr><td>Content Provider</td><td>Share data between apps</td></tr>
+            <tr><td>Fragment</td><td>A reusable part of an Activity</td></tr>
+            <tr><td>Manifest</td><td><code>AndroidManifest.xml</code> — activities, permissions, providers</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Android native code — the two small Java/XML questions</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 Q7 — SearchView predictive text (6 marks)</span>
+      </div>
+<pre><code>@Override
+<span class="kw">public boolean</span> <span class="fn">onQueryTextChange</span>(<span class="type">String</span> input) {
+    searchText = input.replace(<span class="str">" "</span>, <span class="str">"+"</span>).toLowerCase();
+    <span class="kw">if</span> (input.length() &gt; <span class="num">2</span>) {
+        <span class="kw">if</span> (getResults(searchText, <span class="kw">false</span>) == <span class="kw">null</span>) {
+            <span class="kw">if</span> (getResults(searchText, <span class="kw">true</span>) == <span class="kw">null</span>) {
+                <span class="kw">return false</span>;
+            }
+        }
+        <span class="kw">return true</span>;
+    }
+    <span class="kw">return false</span>;
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ol>
+          <li><code>@Override public boolean onQueryTextChange(String input)</code> — Android calls this method automatically every time the search text changes. It receives the new <code>input</code> and returns true/false (whether you handled it).</li>
+          <li><code>searchText = input.replace(" ", "+").toLowerCase();</code> — cleans the input in one chain: swap every space for <code>+</code>, then make it all lowercase (because the brief says <code>getResults</code> only works lowercase and dislikes spaces). The result is stored back into <code>searchText</code>.</li>
+          <li><code>if (input.length() &gt; 2)</code> — only search once the user has typed more than 2 characters (predictive text shouldn't fire too early).</li>
+          <li><code>if (getResults(searchText, false) == null)</code> — try a normal search; it returns <code>null</code> when nothing is found.</li>
+          <li><code>if (getResults(searchText, true) == null) return false;</code> — if the first search found nothing, try again with the second parameter <code>true</code> (search categories too); if <em>that</em> also finds nothing, give up and return <code>false</code>.</li>
+          <li><code>return true;</code> — reached when something was found, telling Android the query was handled.</li>
+          <li>The final <code>return false;</code> covers the "2 characters or fewer" case (nothing searched yet).</li>
+        </ol>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Q7 mistakes</span>
+        <p><code>searchText.toLowerCase()</code> does nothing on its own — <code>String</code> is immutable, you must <strong>reassign</strong>: <code>searchText = searchText.toLowerCase();</code> (or chain as above). Also <code>getResults</code> "returns null if no results" — compare with <code>== null</code>, not <code>== false</code>.</p>
+      </div>
+      <div class="callout exam">
+        <span class="callout-title">🎯 Q8 — Android EditText XML (3 marks)</span>
+      </div>
+<pre><code>&lt;EditText
+    android:id=<span class="str">"@+id/multiline"</span>
+    android:layout_width=<span class="str">"fill_parent"</span>
+    android:layout_height=<span class="str">"wrap_content"</span>
+    android:minLines=<span class="str">"3"</span>
+    android:inputType=<span class="str">"textMultiLine|textAutoCorrect|textCapSentences"</span> /&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What each attribute does</span>
+        <ul>
+          <li><code>&lt;EditText ... /&gt;</code> — an Android text-input box (defined in XML layout, not code).</li>
+          <li><code>android:id="@+id/multiline"</code> — names the field <code>multiline</code> so code can find it. The <code>@+id/</code> with the <code>+</code> <strong>creates</strong> a new id.</li>
+          <li><code>android:layout_width="fill_parent"</code> — make it as wide as its parent (full width).</li>
+          <li><code>android:layout_height="wrap_content"</code> — make it only as tall as the text inside needs.</li>
+          <li><code>android:minLines="3"</code> — show at least 3 lines tall by default.</li>
+          <li><code>android:inputType="textMultiLine|textAutoCorrect|textCapSentences"</code> — the <code>|</code> combines three behaviours: allow multiple lines, auto-correct spelling, and auto-capitalise the start of each sentence.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Q8 mistakes</span>
+        <p>The id needs <code>@+id/</code> (the <code>+</code> <em>creates</em> the id). Combine input behaviours with <code>|</code>: <code>textMultiLine</code> (multi-line) <code>| textAutoCorrect</code> (fix spelling) <code>| textCapSentences</code> (capitalise sentences). One flag alone only earns part marks.</p>
+      </div>
+
+      <h3>Reactive forms (Angular/Ionic)</h3>
+<pre><code><span class="kw">this</span>.myForm = formBuilder.group({
+  title: [<span class="str">""</span>, Validators.compose([
+    Validators.maxLength(<span class="num">30</span>),
+    Validators.pattern(<span class="str">"[a-zA-Z]*"</span>),
+    Validators.required
+  ])]
+});</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>this.myForm = formBuilder.group({ ... })</code> — builds a form object whose fields Angular will track and validate.</li>
+          <li><code>title: [ "", Validators.compose([ ... ]) ]</code> — defines one field called <code>title</code>. The first item <code>""</code> is its starting value (empty); the second bundles its validation rules together with <code>Validators.compose</code>.</li>
+          <li><code>Validators.maxLength(30)</code> — the value may be at most 30 characters.</li>
+          <li><code>Validators.pattern("[a-zA-Z]*")</code> — only letters are allowed (a regular expression).</li>
+          <li><code>Validators.required</code> — the field can't be left empty.</li>
+          <li>If any rule fails, Angular marks the field invalid, which you can use to disable a submit button or show an error.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= BOOTSTRAP ================= -->
+  <details class="collapsible" open id="bs">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">L37</span>
+          <h2>Bootstrap</h2>
+          <p>CSS framework for responsive design. The exam gives plain HTML and asks you to add classes to match a screenshot — the 12-column grid is the core.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="w3links">
+        <a class="w3link" href="https://www.w3schools.com/bootstrap/bootstrap_ver.asp">W3Schools Bootstrap 3</a>
+        <a class="w3link" href="https://www.w3schools.com/bootstrap5/index.php">W3Schools Bootstrap 5</a>
+        <a class="w3link" href="https://getbootstrap.com/docs/3.4/css/">Bootstrap 3.4 grid docs</a>
+      </div>
+
+      <div class="callout def">
+        <span class="callout-title">📌 Version — this matters for the marks</span>
+        <p>The L37 slides and the 2021 exam answer use <strong>Bootstrap 3</strong> — you can tell because the accepted answer uses <code>col-xs-*</code>, <code>img-responsive</code> and <code>navbar-default</code>, and loads <strong>jQuery</strong>. <strong>Answer the exam in Bootstrap 3.</strong> A "Bootstrap 3 → 5 changes" table is below so you don't accidentally write v5 classes.</p>
+      </div>
+
+      <h3>Overview</h3>
+      <ul>
+        <li>Free, open-source front-end CSS/JS framework; released 2011 (originally "Twitter Blueprint"), by Mark Otto &amp; Jacob Thornton.</li>
+        <li>Gives <strong>responsive, mobile-first</strong> design from a single codebase: grid, buttons, forms, tables, navbars, modals, etc.</li>
+        <li>Bootstrap 3/4 depend on <strong>jQuery</strong> for JS components; Bootstrap 5 dropped jQuery.</li>
+      </ul>
+
+      <h3>Install (Bootstrap 3 via CDN)</h3>
+<pre><code><span class="cm">&lt;!-- viewport meta is REQUIRED for responsiveness --&gt;</span>
+&lt;meta name=<span class="str">"viewport"</span> content=<span class="str">"width=device-width, initial-scale=1"</span>&gt;
+
+&lt;link rel=<span class="str">"stylesheet"</span>
+  href=<span class="str">"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"</span>&gt;
+&lt;script src=<span class="str">"https://code.jquery.com/jquery-3.5.1.min.js"</span>&gt;&lt;/script&gt;
+&lt;script src=<span class="str">"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"</span>&gt;&lt;/script&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What each line does</span>
+        <ul>
+          <li>The <code>&lt;meta name="viewport"...&gt;</code> tag tells phones to use their real screen width instead of pretending to be a desktop — without it Bootstrap's responsiveness won't work.</li>
+          <li>The <code>&lt;link rel="stylesheet" ...bootstrap.min.css&gt;</code> loads all of Bootstrap's ready-made CSS classes from a CDN (a public hosted copy).</li>
+          <li>The <code>jquery...min.js</code> script loads jQuery, which Bootstrap 3's interactive parts (modals, dropdowns) depend on.</li>
+          <li>The <code>bootstrap.min.js</code> script loads Bootstrap's own JavaScript. It must come <em>after</em> jQuery.</li>
+        </ul>
+      </div>
+
+      <h3>The 12-column grid — the whole question</h3>
+      <div class="callout tip">
+        <span class="callout-title">💡 Rules</span>
+        <p>A <code>.container</code> (or <code>.container-fluid</code>) holds <code>.row</code>s; each <code>.row</code> holds columns whose numbers <strong>add up to 12</strong>. <code>col-md-3</code> = 3/12 = a quarter on medium+ screens.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Class</th><th>Screen</th><th>Breakpoint</th></tr></thead>
+          <tbody>
+            <tr><td><code>col-xs-*</code></td><td>Phones</td><td>&lt; 768px (Bootstrap 3)</td></tr>
+            <tr><td><code>col-sm-*</code></td><td>Tablets</td><td>≥ 768px</td></tr>
+            <tr><td><code>col-md-*</code></td><td>Desktops</td><td>≥ 992px</td></tr>
+            <tr><td><code>col-lg-*</code></td><td>Large desktops</td><td>≥ 1200px</td></tr>
+          </tbody>
+        </table>
+      </div>
+<pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-md-3"</span>&gt;Quarter&lt;/div&gt;   <span class="cm">&lt;!-- 3/12 = 25% --&gt;</span>
+    &lt;div class=<span class="str">"col-md-6"</span>&gt;Half&lt;/div&gt;      <span class="cm">&lt;!-- 6/12 = 50% --&gt;</span>
+    &lt;div class=<span class="str">"col-md-3"</span>&gt;Quarter&lt;/div&gt;   <span class="cm">&lt;!-- 3/12 = 25% --&gt;</span>
+  &lt;/div&gt;
+&lt;/div&gt;
+<span class="cm">&lt;!-- container = fixed width centred; container-fluid = full width --&gt;</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>&lt;div class="container-fluid"&gt;</code> — the outer wrapper that spans the full width of the screen (use <code>container</code> instead for a centred, fixed width).</li>
+          <li><code>&lt;div class="row"&gt;</code> — a horizontal row that will hold columns. Columns must live inside a row.</li>
+          <li>The three <code>col-md-*</code> divs — split the row into pieces. The numbers (3 + 6 + 3) add up to 12, the full width. So you get a quarter, then a half, then a quarter, sitting side by side on medium-and-larger screens.</li>
+          <li>On a phone (smaller than <code>md</code>) these columns stack vertically by default, which is what makes the layout responsive.</li>
+        </ul>
+      </div>
+
+      <h3>Common components (Bootstrap 3)</h3>
+<pre><code><span class="cm">&lt;!-- Tables --&gt;</span>
+&lt;table class=<span class="str">"table table-striped table-bordered table-hover"</span>&gt;...&lt;/table&gt;
+&lt;table class=<span class="str">"table table-dark"</span>&gt;...&lt;/table&gt;
+
+<span class="cm">&lt;!-- Buttons (colour = meaning) --&gt;</span>
+&lt;button class=<span class="str">"btn btn-primary"</span>&gt;Blue / main&lt;/button&gt;
+&lt;button class=<span class="str">"btn btn-success"</span>&gt;Green&lt;/button&gt;
+&lt;button class=<span class="str">"btn btn-danger"</span>&gt;Red&lt;/button&gt;
+&lt;button class=<span class="str">"btn btn-warning"</span>&gt;Yellow&lt;/button&gt;
+
+<span class="cm">&lt;!-- Images (Bootstrap 3) --&gt;</span>
+&lt;img class=<span class="str">"img-responsive"</span>&gt;   <span class="cm">&lt;!-- scales with container --&gt;</span>
+&lt;img class=<span class="str">"img-thumbnail"</span>&gt;    <span class="cm">&lt;!-- bordered thumbnail --&gt;</span>
+&lt;img class=<span class="str">"img-rounded"</span>&gt;      <span class="cm">&lt;!-- rounded corners --&gt;</span>
+&lt;img class=<span class="str">"img-circle"</span>&gt;       <span class="cm">&lt;!-- circular --&gt;</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What these classes do</span>
+        <ul>
+          <li><strong>Tables:</strong> <code>table</code> is the base style; add <code>table-striped</code> for alternating row shading, <code>table-bordered</code> for lines around every cell, <code>table-hover</code> to highlight the row under the cursor, and <code>table-dark</code> for a dark theme.</li>
+          <li><strong>Buttons:</strong> always start with the base <code>btn</code>, then add a colour that signals meaning — <code>btn-primary</code> (main action, blue), <code>btn-success</code> (green), <code>btn-danger</code> (red), <code>btn-warning</code> (yellow). The colour alone (<code>btn-success</code>) without <code>btn</code> won't look right.</li>
+          <li><strong>Images:</strong> <code>img-responsive</code> makes the image shrink to fit its column; the others give a bordered thumbnail, rounded corners, or a circle.</li>
+        </ul>
+      </div>
+
+      <h3>Worked example — the 2021 conversion (Q9)</h3>
+      <p>Plain HTML in, Bootstrap 3 out. The brief said "the image thumbnail should fill a quarter of the screen" → <code>col-*-3</code>, and the layout is image (1/4) beside heading (3/4), then a striped/bordered table with coloured buttons.</p>
+<pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-md-3"</span>&gt;                 <span class="cm">&lt;!-- quarter --&gt;</span>
+      &lt;img src=<span class="str">"game.jpg"</span> class=<span class="str">"img-responsive"</span>&gt;
+    &lt;/div&gt;
+    &lt;div class=<span class="str">"col-md-9"</span>&gt;                 <span class="cm">&lt;!-- three quarters --&gt;</span>
+      &lt;h1&gt;Player Rankings&lt;/h1&gt;
+      &lt;h2&gt;Super Mario World&lt;/h2&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;table class=<span class="str">"table table-striped table-bordered"</span>&gt;
+      &lt;thead&gt;...&lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;...&lt;td&gt;&lt;button class=<span class="str">"btn btn-primary"</span>&gt;Follow&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;...&lt;td&gt;&lt;button class=<span class="str">"btn btn-success"</span>&gt;Following&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line (full Q9 answer)</span>
+        <ol>
+          <li><code>&lt;div class="container-fluid"&gt;</code> — full-width wrapper for the whole layout.</li>
+          <li>First <code>&lt;div class="row"&gt;</code> — the top strip holding the image and the headings side by side.</li>
+          <li><code>&lt;div class="col-md-3"&gt;</code> with the image inside (<code>img-responsive</code> so it scales) — takes 3/12 = a quarter, matching the "image fills a quarter" brief.</li>
+          <li><code>&lt;div class="col-md-9"&gt;</code> with the headings — takes the remaining 9/12 = three quarters. 3 + 9 = 12.</li>
+          <li>Second <code>&lt;div class="row"&gt;</code> — a new row underneath for the table.</li>
+          <li><code>&lt;table class="table table-striped table-bordered"&gt;</code> — turns the plain table into a striped, bordered Bootstrap table.</li>
+          <li>Each <code>&lt;button class="btn btn-primary"&gt;</code> / <code>btn-success</code> — styles the existing buttons; primary (blue) for "Follow", success (green) for the already-"Following" state, matching the screenshot.</li>
+        </ol>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Exact errors the 2021 script made</span>
+        <ul class="compact-list">
+          <li>Used <code>col-xs-4</code> for both the image and heading — that makes them <em>equal</em> width (4/12 each) and leaves a gap. "Quarter + rest" must be <code>col-*-3</code> + <code>col-*-9</code>.</li>
+          <li>Put grid <code>col-md-*</code> classes on <code>&lt;td&gt;</code> cells — columns belong in a <code>.row</code>, not table cells.</li>
+          <li>Wrote <code>class="btn-success"</code> without the base <code>btn</code> class — you need <strong>both</strong>: <code>class="btn btn-success"</code>.</li>
+        </ul>
+      </div>
+
+      <h3>Bootstrap 3 → 5 differences (don't mix them up)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Purpose</th><th>Bootstrap 3 (exam)</th><th>Bootstrap 5</th></tr></thead>
+          <tbody>
+            <tr><td>Phone column</td><td><code>col-xs-6</code></td><td><code>col-6</code> (xs dropped)</td></tr>
+            <tr><td>Responsive image</td><td><code>img-responsive</code></td><td><code>img-fluid</code></td></tr>
+            <tr><td>Default navbar</td><td><code>navbar-default</code></td><td><code>navbar navbar-expand-lg</code></td></tr>
+            <tr><td>JS data attributes</td><td><code>data-toggle</code>, <code>data-target</code></td><td><code>data-bs-toggle</code>, <code>data-bs-target</code></td></tr>
+            <tr><td>jQuery</td><td>Required</td><td>Not used (vanilla JS)</td></tr>
+            <tr><td>Extra breakpoint</td><td>—</td><td><code>col-xxl-*</code> (≥1400px)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= MONGODB ================= -->
+  <details class="collapsible" open id="mongo">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">L38</span>
+          <h2>MongoDB</h2>
+          <p>Document (NoSQL) database. The aggregation pipeline (group → match → sort → out) is the 9-mark question.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="w3links">
+        <a class="w3link" href="https://www.w3schools.com/mongodb/index.php">W3Schools MongoDB</a>
+        <a class="w3link" href="https://www.mongodb.com/docs/manual/aggregation/">Aggregation docs</a>
+        <a class="w3link" href="https://www.mongodb.com/docs/manual/reference/operator/query/">Query operators</a>
+      </div>
+
+      <div class="callout def">
+        <span class="callout-title">📌 Version / syntax note</span>
+        <p>The L38 slides teach the legacy mongo-shell methods <code>insert()</code>, <code>update()</code>, <code>remove()</code> — <strong>use these in the exam</strong>. In <strong>MongoDB 6/7</strong> (current) these are replaced by <code>insertOne()/insertMany()</code>, <code>updateOne()/updateMany()</code> and <code>deleteOne()/deleteMany()</code> (the bare <code>insert/remove</code> are removed from the modern driver). The <strong>aggregation pipeline syntax is unchanged</strong> across versions, so the big question is version-proof.</p>
+      </div>
+
+      <h3>Why NoSQL / MongoDB?</h3>
+      <ul>
+        <li>SQL needs a fixed schema up front; MongoDB has a <strong>dynamic schema</strong> — documents in a collection can differ.</li>
+        <li>Stores data as <strong>documents</strong> (JSON-like / BSON). Great fit for JavaScript/Node and for hypermedia &amp; very large datasets.</li>
+        <li>Released 2009, free, open-source, cross-platform; written in C/C++ &amp; JavaScript.</li>
+      </ul>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>SQL / RDBMS</th><th>MongoDB</th></tr></thead>
+          <tbody>
+            <tr><td>Database</td><td>Database</td></tr>
+            <tr><td>Table</td><td><strong>Collection</strong></td></tr>
+            <tr><td>Row</td><td><strong>Document</strong></td></tr>
+            <tr><td>Column</td><td><strong>Field</strong></td></tr>
+            <tr><td>Primary key</td><td><code>_id</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>NoSQL families:</strong> key-value (Amazon Dynamo), <strong>document (MongoDB)</strong>, wide-column (Cassandra/HBase), graph (Neo4j).</p>
+
+      <h3>CRUD (exam syntax)</h3>
+<pre><code><span class="cm">// Create — makes the collection if it doesn't exist</span>
+db.myCollection.insert({ name: <span class="str">"Bitcoin"</span>, price: <span class="num">8521.32</span> });
+db.myCollection.insert([ {<span class="cm">...</span>}, {<span class="cm">...</span>} ]);   <span class="cm">// many at once</span>
+
+<span class="cm">// Read</span>
+db.myCollection.find({});                       <span class="cm">// all</span>
+db.myCollection.find({ name: <span class="str">"Bitcoin"</span> });        <span class="cm">// exact match</span>
+db.myCollection.find({ price: { $lt: <span class="num">5200</span> } });   <span class="cm">// $lt $lte $gt $gte $ne</span>
+db.myCollection.find({ $or: [ {name:<span class="str">"BTC"</span>}, {name:<span class="str">"ETH"</span>} ] });
+
+<span class="cm">// Sort (1=asc, -1=desc) and projection (1=show, 0=hide)</span>
+db.myCollection.find({}).sort({ price: -<span class="num">1</span> });
+db.myCollection.find({}, { name: <span class="num">1</span>, price: <span class="num">1</span> });
+
+<span class="cm">// Update — filter, $set, options</span>
+db.myCollection.update({ name: <span class="str">"Bitcoin"</span> },
+  { $set: { price: <span class="num">8652.23</span> } }, { multi: <span class="kw">false</span> });
+
+<span class="cm">// Delete</span>
+db.myCollection.remove({ name: <span class="str">"Bitcoin"</span> });  <span class="cm">// one query</span>
+db.myCollection.remove({});                  <span class="cm">// all docs</span>
+db.myCollection.drop();                      <span class="cm">// whole collection</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What each command does</span>
+        <ul>
+          <li><strong>insert</strong> — <code>db.myCollection.insert({...})</code> adds one document (a record). Passing an array <code>[ {...}, {...} ]</code> adds several at once. If the collection doesn't exist yet, it's created.</li>
+          <li><strong>find</strong> — <code>find({})</code> with an empty filter returns everything; <code>find({ name: "Bitcoin" })</code> returns only docs whose <code>name</code> equals "Bitcoin". The operators <code>$lt/$lte/$gt/$gte/$ne</code> mean less-than, ≤, greater-than, ≥, not-equal. <code>$or</code> matches if any listed condition is true.</li>
+          <li><strong>sort</strong> — <code>.sort({ price: -1 })</code> orders results; <code>1</code> is ascending (small→big), <code>-1</code> is descending (big→small).</li>
+          <li><strong>projection</strong> — the second argument to <code>find</code> chooses which fields come back: <code>1</code> = include, <code>0</code> = hide.</li>
+          <li><strong>update</strong> — first the filter (which docs), then <code>$set</code> (the new values), then options. <code>{ multi: false }</code> updates only the first match (<code>true</code> would update all).</li>
+          <li><strong>remove</strong> — deletes docs matching the filter; an empty <code>{}</code> deletes <em>all</em> documents. <strong>drop</strong> deletes the entire collection (structure and all).</li>
+        </ul>
+      </div>
+
+      <h3>Aggregation pipeline — the big question</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 Q10 (9 marks): "average X per Y, sorted, written to a collection"</span>
+        <p>Map the words to stages: <em>"per Y"</em> → <code>$group _id:"$Y"</code>; <em>"average/total/max"</em> → <code>$avg/$sum/$max</code>; <em>"only where…"</em> → <code>$match</code>; <em>"sorted highest→lowest"</em> → <code>$sort: {field: -1}</code>; <em>"write to collection Z"</em> → <code>$out: "Z"</code>.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Stage</th><th>Does</th></tr></thead>
+          <tbody>
+            <tr><td><code>$match</code></td><td>Filter docs (like SQL WHERE)</td></tr>
+            <tr><td><code>$group</code></td><td>Group by <code>_id</code>; apply <code>$sum/$avg/$min/$max</code></td></tr>
+            <tr><td><code>$sort</code></td><td>Order results (1 asc, -1 desc)</td></tr>
+            <tr><td><code>$out</code></td><td>Write the result into a new collection</td></tr>
+          </tbody>
+        </table>
+      </div>
+<pre><code><span class="cm">// 2021 Q10 — average Age per Office, oldest→youngest, into AverageAge</span>
+db.CompanyData.aggregate([
+  { $group: { _id: <span class="str">"$Office"</span>, AverageAge: { $avg: <span class="str">"$Age"</span> } } },
+  { $sort:  { AverageAge: -<span class="num">1</span> } },   <span class="cm">// -1 = oldest first</span>
+  { $out:   <span class="str">"AverageAge"</span> }
+]);</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, stage by stage</span>
+        <p><code>aggregate([ ... ])</code> runs a <strong>pipeline</strong>: each <code>{ }</code> is a stage, and its output feeds into the next, like a conveyor belt.</p>
+        <ol>
+          <li><code>{ $group: { _id: "$Office", AverageAge: { $avg: "$Age" } } }</code> — buckets all documents by their <code>Office</code> value (<code>_id</code> is the thing you group by). For each office it computes the average of the <code>Age</code> field and labels it <code>AverageAge</code>. The <code>$</code> in <code>"$Office"</code>/<code>"$Age"</code> means "the value of this field".</li>
+          <li><code>{ $sort: { AverageAge: -1 } }</code> — sorts those grouped results by the average age, <code>-1</code> = descending, so oldest office first.</li>
+          <li><code>{ $out: "AverageAge" }</code> — writes the final result into a collection called <code>AverageAge</code> (creating/overwriting it).</li>
+        </ol>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Mistakes to avoid</span>
+        <ul class="compact-list">
+          <li>Forgetting the <code>$</code> prefix on the field being grouped/aggregated: <code>$avg: "$Age"</code>, not <code>"Age"</code>.</li>
+          <li><code>_id</code> is <strong>mandatory</strong> in <code>$group</code> — it is the grouping key.</li>
+          <li>"Oldest to youngest" / "highest first" = descending = <strong>-1</strong> (a very common direction slip).</li>
+          <li>Filtering on a computed total must come <em>after</em> the group, with <code>$match</code> (not in the original query).</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= SECURITY ================= -->
+  <details class="collapsible" open id="sec">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">L39</span>
+          <h2>Advanced Web Security</h2>
+          <p>LFI, RFI, SSRF, XXE, pen testing, plus cookies &amp; DOM storage. XXE (Q13) and cookies (Q4) were both on the 2021 paper.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="w3links">
+        <a class="w3link" href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a>
+        <a class="w3link" href="https://portswigger.net/web-security/xxe">XXE (PortSwigger)</a>
+        <a class="w3link" href="https://portswigger.net/web-security/ssrf">SSRF (PortSwigger)</a>
+        <a class="w3link" href="https://portswigger.net/web-security/file-path-traversal">File inclusion / traversal</a>
+      </div>
+
+      <div class="callout warn">
+        <span class="callout-title">⚠️ Ethics &amp; scope</span>
+        <p>These techniques are for understanding defences and for <strong>authorised</strong> testing only. Unauthorised testing is illegal. The exam wants you to <em>identify</em> attacks and <em>prevent</em> them.</p>
+      </div>
+
+      <h3>1. Local File Inclusion (LFI)</h3>
+      <p>User input is passed into <code>include()</code>/<code>require()</code> without sanitisation, letting an attacker read server files via path traversal.</p>
+<pre><code><span class="cm">// VULNERABLE PHP</span>
+$page = $_GET[<span class="str">'page'</span>];
+include($page);          <span class="cm">// attacker controls the included file</span>
+
+<span class="cm"># Attack: ?page=../../../../etc/passwd   (path traversal)</span>
+<span class="cm"># PHP wrapper: ?page=php://filter/convert.base64-encode/resource=index.php</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>$page = $_GET['page'];</code> — reads a value straight from the URL query string (e.g. <code>?page=about.php</code>) and trusts it blindly.</li>
+          <li><code>include($page);</code> — pulls that file into the page. Because the attacker controls <code>page</code>, they decide which file gets loaded — that's the vulnerability.</li>
+          <li><code>?page=../../../../etc/passwd</code> — "path traversal": each <code>../</code> climbs up one folder, walking out of the website and into system files like the Linux password file.</li>
+          <li>The <code>php://filter...</code> line — a PHP "wrapper" trick that reads a source file and returns it base64-encoded, letting the attacker steal the site's own source code.</li>
+        </ul>
+      </div>
+      <p><strong>Defences:</strong> whitelist allowed page names; strip <code>../</code>, null bytes and wrapper schemes; set <code>open_basedir</code> in php.ini to confine file access.</p>
+
+      <h3>2. Remote File Inclusion (RFI)</h3>
+      <p>Like LFI, but the included file is fetched from an <strong>attacker-controlled remote URL</strong> — almost always Remote Code Execution. Requires PHP's <code>allow_url_include = On</code> (off by default).</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspect</th><th>LFI</th><th>RFI</th></tr></thead>
+          <tbody>
+            <tr><td>File source</td><td>Local filesystem</td><td>Remote attacker server</td></tr>
+            <tr><td>PHP prerequisite</td><td>None (just unsanitised include)</td><td><code>allow_url_include = On</code></td></tr>
+            <tr><td>Typical impact</td><td>File disclosure, possible RCE (log poisoning)</td><td>Direct RCE</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Defences:</strong> disable <code>allow_url_include</code>; never put user input in <code>include()</code>; whitelist; WAF.</p>
+
+      <h3>3. Server-Side Request Forgery (SSRF)</h3>
+      <p>An attacker makes the <em>server</em> issue requests to destinations of their choosing — including internal services the internet can't reach. (OWASP A10:2021.)</p>
+      <ul>
+        <li><strong>Cloud metadata theft:</strong> <code>http://169.254.169.254/latest/meta-data/iam/security-credentials/</code> leaks AWS IAM keys → full account compromise.</li>
+        <li>Internal network scanning, port scanning, reaching admin panels protected only by network location.</li>
+      </ul>
+      <p><strong>Defences:</strong> validate/sanitise URLs, allowlist outbound domains, block loopback &amp; RFC-1918 ranges, disable unused URL schemes, use AWS IMDSv2.</p>
+
+      <h3>4. XML External Entity (XXE)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 Q13 (2021): a portal parses user-uploaded XML and got compromised</span>
+        <p>Answer = <strong>XXE injection</strong>: a malicious <code>DOCTYPE</code> defines an external entity pointing at a server file (e.g. <code>/etc/passwd</code>); when parsed, its contents are echoed back, leaking sensitive data.</p>
+      </div>
+<pre><code>&lt;?xml version=<span class="str">"1.0"</span>?&gt;
+&lt;!DOCTYPE foo [
+  &lt;!ENTITY xxe SYSTEM <span class="str">"file:///etc/passwd"</span>&gt;
+]&gt;
+&lt;user&gt;&lt;name&gt;&amp;xxe;&lt;/name&gt;&lt;/user&gt;   <span class="cm">&lt;!-- &amp;xxe; expands to the file's contents --&gt;</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this malicious XML does, line by line</span>
+        <ul>
+          <li><code>&lt;?xml version="1.0"?&gt;</code> — a normal XML declaration; nothing suspicious yet.</li>
+          <li><code>&lt;!DOCTYPE foo [ ... ]&gt;</code> — a <strong>DOCTYPE</strong> block, which is allowed to define "entities" (reusable shortcuts). This is the door the attack walks through.</li>
+          <li><code>&lt;!ENTITY xxe SYSTEM "file:///etc/passwd"&gt;</code> — defines an entity named <code>xxe</code> whose value is the <em>contents of a file on the server</em>. <code>SYSTEM</code> tells the parser to go fetch that external resource.</li>
+          <li><code>&lt;name&gt;&amp;xxe;&lt;/name&gt;</code> — uses the entity. When a vulnerable parser expands <code>&amp;xxe;</code>, it inserts the file's contents here, and if the app echoes the parsed data back, the secret file leaks to the attacker.</li>
+          <li>Fix: tell the XML parser to <strong>not</strong> process external entities/DTDs (or use JSON instead), and the whole trick stops working.</li>
+        </ul>
+      </div>
+      <p><strong>Attack variants:</strong> file disclosure, SSRF, blind/out-of-band exfil, DoS ("billion laughs" nested entities). <strong>Defences:</strong> disable external-entity (DTD) processing in the parser; prefer JSON; validate against a strict XSD; deploy a WAF.</p>
+
+      <h3>5. Penetration testing</h3>
+      <div class="two-col">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Type</th><th>Tester knows…</th></tr></thead>
+            <tbody>
+              <tr><td>Black box</td><td>Nothing internal (real attacker)</td></tr>
+              <tr><td>White box</td><td>Full internal knowledge</td></tr>
+              <tr><td>Gray box</td><td>Partial knowledge</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Phase</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Reconnaissance</td></tr>
+              <tr><td>2</td><td>Scanning &amp; Enumeration</td></tr>
+              <tr><td>3</td><td>Exploitation</td></tr>
+              <tr><td>4</td><td>Post-Exploitation</td></tr>
+              <tr><td>5</td><td>Reporting</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3>Cookies &amp; DOM storage</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 Q4 (2021): one-word answers</span>
+      </div>
+      <ul>
+        <li><strong>Header to save a cookie:</strong> <code>Set-Cookie</code> (server → browser). The browser sends it back via the <code>Cookie</code> request header.</li>
+        <li><strong>Max cookie size:</strong> <code>4KB</code> (~4096 bytes).</li>
+        <li><strong>Storage cleared when the tab/window closes:</strong> <code>sessionStorage</code>.</li>
+        <li><strong>Storage that persists after closing:</strong> <code>localStorage</code> (both hold ~5–10MB, far more than a cookie).</li>
+      </ul>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Don't confuse these</span>
+        <p><code>sessionStorage</code> = until tab closes. <code>localStorage</code> = persists. Cookies = small (4KB), sent with every HTTP request to the domain; Web Storage is <em>not</em> sent automatically.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= DJANGO ================= -->
+  <details class="collapsible" open id="django">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">L40</span>
+          <h2>Django</h2>
+          <p>Python MTV web framework. Know the MTV pieces, the setup commands, and models/views/templates/urls.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="w3links">
+        <a class="w3link" href="https://www.w3schools.com/django/index.php">W3Schools Django</a>
+        <a class="w3link" href="https://docs.djangoproject.com/en/stable/intro/tutorial01/">Official Django tutorial</a>
+      </div>
+
+      <div class="callout def">
+        <span class="callout-title">📌 Version note — the URL routing changed</span>
+        <p>The L40 slides span the transition: old code used <code>from django.conf.urls import url</code>, which was <strong>deprecated in Django 3.1 and removed in Django 4.0</strong>. In <strong>Django 4/5</strong> use <code>path()</code> for plain routes and <code>re_path()</code> for regex routes (both from <code>django.urls</code>). Prefer <code>path()</code>/<code>re_path()</code> in your answers; only use <code>url()</code> if the question's existing code does.</p>
+      </div>
+
+      <h3>Overview &amp; MTV</h3>
+      <ul>
+        <li>Open-source Python framework, released July 2005; authors Adrian Holovaty &amp; Simon Willison; maintained by the Django Software Foundation.</li>
+        <li>Architecture is <strong>MTV — Model, Template, View</strong> (Django's take on MVC).</li>
+      </ul>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Piece</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>Model</td><td>Data structure → DB tables; data logic</td></tr>
+            <tr><td>Template</td><td>HTML + Django template language; renders data</td></tr>
+            <tr><td>View</td><td>Python functions handling requests; pull from models, return a template</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout tip">
+        <span class="callout-title">💡 Migrations</span>
+        <p>Whenever you change a model you must run <code>makemigrations</code> (turn the change into a migration file) then <code>migrate</code> (apply it to the database) — otherwise the database and your models fall out of sync.</p>
+      </div>
+
+      <h3>Models</h3>
+<pre><code><span class="kw">from</span> django.db <span class="kw">import</span> models
+
+<span class="kw">class</span> <span class="type">Make</span>(models.Model):
+    name = models.CharField(max_length=<span class="num">50</span>, unique=<span class="kw">True</span>)
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>.name
+
+<span class="kw">class</span> <span class="type">Car</span>(models.Model):
+    make = models.ForeignKey(<span class="type">Make</span>, on_delete=models.CASCADE)
+    model = models.CharField(max_length=<span class="num">50</span>)
+    year_to = models.PositiveIntegerField(null=<span class="kw">True</span>, blank=<span class="kw">True</span>)  <span class="cm"># optional</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>class Make(models.Model):</code> — each model class becomes a database table; <code>Make</code> will be the "makes" table.</li>
+          <li><code>name = models.CharField(max_length=50, unique=True)</code> — a text column up to 50 chars; <code>unique=True</code> means no two makes can share a name.</li>
+          <li><code>def __str__(self): return self.name</code> — controls how a Make is shown as text (e.g. in the admin), displaying its name instead of "Make object".</li>
+          <li><code>make = models.ForeignKey(Make, on_delete=models.CASCADE)</code> — links each Car to one Make (a relationship). <code>CASCADE</code> means if a Make is deleted, its Cars are deleted too.</li>
+          <li><code>year_to = models.PositiveIntegerField(null=True, blank=True)</code> — a whole-number column that is optional: <code>null=True</code> allows it to be empty in the database, <code>blank=True</code> allows it to be empty in forms.</li>
+        </ul>
+      </div>
+
+      <h3>Views, templates &amp; URLs</h3>
+<pre><code><span class="cm"># views.py</span>
+<span class="kw">from</span> django.shortcuts <span class="kw">import</span> render
+<span class="kw">def</span> <span class="fn">stats</span>(request):
+    data = { <span class="str">'message'</span>: <span class="str">'Hello'</span>, <span class="str">'cars'</span>: Car.objects.all() }
+    <span class="kw">return</span> render(request, <span class="str">'home/index.html'</span>, data)</code></pre>
+      <div class="explain">
+        <span class="explain-title">What the view does, line by line</span>
+        <ul>
+          <li><code>def stats(request):</code> — a view is a Python function that receives the incoming web <code>request</code> and returns a response.</li>
+          <li><code>data = { 'message': 'Hello', 'cars': Car.objects.all() }</code> — builds a dictionary of values to send to the page. <code>Car.objects.all()</code> fetches every Car row from the database.</li>
+          <li><code>return render(request, 'home/index.html', data)</code> — combines the template file with the <code>data</code> and sends the finished HTML back to the browser.</li>
+        </ul>
+      </div>
+<pre><code><span class="cm">&lt;!-- template: {{ var }} for values, {% tag %} for logic (like Angular) --&gt;</span>
+&lt;p&gt;{{ message }}&lt;/p&gt;
+{% <span class="kw">for</span> car <span class="kw">in</span> cars %}
+  &lt;tr&gt;&lt;td&gt;{{ car.make }}&lt;/td&gt;&lt;td&gt;
+    {% <span class="kw">if</span> car.year_to %}{{ car.year_to }}{% <span class="kw">else</span> %}Present{% <span class="kw">endif</span> %}
+  &lt;/td&gt;&lt;/tr&gt;
+{% <span class="kw">endfor</span> %}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What the template does, line by line</span>
+        <ul>
+          <li><code>{{ message }}</code> — Django template syntax: double braces print a <em>value</em> passed from the view.</li>
+          <li><code>{% for car in cars %} ... {% endfor %}</code> — curly-percent tags run <em>logic</em>. This loops over the <code>cars</code> list, building one table row per car.</li>
+          <li><code>{{ car.make }}</code> — inside the loop, reads a field off the current car.</li>
+          <li><code>{% if car.year_to %}{{ car.year_to }}{% else %}Present{% endif %}</code> — if the car has an end year, show it; otherwise print "Present". (Very similar to Angular's <code>*ngIf</code>.)</li>
+        </ul>
+      </div>
+<pre><code><span class="cm"># urls.py — modern Django (4/5)</span>
+<span class="kw">from</span> django.urls <span class="kw">import</span> path, re_path, include
+urlpatterns = [
+    path(<span class="str">''</span>, views.stats, name=<span class="str">'stats'</span>),
+    path(<span class="str">'make/add'</span>, views.addMake, name=<span class="str">'make'</span>),
+]</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>from django.urls import path, re_path, include</code> — imports the routing helpers (modern Django; the old <code>url</code> import is gone in v4+).</li>
+          <li><code>urlpatterns = [ ... ]</code> — the list Django checks top-to-bottom to decide which view handles a URL.</li>
+          <li><code>path('', views.stats, name='stats')</code> — the empty path <code>''</code> (the site root) runs the <code>stats</code> view. <code>name='stats'</code> is a label so you can refer to this route elsewhere.</li>
+          <li><code>path('make/add', views.addMake, name='make')</code> — the URL <code>/make/add</code> runs the <code>addMake</code> view.</li>
+        </ul>
+      </div>
+
+      <h3>Forms &amp; CSRF</h3>
+<pre><code><span class="kw">class</span> <span class="type">AddMake</span>(forms.ModelForm):
+    <span class="kw">class</span> <span class="type">Meta</span>:
+        model = <span class="type">Make</span>
+        fields = (<span class="str">'name'</span>,)
+
+<span class="cm">&lt;!-- template — csrf_token is REQUIRED on POST forms --&gt;</span>
+&lt;form method=<span class="str">"post"</span>&gt;
+  {% csrf_token %}
+  {{ form.as_p }}
+  &lt;input type=<span class="str">"submit"</span>&gt;
+&lt;/form&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>class AddMake(forms.ModelForm):</code> — a <strong>ModelForm</strong> builds an HTML form automatically from a model, so you don't hand-write the fields.</li>
+          <li><code>class Meta: model = Make; fields = ('name',)</code> — the inner <code>Meta</code> tells it which model (<code>Make</code>) and which fields to include (just <code>name</code>).</li>
+          <li><code>&lt;form method="post"&gt;</code> — an HTML form that submits via POST.</li>
+          <li><code>{% csrf_token %}</code> — inserts a hidden security token. Django <strong>requires</strong> this on POST forms to block cross-site request forgery; without it you get a 403 error.</li>
+          <li><code>{{ form.as_p }}</code> — renders all the form's fields, each wrapped in a <code>&lt;p&gt;</code>. Then a submit button sends it.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Mistakes to avoid</span>
+        <ul class="compact-list">
+          <li>Omitting <code>{% csrf_token %}</code> in a POST form → Django rejects it (403). The <code>CsrfViewMiddleware</code> enforces this.</li>
+          <li>Forgetting to add your app to <code>INSTALLED_APPS</code> in <code>settings.py</code>.</li>
+          <li>Editing a model but not running <code>makemigrations</code> + <code>migrate</code>.</li>
+          <li>Using the removed <code>url()</code> import on Django 4+ — use <code>path()</code>/<code>re_path()</code>.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- ================= 2021 PAST PAPER ================= -->
+  <section class="study-section memo" id="pp2021">
+    <div class="section-inner">
+      <p class="section-kicker"><span class="badge memo">Past paper</span></p>
+      <h2>2021 EO3 — fully worked paper</h2>
+      <p>80 marks · 2.5 hours · 15 questions, shown one-at-a-time in random order. Below are the questions drawn from the <strong>L30–40 lecture material</strong> — each with a clean model answer. (The 2021 paper's cloud-hosting, scaling, DNS and privacy short-questions are not part of these lecture slides, so they are out of scope here.) Try each one first, then expand.</p>
+
+      <h3>Q4 (3) — Cookies &amp; DOM storage (one-word answers)</h3>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p>a) <code>Set-Cookie</code> &nbsp;|&nbsp; b) <code>4KB</code> &nbsp;|&nbsp; c) <code>session storage</code>. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q5 (14) — TypeScript Module interface</h3>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">interface</span> <span class="type">Module</span> {
+  code: <span class="type">string</span> | <span class="type">number</span>,
+  name: <span class="type">string</span>,
+  description: <span class="type">string</span>,
+  prerequisites: <span class="type">string</span>[],
+  assessment: <span class="str">'SUMMATIVE'</span> | <span class="str">'FORMATIVE'</span>,
+  year: <span class="type">number</span>,
+  period: <span class="str">'Q1'</span> | <span class="str">'Q2'</span> | <span class="str">'S1'</span> | <span class="str">'Q3'</span> | <span class="str">'Q4'</span> | <span class="str">'S2'</span>,
+  submin?: <span class="type">number</span>,
+  active: <span class="type">boolean</span>
+}</code></pre>
+        <div class="callout mistake"><span class="callout-title">Where the real script lost marks</span><p><code>prerequisites: string</code> (must be <code>string[]</code>) and <code>year: Date()</code> (must be <code>number</code>). → see <a href="#ts">TypeScript</a>.</p></div>
+      </details>
+
+      <h3>Q7 (6) — Android SearchView predictive text</h3>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>@Override
+<span class="kw">public boolean</span> <span class="fn">onQueryTextChange</span>(<span class="type">String</span> input) {
+    searchText = input.replace(<span class="str">" "</span>, <span class="str">"+"</span>).toLowerCase();
+    <span class="kw">if</span> (input.length() &gt; <span class="num">2</span>) {
+        <span class="kw">if</span> (getResults(searchText, <span class="kw">false</span>) == <span class="kw">null</span>) {
+            <span class="kw">if</span> (getResults(searchText, <span class="kw">true</span>) == <span class="kw">null</span>) <span class="kw">return false</span>;
+        }
+        <span class="kw">return true</span>;
+    }
+    <span class="kw">return false</span>;
+}</code></pre>
+        <div class="callout mistake"><p>Reassign when lowercasing (<code>String</code> is immutable); compare with <code>== null</code> since <code>getResults</code> returns null on no results. → see <a href="#ionic">Ionic &amp; Mobile</a>.</p></div>
+      </details>
+
+      <h3>Q8 (3) — Android EditText XML</h3>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>&lt;EditText
+    android:id=<span class="str">"@+id/multiline"</span>
+    android:layout_width=<span class="str">"fill_parent"</span>
+    android:layout_height=<span class="str">"wrap_content"</span>
+    android:minLines=<span class="str">"3"</span>
+    android:inputType=<span class="str">"textMultiLine|textAutoCorrect|textCapSentences"</span> /&gt;</code></pre>
+      </details>
+
+      <h3>Q9 (13) — Add Bootstrap to the HTML</h3>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-md-3"</span>&gt;&lt;img src=<span class="str">"game.jpg"</span> class=<span class="str">"img-responsive"</span>&gt;&lt;/div&gt;
+    &lt;div class=<span class="str">"col-md-9"</span>&gt;&lt;h1&gt;Player Rankings&lt;/h1&gt;&lt;h2&gt;Super Mario World&lt;/h2&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;table class=<span class="str">"table table-striped table-bordered"</span>&gt;
+      &lt;thead&gt;...&lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;...&lt;td&gt;&lt;button class=<span class="str">"btn btn-primary"</span>&gt;Follow&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;...&lt;td&gt;&lt;button class=<span class="str">"btn btn-success"</span>&gt;Following&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <div class="callout mistake"><p>Quarter+rest = <code>col-md-3</code> + <code>col-md-9</code> (not two <code>col-xs-4</code>); never put grid classes on <code>&lt;td&gt;</code>; always include the base <code>btn</code> class. <strong>Bootstrap 3.</strong> → see <a href="#bs">Bootstrap</a>.</p></div>
+      </details>
+
+      <h3>Q10 (9) — MongoDB: average Age per Office</h3>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>db.CompanyData.aggregate([
+  { $group: { _id: <span class="str">"$Office"</span>, AverageAge: { $avg: <span class="str">"$Age"</span> } } },
+  { $sort:  { AverageAge: -<span class="num">1</span> } },
+  { $out:   <span class="str">"AverageAge"</span> }
+]);</code></pre>
+        <div class="callout mistake"><p>"Oldest → youngest" = descending = <code>-1</code>; keep the <code>$</code> on <code>"$Age"</code>. → see <a href="#mongo">MongoDB</a>.</p></div>
+      </details>
+
+      <h3>Q13 (3) — XML portal compromised</h3>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p><strong>XXE injection.</strong> A crafted DOCTYPE with an external entity (e.g. <code>file:///etc/passwd</code>) makes the parser read &amp; return server files. Prevent by disabling external-entity processing, using JSON/XSD validation, and a WAF. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q14 (10) — Angular cart template</h3>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>&lt;p [ngStyle]=<span class="str">"{'color': cartCount === 0 ? 'grey' : 'lightgreen'}"</span>&gt;
+  Total: {{ videogames.length }} | In cart: {{ cartCount }}
+&lt;/p&gt;
+&lt;div *ngFor=<span class="str">"let game of videogames"</span>&gt;
+  &lt;p&gt;{{ game.title }} — R{{ game.price }}&lt;/p&gt;
+  &lt;ng-template [ngIf]=<span class="str">"!game.cart"</span>&gt;
+    &lt;button (click)=<span class="str">"addToCart(game)"</span>&gt;Add to Cart&lt;/button&gt;
+  &lt;/ng-template&gt;
+  &lt;ng-template [ngIf]=<span class="str">"game.cart"</span>&gt;
+    &lt;button (click)=<span class="str">"removeFromCart(game)"</span>&gt;Remove from Cart!&lt;/button&gt;
+  &lt;/ng-template&gt;
+&lt;/div&gt;</code></pre>
+        <div class="callout mistake"><p>Use <code>.length</code> (not <code>.count</code>), pass <code>game</code> to the handlers, and use <code>[ngStyle]</code> (Angular CSS), not a <code>style=""</code> attribute. → see <a href="#ng">Angular</a>.</p></div>
+      </details>
+
+      <h3>Q15 (13) — Ionic: get key from NativeStorage, POST, display</h3>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="cm">// Ionic Native (the 2021 exam's stack): HTTP + NativeStorage injected</span>
+constructor(<span class="kw">public</span> http: <span class="type">HTTP</span>, <span class="kw">public</span> nativeStorage: <span class="type">NativeStorage</span>) {}
+id: <span class="type">number</span>; name: <span class="type">string</span>; screenshots: <span class="type">string</span>[] = [];
+
+doPost() {
+  <span class="kw">this</span>.nativeStorage.getItem(<span class="str">'apikey'</span>).then(apikey =&gt; {
+    <span class="kw">this</span>.http.sendRequest(<span class="str">'https://test.games.com/metadata'</span>, {
+      method: <span class="str">'post'</span>,
+      data: { id: <span class="num">216</span>, apikey: apikey },
+      headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> }
+    }).then(res =&gt; {
+      <span class="kw">const</span> body = JSON.parse(res.data);
+      <span class="kw">this</span>.id = body.data.id;
+      <span class="kw">this</span>.name = body.data.name;
+      <span class="kw">this</span>.screenshots = body.data.screenshots;
+    });
+  });
+}</code></pre>
+        <div class="callout mistake"><p>Bind <em>all three</em> template fields; read the real JSON shape (<code>body.data.*</code>); <code>.then()</code> the Promises. → see <a href="#ionic">Ionic &amp; Mobile</a>.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= MOCK TEST 1 ================= -->
+  <section class="study-section practice" id="mock1">
+    <div class="section-inner">
+      <p class="section-kicker"><span class="badge practice">Practice</span></p>
+      <h2>Mock Test 1 — "HealthTrack" fitness app</h2>
+      <p>80 marks · 2.5 hours · written in the same style and difficulty as the 2021 EO3, but set in the HealthTrack scenario. Questions appear one at a time. Attempt each fully before opening the model answer.</p>
+
+      <h3>Q1 (3 marks) — DOM storage &amp; cookies</h3>
+      <p>HealthTrack keeps a small "remember this device" token and also caches a large amount of workout history on the client. Provide one word/phrase answers:</p>
+      <ul>
+        <li>a) What HTTP response header instructs the browser to store the device token cookie? <strong>[A]</strong></li>
+        <li>b) The token must stay under the per-cookie size limit. What is the maximum storage size of a single cookie? <strong>[B]</strong></li>
+        <li>c) The workout history should remain available even after the user fully closes and reopens the browser. Which type of DOM (Web) storage should be used? <strong>[C]</strong></li>
+      </ul>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p>[A] <code>Set-Cookie</code> &nbsp;|&nbsp; [B] <code>4KB</code> &nbsp;|&nbsp; [C] <code>localStorage</code> (persists after close; <code>sessionStorage</code> would be cleared when the tab closes). → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q2 (2 marks) — A security flaw in report viewing</h3>
+      <p>HealthTrack lets a patient open their own medical report through a URL parameter, e.g. <code>/report?file=patient_101.pdf</code>. During a review, a security researcher discovered that by changing the parameter they could read the server file <code>/etc/passwd</code>. Briefly explain what type of attack this is, and provide one specific way to prevent it.</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p><strong>Local File Inclusion (LFI)</strong> via path traversal — unsanitised user input is used to choose which file is read, so <code>../../</code> sequences climb out to system files. <strong>Prevention:</strong> use a <em>whitelist</em> of allowed report filenames (never the raw parameter), strip <code>../</code> and null bytes, and confine PHP with <code>open_basedir</code>. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q3 (12 marks) — Strongly-typed <code>Exercise</code> object</h3>
+      <p>You are building the HealthTrack exercise library. From your lectures you realised TypeScript is the fastest way to model the data safely. Create the <code>Exercise</code> strongly-typed object with the following requirements:</p>
+      <ul>
+        <li>An exercise has an <strong>id</strong> which can either be numeric or an alphanumeric string.</li>
+        <li>An exercise has a <strong>name</strong> and a <strong>description</strong>.</li>
+        <li>An exercise has a <strong>category</strong> which can only be <code>'CARDIO'</code>, <code>'STRENGTH'</code>, <code>'FLEXIBILITY'</code> or <code>'BALANCE'</code>.</li>
+        <li>An exercise has a <strong>difficulty</strong> which can only be <code>'BEGINNER'</code>, <code>'INTERMEDIATE'</code> or <code>'ADVANCED'</code>.</li>
+        <li>An exercise has a list of <strong>muscleGroups</strong> worked.</li>
+        <li>An exercise has a <strong>durationMinutes</strong>.</li>
+        <li>An exercise has an <strong>optional</strong> estimate of <strong>caloriesBurned</strong>.</li>
+        <li>Finally, an exercise has an <strong>isActive</strong> field specifying whether it is active.</li>
+      </ul>
+      <p><strong>Note:</strong> Pay special attention to data types and the design of the object.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">interface</span> <span class="type">Exercise</span> {
+  id: <span class="type">string</span> | <span class="type">number</span>,
+  name: <span class="type">string</span>,
+  description: <span class="type">string</span>,
+  category: <span class="str">'CARDIO'</span> | <span class="str">'STRENGTH'</span> | <span class="str">'FLEXIBILITY'</span> | <span class="str">'BALANCE'</span>,
+  difficulty: <span class="str">'BEGINNER'</span> | <span class="str">'INTERMEDIATE'</span> | <span class="str">'ADVANCED'</span>,
+  muscleGroups: <span class="type">string</span>[],
+  durationMinutes: <span class="type">number</span>,
+  caloriesBurned?: <span class="type">number</span>,
+  isActive: <span class="type">boolean</span>
+}</code></pre>
+        <div class="explain">
+          <span class="explain-title">Why each field is typed this way</span>
+          <ul>
+            <li><code>id: string | number</code> — "numeric or alphanumeric" = a union of the two types.</li>
+            <li><code>category</code> / <code>difficulty</code> — "can only be …" = a string-literal union of the exact allowed words.</li>
+            <li><code>muscleGroups: string[]</code> — "a list of" = an array.</li>
+            <li><code>caloriesBurned?: number</code> — "optional" = the <code>?</code>.</li>
+            <li><code>isActive: boolean</code> — a yes/no flag. → see <a href="#ts">TypeScript</a>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Q4 (8 marks) — Add Bootstrap to the dashboard</h3>
+      <p>You decided to use Bootstrap to make the HealthTrack dashboard responsive. You are given the following plain HTML:</p>
+<pre><code>&lt;div&gt;
+  &lt;div&gt;
+    &lt;div&gt;&lt;img src=<span class="str">"workout.jpg"</span>&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;h1&gt;Fitness Stats&lt;/h1&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;table&gt;
+      &lt;tr&gt;&lt;th&gt;Exercise&lt;/th&gt;&lt;th&gt;Duration&lt;/th&gt;&lt;th&gt;Calories&lt;/th&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Running&lt;/td&gt;&lt;td&gt;30 min&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;button&gt;Log Workout&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <p>Add Bootstrap classes so the design matches the prototype: a full-width fluid container; a row where the <strong>image fills a quarter of the screen</strong> and the heading fills the rest; a <strong>striped and bordered</strong> table; and a blue "Log Workout" button. <strong>Note:</strong> the image thumbnail should fill a quarter of the screen.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-md-3"</span>&gt;                <span class="cm">&lt;!-- quarter --&gt;</span>
+      &lt;img src=<span class="str">"workout.jpg"</span> class=<span class="str">"img-responsive"</span>&gt;
+    &lt;/div&gt;
+    &lt;div class=<span class="str">"col-md-9"</span>&gt;&lt;h1&gt;Fitness Stats&lt;/h1&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;table class=<span class="str">"table table-striped table-bordered"</span>&gt;
+      &lt;tr&gt;&lt;th&gt;Exercise&lt;/th&gt;&lt;th&gt;Duration&lt;/th&gt;&lt;th&gt;Calories&lt;/th&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Running&lt;/td&gt;&lt;td&gt;30 min&lt;/td&gt;&lt;td&gt;300&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;button class=<span class="str">"btn btn-primary"</span>&gt;Log Workout&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <div class="explain">
+          <span class="explain-title">What was added and why</span>
+          <ul>
+            <li><code>container-fluid</code> on the outer div = full-width wrapper; <code>row</code> on each inner group = a grid row.</li>
+            <li>"Quarter + rest" = <code>col-md-3</code> (3/12) for the image and <code>col-md-9</code> (9/12) for the heading — they add to 12.</li>
+            <li><code>img-responsive</code> scales the image to its column (Bootstrap 3).</li>
+            <li><code>table table-striped table-bordered</code> gives the striped, bordered look; <code>btn btn-primary</code> makes the blue button — remember the base <code>btn</code>. → see <a href="#bs">Bootstrap</a>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Q5 (10 marks) — Angular workout list</h3>
+      <p>You are building the "Today's Workouts" feature in Angular. The following code exists in your <code>.ts</code> file:</p>
+<pre><code><span class="dec">@Component</span>({ selector: <span class="str">'app-workouts'</span>, templateUrl: <span class="str">'./workouts.component.html'</span> })
+<span class="kw">export class</span> <span class="type">WorkoutsComponent</span> {
+  workouts: <span class="type">Object</span>[] = [
+    { name: <span class="str">'Morning Run'</span>, duration: <span class="num">30</span>, completed: <span class="kw">false</span> },
+    { name: <span class="str">'Yoga'</span>,        duration: <span class="num">45</span>, completed: <span class="kw">false</span> },
+    { name: <span class="str">'HIIT'</span>,        duration: <span class="num">20</span>, completed: <span class="kw">false</span> }
+  ];
+  completedCount: <span class="type">number</span> = <span class="num">0</span>;
+  markDone(w)   { w.completed = <span class="kw">true</span>;  <span class="kw">this</span>.completedCount++; }
+  markUndone(w) { w.completed = <span class="kw">false</span>; <span class="kw">this</span>.completedCount--; }
+}</code></pre>
+      <p>Write the HTML, using Angular logic and <strong>templates</strong>, to display the list of workouts. Each workout shows its name and duration with either a "Mark Done" button (if not completed) or a "Mark Undone" button (if completed). The number of completed workouts out of the total must also be displayed; if none are completed show it in <code>'grey'</code>, otherwise in <code>'green'</code>. <strong>Note:</strong> You may not use traditional CSS, only Angular CSS.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>&lt;p [ngStyle]=<span class="str">"{'color': completedCount &gt; 0 ? 'green' : 'grey'}"</span>&gt;
+  Completed: {{ completedCount }} / {{ workouts.length }}
+&lt;/p&gt;
+
+&lt;div *ngFor=<span class="str">"let w of workouts"</span>&gt;
+  &lt;p&gt;{{ w.name }} — {{ w.duration }} minutes&lt;/p&gt;
+  &lt;ng-template [ngIf]=<span class="str">"!w.completed"</span>&gt;
+    &lt;button (click)=<span class="str">"markDone(w)"</span>&gt;Mark Done&lt;/button&gt;
+  &lt;/ng-template&gt;
+  &lt;ng-template [ngIf]=<span class="str">"w.completed"</span>&gt;
+    &lt;button (click)=<span class="str">"markUndone(w)"</span>&gt;Mark Undone&lt;/button&gt;
+  &lt;/ng-template&gt;
+&lt;/div&gt;</code></pre>
+        <div class="explain">
+          <span class="explain-title">What this does, line by line</span>
+          <ul>
+            <li><code>[ngStyle]="{'color': completedCount &gt; 0 ? 'green' : 'grey'}"</code> — colours the counter green when at least one workout is done, grey when none. Using <code>[ngStyle]</code> satisfies "Angular CSS only".</li>
+            <li><code>{{ completedCount }} / {{ workouts.length }}</code> — shows done-vs-total (use <code>.length</code>, not <code>.count</code>).</li>
+            <li><code>*ngFor="let w of workouts"</code> — one block per workout; <code>w</code> is the current one.</li>
+            <li>The two <code>ng-template [ngIf]</code> blocks show exactly one button: "Mark Done" when <code>!w.completed</code>, "Mark Undone" when <code>w.completed</code>. Each click passes <code>w</code> to the matching method. → see <a href="#ng">Angular</a>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Q6 (9 marks) — MongoDB aggregation</h3>
+      <p>The <code>WorkoutData</code> collection in the <code>health</code> database stores one document per logged session. Assume each document maps to a row with the fields <code>Username</code>, <code>ExerciseType</code>, <code>CaloriesBurned</code> and <code>DurationMinutes</code>. Write the MongoDB code that finds the <strong>total <code>CaloriesBurned</code> per <code>ExerciseType</code></strong>, sorted from highest to lowest, and writes the result to the <code>CalorieSummary</code> collection.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>db.WorkoutData.aggregate([
+  { $group: { _id: <span class="str">"$ExerciseType"</span>, TotalCalories: { $sum: <span class="str">"$CaloriesBurned"</span> } } },
+  { $sort:  { TotalCalories: -<span class="num">1</span> } },
+  { $out:   <span class="str">"CalorieSummary"</span> }
+]);</code></pre>
+        <div class="explain">
+          <span class="explain-title">What each stage does</span>
+          <ul>
+            <li><code>$group</code> with <code>_id: "$ExerciseType"</code> — buckets the documents by exercise type and adds up <code>CaloriesBurned</code> per bucket with <code>$sum</code>.</li>
+            <li><code>$sort: { TotalCalories: -1 }</code> — orders the totals descending (highest first).</li>
+            <li><code>$out: "CalorieSummary"</code> — saves the result into that collection. → see <a href="#mongo">MongoDB</a>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Q7 (6 marks) — Ionic: load &amp; display exercises</h3>
+      <p>Write an Ionic Angular function <code>loadExercises()</code> that makes an HTTP <strong>POST</strong> to <code>https://api.healthtrack.com/exercises</code> with the JSON body <code>{ type: "GetAll", limit: 20 }</code>. The endpoint returns:</p>
+<pre><code>{ data: [ { name: <span class="str">"Push Ups"</span>, duration: <span class="num">10</span> },
+          { name: <span class="str">"Plank"</span>,    duration: <span class="num">5</span>  } ] }</code></pre>
+      <p>Store the returned array in a class variable <code>exercises</code>, then write the HTML list that shows each exercise's <code>name</code> and <code>duration</code>. <strong>Note:</strong> assume all dependencies are injected and imported for you.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="cm">// TypeScript (current Capacitor style)</span>
+exercises: <span class="type">any</span>[] = [];
+
+<span class="kw">async</span> <span class="fn">loadExercises</span>() {
+  <span class="kw">const</span> options: <span class="type">HttpOptions</span> = {
+    url: <span class="str">'https://api.healthtrack.com/exercises'</span>,
+    headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },
+    data: { type: <span class="str">"GetAll"</span>, limit: <span class="num">20</span> }
+  };
+  <span class="kw">const</span> res: <span class="type">HttpResponse</span> = <span class="kw">await</span> CapacitorHttp.post(options);
+  <span class="kw">this</span>.exercises = res.data.data;
+}</code></pre>
+<pre><code>&lt;ion-list&gt;
+  &lt;ion-item *ngFor=<span class="str">"let e of exercises"</span>&gt;
+    &lt;ion-label&gt;&lt;h2&gt;{{ e.name }}&lt;/h2&gt;&lt;p&gt;{{ e.duration }} mins&lt;/p&gt;&lt;/ion-label&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-list&gt;</code></pre>
+        <div class="explain">
+          <span class="explain-title">What this does, line by line</span>
+          <ul>
+            <li><code>exercises: any[] = [];</code> — the field the template loops over, starting empty.</li>
+            <li><code>options</code> — the request: the URL, a JSON content-type header, and the JSON body the question gave.</li>
+            <li><code>await CapacitorHttp.post(options)</code> — sends the POST and waits for the reply.</li>
+            <li><code>this.exercises = res.data.data;</code> — the body is <code>res.data</code>; the array the API nests under <code>data</code> is <code>res.data.data</code>.</li>
+            <li>The template <code>*ngFor</code>s over <code>exercises</code>, printing each name and duration inside Ionic list items.</li>
+          </ul>
+        </div>
+        <div class="callout tip"><p>If the question's stack is the 2021 Ionic Native one, swap <code>CapacitorHttp.post</code> for <code>this.http.sendRequest(url, { method:'post', data, headers })</code> and <code>JSON.parse</code> the reply. → see <a href="#ionic">Ionic &amp; Mobile</a>.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= MOCK TEST 2 ================= -->
+  <section class="study-section practice" id="mock2">
+    <div class="section-inner">
+      <p class="section-kicker"><span class="badge practice">Practice</span></p>
+      <h2>Mock Test 2 — "GameHub" platform</h2>
+      <p>80 marks · 2.5 hours · harder than Mock 1, with deeper coding questions, set in the GameHub scenario. Attempt each before checking.</p>
+
+      <h3>Q1 (2 marks) — A flaw in the cover-art fetcher</h3>
+      <p>GameHub's metadata service fetches game cover art from an external source supplied by the user: <code>/metadata?imageUrl=https://cdn.example.com/game123.jpg</code>. A researcher found they could make the server reach <em>internal</em> cloud resources instead. Name this vulnerability and explain one specific internal resource that could be compromised in a cloud environment.</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p><strong>Server-Side Request Forgery (SSRF).</strong> By setting <code>imageUrl=http://169.254.169.254/latest/meta-data/iam/security-credentials/</code> the attacker makes the server query the AWS <strong>cloud metadata service</strong> and return temporary IAM credentials — enabling full account compromise. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q2 (3 marks) — Compare LFI and RFI</h3>
+      <p>A GameHub developer is unsure of the difference between two file-inclusion attacks. Complete the table comparing <strong>LFI</strong> and <strong>RFI</strong> on the rows: file source, PHP prerequisite, and typical impact.</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Aspect</th><th>LFI</th><th>RFI</th></tr></thead>
+          <tbody>
+            <tr><td>File source</td><td>Local server filesystem</td><td>Attacker-controlled remote server</td></tr>
+            <tr><td>PHP prerequisite</td><td>None (just an unsanitised include)</td><td><code>allow_url_include = On</code></td></tr>
+            <tr><td>Typical impact</td><td>File disclosure, possibly RCE (e.g. log poisoning)</td><td>Direct Remote Code Execution</td></tr>
+          </tbody>
+        </table></div>
+        <p style="margin-top:8px">→ see <a href="#sec">Web Security</a>.</p>
+      </details>
+
+      <h3>Q3 (14 marks) — Strongly-typed <code>Game</code> object</h3>
+      <p>You are responsible for the <code>Game</code> strongly-typed object that powers the GameHub listing page. It has the following requirements:</p>
+      <ul>
+        <li>A game has an <strong>id</strong> which can be a numeric id or a string slug (e.g. <code>"batman-arkham-knight"</code>).</li>
+        <li>A game has a <strong>title</strong>, a <strong>developer</strong> and a <strong>publisher</strong>.</li>
+        <li>A game has a <strong>platform</strong> which can only be <code>'PC'</code>, <code>'PS5'</code>, <code>'XBOX'</code>, <code>'SWITCH'</code> or <code>'MOBILE'</code>.</li>
+        <li>A game has a <strong>genre</strong> which can only be <code>'ACTION'</code>, <code>'RPG'</code>, <code>'SPORTS'</code>, <code>'STRATEGY'</code> or <code>'PUZZLE'</code>.</li>
+        <li>A game has a <strong>releaseYear</strong>.</li>
+        <li>A game has a list of <strong>tags</strong>.</li>
+        <li>A game has an <strong>optional</strong> <strong>rating</strong> out of 10 and an <strong>optional</strong> <strong>dlcAvailable</strong> flag.</li>
+        <li>Finally, a game has an <strong>isAvailable</strong> field.</li>
+      </ul>
+      <p><strong>Note:</strong> Pay special attention to data types and the design of the object.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">interface</span> <span class="type">Game</span> {
+  id: <span class="type">number</span> | <span class="type">string</span>,
+  title: <span class="type">string</span>,
+  developer: <span class="type">string</span>,
+  publisher: <span class="type">string</span>,
+  platform: <span class="str">'PC'</span> | <span class="str">'PS5'</span> | <span class="str">'XBOX'</span> | <span class="str">'SWITCH'</span> | <span class="str">'MOBILE'</span>,
+  genre: <span class="str">'ACTION'</span> | <span class="str">'RPG'</span> | <span class="str">'SPORTS'</span> | <span class="str">'STRATEGY'</span> | <span class="str">'PUZZLE'</span>,
+  releaseYear: <span class="type">number</span>,
+  tags: <span class="type">string</span>[],
+  rating?: <span class="type">number</span>,
+  dlcAvailable?: <span class="type">boolean</span>,
+  isAvailable: <span class="type">boolean</span>
+}</code></pre>
+        <div class="explain">
+          <span class="explain-title">Field-by-field reasoning</span>
+          <ul>
+            <li><code>id: number | string</code> — "numeric id or string slug" = a union.</li>
+            <li><code>platform</code> / <code>genre</code> — "can only be …" = string-literal unions.</li>
+            <li><code>tags: string[]</code> — "a list of" = array.</li>
+            <li><code>rating?</code> and <code>dlcAvailable?</code> — both "optional" so both get <code>?</code>.</li>
+            <li><code>isAvailable: boolean</code> — a flag. → see <a href="#ts">TypeScript</a>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Q4 (10 marks) — Angular wishlist</h3>
+      <p>You are extending the GameHub store with a wishlist feature. The following exists in your <code>.ts</code> file:</p>
+<pre><code><span class="kw">export class</span> <span class="type">StoreComponent</span> {
+  games: <span class="type">Object</span>[] = [
+    { title: <span class="str">'Batman Arkham'</span>, price: <span class="num">499</span>, platform: <span class="str">'PC'</span>,  wishlisted: <span class="kw">false</span> },
+    { title: <span class="str">'God of War'</span>,    price: <span class="num">799</span>, platform: <span class="str">'PS5'</span>, wishlisted: <span class="kw">false</span> }
+  ];
+  wishCount = <span class="num">0</span>;
+  addWish(g)    { g.wishlisted = <span class="kw">true</span>;  <span class="kw">this</span>.wishCount++; }
+  removeWish(g) { g.wishlisted = <span class="kw">false</span>; <span class="kw">this</span>.wishCount--; }
+}</code></pre>
+      <p>Write the HTML using Angular logic that: displays each game's title, price and platform; shows an "Add to Wishlist" or "Remove from Wishlist" button depending on <code>game.wishlisted</code>; displays the total wishlist count in <code>'orange'</code> when it is 0 and <code>'cyan'</code> otherwise; and shows the message "Your Wishlist is empty!" <strong>only</strong> when the count is 0. <strong>Note:</strong> use Angular CSS only.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>&lt;p [ngStyle]=<span class="str">"{'color': wishCount === 0 ? 'orange' : 'cyan'}"</span>&gt;
+  Wishlist: {{ wishCount }}
+&lt;/p&gt;
+
+&lt;ng-template [ngIf]=<span class="str">"wishCount === 0"</span>&gt;
+  &lt;p&gt;Your Wishlist is empty!&lt;/p&gt;
+&lt;/ng-template&gt;
+
+&lt;div *ngFor=<span class="str">"let game of games"</span>&gt;
+  &lt;p&gt;{{ game.title }} — R{{ game.price }} ({{ game.platform }})&lt;/p&gt;
+  &lt;ng-template [ngIf]=<span class="str">"!game.wishlisted"</span>&gt;
+    &lt;button (click)=<span class="str">"addWish(game)"</span>&gt;Add to Wishlist&lt;/button&gt;
+  &lt;/ng-template&gt;
+  &lt;ng-template [ngIf]=<span class="str">"game.wishlisted"</span>&gt;
+    &lt;button (click)=<span class="str">"removeWish(game)"</span>&gt;Remove from Wishlist&lt;/button&gt;
+  &lt;/ng-template&gt;
+&lt;/div&gt;</code></pre>
+        <div class="explain">
+          <span class="explain-title">What this does, line by line</span>
+          <ul>
+            <li><code>[ngStyle]="{'color': wishCount === 0 ? 'orange' : 'cyan'}"</code> — orange while the wishlist is empty, cyan once it has items.</li>
+            <li><code>&lt;ng-template [ngIf]="wishCount === 0"&gt;</code> — shows the "empty" message <em>only</em> when the count is 0.</li>
+            <li><code>*ngFor="let game of games"</code> — one block per game, printing title, price and platform.</li>
+            <li>The two inner <code>[ngIf]</code> templates flip between "Add" (when not wishlisted) and "Remove" (when wishlisted), each passing the current <code>game</code>. → see <a href="#ng">Angular</a>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Q5 (8 marks) — Bootstrap game-card grid</h3>
+      <p>You are given the plain HTML below for a row of game cards and a high-scores table:</p>
+<pre><code>&lt;div&gt;
+  &lt;div&gt;
+    &lt;div&gt;&lt;img src=<span class="str">"game1.jpg"</span>&gt;&lt;p&gt;Batman&lt;/p&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;img src=<span class="str">"game2.jpg"</span>&gt;&lt;p&gt;Witcher&lt;/p&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;img src=<span class="str">"game3.jpg"</span>&gt;&lt;p&gt;FIFA&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;table&gt;&lt;tr&gt;&lt;th&gt;Player&lt;/th&gt;&lt;th&gt;Score&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Gamer1&lt;/td&gt;&lt;td&gt;9999&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+  &lt;button&gt;Report Bug&lt;/button&gt;
+  &lt;button&gt;Download&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      <p>Add Bootstrap classes to produce: three game cards across on desktop but <strong>full width on mobile</strong>; thumbnail images; a <strong>dark, striped</strong> high-scores table; a <strong>yellow</strong> "Report Bug" button; and a <strong>green</strong> "Download" button.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-xs-12 col-md-4"</span>&gt;&lt;img src=<span class="str">"game1.jpg"</span> class=<span class="str">"img-thumbnail img-responsive"</span>&gt;&lt;p&gt;Batman&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=<span class="str">"col-xs-12 col-md-4"</span>&gt;&lt;img src=<span class="str">"game2.jpg"</span> class=<span class="str">"img-thumbnail img-responsive"</span>&gt;&lt;p&gt;Witcher&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=<span class="str">"col-xs-12 col-md-4"</span>&gt;&lt;img src=<span class="str">"game3.jpg"</span> class=<span class="str">"img-thumbnail img-responsive"</span>&gt;&lt;p&gt;FIFA&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;table class=<span class="str">"table table-dark table-striped"</span>&gt;
+    &lt;tr&gt;&lt;th&gt;Player&lt;/th&gt;&lt;th&gt;Score&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Gamer1&lt;/td&gt;&lt;td&gt;9999&lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;button class=<span class="str">"btn btn-warning"</span>&gt;Report Bug&lt;/button&gt;
+  &lt;button class=<span class="str">"btn btn-success"</span>&gt;Download&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        <div class="explain">
+          <span class="explain-title">What was added and why</span>
+          <ul>
+            <li><code>col-xs-12 col-md-4</code> — two breakpoints on each card: <code>xs-12</code> = full width (one per row) on phones, <code>md-4</code> = 4/12 = three across on desktop. Three cards × 4 = 12.</li>
+            <li><code>img-thumbnail img-responsive</code> — bordered thumbnail that scales to its column.</li>
+            <li><code>table table-dark table-striped</code> — dark, striped table; <code>btn btn-warning</code> = yellow, <code>btn btn-success</code> = green. → see <a href="#bs">Bootstrap</a>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Q6 (9 marks) — MongoDB aggregation with a filter</h3>
+      <p>The <code>GameSales</code> collection stores documents shaped like <code>{ GameTitle, Genre, Platform, CopiesSold, Revenue }</code>. Write MongoDB code that groups by <code>Genre</code>, calculates the total <code>Revenue</code> and total <code>CopiesSold</code> per genre, keeps <strong>only</strong> genres whose total revenue exceeds <strong>1 000 000</strong>, sorts by total copies sold (highest first), and writes the result to the <code>GenreStats</code> collection.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>db.GameSales.aggregate([
+  { $group: { _id: <span class="str">"$Genre"</span>,
+              TotalRevenue:    { $sum: <span class="str">"$Revenue"</span> },
+              TotalCopiesSold: { $sum: <span class="str">"$CopiesSold"</span> } } },
+  { $match: { TotalRevenue: { $gt: <span class="num">1000000</span> } } },
+  { $sort:  { TotalCopiesSold: -<span class="num">1</span> } },
+  { $out:   <span class="str">"GenreStats"</span> }
+]);</code></pre>
+        <div class="explain">
+          <span class="explain-title">What each stage does</span>
+          <ul>
+            <li><code>$group</code> — buckets by <code>Genre</code> and sums both <code>Revenue</code> and <code>CopiesSold</code> into two new fields.</li>
+            <li><code>$match: { TotalRevenue: { $gt: 1000000 } }</code> — keeps only the genres whose computed total revenue is over a million. This must come <strong>after</strong> the group because it filters on a computed value.</li>
+            <li><code>$sort</code> descending on copies, then <code>$out</code> writes to <code>GenreStats</code>. → see <a href="#mongo">MongoDB</a>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Q7 (13 marks) — Ionic search with a Toast</h3>
+      <p>Write an Ionic Angular function <code>doSearch()</code> that makes an HTTP <strong>POST</strong> to <code>https://api.gamehub.com/search</code> with the body <code>{ query: this.searchTerm, limit: 10, apikey: "abc123" }</code>. The endpoint returns:</p>
+<pre><code>{ total: <span class="num">2</span>, data: [ { title: <span class="str">"Batman"</span>, price: <span class="num">499</span> },
+              { title: <span class="str">"Witcher"</span>, price: <span class="num">399</span> } ] }</code></pre>
+      <p>Store the results array in <code>this.results</code> and the count from <code>response.data.total</code> in <code>this.totalFound</code>. If no results are found, show an Ionic <strong>Toast</strong> with the message "No games found". Then write the HTML that lists each result's <code>title</code> and <code>price</code>, and shows "Search returned {{ totalFound }} results" in <code>'red'</code> when none were found and <code>'green'</code> otherwise. <strong>Note:</strong> assume CapacitorHttp and Toast are imported and available.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>results: <span class="type">any</span>[] = [];
+totalFound: <span class="type">number</span> = <span class="num">0</span>;
+searchTerm: <span class="type">string</span> = <span class="str">""</span>;
+
+<span class="kw">async</span> <span class="fn">doSearch</span>() {
+  <span class="kw">const</span> options: <span class="type">HttpOptions</span> = {
+    url: <span class="str">'https://api.gamehub.com/search'</span>,
+    headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },
+    data: { query: <span class="kw">this</span>.searchTerm, limit: <span class="num">10</span>, apikey: <span class="str">"abc123"</span> }
+  };
+  <span class="kw">const</span> res: <span class="type">HttpResponse</span> = <span class="kw">await</span> CapacitorHttp.post(options);
+  <span class="kw">this</span>.results = res.data.data;
+  <span class="kw">this</span>.totalFound = res.data.total;
+  <span class="kw">if</span> (<span class="kw">this</span>.results.length === <span class="num">0</span>) {
+    <span class="kw">await</span> Toast.show({ text: <span class="str">'No games found'</span> });
+  }
+}</code></pre>
+<pre><code>&lt;p [ngStyle]=<span class="str">"{'color': totalFound === 0 ? 'red' : 'green'}"</span>&gt;
+  Search returned {{ totalFound }} results
+&lt;/p&gt;
+&lt;ion-list&gt;
+  &lt;ion-item *ngFor=<span class="str">"let r of results"</span>&gt;
+    &lt;ion-label&gt;&lt;h2&gt;{{ r.title }}&lt;/h2&gt;&lt;p&gt;R{{ r.price }}&lt;/p&gt;&lt;/ion-label&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-list&gt;</code></pre>
+        <div class="explain">
+          <span class="explain-title">What this does, line by line</span>
+          <ul>
+            <li>The three class fields hold the results, the count and the user's search term.</li>
+            <li><code>options</code> builds the POST: URL, JSON header, and the body using <code>this.searchTerm</code> plus the fixed limit and apikey.</li>
+            <li><code>res.data.data</code> is the results array; <code>res.data.total</code> is the count — both read straight from the shape the question gave.</li>
+            <li><code>if (this.results.length === 0) await Toast.show(...)</code> — only pops the toast when nothing came back.</li>
+            <li>The template recolours the message red/green via <code>[ngStyle]</code> and lists each result. → see <a href="#ionic">Ionic &amp; Mobile</a>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Q8 (3 marks) — Penetration test type &amp; phases</h3>
+      <p>GameHub hired a security team for a penetration test. The team was given some documentation but <strong>not</strong> the full source code. What type of penetration test is this, and list the 5 phases of a penetration test in order.</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p><strong>Gray box</strong> testing (partial internal knowledge). Phases: 1) Reconnaissance → 2) Scanning &amp; Enumeration → 3) Exploitation → 4) Post-Exploitation → 5) Reporting. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+    </div>
+  </section>
+
+  </div><!-- /.content -->
+</div><!-- /.layout -->
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p>COS 216 EO3 study notes · built from lectures 30–40 (the web/mobile frameworks and the Advanced Security lecture) and the lectured questions of the 2021 EO3 paper. Frameworks are pinned to the versions the module teaches (Angular NgModule style, Bootstrap 3, Ionic Capacitor + the Ionic Native stack used in 2021, legacy Mongo shell, Django <code>path()</code>). Verify against the official docs during the open-book test.</p>
+  </div>
+</footer>
+
+<script>
+  // Expand / collapse all topic sections
+  function setAll(open) {
+    document.querySelectorAll('details.collapsible').forEach(d => d.open = open);
+  }
+  // When jumping via a sidebar link, make sure the target section is open
+  document.querySelectorAll('.nav-list a, a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const id = link.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+      // if the target is inside a collapsible, open that too
+      const parent = el && el.closest('details.collapsible');
+      if (parent) parent.open = true;
+    });
+  });
+</script>
+</body>
+</html>
