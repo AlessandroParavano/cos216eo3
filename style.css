@@ -40,7 +40,13 @@ h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; letter-s
 .subtitle { max-width: 860px; margin: 12px 0 0; color: #dbeafe; font-size: 1.06rem; }
 main { padding: 26px 0 48px; }
 .layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 24px; align-items: start; }
-.sidebar { position: sticky; top: 14px; }
+.sidebar {
+  position: sticky;
+  top: 14px;
+  max-height: calc(100vh - 28px);  /* never taller than the viewport */
+  overflow-y: auto;                /* scroll internally when content overflows */
+  scrollbar-width: thin;           /* Firefox: thin scrollbar */
+}
 .panel {
   background: var(--paper);
   border: 1px solid var(--line);

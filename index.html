@@ -49,6 +49,14 @@
         <li><a href="#ng-ref">Angular — full reference</a></li>
         <li><a href="#ionic-ref">Ionic — full reference</a></li>
       </ul>
+      <p class="nav-title">Examples</p>
+      <ul class="nav-list">
+        <li><a href="#ex-angular">Angular example</a></li>
+        <li><a href="#ex-bootstrap">Bootstrap examples</a></li>
+        <li><a href="#ex-mongo">MongoDB examples</a></li>
+        <li><a href="#ex-django-cars">Django: Cars project</a></li>
+        <li><a href="#ex-django-covid">Django: Covid project</a></li>
+      </ul>
       <p class="nav-title">Exam Practice</p>
       <ul class="nav-list">
         <li><a href="#pp2021">2021 Past Paper</a></li>
@@ -2818,6 +2826,1083 @@ searchView.setOnQueryTextListener(<span class="kw">new</span> <span class="type"
         </ul>
       </div>
 
+    </div>
+  </details>
+
+  <!-- ================= EXAMPLES ================= -->
+
+  <!-- === ANGULAR EXAMPLE === -->
+  <details class="collapsible" id="ex-angular">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">Example</span>
+          <h2>Angular Example — annotated line by line</h2>
+          <p>The official lecture example Angular app. Every line in every file explained, plus a list of everything that could be asked from it.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="callout exam">
+        <span class="callout-title">🎯 What can be asked from this example</span>
+        <ul class="compact-list">
+          <li>Write or complete <code>app.module.ts</code> — NgModule, declarations, imports, providers, bootstrap</li>
+          <li>Write or complete the routing module — Routes array, RouterModule.forRoot()</li>
+          <li>Explain the @Component decorator fields (selector, templateUrl, styleUrls)</li>
+          <li>Implement a counter with event binding + interpolation</li>
+          <li>Implement two-way binding with [(ngModel)] and FormsModule</li>
+          <li>Implement ngIf / ng-template with an else branch and a #reference variable</li>
+          <li>Implement ngClass with a method that returns a class-map object</li>
+          <li>Implement ngFor over an array of objects with dot-notation field access</li>
+          <li>Explain the difference between constructor and ngOnInit</li>
+        </ul>
+      </div>
+
+      <h3>app.module.ts — the root module</h3>
+<pre><code><span class="kw">import</span> { NgModule } <span class="kw">from</span> <span class="str">'@angular/core'</span>;
+<span class="kw">import</span> { BrowserModule } <span class="kw">from</span> <span class="str">'@angular/platform-browser'</span>;
+<span class="kw">import</span> { AppRoutingModule } <span class="kw">from</span> <span class="str">'./app-routing.module'</span>;
+<span class="kw">import</span> { AppComponent } <span class="kw">from</span> <span class="str">'./app.component'</span>;
+<span class="kw">import</span> { HomeComponent } <span class="kw">from</span> <span class="str">'./home/home.component'</span>;
+<span class="kw">import</span> { FormsModule } <span class="kw">from</span> <span class="str">'@angular/forms'</span>;
+
+<span class="dec">@NgModule</span>({
+  declarations: [ AppComponent, HomeComponent ],  <span class="cm">// every component MUST be declared</span>
+  imports:      [ BrowserModule, AppRoutingModule, FormsModule ],  <span class="cm">// FormsModule for ngModel</span>
+  providers:    [],
+  bootstrap:    [AppComponent]                    <span class="cm">// the root component Angular renders first</span>
+})
+<span class="kw">export class</span> <span class="type">AppModule</span> {}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>declarations</code> — every component, directive or pipe <em>you created</em> must be listed here. Forgetting to declare a component causes a "component not recognised" template error.</li>
+          <li><code>imports</code> — external Angular modules whose functionality you need. <code>BrowserModule</code> gives the basics (ngIf, ngFor). <code>FormsModule</code> gives <code>[(ngModel)]</code>. <code>AppRoutingModule</code> connects routing.</li>
+          <li><code>providers</code> — services that are available app-wide (usually empty; services use <code>providedIn: 'root'</code> instead).</li>
+          <li><code>bootstrap: [AppComponent]</code> — the single component Angular renders into <code>&lt;app-root&gt;</code> in <code>index.html</code> to start the whole app.</li>
+        </ul>
+      </div>
+
+      <h3>app-routing.module.ts — the routing table</h3>
+<pre><code><span class="kw">import</span> { NgModule } <span class="kw">from</span> <span class="str">'@angular/core'</span>;
+<span class="kw">import</span> { RouterModule, Routes } <span class="kw">from</span> <span class="str">'@angular/router'</span>;
+<span class="kw">import</span> { HomeComponent } <span class="kw">from</span> <span class="str">'./home/home.component'</span>;
+
+<span class="kw">const</span> routes: <span class="type">Routes</span> = [
+  { path: <span class="str">'home'</span>, component: <span class="type">HomeComponent</span> },
+  <span class="cm">// { path: '', redirectTo: 'home', pathMatch: 'full' }  ← add for default redirect</span>
+];
+
+<span class="dec">@NgModule</span>({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+<span class="kw">export class</span> <span class="type">AppRoutingModule</span> {}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>routes: Routes</code> — a typed array of route objects. Each maps a URL <code>path</code> to a <code>component</code>.</li>
+          <li><code>RouterModule.forRoot(routes)</code> — registers the routes with the application root. Use <code>forRoot</code> once at the top level; use <code>forChild</code> in feature modules.</li>
+          <li><code>exports: [RouterModule]</code> — re-exports RouterModule so components in <code>AppModule</code> can use <code>routerLink</code> and <code>&lt;router-outlet&gt;</code>.</li>
+        </ul>
+      </div>
+
+      <h3>home.component.ts — the component class</h3>
+<pre><code><span class="kw">import</span> { Component, OnInit } <span class="kw">from</span> <span class="str">'@angular/core'</span>;
+
+<span class="dec">@Component</span>({
+  selector:    <span class="str">'app-home'</span>,
+  templateUrl: <span class="str">'./home.component.html'</span>,
+  styleUrls:   [<span class="str">'./home.component.scss'</span>]
+})
+<span class="kw">export class</span> <span class="type">HomeComponent</span> <span class="kw">implements</span> <span class="type">OnInit</span> {
+  counter: <span class="type">number</span> = <span class="num">0</span>;
+  name:    <span class="type">string</span> = <span class="str">""</span>;
+  music:   <span class="type">any</span>;
+
+  constructor() {
+    <span class="cm">// constructor is used to INITIALISE data (not for API calls)</span>
+    <span class="kw">this</span>.music = [
+      { title: <span class="str">'Some title1'</span>, album: <span class="str">'some album1'</span>, rank: <span class="num">500</span> },
+      { title: <span class="str">'Some title2'</span>, album: <span class="str">'some album2'</span>, rank: <span class="num">502</span> },
+      { title: <span class="str">'Some title3'</span>, album: <span class="str">'some album3'</span>, rank: <span class="num">30</span>  },
+      { title: <span class="str">'Some title4'</span>, album: <span class="str">'some album4'</span>, rank: <span class="num">220</span> },
+    ];
+  }
+
+  ngOnInit(): <span class="type">void</span> {}   <span class="cm">// runs after constructor — put API calls here</span>
+
+  count() { <span class="kw">this</span>.counter++; }
+
+  setClasses() {
+    <span class="kw">return</span> {
+      active:    <span class="kw">this</span>.counter &gt; <span class="num">6</span>,   <span class="cm">// adds CSS class 'active' when true</span>
+      notactive: <span class="kw">this</span>.counter &lt; <span class="num">6</span>,   <span class="cm">// adds CSS class 'notactive' when true</span>
+      bold:      <span class="kw">this</span>.counter &gt; <span class="num">10</span>  <span class="cm">// adds CSS class 'bold' when true</span>
+    };
+  }
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>counter: number = 0</code> — a class field with an initial value. Angular's change detection watches it and re-renders the template whenever it changes.</li>
+          <li><code>this.music = [...]</code> in the constructor — initialises the array immediately when the object is created. Each element is a plain object (like JSON) with title, album and rank.</li>
+          <li><code>count() { this.counter++; }</code> — a method that increments the counter. Note: inside a class method, always use <code>this.</code> to access fields.</li>
+          <li><code>setClasses()</code> — returns an object where each key is a CSS class name and the value is a boolean expression. Angular's <code>[ngClass]</code> directive reads this and toggles each class on or off based on the current counter value.</li>
+        </ul>
+      </div>
+
+      <h3>home.component.html — the template</h3>
+<pre><code>&lt;p&gt;home works!&lt;/p&gt;
+
+<span class="cm">&lt;!-- Two-way binding: typing in the box updates 'name', name changes update the box --&gt;</span>
+&lt;input type=<span class="str">"text"</span> [(ngModel)]=<span class="str">"name"</span>&gt;&lt;br&gt;
+Hi {{ name }}!
+
+<span class="cm">&lt;!-- Event binding: click calls count() on the class --&gt;</span>
+&lt;button (click)=<span class="str">"count()"</span>&gt;Click Me&lt;/button&gt;
+&lt;p&gt;You have Clicked me {{ counter }} times.&lt;/p&gt;
+
+<span class="cm">&lt;!-- Conditional with ng-template + ngIfElse + #reference variable --&gt;</span>
+&lt;ng-template [ngIf]=<span class="str">"counter &gt; 5"</span> [ngIfElse]=<span class="str">"none"</span>&gt;
+    &lt;p [ngClass]=<span class="str">"setClasses()"</span>&gt;
+        You are clicking too much {{ name }}!!!
+    &lt;/p&gt;
+&lt;/ng-template&gt;
+&lt;ng-template #none&gt;
+    You not clicking enough
+&lt;/ng-template&gt;
+
+<span class="cm">&lt;!-- Loop: creates one div per music object --&gt;</span>
+&lt;div *ngFor=<span class="str">"let m of music"</span>&gt;
+    &lt;p&gt;Title: {{ m.title }}&lt;/p&gt;
+    &lt;p&gt;Album: {{ m.album }}&lt;/p&gt;
+    &lt;p&gt;Rank:  {{ m.rank }}&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>[(ngModel)]="name"</code> — synchronises the text input and the <code>name</code> field in both directions. The <code>{{ name }}</code> below it updates live as you type.</li>
+          <li><code>(click)="count()"</code> — binds the browser click event to the class method.</li>
+          <li><code>{{ counter }}</code> — displays the current value. Refreshes automatically on every change.</li>
+          <li><code>[ngIf]="counter &gt; 5"</code> — renders the first template only when the condition is true. The <code>&gt;</code> is HTML-escaped as <code>&amp;gt;</code> in raw HTML but here shown as <code>&gt;</code> for readability.</li>
+          <li><code>[ngIfElse]="none"</code> — points to the template with reference <code>#none</code> for the false branch.</li>
+          <li><code>#none</code> — a template reference variable that names the second <code>ng-template</code> so it can be pointed to.</li>
+          <li><code>[ngClass]="setClasses()"</code> — calls the component method each change cycle; the returned object switches classes on/off.</li>
+          <li><code>*ngFor="let m of music"</code> — creates one copy of the <code>&lt;div&gt;</code> and its children for each object in the <code>music</code> array. <code>m</code> is the current object; access its fields with <code>m.title</code>, <code>m.album</code>, <code>m.rank</code>.</li>
+        </ul>
+      </div>
+
+      <h3>app.component.html — notable patterns from the root template</h3>
+<pre><code><span class="cm">&lt;!-- ngSwitch — show one pre block based on the value of selection.value --&gt;</span>
+&lt;div class=<span class="str">"terminal"</span> [ngSwitch]=<span class="str">"selection.value"</span>&gt;
+  &lt;pre *ngSwitchDefault&gt;ng generate component xyz&lt;/pre&gt;
+  &lt;pre *ngSwitchCase=<span class="str">"'material'"</span>&gt;ng add @angular/material&lt;/pre&gt;
+  &lt;pre *ngSwitchCase=<span class="str">"'pwa'"</span>&gt;ng add @angular/pwa&lt;/pre&gt;
+  &lt;pre *ngSwitchCase=<span class="str">"'build'"</span>&gt;ng build&lt;/pre&gt;
+&lt;/div&gt;
+
+<span class="cm">&lt;!-- Template reference variable #selection on a hidden input --&gt;</span>
+&lt;input type=<span class="str">"hidden"</span> #selection&gt;
+&lt;button (click)=<span class="str">"selection.value = 'material'"</span>&gt;Angular Material&lt;/button&gt;
+
+<span class="cm">&lt;!-- router-outlet: where the routed component renders --&gt;</span>
+&lt;router-outlet&gt;&lt;/router-outlet&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>[ngSwitch]="selection.value"</code> — like a JavaScript switch statement in the template. Evaluates the expression and renders the matching <code>*ngSwitchCase</code>.</li>
+          <li><code>*ngSwitchDefault</code> — shown when no case matches (like <code>default:</code> in a switch).</li>
+          <li><code>#selection</code> on the input — a template reference variable giving direct DOM access to the input element. <code>selection.value</code> reads its current value; <code>(click)="selection.value = 'x'"</code> sets it without needing a class field.</li>
+          <li><code>&lt;router-outlet&gt;</code> — the slot where Angular renders whichever component matches the current URL. Required in the root template for routing to work.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- === BOOTSTRAP EXAMPLES === -->
+  <details class="collapsible" id="ex-bootstrap">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">Example</span>
+          <h2>Bootstrap Examples — all 12 HTML files annotated</h2>
+          <p>The complete lecture example set for Bootstrap 3. Every pattern from every file, fully explained.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="callout exam">
+        <span class="callout-title">🎯 What can be asked from these examples</span>
+        <ul class="compact-list">
+          <li>Add Bootstrap CDN links (correct order: CSS → jQuery → bootstrap.js)</li>
+          <li>Apply grid classes (container-fluid/container, row, col-xs-*, col-md-*)</li>
+          <li>Style a table (table, table-hover, table-bordered, table-striped)</li>
+          <li>Style all button variants (btn btn-default/primary/success/info/warning/danger/link)</li>
+          <li>Build a navbar (default, inverse, fixed-top, navbar-right, collapsible)</li>
+          <li>Build a modal (data-toggle, data-target, data-backdrop, data-dismiss)</li>
+          <li>Build a dropdown (dropdown-toggle, caret, dropdown-menu)</li>
+          <li>Build tabs (nav nav-tabs) and pills (nav nav-pills, nav-stacked)</li>
+          <li>Build a carousel (data-ride, carousel-indicators, carousel-inner, item, carousel-control, glyphicons)</li>
+          <li>Apply image classes (img-circle, img-responsive, both combined)</li>
+        </ul>
+      </div>
+
+      <h3>1. HelloWorld.html — CDN setup (every example starts with this)</h3>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="str">"en"</span>&gt;
+&lt;head&gt;
+  &lt;meta charset=<span class="str">"utf-8"</span>&gt;
+  &lt;meta name=<span class="str">"viewport"</span> content=<span class="str">"width=device-width, initial-scale=1"</span>&gt;  <span class="cm">&lt;!-- REQUIRED for responsiveness --&gt;</span>
+  &lt;link rel=<span class="str">"stylesheet"</span> href=<span class="str">"./bootstrap-3.3.4-dist/css/bootstrap.min.css"</span>&gt;  <span class="cm">&lt;!-- 1. Bootstrap CSS --&gt;</span>
+  &lt;script src=<span class="str">"./jquery-2.1.3.min.js"</span>&gt;&lt;/script&gt;                              <span class="cm">&lt;!-- 2. jQuery --&gt;</span>
+  &lt;script src=<span class="str">"./bootstrap-3.3.4-dist/js/bootstrap.min.js"</span>&gt;&lt;/script&gt;     <span class="cm">&lt;!-- 3. Bootstrap JS (after jQuery!) --&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=<span class="str">"container-fluid"</span>&gt;
+    &lt;h1&gt;My First Bootstrap Page&lt;/h1&gt;
+    &lt;p&gt;This is some text.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>&lt;meta name="viewport"...&gt;</code> — without this, phones render the page at desktop width and then zoom out, breaking the responsive grid.</li>
+          <li>Load order matters: CSS first (no dependency), then jQuery (Bootstrap JS needs it), then bootstrap.min.js (uses jQuery). Swap jQuery and Bootstrap JS and interactive components break.</li>
+          <li><code>container-fluid</code> — full screen width. <code>container</code> is fixed-width centred. Always wrap content in one or the other.</li>
+        </ul>
+      </div>
+
+      <h3>2. GridExample.html — the 12-column grid</h3>
+<pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-xs-4"</span> style=<span class="str">"background-color:Orchid"</span>&gt;col-xs-4&lt;/div&gt;  <span class="cm">&lt;!-- 4/12 = 33% --&gt;</span>
+    &lt;div class=<span class="str">"col-xs-4"</span> style=<span class="str">"background-color:Thistle"</span>&gt;col-xs-4&lt;/div&gt; <span class="cm">&lt;!-- 4/12 = 33% --&gt;</span>
+  &lt;/div&gt;                                                                   <span class="cm">&lt;!-- 4+4=8, leaves 4 empty --&gt;</span>
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-xs-4"</span> style=<span class="str">"background-color:Aqua"</span>&gt;col-xs-4&lt;/div&gt;
+    &lt;div class=<span class="str">"col-xs-8"</span> style=<span class="str">"background-color:LightCyan"</span>&gt;col-xs-8&lt;/div&gt; <span class="cm">&lt;!-- 4+8=12 full row --&gt;</span>
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li>Every <code>row</code> has 12 virtual columns. Each child's class number says how many columns it occupies. Numbers in a row don't have to add to 12 — leftover space is just empty.</li>
+          <li><code>col-xs-*</code> — applies at all screen widths (xs = extra-small and up). Use <code>col-md-*</code> for desktop-only columns that stack on mobile.</li>
+          <li>Columns live inside <code>.row</code>; rows live inside <code>.container</code> or <code>.container-fluid</code>. Never skip this hierarchy.</li>
+        </ul>
+      </div>
+
+      <h3>3. ButtonsExample.html — all button variants</h3>
+<pre><code>&lt;div class=<span class="str">"container"</span>&gt;
+  &lt;button type=<span class="str">"button"</span> class=<span class="str">"btn btn-default"</span>&gt;Default (grey)&lt;/button&gt;
+  &lt;button type=<span class="str">"button"</span> class=<span class="str">"btn btn-primary"</span>&gt;Primary (blue)&lt;/button&gt;
+  &lt;button type=<span class="str">"button"</span> class=<span class="str">"btn btn-success"</span>&gt;Success (green)&lt;/button&gt;
+  &lt;button type=<span class="str">"button"</span> class=<span class="str">"btn btn-info"</span>&gt;Info (cyan)&lt;/button&gt;
+  &lt;button type=<span class="str">"button"</span> class=<span class="str">"btn btn-warning"</span>&gt;Warning (yellow)&lt;/button&gt;
+  &lt;button type=<span class="str">"button"</span> class=<span class="str">"btn btn-danger"</span>&gt;Danger (red)&lt;/button&gt;
+  &lt;button type=<span class="str">"button"</span> class=<span class="str">"btn btn-link"</span>&gt;Link (looks like a link)&lt;/button&gt;
+
+  <span class="cm">&lt;!-- An anchor can be a button too --&gt;</span>
+  &lt;a href=<span class="str">"#"</span> class=<span class="str">"btn btn-info"</span> role=<span class="str">"button"</span>&gt;Link Button&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li>Always need <em>two</em> classes: the base <code>btn</code> (padding, border-radius, display) plus the colour modifier <code>btn-primary</code> etc. One alone does nothing useful.</li>
+          <li><code>btn-lg</code>, <code>btn-sm</code>, <code>btn-xs</code> — size modifiers that can be added alongside the colour class.</li>
+          <li>An <code>&lt;a&gt;</code> can look like a button by adding <code>class="btn btn-*"</code> and <code>role="button"</code> (accessibility).</li>
+        </ul>
+      </div>
+
+      <h3>4. TableExample.html — styled table with custom hover</h3>
+<pre><code>&lt;style&gt;
+<span class="cm">/* Override Bootstrap's hover colour with custom CSS */</span>
+.table-hover tbody tr:hover td { background: aqua; }
+&lt;/style&gt;
+
+&lt;table class=<span class="str">"table table-hover table-bordered table-striped"</span>&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Firstname&lt;/th&gt;&lt;th&gt;Lastname&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;John&lt;/td&gt;&lt;td&gt;Doe&lt;/td&gt;&lt;td&gt;john@example.com&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Mary&lt;/td&gt;&lt;td&gt;Moe&lt;/td&gt;&lt;td&gt;mary@example.com&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>table</code> — base class; applies padding and a light bottom border.</li>
+          <li><code>table-striped</code> — alternating row shading using <code>:nth-child</code>.</li>
+          <li><code>table-bordered</code> — adds borders on all four sides of every cell.</li>
+          <li><code>table-hover</code> — highlights the hovered row. The custom CSS <em>overrides</em> the Bootstrap hover colour by targeting the same selector with higher specificity.</li>
+          <li>All four modifiers can be combined on one element.</li>
+        </ul>
+      </div>
+
+      <h3>5. NavBarExample.html — all four navbar patterns</h3>
+<pre><code><span class="cm">&lt;!-- Pattern 1: Default (white) navbar --&gt;</span>
+&lt;nav class=<span class="str">"navbar navbar-default"</span>&gt;...&lt;/nav&gt;
+
+<span class="cm">&lt;!-- Pattern 2: Inverse (dark) navbar --&gt;</span>
+&lt;nav class=<span class="str">"navbar navbar-inverse"</span>&gt;
+  &lt;div class=<span class="str">"container-fluid"</span>&gt;
+    &lt;div class=<span class="str">"navbar-header"</span>&gt;
+      &lt;a class=<span class="str">"navbar-brand"</span> href=<span class="str">"#"</span>&gt;WebSiteName&lt;/a&gt;  <span class="cm">&lt;!-- logo/site name --&gt;</span>
+    &lt;/div&gt;
+    &lt;ul class=<span class="str">"nav navbar-nav"</span>&gt;
+      &lt;li class=<span class="str">"active"</span>&gt;&lt;a href=<span class="str">"#"</span>&gt;Home&lt;/a&gt;&lt;/li&gt;   <span class="cm">&lt;!-- 'active' highlights current page --&gt;</span>
+      &lt;li&gt;&lt;a href=<span class="str">"#"</span>&gt;Page 1&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+<span class="cm">&lt;!-- Pattern 3: Fixed to top (add body padding!) --&gt;</span>
+&lt;nav class=<span class="str">"navbar navbar-inverse navbar-fixed-top"</span>&gt;...&lt;/nav&gt;
+&lt;style&gt; body { padding-top: 70px; } &lt;/style&gt; <span class="cm">&lt;!-- prevents content hiding under fixed navbar --&gt;</span>
+
+<span class="cm">&lt;!-- Pattern 4: Fixed-top with right-aligned links + collapsible hamburger --&gt;</span>
+&lt;nav class=<span class="str">"navbar navbar-inverse navbar-fixed-top"</span>&gt;
+  &lt;div class=<span class="str">"navbar-header"</span>&gt;
+    <span class="cm">&lt;!-- Hamburger toggle button (appears on small screens) --&gt;</span>
+    &lt;button type=<span class="str">"button"</span> class=<span class="str">"navbar-toggle"</span>
+            data-toggle=<span class="str">"collapse"</span> data-target=<span class="str">"#myNavbar"</span>&gt;
+      &lt;span class=<span class="str">"icon-bar"</span>&gt;&lt;/span&gt;&lt;span class=<span class="str">"icon-bar"</span>&gt;&lt;/span&gt;&lt;span class=<span class="str">"icon-bar"</span>&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;a class=<span class="str">"navbar-brand"</span> href=<span class="str">"#"</span>&gt;WebSiteName&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=<span class="str">"collapse navbar-collapse"</span> id=<span class="str">"myNavbar"</span>&gt;      <span class="cm">&lt;!-- collapses on mobile --&gt;</span>
+    &lt;ul class=<span class="str">"nav navbar-nav"</span>&gt;&lt;li&gt;&lt;a href=<span class="str">"#"</span>&gt;Home&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+    &lt;ul class=<span class="str">"nav navbar-nav navbar-right"</span>&gt;              <span class="cm">&lt;!-- right-aligned links --&gt;</span>
+      &lt;li&gt;&lt;a href=<span class="str">"#"</span>&gt;Login&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Key attributes explained</span>
+        <ul>
+          <li><code>navbar-default</code> vs <code>navbar-inverse</code> — white vs dark colour scheme.</li>
+          <li><code>navbar-fixed-top</code> — sticks the bar to the top when scrolling. Must add <code>body { padding-top: 70px; }</code> or content hides behind it.</li>
+          <li><code>navbar-brand</code> — the large logo/site name on the left.</li>
+          <li><code>active</code> on a <code>&lt;li&gt;</code> — highlights the current page's link.</li>
+          <li><code>navbar-right</code> — right-aligns a group of nav links.</li>
+          <li>Collapsible (<code>data-toggle="collapse" data-target="#myNavbar"</code>) — the hamburger button shows on small screens; clicking it toggles the <code>#myNavbar</code> div's visibility.</li>
+        </ul>
+      </div>
+
+      <h3>6. ModalExample.html — the full modal structure</h3>
+<pre><code><span class="cm">&lt;!-- Button that opens the modal --&gt;</span>
+&lt;button type=<span class="str">"button"</span> class=<span class="str">"btn btn-info btn-lg"</span>
+        data-toggle=<span class="str">"modal"</span> data-target=<span class="str">"#myModal"</span>&gt;Open Modal&lt;/button&gt;
+
+<span class="cm">&lt;!-- The modal markup --&gt;</span>
+&lt;div id=<span class="str">"myModal"</span> class=<span class="str">"modal fade"</span> role=<span class="str">"dialog"</span> data-backdrop=<span class="str">"static"</span>&gt;
+  &lt;div class=<span class="str">"modal-dialog"</span>&gt;
+    &lt;div class=<span class="str">"modal-content"</span>&gt;
+
+      &lt;div class=<span class="str">"modal-header"</span>&gt;
+        &lt;button type=<span class="str">"button"</span> class=<span class="str">"close"</span> data-dismiss=<span class="str">"modal"</span>&gt;&amp;times;&lt;/button&gt;
+        &lt;h4 class=<span class="str">"modal-title"</span>&gt;Modal Header&lt;/h4&gt;
+      &lt;/div&gt;
+
+      &lt;div class=<span class="str">"modal-body"</span>&gt;
+        &lt;p&gt;Some text in the modal.&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class=<span class="str">"modal-footer"</span>&gt;
+        &lt;button type=<span class="str">"button"</span> class=<span class="str">"btn btn-default"</span> data-dismiss=<span class="str">"modal"</span>&gt;Close&lt;/button&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Every attribute explained</span>
+        <ul>
+          <li><code>data-toggle="modal"</code> — tells Bootstrap this button opens a modal.</li>
+          <li><code>data-target="#myModal"</code> — which modal to open (must match the modal's id).</li>
+          <li><code>class="modal fade"</code> — <code>modal</code> hides it by default; <code>fade</code> adds a CSS transition when opening/closing.</li>
+          <li><code>data-backdrop="static"</code> — prevents closing the modal by clicking outside it. Without this, clicking the dark overlay closes it.</li>
+          <li><code>data-dismiss="modal"</code> — on a button inside the modal, closes it when clicked. Used on both the × close button and the "Close" footer button.</li>
+          <li><code>modal-dialog → modal-content → modal-header/body/footer</code> — the three required nesting levels.</li>
+          <li><code>&amp;times;</code> — the HTML entity for × (the × symbol on the close button).</li>
+        </ul>
+      </div>
+
+      <h3>7. DropdownExample.html — dropdown menu</h3>
+<pre><code>&lt;div class=<span class="str">"dropdown"</span>&gt;
+  &lt;button class=<span class="str">"btn btn-primary dropdown-toggle"</span> type=<span class="str">"button"</span>
+          data-toggle=<span class="str">"dropdown"</span>&gt;
+    Dropdown Example
+    &lt;span class=<span class="str">"caret"</span>&gt;&lt;/span&gt;  <span class="cm">&lt;!-- the ▼ arrow --&gt;</span>
+  &lt;/button&gt;
+  &lt;ul class=<span class="str">"dropdown-menu"</span>&gt;
+    &lt;li&gt;&lt;a href=<span class="str">"#"</span>&gt;HTML&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=<span class="str">"#"</span>&gt;CSS&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=<span class="str">"#"</span>&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>class="dropdown"</code> — wrapper div that establishes the dropdown context.</li>
+          <li><code>dropdown-toggle</code> on the button — marks it as the toggle trigger.</li>
+          <li><code>data-toggle="dropdown"</code> — Bootstrap's JS listens for this and shows/hides the menu on click.</li>
+          <li><code>&lt;span class="caret"&gt;</code> — renders the ▼ arrow using Bootstrap's CSS.</li>
+          <li><code>dropdown-menu</code> on the <code>&lt;ul&gt;</code> — the hidden menu that appears below the button. Contains <code>&lt;li&gt;&lt;a&gt;</code> items.</li>
+        </ul>
+      </div>
+
+      <h3>8. TabExample.html / PillsExample.html — tabs and pills</h3>
+<pre><code><span class="cm">&lt;!-- Tabs (horizontal bar with underline on active) --&gt;</span>
+&lt;ul class=<span class="str">"nav nav-tabs"</span>&gt;
+  &lt;li class=<span class="str">"active"</span>&gt;&lt;a href=<span class="str">"#"</span>&gt;Home&lt;/a&gt;&lt;/li&gt;     <span class="cm">&lt;!-- active = current tab --&gt;</span>
+  &lt;li&gt;&lt;a href=<span class="str">"#"</span>&gt;Menu 1&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=<span class="str">"dropdown"</span>&gt;                              <span class="cm">&lt;!-- tab with dropdown --&gt;</span>
+    &lt;a class=<span class="str">"dropdown-toggle"</span> data-toggle=<span class="str">"dropdown"</span> href=<span class="str">"#"</span>&gt;
+      Menu 2 &lt;span class=<span class="str">"caret"</span>&gt;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;ul class=<span class="str">"dropdown-menu"</span>&gt;
+      &lt;li&gt;&lt;a href=<span class="str">"#"</span>&gt;Submenu 1-1&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+<span class="cm">&lt;!-- Pills (rounded buttons instead of underlined tabs) --&gt;</span>
+&lt;ul class=<span class="str">"nav nav-pills"</span>&gt; ... &lt;/ul&gt;
+
+<span class="cm">&lt;!-- Stacked pills (vertical sidebar navigation) --&gt;</span>
+&lt;ul class=<span class="str">"nav nav-pills nav-stacked"</span>&gt; ... &lt;/ul&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Key distinctions</span>
+        <ul>
+          <li>Tabs and pills use the same <code>nav</code> base class; only the second class differs (<code>nav-tabs</code> vs <code>nav-pills</code>).</li>
+          <li><code>nav-stacked</code> with pills — stacks them vertically, creating a sidebar menu.</li>
+          <li>Adding <code>class="dropdown"</code> to a tab/pill <code>&lt;li&gt;</code> creates a dropdown within the nav bar.</li>
+          <li><code>class="active"</code> on a <code>&lt;li&gt;</code> — highlights the currently selected tab/pill.</li>
+        </ul>
+      </div>
+
+      <h3>9. CarouselExample.html — image slider</h3>
+<pre><code>&lt;div id=<span class="str">"myCarousel"</span> class=<span class="str">"carousel slide"</span> data-ride=<span class="str">"carousel"</span>&gt;
+
+  <span class="cm">&lt;!-- Dot indicators at the bottom --&gt;</span>
+  &lt;ol class=<span class="str">"carousel-indicators"</span>&gt;
+    &lt;li data-target=<span class="str">"#myCarousel"</span> data-slide-to=<span class="str">"0"</span> class=<span class="str">"active"</span>&gt;&lt;/li&gt;
+    &lt;li data-target=<span class="str">"#myCarousel"</span> data-slide-to=<span class="str">"1"</span>&gt;&lt;/li&gt;
+    &lt;li data-target=<span class="str">"#myCarousel"</span> data-slide-to=<span class="str">"2"</span>&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+
+  <span class="cm">&lt;!-- Slides --&gt;</span>
+  &lt;div class=<span class="str">"carousel-inner"</span> role=<span class="str">"listbox"</span>&gt;
+    &lt;div class=<span class="str">"item active"</span>&gt;&lt;img src=<span class="str">"1.jpg"</span> alt=<span class="str">"Space"</span>&gt;&lt;/div&gt;   <span class="cm">&lt;!-- first slide needs 'active' --&gt;</span>
+    &lt;div class=<span class="str">"item"</span>&gt;&lt;img src=<span class="str">"2.jpg"</span> alt=<span class="str">"More"</span>&gt;&lt;/div&gt;
+    &lt;div class=<span class="str">"item"</span>&gt;&lt;img src=<span class="str">"3.jpg"</span> alt=<span class="str">"Different"</span>&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  <span class="cm">&lt;!-- Left / right arrow controls --&gt;</span>
+  &lt;a class=<span class="str">"left carousel-control"</span> href=<span class="str">"#myCarousel"</span>
+     role=<span class="str">"button"</span> data-slide=<span class="str">"prev"</span>&gt;
+    &lt;span class=<span class="str">"glyphicon glyphicon-chevron-left"</span>&gt;&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class=<span class="str">"right carousel-control"</span> href=<span class="str">"#myCarousel"</span>
+     role=<span class="str">"button"</span> data-slide=<span class="str">"next"</span>&gt;
+    &lt;span class=<span class="str">"glyphicon glyphicon-chevron-right"</span>&gt;&lt;/span&gt;
+  &lt;/a&gt;
+
+&lt;/div&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Every part explained</span>
+        <ul>
+          <li><code>data-ride="carousel"</code> — auto-plays the slideshow. Remove it for manual-only.</li>
+          <li><code>carousel-indicators</code> — the dots. Each <code>&lt;li&gt;</code> needs <code>data-target="#myCarousel"</code> (which carousel) and <code>data-slide-to="n"</code> (0-based slide index to jump to).</li>
+          <li><code>carousel-inner</code> — holds all slide divs. The first slide must have class <code>active</code> or nothing shows.</li>
+          <li><code>class="item"</code> — each individual slide. Only <code>active</code> is visible.</li>
+          <li><code>left carousel-control</code> / <code>right carousel-control</code> — arrow overlays. <code>data-slide="prev"</code> / <code>"next"</code> tell Bootstrap which direction.</li>
+          <li><code>glyphicon glyphicon-chevron-left/right</code> — Bootstrap 3's built-in icon font for the arrow characters.</li>
+        </ul>
+      </div>
+
+      <h3>10. ImageCropExample1/2.html — image classes</h3>
+<pre><code><span class="cm">&lt;!-- Circle crop with fixed dimensions --&gt;</span>
+&lt;img src=<span class="str">"skyrim.jpg"</span> class=<span class="str">"img-circle"</span> width=<span class="str">"604"</span> height=<span class="str">"472"</span>&gt;
+
+<span class="cm">&lt;!-- Circle crop AND responsive (scales with container) --&gt;</span>
+&lt;img src=<span class="str">"skyrim.jpg"</span> class=<span class="str">"img-circle img-responsive"</span>&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">When to use each class</span>
+        <ul>
+          <li><code>img-circle</code> — applies <code>border-radius: 50%</code>, cropping to a circle.</li>
+          <li><code>img-responsive</code> — sets <code>max-width: 100%; height: auto</code> so the image shrinks inside its column but never overflows it.</li>
+          <li><code>img-thumbnail</code> — adds a light border and padding (like a photo frame).</li>
+          <li><code>img-rounded</code> — small rounded corners.</li>
+          <li>Classes can be combined: <code>"img-circle img-responsive"</code> — circular and responsive.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- === MONGODB EXAMPLES === -->
+  <details class="collapsible" id="ex-mongo">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">Example</span>
+          <h2>MongoDB Examples — Mongo.js &amp; Mongo.php annotated</h2>
+          <p>The exact lecture example queries, every line explained, plus the PHP driver pattern.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="callout exam">
+        <span class="callout-title">🎯 What can be asked from these examples</span>
+        <ul class="compact-list">
+          <li>Write an insert with an array of documents (mixed fields — note Bob has "married" which others lack)</li>
+          <li>Write a criteria query with comparison operators ($lt, $gt, $lte, $gte, $ne)</li>
+          <li>Write an AND query (multiple keys in the same object)</li>
+          <li>Write an OR query using $or with an array</li>
+          <li>Write a combined find: criteria + projection + sort</li>
+          <li>Write an update with $set</li>
+          <li>Write a remove and a drop</li>
+          <li>Write a full aggregation pipeline: $group → $match → $sort → $out</li>
+          <li>Describe projection: 0 = hide, 1 = show, _id special case</li>
+          <li>Explain the PHP MongoClient pattern</li>
+        </ul>
+      </div>
+
+      <h3>Mongo.js — complete annotated example</h3>
+<pre><code><span class="cm">// INSERT — array of documents; each can have different fields</span>
+db.example.insert([
+  { name: <span class="str">"Armand"</span>,  age: <span class="num">21</span> },
+  { name: <span class="str">"Katlego"</span>, age: <span class="num">22</span> },
+  { name: <span class="str">"Bob"</span>,     age: <span class="num">30</span>, married: <span class="kw">true</span> }  <span class="cm">// extra field is fine — dynamic schema</span>
+])
+
+<span class="cm">// CRITERIA QUERY — one comparison operator</span>
+db.zipcodes.find({ pop: { $lt: <span class="num">100</span> } })        <span class="cm">// pop less than 100</span>
+
+<span class="cm">// AND — two fields in the same object (implicit AND)</span>
+db.zipcodes.find({ city: <span class="str">"NEW SALEM"</span> })                         <span class="cm">// exact match</span>
+db.zipcodes.find({ city: <span class="str">"NEW SALEM"</span>, state: <span class="str">"PA"</span> })            <span class="cm">// both must match</span>
+
+<span class="cm">// OR — explicit $or with an array of conditions</span>
+db.zipcodes.find({ $or: [{ city: <span class="str">"NEW SALEM"</span> }, { state: <span class="str">"PA"</span> }] })
+
+<span class="cm">// CRITERIA + PROJECTION + SORT (all chained)</span>
+db.zipcodes.find(
+  { pop: { $lt: <span class="num">100</span> }, pop: { $gt: <span class="num">90</span> } }, <span class="cm">// filter: 90 &lt; pop &lt; 100</span>
+  { _id: <span class="num">0</span>, loc: <span class="num">0</span> }                        <span class="cm">// projection: hide _id and loc fields</span>
+).sort({ pop: <span class="num">1</span> })                           <span class="cm">// sort ascending by pop</span>
+
+<span class="cm">// UPDATE — $set changes specific fields without touching the rest</span>
+db.example.update(
+  { name: <span class="str">"Armand"</span> },           <span class="cm">// 1st arg: which document(s) to change</span>
+  { $set: { age: <span class="num">30</span> } }        <span class="cm">// 2nd arg: what to change ($set is required — without it, the whole document is REPLACED)</span>
+)
+
+<span class="cm">// REMOVE — delete matching documents</span>
+db.example.remove({ name: <span class="str">"Armand"</span> })   <span class="cm">// removes docs matching the filter</span>
+db.example.drop()                         <span class="cm">// deletes the ENTIRE collection (structure + all data)</span>
+
+<span class="cm">// AGGREGATION PIPELINE — stages run in order, output feeds into the next</span>
+db.zipcodes.aggregate(
+  { $group: { _id: <span class="str">"$state"</span>, pop: { $sum: <span class="str">"$pop"</span> } } }, <span class="cm">// group by state, sum populations</span>
+  { $match: { pop: { $lt: <span class="num">1000000</span> } } },                  <span class="cm">// keep only states with pop &lt; 1M</span>
+  { $sort:  { pop: <span class="num">1</span> } },                                  <span class="cm">// ascending (smallest first)</span>
+  { $out:   <span class="str">"example"</span> }                                    <span class="cm">// write result into 'example' collection</span>
+)</code></pre>
+      <div class="explain">
+        <span class="explain-title">Deep explanations of the trickier lines</span>
+        <ul>
+          <li><code>{ name:"Bob", age:30, married:true }</code> — MongoDB's <strong>dynamic schema</strong> means documents in the same collection can have different fields. "Bob" has <code>married</code> but the others don't — totally valid.</li>
+          <li><code>{ _id: 0, loc: 0 }</code> — projection. <code>0</code> = exclude, <code>1</code> = include. You cannot mix 0s and 1s (except for <code>_id</code> which can be 0 alongside 1s). Hiding <code>_id</code> requires explicitly setting <code>_id: 0</code>.</li>
+          <li><code>$set</code> in update — without <code>$set</code>, the second argument <em>replaces the whole document</em> with just those fields, deleting everything else. Always use <code>$set</code> unless you want a full replacement.</li>
+          <li><code>{ $group: { _id: "$state", pop: { $sum: "$pop" } } }</code> — <code>_id</code> is the field to group by (the <code>$</code> prefix means "value of this field"). <code>pop: { $sum: "$pop" }</code> creates a new field called <code>pop</code> that sums all <code>pop</code> values in each group.</li>
+          <li><code>$match after $group</code> — you must filter <em>after</em> the group because the field <code>pop</code> (the computed sum) didn't exist before the group stage ran.</li>
+          <li><code>$out: "example"</code> — creates or overwrites the <code>example</code> collection with the pipeline results.</li>
+        </ul>
+      </div>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ Subtle bug in the example — know it</span>
+        <p>The combined criteria query <code>{ pop: {$lt:100}, pop: {$gt:90} }</code> has two keys with the same name. In JavaScript, the second overwrites the first, so only <code>$gt:90</code> is applied. The correct way to express 90 &lt; pop &lt; 100 is: <code>{ pop: { $gt: 90, $lt: 100 } }</code> (both operators in the same object).</p>
+      </div>
+
+      <h3>Mongo.php — the PHP driver pattern</h3>
+<pre><code><span class="kw">&lt;?php</span>
+<span class="kw">try</span> {
+  $m = <span class="kw">new</span> MongoClient(<span class="str">"mongodb://localhost:27017"</span>);  <span class="cm">// connect to MongoDB on port 27017</span>
+  $db = $m-&gt;selectDB(<span class="str">"prac6db"</span>);                      <span class="cm">// select the database</span>
+} <span class="kw">catch</span>(MongoConnectionException $e) {
+  <span class="kw">echo</span> <span class="str">'Couldn\'t connect to MongoDB'</span>;
+  exit();
+}
+
+$collection = $db-&gt;example;                          <span class="cm">// access a collection</span>
+
+<span class="cm">// Insert — array of arrays (documents)</span>
+$document = <span class="kw">array</span>(
+  <span class="kw">array</span>(<span class="str">"name"</span>=&gt;<span class="str">"Armand"</span>,  <span class="str">"age"</span>=&gt;<span class="num">21</span>),
+  <span class="kw">array</span>(<span class="str">"name"</span>=&gt;<span class="str">"Katlego"</span>, <span class="str">"age"</span>=&gt;<span class="num">22</span>),
+  <span class="kw">array</span>(<span class="str">"name"</span>=&gt;<span class="str">"Bob"</span>,     <span class="str">"age"</span>=&gt;<span class="num">30</span>, <span class="str">"married"</span>=&gt; <span class="kw">true</span>)
+);
+$collection-&gt;insert($document);
+
+<span class="cm">// Find with criteria — uses PHP associative array for the query</span>
+$query = <span class="kw">array</span>(<span class="str">"pop"</span> =&gt; <span class="kw">array</span>(<span class="str">'$lt'</span> =&gt; <span class="num">10</span>, <span class="str">'$gt'</span> =&gt; <span class="num">8</span>));  <span class="cm">// operators quoted with '$'</span>
+$collection = $db-&gt;zipcodes;
+$result = $collection-&gt;find($query);
+
+<span class="kw">foreach</span>($result <span class="kw">as</span> $res) {  <span class="cm">// iterate the cursor</span>
+  var_dump($res);
+}
+<span class="kw">?&gt;</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>new MongoClient("mongodb://localhost:27017")</code> — connects to MongoDB running locally on the default port.</li>
+          <li><code>$m-&gt;selectDB("prac6db")</code> — selects (creates if needed) the database. In PHP you use arrow notation <code>-&gt;</code> for object method calls.</li>
+          <li><code>$db-&gt;example</code> — accesses the <code>example</code> collection as a property.</li>
+          <li><code>array("pop" =&gt; array('$lt' =&gt; 10, '$gt' =&gt; 8))</code> — the query as a nested PHP array. The <code>$</code> operators must be quoted strings in PHP to prevent PHP from interpreting them as variable names.</li>
+          <li><code>foreach($result as $res)</code> — MongoDB find returns a cursor (like an iterator); iterate it to access each document.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- === DJANGO CARS PROJECT === -->
+  <details class="collapsible" id="ex-django-cars">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">Example</span>
+          <h2>Django Example: Cars Project — annotated</h2>
+          <p>The full lecture Django project. Models, views, forms, URLs, templates, admin — every file explained.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="callout exam">
+        <span class="callout-title">🎯 What can be asked from this example</span>
+        <ul class="compact-list">
+          <li>Write a model with specific field types (CharField, ForeignKey, PositiveIntegerField)</li>
+          <li>Explain blank=True vs null=True for optional fields</li>
+          <li>Explain ForeignKey and on_delete=CASCADE</li>
+          <li>Write a view that calls an external API with requests.post() and renders a template</li>
+          <li>Write a view that handles a GET and POST (form submission pattern)</li>
+          <li>Write a ModelForm with specific fields</li>
+          <li>Write a URL pattern using path()</li>
+          <li>Explain the render() function arguments</li>
+          <li>Write a Django template with {% for %}, {% if %}/{% else %}, {{ variable }}</li>
+          <li>Write the {% extends %} / {% block content %} template inheritance pattern</li>
+          <li>Register models in admin.py</li>
+          <li>Explain {% csrf_token %} and {{ form.as_p }}</li>
+        </ul>
+      </div>
+
+      <h3>models.py — data structure</h3>
+<pre><code><span class="kw">from</span> django.db <span class="kw">import</span> models
+
+<span class="kw">class</span> <span class="type">Make</span>(models.Model):
+    name = models.CharField(max_length=<span class="num">50</span>, unique=<span class="kw">True</span>)  <span class="cm"># text, max 50 chars, no duplicates</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>):      <span class="cm"># controls how this object prints (e.g. in admin, dropdown)</span>
+        <span class="kw">return self</span>.name   <span class="cm"># shows the make name instead of "Make object (1)"</span>
+
+
+<span class="kw">class</span> <span class="type">Car</span>(models.Model):
+    make = models.ForeignKey(<span class="type">Make</span>, on_delete=models.CASCADE)  <span class="cm"># links to Make; delete Make → delete Cars</span>
+    model      = models.CharField(max_length=<span class="num">50</span>)
+    generation = models.CharField(max_length=<span class="num">50</span>, blank=<span class="kw">True</span>)               <span class="cm"># optional in forms</span>
+    year_from  = models.PositiveIntegerField()                               <span class="cm"># required integer</span>
+    year_to    = models.PositiveIntegerField(null=<span class="kw">True</span>, blank=<span class="kw">True</span>)          <span class="cm"># optional in DB AND forms</span>
+    trim          = models.CharField(max_length=<span class="num">100</span>)
+    body_type     = models.CharField(max_length=<span class="num">50</span>)
+    number_of_seats = models.PositiveIntegerField()
+    max_speed_km_per_h = models.PositiveIntegerField()
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> f<span class="str">"{self.make.name} {self.model} - {self.year_from}-{self.year_to}"</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>ForeignKey(Make, on_delete=models.CASCADE)</code> — creates a many-to-one relationship: many Cars belong to one Make. <code>CASCADE</code> means "if the Make is deleted, delete all its Cars too". Other options: <code>SET_NULL</code>, <code>PROTECT</code>, <code>DO_NOTHING</code>.</li>
+          <li><code>blank=True</code> — allows the field to be empty in a Django form (validation). Use this alone for string-based fields to make them optional in forms.</li>
+          <li><code>null=True</code> — allows storing <code>NULL</code> in the database column. For non-string fields (integers, dates) you need both <code>null=True, blank=True</code> to make them fully optional.</li>
+          <li><code>unique=True</code> — adds a database uniqueness constraint; Django validates this before saving.</li>
+          <li><code>f"{self.make.name} {self.model}..."</code> — Python f-string; <code>self.make</code> is the related Make object, so <code>.name</code> accesses its name field via the ForeignKey relationship.</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Field type</th><th>Maps to</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><code>CharField(max_length=n)</code></td><td>VARCHAR(n)</td><td>Text. max_length required.</td></tr>
+            <tr><td><code>IntegerField()</code></td><td>INT</td><td>Any integer.</td></tr>
+            <tr><td><code>PositiveIntegerField()</code></td><td>INT UNSIGNED</td><td>Non-negative integers only.</td></tr>
+            <tr><td><code>ForeignKey(Model, on_delete)</code></td><td>INT (foreign key)</td><td>Many-to-one relationship.</td></tr>
+            <tr><td><code>DateTimeField(default=datetime.now)</code></td><td>DATETIME</td><td>Timestamp; auto-set with default.</td></tr>
+            <tr><td><code>BooleanField()</code></td><td>BOOLEAN</td><td>True / False.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>views.py — the controller layer</h3>
+<pre><code><span class="kw">from</span> django.shortcuts <span class="kw">import</span> render
+<span class="kw">import</span> requests
+<span class="kw">from</span> home.forms <span class="kw">import</span> *
+
+API = <span class="str">"https://Wheatley.cs.up.ac.za/api/cars/"</span>   <span class="cm"># base URL stored as a constant</span>
+
+<span class="cm"># ---- View 1: home page — fetch data from external API ----</span>
+<span class="kw">def</span> <span class="fn">stats</span>(request):
+    reqObj = {
+        <span class="str">"type"</span>: <span class="str">"GetAllCars"</span>, <span class="str">"apikey"</span>: <span class="str">"abc123"</span>,
+        <span class="str">"studentnum"</span>: <span class="str">"u12345678"</span>, <span class="str">"limit"</span>: <span class="num">20</span>, <span class="str">"return"</span>: <span class="str">"*"</span>
+    }
+    data = requests.post(API, json=reqObj).json()  <span class="cm"># POST and parse JSON in one chain</span>
+    <span class="kw">return</span> render(request, <span class="str">'home/index.html'</span>, data)
+    <span class="cm"># render(request, template_path, context_dict)</span>
+
+<span class="cm"># ---- View 2: add a Make — handles both GET and POST ----</span>
+<span class="kw">def</span> <span class="fn">addMake</span>(request):
+    message = <span class="str">""</span>
+    <span class="kw">if</span> request.method == <span class="str">"POST"</span>:           <span class="cm"># user submitted the form</span>
+        make = AddMake(data=request.POST)   <span class="cm"># bind submitted data to the form</span>
+        <span class="kw">if</span> make.is_valid():                <span class="cm"># run all validators</span>
+            make.save()                    <span class="cm"># write to database</span>
+            message = <span class="str">"Added Make Successfully"</span>
+    data = { <span class="str">'form'</span>: AddMake(), <span class="str">'name'</span>: <span class="str">"Make"</span>, <span class="str">'message'</span>: message }
+    <span class="kw">return</span> render(request, <span class="str">'home/add.html'</span>, data)
+
+<span class="cm"># ---- View 3: view makes — query the database ----</span>
+<span class="kw">def</span> <span class="fn">viewMakes</span>(request):
+    results = Make.objects.all()             <span class="cm"># fetch all Make rows from the DB</span>
+    table_columns = [{ <span class="str">'title'</span>: <span class="str">"Id"</span> }, { <span class="str">'title'</span>: <span class="str">"Name"</span> }]
+    table_data = [[r.id, r.name] <span class="kw">for</span> r <span class="kw">in</span> results]   <span class="cm"># list comprehension builds rows</span>
+    data = { <span class="str">'name'</span>: <span class="str">"Makes"</span>, <span class="str">'table_columns'</span>: table_columns, <span class="str">'table_data'</span>: table_data }
+    <span class="kw">return</span> render(request, <span class="str">'home/view.html'</span>, data)</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>requests.post(API, json=reqObj).json()</code> — the <code>requests</code> library sends an HTTP POST with a JSON body; <code>.json()</code> parses the response into a Python dict.</li>
+          <li><code>render(request, 'home/index.html', data)</code> — three arguments: the request, the template path (relative to the templates directory), and the context dict. Every key in <code>data</code> becomes a variable in the template.</li>
+          <li><code>if request.method == "POST"</code> — the same view handles both "show the empty form" (GET) and "process the submitted form" (POST). On GET, no POST block runs and you render an empty form.</li>
+          <li><code>AddMake(data=request.POST)</code> — binds the submitted form data to the form class for validation.</li>
+          <li><code>Make.objects.all()</code> — Django ORM fetches every row. Equivalent to <code>SELECT * FROM home_make</code>.</li>
+        </ul>
+      </div>
+
+      <h3>forms.py — ModelForms</h3>
+<pre><code><span class="kw">from</span> django <span class="kw">import</span> forms
+<span class="kw">from</span> home.models <span class="kw">import</span> *     <span class="cm"># import all models</span>
+
+<span class="kw">class</span> <span class="type">AddMake</span>(forms.ModelForm):
+    <span class="kw">class</span> <span class="type">Meta</span>:
+        model  = <span class="type">Make</span>           <span class="cm"># which model this form creates/edits</span>
+        fields = (<span class="str">'name'</span>,)       <span class="cm"># tuple of field names to show; trailing comma needed for single-item tuple</span>
+
+
+<span class="kw">class</span> <span class="type">AddCar</span>(forms.ModelForm):
+    <span class="kw">class</span> <span class="type">Meta</span>:
+        model  = <span class="type">Car</span>
+        fields = (<span class="str">'make'</span>, <span class="str">'model'</span>, <span class="str">'year_from'</span>, <span class="str">'year_to'</span>,
+                  <span class="str">'trim'</span>, <span class="str">'body_type'</span>, <span class="str">'number_of_seats'</span>, <span class="str">'max_speed_km_per_h'</span>)</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>forms.ModelForm</code> — auto-generates HTML form fields from the model's fields. No need to write each input manually.</li>
+          <li><code>class Meta</code> — a convention in Django forms/serialisers: a nested class that provides configuration metadata.</li>
+          <li><code>fields = ('name',)</code> — the trailing comma is critical. Without it, <code>('name')</code> is just a string, not a tuple.</li>
+          <li>Omitted fields (like <code>generation</code>, <code>series</code>) won't appear in the form. The model's <code>blank=True</code> means they are still valid when not submitted.</li>
+        </ul>
+      </div>
+
+      <h3>urls.py — app-level routes</h3>
+<pre><code><span class="kw">from</span> django.conf.urls <span class="kw">import</span> url          <span class="cm"># old import (deprecated in Django 3.1)</span>
+<span class="kw">from</span> django.urls <span class="kw">import</span> path, include, re_path
+<span class="kw">from</span> . <span class="kw">import</span> views                        <span class="cm"># relative import from this app's views.py</span>
+
+urlpatterns = [
+    path(<span class="str">''</span>,          views.stats,     name=<span class="str">'stats'</span>),     <span class="cm"># root URL → stats view</span>
+    path(<span class="str">'make/add'</span>,  views.addMake,   name=<span class="str">'make'</span>),
+    path(<span class="str">'car/add'</span>,   views.addCar,    name=<span class="str">'car'</span>),
+    path(<span class="str">'view/make'</span>, views.viewMakes, name=<span class="str">'viewMake'</span>),
+    path(<span class="str">'view/car'</span>,  views.viewCars,  name=<span class="str">'viewCar'</span>),
+]</code></pre>
+<pre><code><span class="cm"># project-level cars/urls.py — includes the app's urls</span>
+<span class="kw">from</span> django.urls <span class="kw">import</span> path
+<span class="kw">from</span> django.conf.urls <span class="kw">import</span> url, include
+<span class="kw">from</span> django.contrib <span class="kw">import</span> admin
+
+urlpatterns = [
+    path(<span class="str">'admin/'</span>, admin.site.urls),
+    url(<span class="str">r'^'</span>, include(<span class="str">'home.urls'</span>))   <span class="cm"># '^' matches from the start; includes all home app routes</span>
+]</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>path('', views.stats, name='stats')</code> — empty string matches the root URL <code>/</code>. The <code>name</code> lets templates link to it with <code>{% url 'stats' %}</code>.</li>
+          <li><code>from . import views</code> — relative import: imports <code>views.py</code> from the same package (this app directory).</li>
+          <li><code>url(r'^', include('home.urls'))</code> — old-style regex URL; <code>r'^'</code> matches everything from the start, then passes the remaining path to <code>home/urls.py</code>. Modern code uses <code>path('', include('home.urls'))</code>.</li>
+          <li><code>include('home.urls')</code> — plugs in the app-level URL file, so the project URL file stays short.</li>
+        </ul>
+      </div>
+
+      <h3>admin.py — register models for the admin panel</h3>
+<pre><code><span class="kw">from</span> django.contrib <span class="kw">import</span> admin
+<span class="kw">from</span> home.models <span class="kw">import</span> *
+
+admin.site.register(<span class="type">Car</span>)    <span class="cm"># makes Car visible at /admin/</span>
+admin.site.register(<span class="type">Make</span>)   <span class="cm"># makes Make visible at /admin/</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does</span>
+        <p>Without these lines the models exist in the database but can't be managed via the browser. <code>admin.site.register(Model)</code> adds a full CRUD interface for that model at <code>http://localhost:8000/admin/</code>. Log in with the superuser credentials created with <code>python manage.py createsuperuser</code>.</p>
+      </div>
+
+      <h3>templates — base.html (template inheritance)</h3>
+<pre><code>{% <span class="kw">load</span> static %}                            <span class="cm">{# make {% static %} tag available #}</span>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link rel=<span class="str">"stylesheet"</span> href=<span class="str">"..."</span>&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav&gt;...navigation...&lt;/nav&gt;
+
+  {% block content %}           <span class="cm">{# placeholder — child templates fill this in #}</span>
+  {% endblock %}
+
+  &lt;script&gt;...&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<pre><code><span class="cm">{# index.html — child template that extends base.html #}</span>
+{% <span class="kw">extends</span> <span class="str">"home/base.html"</span> %}    <span class="cm">{# inherit the base layout #}</span>
+
+{% <span class="kw">block</span> content %}               <span class="cm">{# fill in the base's placeholder #}</span>
+&lt;div class=<span class="str">"container"</span>&gt;
+  {% <span class="kw">for</span> car <span class="kw">in</span> data %}
+    &lt;tr&gt;
+      &lt;td&gt;{{ car.make }}&lt;/td&gt;
+      &lt;td&gt;{{ car.year_from }}-{% <span class="kw">if</span> car.year_to %}{{ car.year_to }}{% <span class="kw">else</span> %}Present{% <span class="kw">endif</span> %}&lt;/td&gt;
+    &lt;/tr&gt;
+  {% <span class="kw">endfor</span> %}
+&lt;/div&gt;
+{% <span class="kw">endblock</span> %}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>{% extends "home/base.html" %}</code> — must be the <em>first tag</em> in the file. Tells Django this template inherits from <code>base.html</code>.</li>
+          <li><code>{% block content %} ... {% endblock %}</code> — defines the section of the template that children can fill in. Name must match the name used in <code>base.html</code>.</li>
+          <li><code>{% for car in data %} ... {% endfor %}</code> — Django's loop tag. <code>data</code> was passed in the <code>render()</code> context dict.</li>
+          <li><code>{% if car.year_to %} ... {% else %} ... {% endif %}</code> — conditional. If <code>year_to</code> is truthy (not None/null), show the value; otherwise show "Present".</li>
+          <li><code>{{ car.make }}</code> — double curly = output a value. Django auto-HTML-escapes it for safety.</li>
+        </ul>
+      </div>
+
+      <h3>templates — add.html (form pattern)</h3>
+<pre><code>{% <span class="kw">extends</span> <span class="str">"home/base.html"</span> %}
+{% <span class="kw">block</span> content %}
+&lt;div class=<span class="str">"container"</span>&gt;
+  &lt;h2&gt;Add {{ name }}&lt;/h2&gt;
+  &lt;form method=<span class="str">"post"</span>&gt;
+    {% csrf_token %}       <span class="cm">{# security token — REQUIRED on POST forms #}</span>
+    {{ form.as_p }}        <span class="cm">{# renders all form fields, each wrapped in a &lt;p&gt; #}</span>
+    &lt;input type=<span class="str">"submit"</span> value=<span class="str">"Submit"</span>&gt;
+  &lt;/form&gt;
+  {{ message }}            <span class="cm">{# shows success/error message from the view #}</span>
+&lt;/div&gt;
+{% <span class="kw">endblock</span> %}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>{% csrf_token %}</code> — inserts a hidden field with a random token. Django checks it on POST. Without it the server returns a 403 error. <strong>Never omit on a POST form.</strong></li>
+          <li><code>{{ form.as_p }}</code> — renders each form field and its label wrapped in <code>&lt;p&gt;</code> tags. Alternatives: <code>form.as_table</code> (inside a <code>&lt;table&gt;</code>) and <code>form.as_ul</code> (inside a <code>&lt;ul&gt;</code>).</li>
+          <li><code>{{ name }}</code> — the view passed <code>'name': "Make"</code> in the context, so this renders "Make".</li>
+          <li><code>{{ message }}</code> — shows the success string if the form was submitted and saved.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- === DJANGO COVID PROJECT === -->
+  <details class="collapsible" id="ex-django-covid">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">Example</span>
+          <h2>Django Example: Covid-19 Project — annotated</h2>
+          <p>A second Django project showing Bootstrap 5, cards/badges, external API (GET), DataTables integration and jQuery live search in templates.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="callout exam">
+        <span class="callout-title">🎯 Extra patterns this project introduces</span>
+        <ul class="compact-list">
+          <li>DateTimeField with <code>default=datetime.now</code></li>
+          <li>requests.get().json() (GET request, not POST)</li>
+          <li>Accessing nested dict data from an API response in a view</li>
+          <li>Bootstrap 5 classes (differs from Bootstrap 3 used in the Bootstrap examples)</li>
+          <li>{% load static %} in a standalone template (no base.html)</li>
+          <li>row-cols-6 grid (Bootstrap 5 only)</li>
+          <li>Bootstrap 5 cards with dark background, badge colours</li>
+          <li>{{ variable | safe }} to pass Python data to JavaScript</li>
+          <li>Inline JavaScript using Django template variables</li>
+          <li>DataTables: initialise with columns + data from Django context</li>
+        </ul>
+      </div>
+
+      <h3>models.py — two related models</h3>
+<pre><code><span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+<span class="kw">class</span> <span class="type">Country</span>(models.Model):
+    name = models.CharField(max_length=<span class="num">30</span>)
+    code = models.CharField(max_length=<span class="num">2</span>)    <span class="cm"># 2-letter country code e.g. "ZA"
+    def __str__(self): return self.name</span>
+
+<span class="kw">class</span> <span class="type">Cases</span>(models.Model):
+    country       = models.ForeignKey(<span class="type">Country</span>, null=<span class="kw">True</span>, on_delete=models.CASCADE)
+    newConfirmed  = models.IntegerField()
+    totalConfirmed= models.IntegerField()
+    newDeaths     = models.IntegerField()
+    totalDeaths   = models.IntegerField()
+    newRecovered  = models.IntegerField()
+    totalRecovered= models.IntegerField()
+    timestamp     = models.DateTimeField(default=datetime.now)  <span class="cm"># auto-set to now on create</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>): <span class="kw">return self</span>.country.name</code></pre>
+      <div class="explain">
+        <span class="explain-title">Key differences from the Cars models</span>
+        <ul>
+          <li><code>DateTimeField(default=datetime.now)</code> — passes the function (not a call) as the default so Django calls it fresh each time a new object is created.</li>
+          <li><code>ForeignKey(Country, null=True, ...)</code> — the <code>null=True</code> allows a Case to exist without a linked Country (a nullable FK). This is unusual; normally a FK is required.</li>
+          <li><code>self.country.name</code> in <code>__str__</code> — traverses the FK relation to get the country's name.</li>
+        </ul>
+      </div>
+
+      <h3>views.py — GET request pattern</h3>
+<pre><code>API = <span class="str">"https://api.covid19api.com/"</span>
+
+<span class="kw">def</span> <span class="fn">stats</span>(request):
+    summary = requests.get(API + <span class="str">"summary"</span>).json()  <span class="cm"># GET (not POST) — no body needed</span>
+
+    <span class="cm"># parse the date string from ISO format into a Python datetime object</span>
+    summary[<span class="str">"Global"</span>][<span class="str">"Date"</span>] = datetime.strptime(
+        summary[<span class="str">"Global"</span>][<span class="str">"Date"</span>], <span class="str">'%Y-%m-%dT%H:%M:%S.%fZ'</span>
+    )
+
+    data = {
+        <span class="str">'success'</span>:   <span class="kw">True</span>,
+        <span class="str">'global'</span>:    summary[<span class="str">"Global"</span>],      <span class="cm"># nested dict from JSON</span>
+        <span class="str">'countries'</span>: summary[<span class="str">"Countries"</span>],   <span class="cm"># list of country dicts</span>
+    }
+    <span class="kw">return</span> render(request, <span class="str">'home/index.html'</span>, data)</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>requests.get(url).json()</code> — a GET request needs no body; just the URL. <code>.json()</code> parses the response.</li>
+          <li><code>summary["Global"]["Date"]</code> — accessing a nested dict key from the parsed JSON.</li>
+          <li><code>datetime.strptime(str, format)</code> — parses a string into a Python datetime using a format string. <code>%Y</code>=year, <code>%m</code>=month, <code>%d</code>=day, <code>%H:%M:%S</code>=time, <code>%f</code>=microseconds, <code>Z</code>=literal Z.</li>
+          <li>The context dict passes <code>global</code> and <code>countries</code> to the template where they're accessed as <code>{{ global.NewConfirmed }}</code> and <code>{% for c in countries %}</code>.</li>
+        </ul>
+      </div>
+
+      <h3>index.html template — Bootstrap 5 + Django template + jQuery</h3>
+<pre><code><span class="cm">{# Bootstrap 5 CDN — different URL and classes from Bootstrap 3 #}</span>
+&lt;link href=<span class="str">"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"</span> rel=<span class="str">"stylesheet"</span>&gt;
+
+<span class="cm">{# Bootstrap 5 navbar (dark bg — different from BS3 navbar-inverse) #}</span>
+&lt;nav class=<span class="str">"navbar navbar-dark bg-dark"</span>&gt;
+  &lt;div class=<span class="str">"container-fluid"</span>&gt;
+    &lt;a class=<span class="str">"navbar-brand"</span>&gt;Covid 19 Listings&lt;/a&gt;
+    &lt;form class=<span class="str">"d-flex"</span>&gt;                              <span class="cm">&lt;!-- d-flex: Bootstrap 5 flexbox utility --&gt;</span>
+      &lt;input class=<span class="str">"form-control me-2"</span> id=<span class="str">"search"</span> type=<span class="str">"search"</span> placeholder=<span class="str">"Search"</span>&gt;
+      &lt;button class=<span class="str">"btn btn-outline-success"</span>&gt;Search&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+<span class="cm">{# Bootstrap 5 Card with global stats and badges #}</span>
+&lt;div class=<span class="str">"card border-primary"</span>&gt;
+  &lt;div class=<span class="str">"card-header"</span>&gt;Global Stats &lt;span style=<span class="str">"float:right"</span>&gt;{{ global.Date }}&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=<span class="str">"card-body"</span>&gt;
+    &lt;button class=<span class="str">"btn btn-primary"</span>&gt;
+      New Confirmed &lt;span class=<span class="str">"badge bg-secondary"</span>&gt;{{ global.NewConfirmed }}&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button class=<span class="str">"btn btn-danger"</span>&gt;
+      New Deaths &lt;span class=<span class="str">"badge bg-dark"</span>&gt;{{ global.NewDeaths }}&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="cm">{# row-cols-6: Bootstrap 5 — each col auto-sizes to fit 6 per row #}</span>
+&lt;div class=<span class="str">"row row-cols-6"</span>&gt;
+  {% for c in countries %}
+    &lt;div class=<span class="str">"col"</span> slug=<span class="str">"{{ c.Slug }}"</span>&gt;           <span class="cm">{# custom attr used by jQuery search #}</span>
+      &lt;div class=<span class="str">"card bg-dark text-white"</span>&gt;
+        &lt;img src=<span class="str">"https://www.countryflags.io/{{ c.CountryCode }}/flat/64.png"</span>
+             class=<span class="str">"card-img-top"</span>&gt;
+        &lt;div class=<span class="str">"card-body"</span>&gt;
+          &lt;h5 class=<span class="str">"card-title"</span>&gt;{{ c.Country }}&lt;/h5&gt;
+          &lt;p&gt;Total Confirmed &lt;span class=<span class="str">"badge bg-primary"</span>&gt;{{ c.TotalConfirmed }}&lt;/span&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  {% endfor %}
+&lt;/div&gt;
+
+<span class="cm">{# jQuery live search using Django template variable (| safe) #}</span>
+&lt;script&gt;
+  $(<span class="str">"#search"</span>).keyup(<span class="kw">function</span>() {
+    $(<span class="str">".col"</span>).filter(<span class="kw">function</span>() {
+      <span class="kw">return</span> $(<span class="kw">this</span>).attr(<span class="str">"slug"</span>).indexOf($(<span class="str">"#search"</span>).val().toLowerCase()) &gt;= <span class="num">0</span>;
+    }).show();
+    $(<span class="str">".col"</span>).filter(<span class="kw">function</span>() {
+      <span class="kw">return</span> $(<span class="kw">this</span>).attr(<span class="str">"slug"</span>).indexOf($(<span class="str">"#search"</span>).val().toLowerCase()) == -<span class="num">1</span>;
+    }).hide();
+  });
+&lt;/script&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>navbar-dark bg-dark</code> (Bootstrap 5) — equivalent to <code>navbar-inverse</code> in Bootstrap 3. BS5 separates text colour (<code>navbar-dark</code> = white text) and background (<code>bg-dark</code>).</li>
+          <li><code>badge bg-secondary</code> / <code>badge bg-primary</code> — Bootstrap 5 badge syntax. In BS3 it was <code>&lt;span class="badge"&gt;</code> with just colour from the context. BS5 requires explicit <code>bg-*</code>.</li>
+          <li><code>row-cols-6</code> — Bootstrap 5 utility that makes every direct child <code>.col</code> exactly 1/6 wide (same as <code>col-2</code> for each).</li>
+          <li><code>slug="{{ c.Slug }}"</code> — a custom HTML attribute storing the country slug for JavaScript. Not a standard HTML attribute — purely for JS to filter on.</li>
+          <li><code>$(".col").filter(function() { return $(this).attr("slug").indexOf(...) >= 0; }).show()</code> — jQuery filter: show cols whose slug contains the search string; hide the rest.</li>
+        </ul>
+      </div>
+
+      <h3>view.html — DataTables integration</h3>
+<pre><code><span class="cm">{# Load Bootstrap 5 + DataTables CSS #}</span>
+&lt;link href=<span class="str">"https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"</span> rel=<span class="str">"stylesheet"</span>&gt;
+
+&lt;table id=<span class="str">"data"</span> class=<span class="str">"display compact"</span>&gt;&lt;/table&gt;  <span class="cm">&lt;!-- empty table — JS fills it --&gt;</span>
+
+&lt;script&gt;
+  $(<span class="str">"#data"</span>).dataTable({
+    data:    {{ table_data | safe }},     <span class="cm">// Python list-of-lists passed as JSON; | safe disables HTML escaping</span>
+    columns: {{ table_columns | safe }},  <span class="cm">// Python list of {title} dicts</span>
+  });
+&lt;/script&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>{{ table_data | safe }}</code> — the <code>| safe</code> filter tells Django "don't HTML-escape this value". Without it, Django escapes <code>&lt;</code> and <code>&gt;</code> inside the Python list, breaking the JavaScript. Use <code>| safe</code> only for data you trust (data from your own view, not user input).</li>
+          <li><code>data: {{ table_data | safe }}</code> — Django renders the Python list as a JavaScript array literal directly into the <code>&lt;script&gt;</code> block. DataTables then uses it to populate the table rows.</li>
+          <li><code>columns: {{ table_columns | safe }}</code> — a list of <code>{"title": "fieldname"}</code> objects that become the column headers.</li>
+          <li>The table element is empty (<code>&lt;table id="data"&gt;&lt;/table&gt;</code>) — DataTables builds it all from JavaScript.</li>
+        </ul>
+      </div>
     </div>
   </details>
 
