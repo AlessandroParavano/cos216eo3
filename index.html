@@ -18,7 +18,8 @@
     <h1 id="top">COS 216 — EO3 Complete Study Notes</h1>
     <p class="subtitle">University of Pretoria · Computer Science. Lectures 30–40 — the web &amp; mobile frameworks plus the Advanced Security lecture — with line-by-line explained examples, common mistakes, direct W3Schools links, and the lectured questions from the 2021 EO3 paper fully worked.</p>
     <div class="hero-actions">
-      <a class="action" href="#pp2021">Jump to 2021 Past Paper</a>
+      <a class="action" href="#pp2021">2021 Past Paper</a>
+      <a class="action" href="#pp2022">2022 Past Paper</a>
       <a class="action secondary" href="#scope">What can be tested?</a>
     </div>
   </div>
@@ -60,8 +61,11 @@
       <p class="nav-title">Exam Practice</p>
       <ul class="nav-list">
         <li><a href="#pp2021">2021 Past Paper</a></li>
-        <li><a href="#mock1">Mock Test 1</a></li>
-        <li><a href="#mock2">Mock Test 2</a></li>
+        <li><a href="#mock1">Mock 1 — HealthTrack</a></li>
+        <li><a href="#mock2">Mock 2 — GameHub</a></li>
+        <li><a href="#pp2022">2022 Past Paper</a></li>
+        <li><a href="#mock3">Mock 3 — NewsFlash</a></li>
+        <li><a href="#mock4">Mock 4 — StockTrack</a></li>
       </ul>
     </div>
   </aside>
@@ -74,23 +78,24 @@
     <div class="section-inner">
       <p class="section-kicker"><span class="badge scope">Exam scope</span></p>
       <h2>What the EO3 actually tests</h2>
-      <p>The EO3 is the <strong>second-semester theory + coding test</strong> built on lectures 30–40 (the web/mobile frameworks plus the Advanced Security lecture). These notes cover that lecture material. From the 2021 paper, the lectured topics split roughly like this:</p>
+      <p>The EO3 is the <strong>second-semester theory + coding test</strong> built on lectures 30–40 (the web/mobile frameworks plus the Advanced Security lecture). These notes cover that lecture material. Topics tested across both papers:</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Topic</th><th>2021 questions</th><th>Weight</th><th>Where in these notes</th></tr></thead>
+          <thead><tr><th>Topic</th><th>2021 questions</th><th>2022 questions</th><th>Where in these notes</th></tr></thead>
           <tbody>
-            <tr><td>TypeScript (interfaces, types)</td><td>Q5 (14)</td><td>High</td><td><a href="#ts">TypeScript</a></td></tr>
-            <tr><td>Angular (template logic)</td><td>Q14 (10)</td><td>High</td><td><a href="#ng">Angular</a></td></tr>
-            <tr><td>Bootstrap (add classes)</td><td>Q9 (13)</td><td>High</td><td><a href="#bs">Bootstrap</a></td></tr>
-            <tr><td>Ionic / Mobile (HTTP + storage)</td><td>Q15 (13), Q7 (6), Q8 (3)</td><td>High</td><td><a href="#ionic">Ionic &amp; Mobile</a></td></tr>
-            <tr><td>MongoDB (aggregation)</td><td>Q10 (9)</td><td>Medium</td><td><a href="#mongo">MongoDB</a></td></tr>
-            <tr><td>Web security (XXE, cookies)</td><td>Q13 (3), Q4 (3)</td><td>Medium</td><td><a href="#sec">Web Security</a></td></tr>
+            <tr><td>TypeScript (interfaces, nested types)</td><td>Q5 (14)</td><td>Q12 (10)</td><td><a href="#ts">TypeScript</a></td></tr>
+            <tr><td>Angular (template logic)</td><td>Q14 (10)</td><td>—</td><td><a href="#ng">Angular</a></td></tr>
+            <tr><td>Bootstrap (classes / fill-in-blank)</td><td>Q9 (13)</td><td>Q5 (5)</td><td><a href="#bs">Bootstrap</a></td></tr>
+            <tr><td>Ionic / Mobile (HTTP, network, Java)</td><td>Q15 (13), Q7 (6), Q8 (3)</td><td>Q7 (10), Q10 (2), Q14 (5)</td><td><a href="#ionic">Ionic &amp; Mobile</a></td></tr>
+            <tr><td>MongoDB (aggregation)</td><td>Q10 (9)</td><td>Q9 (10)</td><td><a href="#mongo">MongoDB</a></td></tr>
+            <tr><td>Web security (XSS, CSRF, cookies, WAF)</td><td>Q13 (3), Q4 (3)</td><td>Q1 (3), Q2 (3), Q11 (4), Q13 (2)</td><td><a href="#sec">Web Security</a></td></tr>
+            <tr><td>Django (models, views, forms)</td><td>—</td><td>Q3 (5)</td><td><a href="#django">Django</a></td></tr>
           </tbody>
         </table>
       </div>
       <div class="callout warn">
-        <span class="callout-title">⚠️ Not covered here</span>
-        <p>The 2021 paper also had short questions on cloud hosting, scaling, DNS and privacy/"new internet" topics. These are <strong>not part of the L30–40 lecture slides</strong>, so they are intentionally left out of these notes — check your earlier course material for them.</p>
+        <span class="callout-title">⚠️ Not covered here (excluded from both papers)</span>
+        <p>Both papers had short questions on cloud hosting types (IaaS/PaaS/SaaS/shared/VPS/dedicated), scaling, DNS, onion routing and distributed systems (Freenet/BitTorrent/ZeroNet/IPFS). These are <strong>not part of the L30–40 lecture slides</strong>, so they are intentionally left out of these notes.</p>
       </div>
       <div class="callout exam">
         <span class="callout-title">🎯 Read this first</span>
@@ -373,6 +378,62 @@ code = <span class="num">216</span>;            <span class="cm">// ✅</span></
         <ul>
           <li><code>export class Point { ... }</code> — the <code>export</code> keyword makes this class <strong>visible to other files</strong>. Without it, the class is private to <code>point.ts</code>.</li>
           <li><code>import { Point } from './point';</code> — pulls that exported <code>Point</code> into <code>main.ts</code> so you can use it here. <code>./point</code> is the file path (same folder); you leave off the <code>.ts</code> extension.</li>
+        </ul>
+      </div>
+
+      <h3>Nested interfaces — the 2022 exam pattern</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 Worth 10 marks in 2022 (Q12) — different from 2021</span>
+        <p>2022 gave you a JSON object with <strong>nested objects</strong> (source, author) and asked you to model the whole thing using <strong>multiple interfaces</strong>, where one interface has properties whose types are other interfaces. The constraint was <em>"you are not allowed to create a nested typed object"</em> — meaning you <strong>must</strong> create separate named interfaces, not inline anonymous type shapes.</p>
+      </div>
+      <p>Given this JSON:</p>
+<pre><code>{
+  <span class="str">"source"</span>:  { <span class="str">"id"</span>: <span class="str">"the-verge"</span>, <span class="str">"name"</span>: <span class="str">"The Verge"</span> },
+  <span class="str">"author"</span>:  { <span class="str">"name"</span>: <span class="str">"Jay Peters"</span>, <span class="str">"affiliation"</span>: <span class="str">"The Verge"</span>, <span class="str">"numberOfArticles"</span>: <span class="num">154</span> },
+  <span class="str">"title"</span>:       <span class="str">"Apple will stream MLS..."</span>,
+  <span class="str">"description"</span>: <span class="str">"..."</span>,
+  <span class="str">"url"</span>:         <span class="str">"https://www.theverge.com/..."</span>,
+  <span class="str">"images"</span>:      [<span class="str">"https://cdn.vox-cdn.com/..."</span>],
+  <span class="str">"publishedAt"</span>: <span class="str">"2022-06-14T16:30:22Z"</span>
+}</code></pre>
+<pre><code><span class="cm">// Step 1 — model each NESTED object as its own interface first</span>
+<span class="kw">interface</span> <span class="type">Source</span> {
+  id:   <span class="type">string</span>,
+  name: <span class="type">string</span>
+}
+
+<span class="kw">interface</span> <span class="type">Author</span> {
+  name:             <span class="type">string</span>,
+  affiliation:      <span class="type">string</span>,
+  numberOfArticles: <span class="type">number</span>
+}
+
+<span class="cm">// Step 2 — model the root object; use the sub-interfaces as types</span>
+<span class="kw">interface</span> <span class="type">Article</span> {
+  source:      <span class="type">Source</span>,         <span class="cm">// type is the Source interface above</span>
+  author:      <span class="type">Author</span>,         <span class="cm">// type is the Author interface above</span>
+  title:       <span class="type">string</span>,
+  description: <span class="type">string</span>,
+  url:         <span class="type">URL</span>,            <span class="cm">// URL is a provided custom type — not string!</span>
+  images:      <span class="type">URL</span>[],          <span class="cm">// array of URLs (the JSON array of image strings)</span>
+  publishedAt: <span class="type">Date</span>,           <span class="cm">// ISO timestamp string maps to Date type</span>
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li>The two nested JSON objects (<code>source</code>, <code>author</code>) each become their own separate <code>interface</code>. This is what "no nested typed object" means — you write two distinct named interfaces, not <code>source: { id: string, name: string }</code> inline.</li>
+          <li><code>source: Source</code> in Article — uses the <code>Source</code> interface as the type for that field, creating a type hierarchy.</li>
+          <li><code>url: URL</code> — the question says "you are provided with a custom type called URL". Use it instead of <code>string</code>.</li>
+          <li><code>images: URL[]</code> — the JSON value is an array of strings, but since they're URLs and the URL type was provided, the correct type is <code>URL[]</code>. The student who got 8.5/10 wrote <code>string[]</code> here and lost a mark.</li>
+          <li><code>publishedAt: Date</code> — the value <code>"2022-06-14T16:30:22Z"</code> is an ISO date string. TypeScript's <code>Date</code> type is the right mapping for timestamps.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Mistakes to avoid (real 2022 script, 8.5/10)</span>
+        <ul class="compact-list">
+          <li>Using <code>export interface</code> — the question said "from your lectures", not "for a module". Drop <code>export</code> unless explicitly asked.</li>
+          <li><code>images: string[]</code> instead of <code>images: URL[]</code> — the custom URL type was provided for a reason; use it for all URL fields including the array.</li>
+          <li>Creating an <code>interface RootObject</code> instead of <code>interface Article</code> — name the interface after what it represents.</li>
         </ul>
       </div>
     </div>
@@ -855,6 +916,99 @@ doPost() {
         </ul>
       </div>
 
+      <h3>Network connectivity check — 2022 Q7 pattern</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 "Check for internet connection, then POST" (10 marks in 2022)</span>
+        <p>The 2022 Ionic question used the <strong>Ionic Native Network plugin</strong> to subscribe to a connection event before making the HTTP request. The key new piece: <code>network.onConnect().subscribe(callback)</code> and <code>connectSubscription.unsubscribe()</code> afterwards to avoid memory leaks.</p>
+      </div>
+<pre><code><span class="cm">// Network + HTTP injected via constructor (Ionic Native style)</span>
+<span class="kw">import</span> { Network } <span class="kw">from</span> <span class="str">'@ionic-native/network/ngx'</span>;
+<span class="kw">import</span> { HTTP }    <span class="kw">from</span> <span class="str">'@ionic-native/http/ngx'</span>;
+
+articles: <span class="type">any</span>[] = [];
+
+<span class="fn">getArticles</span>() {
+  <span class="cm">// subscribe to the "network connected" event</span>
+  <span class="kw">let</span> connectSubscription = <span class="kw">this</span>.network.onConnect().subscribe(() =&gt; {
+
+    <span class="cm">// now we have a connection — make the POST request</span>
+    <span class="kw">this</span>.http.post(<span class="str">'https://articles.com/latest'</span>, {}, {})
+      .then((data) =&gt; {
+        <span class="kw">this</span>.articles = data.data;  <span class="cm">// bind the returned array to the class field</span>
+      });
+
+  });
+
+  connectSubscription.unsubscribe();  <span class="cm">// clean up — stop listening after one trigger</span>
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>this.network.onConnect()</code> — returns an Observable that fires a value each time the device gains a network connection.</li>
+          <li><code>.subscribe(() =&gt; { ... })</code> — registers a callback to run when a connection is detected. The arrow function body runs once the device is online.</li>
+          <li><code>this.http.post('url', {}, {})</code> — in Ionic Native 5, <code>sendRequest</code> is one API but <code>http.post(url, body, headers)</code> is the shorthand. The empty <code>{}</code>s are the body and headers respectively.</li>
+          <li><code>this.articles = data.data</code> — the response data is at <code>data.data</code> (the HTTP plugin wraps the response).</li>
+          <li><code>connectSubscription.unsubscribe()</code> — <strong>critical</strong>: if you never unsubscribe, the callback fires every time the device re-connects for the lifetime of the app, making repeated requests. Always unsubscribe after one use. This was worth 1 mark in 2022.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Real 2022 script mistakes (6/10)</span>
+        <ul class="compact-list">
+          <li>Used <code>this.http.get()</code> instead of <code>this.http.post()</code> — the question said POST.</li>
+          <li>Forgot <code>connectSubscription.unsubscribe()</code> — a common omission.</li>
+          <li>Wrote <code>return data.data</code> inside the callback — the <code>return</code> exits the callback, not the outer function, and the component field <code>this.articles</code> never gets set.</li>
+        </ul>
+      </div>
+
+      <h3>Android Java — onScroll + Toast (2022 Q14)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 "Implement onScroll to show scroll distance as a Toast" (5 marks)</span>
+        <p>Uses GestureDetector's <code>onScroll</code> callback with Java's <code>Toast.makeText()</code>. Know the method signature exactly.</p>
+      </div>
+<pre><code>@<span class="type">Override</span>
+<span class="kw">public boolean</span> <span class="fn">onScroll</span>(<span class="type">MotionEvent</span> event1, <span class="type">MotionEvent</span> event2,
+                          <span class="kw">float</span> distanceX, <span class="kw">float</span> distanceY) {
+    <span class="type">Context</span> context  = getApplicationContext();          <span class="cm">// the app context for Toast</span>
+    <span class="kw">int</span>     duration = <span class="type">Toast</span>.LENGTH_SHORT;               <span class="cm">// or Toast.LENGTH_LONG</span>
+    <span class="type">Toast</span>.makeText(context,
+        calcDist(distanceX, distanceY).toString(),       <span class="cm">// message: call the provided method</span>
+        duration).show();
+    <span class="kw">return true</span>;
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li><code>@Override</code> — tells the compiler this method overrides an interface method (<code>GestureDetector.OnGestureListener</code>). Required.</li>
+          <li><code>onScroll(MotionEvent event1, MotionEvent event2, float distanceX, float distanceY)</code> — exact signature Android requires. <code>event1</code> is the start touch, <code>event2</code> is the current touch; <code>distanceX/Y</code> are how far the finger moved.</li>
+          <li><code>getApplicationContext()</code> — gets the Context object that Toast needs to know which app it belongs to.</li>
+          <li><code>Toast.LENGTH_SHORT</code> — a constant (2 seconds). <code>Toast.LENGTH_LONG</code> is 3.5 seconds.</li>
+          <li><code>Toast.makeText(context, message, duration).show()</code> — the three-arg factory method creates a Toast; <code>.show()</code> displays it. You must call <code>.show()</code> or nothing appears.</li>
+          <li><code>calcDist(distanceX, distanceY).toString()</code> — calls the provided helper method and converts its return value to String (Toast expects a String or CharSequence).</li>
+          <li><code>return true</code> — tells Android the event was handled. Return <code>false</code> if you want the event to continue propagating.</li>
+        </ul>
+      </div>
+
+      <h3>Android OkHttpClient — 2022 Q10 (what is wrong?)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 "What is wrong with this OkHttpClient code?" (2 marks)</span>
+      </div>
+<pre><code><span class="cm">// BROKEN CODE (from 2022 Q10)</span>
+<span class="type">OkHttpClient</span> client = <span class="kw">new</span> <span class="type">OkHttpClient</span>(<span class="str">"http://someAPI.com"</span>); <span class="cm">// ❌ WRONG</span>
+<span class="type">String</span> run(<span class="type">String</span> url) <span class="kw">throws</span> <span class="type">IOException</span> {
+    <span class="type">Request</span> request = <span class="kw">new</span> <span class="type">Request.Builder</span>().url(url).build();
+    <span class="type">Response</span> response = client.newCall(request).execute();
+    <span class="type">String</span> res = response.body().string();
+    client.disconnect();                                          <span class="cm">// ❌ WRONG</span>
+    <span class="kw">return</span> res;
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Two specific errors (1 mark each)</span>
+        <ul>
+          <li><strong>Error 1:</strong> <code>new OkHttpClient("http://someAPI.com")</code> — the <code>OkHttpClient</code> constructor takes <strong>no arguments</strong>. You build it with <code>new OkHttpClient()</code> or <code>new OkHttpClient.Builder().build()</code>. The URL is passed to the <code>Request.Builder</code>, not the client.</li>
+          <li><strong>Error 2:</strong> <code>client.disconnect()</code> — <code>OkHttpClient</code> has no <code>disconnect()</code> method. That method belongs to the older <code>HttpURLConnection</code> API. This is an illegal mixing of two different HTTP implementations (<code>OkHttpURLConnection</code> vs <code>OkHttpClient</code>).</li>
+        </ul>
+      </div>
+
       <h3>Other Capacitor plugins (know they exist)</h3>
 <pre><code><span class="cm">// Toast</span>
 <span class="kw">import</span> { Toast } <span class="kw">from</span> <span class="str">'@capacitor/toast'</span>;
@@ -1130,6 +1284,28 @@ doPost() {
         </ul>
       </div>
 
+      <h3>Fill-in-the-blank Bootstrap — 2022 Q5 pattern</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2022 Q5 — fill in [A] [B] [C] [D] [E] (5 marks)</span>
+        <p>Instead of adding classes to plain HTML, 2022 gave you the code with blanks to identify. Know the exact answer for each type of blank.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Blank</th><th>Answer</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>[A] outer wrapper</td><td><code>container</code></td><td>Fixed-width centred container. (<code>container-fluid</code> = full width.)</td></tr>
+            <tr><td>[B] sibling of col-3</td><td><code>col-9</code></td><td>Must add to 12. col-3 + col-9 = 12.</td></tr>
+            <tr><td>[C] <code>&lt;th scope="[C]"&gt;</code></td><td><code>col</code></td><td><code>scope="col"</code> means this <code>&lt;th&gt;</code> is a column header. Accessibility + semantics.</td></tr>
+            <tr><td>[D] <code>&lt;th scope="[D]"&gt;</code> in <code>&lt;tbody&gt;</code></td><td><code>row</code></td><td><code>scope="row"</code> means this <code>&lt;th&gt;</code> is a row header (the row number).</td></tr>
+            <tr><td>[E] blue Follow button</td><td><code>btn-primary</code></td><td>Blue = primary. Note: <code>btn</code> base class was already there.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout tip">
+        <span class="callout-title">💡 scope="col" vs scope="row" — know this</span>
+        <p><code>scope="col"</code> on a <code>&lt;th&gt;</code> in <code>&lt;thead&gt;</code> = this header labels a <strong>column</strong>. <code>scope="row"</code> on a <code>&lt;th&gt;</code> in <code>&lt;tbody&gt;</code> = this header labels a <strong>row</strong> (often the row number or identifier). The student lost 1 mark by writing <code>btn-primary</code> without the <code>btn-</code> prefix they missed — <em>but the <code>btn</code> base was already in the code</em>, so only the colour modifier was needed.</p>
+      </div>
+
       <h3>Bootstrap 3 → 5 differences (don't mix them up)</h3>
       <div class="table-wrap">
         <table>
@@ -1266,6 +1442,33 @@ db.CompanyData.aggregate([
           <li>Filtering on a computed total must come <em>after</em> the group, with <code>$match</code> (not in the original query).</li>
         </ul>
       </div>
+
+      <h3>$match BEFORE $group — the 2022 pattern</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2022 Q9 — filter first, then group (different from 2021)</span>
+        <p>In 2021, the aggregation grouped everything then filtered. In 2022 the question says "active staff only" — so <strong>$match first</strong> to remove inactive docs before grouping, then group, sort and output. This is more efficient and changes the pipeline order.</p>
+      </div>
+<pre><code><span class="cm">// 2022 Q9 — average Age of ACTIVE staff, oldest→youngest, into AverageAge</span>
+<span class="cm">// Collection: UserData in database 'ud'. Use db after `use ud` in the shell.</span>
+db.UserData.aggregate([
+  { $match: { Status: <span class="str">"Active"</span> } },                      <span class="cm">// 1. FILTER: keep Active only</span>
+  { $group: { _id: <span class="str">"$Status"</span>, _average: { $avg: <span class="str">"$Age"</span> } } }, <span class="cm">// 2. GROUP: avg age per status</span>
+  { $sort:  { _average: -<span class="num">1</span> } },                              <span class="cm">// 3. SORT: descending = oldest first</span>
+  { $out:   <span class="str">"AverageAge"</span> }                                    <span class="cm">// 4. OUTPUT: write to collection</span>
+]);</code></pre>
+      <div class="explain">
+        <span class="explain-title">Why $match comes FIRST here</span>
+        <ul>
+          <li>The question asks for the average age of <em>active</em> staff. If you group first, inactive people's ages contaminate the average. The <code>$match</code> stage removes them before any calculation happens.</li>
+          <li><code>{ $match: { Status: "Active" } }</code> — filters documents where the <code>Status</code> field equals exactly <code>"Active"</code>. The value must match the exact capitalisation used in the data.</li>
+          <li>After filtering, the <code>$group</code> only sees Active records — so <code>_id: "$Status"</code> will always be "Active", and <code>$avg: "$Age"</code> averages only those ages.</li>
+          <li>Contrast with 2021 Q10 — no filter was needed; everyone was included in the average.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Real 2022 script mistake (7/10)</span>
+        <p>The student wrote <code>db.Userdata.aggregate([{$group:{_Status:$Active, _Average:{$avg:$Age}}}])</code> — three problems: no <code>$match</code> to filter active-only, <code>_Status:$Active</code> is not valid syntax (should be <code>_id: "$Status"</code>), and <code>$Age</code> without quotes is a variable reference not a field path.</p>
+      </div>
     </div>
   </details>
 
@@ -1397,6 +1600,90 @@ include($page);          <span class="cm">// attacker controls the included file
         <span class="callout-title">⚠️ Don't confuse these</span>
         <p><code>sessionStorage</code> = until tab closes. <code>localStorage</code> = persists. Cookies = small (4KB), sent with every HTTP request to the domain; Web Storage is <em>not</em> sent automatically.</p>
       </div>
+
+      <h3>Converting cookies to DOM storage — 2022 Q11</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 "The token has a short TTL — write the DOM storage equivalent" (4 marks)</span>
+        <p>The key insight: the cookie code sets expiry by calculating a <code>Date</code>. In DOM storage there is no built-in TTL — you store the expiry <em>as data</em> alongside the value using <code>JSON.stringify</code>. The short-TTL token (20 min) must use <code>sessionStorage</code>; the long-lived API key (1 day) uses <code>localStorage</code>.</p>
+      </div>
+<pre><code><span class="cm">// ORIGINAL cookie code</span>
+<span class="kw">const</span> d = <span class="kw">new</span> Date(); d.setTime(d.getTime() + (<span class="num">1</span>*<span class="num">24</span>*<span class="num">60</span>*<span class="num">60</span>*<span class="num">1000</span>));  <span class="cm">// 1 day</span>
+<span class="kw">const</span> tokenDate = <span class="kw">new</span> Date(); tokenDate.setTime(tokenDate.getTime() + (<span class="num">20</span>*<span class="num">60</span>*<span class="num">1000</span>)); <span class="cm">// 20 min</span>
+
+document.cookie = <span class="str">"APIKEY=1206...;"</span> + expires + <span class="str">";path=/"</span>;    <span class="cm">// long-lived</span>
+document.cookie = <span class="str">"TOKEN=jhew7i9823n;"</span> + expiresToken + <span class="str">";path=/"</span>; <span class="cm">// short-lived (20 min)</span></code></pre>
+<pre><code><span class="cm">// CORRECT DOM storage equivalent</span>
+<span class="kw">const</span> d = <span class="kw">new</span> Date(); d.setTime(d.getTime() + (<span class="num">1</span>*<span class="num">24</span>*<span class="num">60</span>*<span class="num">60</span>*<span class="num">1000</span>));  <span class="cm">// 1 day</span>
+<span class="kw">const</span> tokenDate = <span class="kw">new</span> Date(); tokenDate.setTime(tokenDate.getTime() + (<span class="num">20</span>*<span class="num">60</span>*<span class="num">1000</span>)); <span class="cm">// 20 min</span>
+
+<span class="cm">// APIKEY: long-lived → localStorage (survives browser close)</span>
+localStorage.setItem(<span class="str">'APIKEY'</span>, JSON.stringify({ value: <span class="str">'1206e9f5-...'</span>, expires: d }));
+
+<span class="cm">// TOKEN: short TTL → sessionStorage (cleared when tab closes)</span>
+sessionStorage.setItem(<span class="str">'TOKEN'</span>, JSON.stringify({ value: <span class="str">'jhew7i9823n'</span>, expires: tokenDate }));</code></pre>
+      <div class="explain">
+        <span class="explain-title">Line by line</span>
+        <ul>
+          <li>The <code>Date</code> calculations are kept identically — you still compute the expiry timestamp.</li>
+          <li><code>JSON.stringify({ value: '...', expires: d })</code> — DOM storage only stores strings. You wrap the value and its expiry date together as a JSON object and serialise it. To read it back later: <code>JSON.parse(localStorage.getItem('APIKEY'))</code>.</li>
+          <li><code>localStorage</code> for APIKEY — it's set for 1 day, so it should survive the browser closing. The marker deducts 1 mark if you use <code>sessionStorage</code> for it.</li>
+          <li><code>sessionStorage</code> for TOKEN — the question says "short TTL". In the context of DOM storage, a short-lived token maps to <code>sessionStorage</code> (cleared when the tab closes, ~20-minute session).</li>
+        </ul>
+      </div>
+
+      <h3>XSS and CSRF — 2022 Q1</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 "How do you fix XSS and a static CSRF token?" (3 marks)</span>
+      </div>
+      <div class="two-col">
+        <div>
+          <h4>XSS (Cross-Site Scripting)</h4>
+          <p>An attacker injects malicious JavaScript into a page that is then executed by another user's browser — e.g. stealing their session cookie via <code>document.cookie</code>.</p>
+          <ul>
+            <li><strong>Stored XSS</strong> — payload saved in the database, served to every visitor.</li>
+            <li><strong>Reflected XSS</strong> — payload in the URL, reflected back in the response.</li>
+            <li><strong>DOM XSS</strong> — client-side JS writes attacker-controlled data to the DOM.</li>
+          </ul>
+          <p><strong>Fix:</strong> Escape (sanitise) all user input before rendering it in HTML. Use <strong>prepared statements</strong> (parameterised queries) to prevent the input also being used as a SQL injection vector.</p>
+        </div>
+        <div>
+          <h4>CSRF (Cross-Site Request Forgery)</h4>
+          <p>An attacker tricks a logged-in user's browser into making an unwanted request to a site where the user is authenticated (the browser sends the session cookie automatically).</p>
+          <p><strong>Problem with a static token:</strong> If the anti-CSRF token never changes, an attacker who steals it once can reuse it indefinitely.</p>
+          <p><strong>Fix:</strong> Use a <strong>dynamic token</strong> — generate a fresh, unpredictable token for every form/request. The server verifies it matches what it issued. Django does this with <code>{% csrf_token %}</code> automatically.</p>
+        </div>
+      </div>
+
+      <h3>Cookie stealing via wildcard domains — 2022 Q2</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 "Cookie set for *.up.ac.za — how can it be stolen?" (3 marks)</span>
+      </div>
+      <p>Scenario: User logs in to <code>www1.up.ac.za</code>; the server sets a cookie for <code>*.up.ac.za</code> (a wildcard = all subdomains). User then visits <code>wheatley.cs.up.ac.za/api/memo</code>.</p>
+      <ul>
+        <li><strong>Point 1:</strong> A wildcard cookie (<code>*.up.ac.za</code>) is automatically sent by the browser to <em>every</em> subdomain of <code>up.ac.za</code> — including <code>wheatley.cs.up.ac.za</code>.</li>
+        <li><strong>Point 2:</strong> When the user visits <code>wheatley.cs.up.ac.za</code>, that server receives the login cookie from <code>www1.up.ac.za</code>.</li>
+        <li><strong>Point 3:</strong> Wheatley is a <strong>shared hosting server</strong> — any student can host code there. A malicious student's page can read the cookie and exfiltrate it, effectively stealing the UP Portal session.</li>
+      </ul>
+
+      <h3>Network Firewall vs Web Application Firewall (WAF) — 2022 Q13</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 "OSI model difference between Network Firewall and WAF" (2 marks)</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th>Network Firewall</th><th>Web Application Firewall (WAF)</th></tr></thead>
+          <tbody>
+            <tr><td>OSI Layer</td><td><strong>Layer 3–4</strong> (Network + Transport)</td><td><strong>Layer 7</strong> (Application)</td></tr>
+            <tr><td>What it inspects</td><td>IP addresses, ports, protocols (TCP/UDP), packet headers</td><td>HTTP/HTTPS traffic — URLs, headers, cookies, request bodies</td></tr>
+            <tr><td>What it blocks</td><td>Unauthorised network access, port scans, IP spoofing</td><td>SQLi, XSS, CSRF, LFI, RFI, XXE — application-layer attacks</td></tr>
+            <tr><td>Where it sits</td><td>Network perimeter (hardware)</td><td>In front of the web server (software/cloud)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout tip">
+        <span class="callout-title">💡 Memory hook</span>
+        <p>Network Firewall = traffic cop at the <strong>highway on-ramp</strong> (layers 3–4 — routing and ports). WAF = security scanner inside the <strong>building lobby</strong> (layer 7 — reads the content of what's being said).</p>
+      </div>
     </div>
   </details>
 
@@ -1445,6 +1732,26 @@ include($page);          <span class="cm">// attacker controls the included file
       </div>
 
       <h3>Models</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2022 Q3 — Model a Django class from a JSON object (5 marks)</span>
+        <p>You are given a JSON snippet and must create the equivalent Django model. The trick is picking the right field type — <code>URLField</code> for URLs, <code>DateTimeField</code> for ISO timestamps, <code>TextField</code> when no max length is given, and naming the class after the data (not <code>Members</code>).</p>
+      </div>
+<pre><code><span class="cm"># 2022 Q3 — Article model from JSON</span>
+<span class="cm"># JSON had: author, title, url (https://...), publishedAt ("2022-06-15T10:47:02Z")</span>
+<span class="kw">class</span> <span class="type">Article</span>(models.Model):         <span class="cm"># class name matches the data concept</span>
+    author      = models.TextField()   <span class="cm"># text — no max length given → TextField</span>
+    title       = models.TextField()   <span class="cm"># text — no max length given → TextField</span>
+    url         = models.URLField()    <span class="cm"># a URL → URLField, not CharField</span>
+    publishedAt = models.DateTimeField() <span class="cm"># ISO timestamp → DateTimeField</span></code></pre>
+      <div class="explain">
+        <span class="explain-title">Why each field type was chosen</span>
+        <ul>
+          <li><code>TextField()</code> — when no size limit is stated in the spec, use <code>TextField</code> rather than <code>CharField</code>. The student who got 2/5 used <code>CharField(max_length=255)</code> for everything and lost marks for picking the wrong types.</li>
+          <li><code>URLField()</code> — Django has a dedicated field for URLs. It validates the URL format automatically. Using <code>CharField</code> here is technically wrong.</li>
+          <li><code>DateTimeField()</code> — the value <code>"2022-06-15T10:47:02Z"</code> is an ISO 8601 timestamp, so <code>DateTimeField</code> is correct. Using <code>CharField</code> throws away type safety.</li>
+          <li>The class is named <code>Article</code> to match the data — not <code>Members</code> (the failing student's mistake).</li>
+        </ul>
+      </div>
 <pre><code><span class="kw">from</span> django.db <span class="kw">import</span> models
 
 <span class="kw">class</span> <span class="type">Make</span>(models.Model):
@@ -3544,11 +3851,15 @@ $result = $collection-&gt;find($query);
         <table>
           <thead><tr><th>Field type</th><th>Maps to</th><th>Notes</th></tr></thead>
           <tbody>
-            <tr><td><code>CharField(max_length=n)</code></td><td>VARCHAR(n)</td><td>Text. max_length required.</td></tr>
+            <tr><td><code>CharField(max_length=n)</code></td><td>VARCHAR(n)</td><td>Short text. <code>max_length</code> required.</td></tr>
+            <tr><td><code>TextField()</code></td><td>TEXT</td><td>Long/unlimited text. No <code>max_length</code> needed. Use for article bodies, descriptions.</td></tr>
+            <tr><td><code>URLField()</code></td><td>VARCHAR(200)</td><td>Stores a URL. Django validates it's a valid URL format. Better than CharField for URLs.</td></tr>
+            <tr><td><code>EmailField()</code></td><td>VARCHAR(254)</td><td>Stores an email. Validated automatically.</td></tr>
             <tr><td><code>IntegerField()</code></td><td>INT</td><td>Any integer.</td></tr>
             <tr><td><code>PositiveIntegerField()</code></td><td>INT UNSIGNED</td><td>Non-negative integers only.</td></tr>
             <tr><td><code>ForeignKey(Model, on_delete)</code></td><td>INT (foreign key)</td><td>Many-to-one relationship.</td></tr>
-            <tr><td><code>DateTimeField(default=datetime.now)</code></td><td>DATETIME</td><td>Timestamp; auto-set with default.</td></tr>
+            <tr><td><code>DateTimeField()</code></td><td>DATETIME</td><td>Date and time. Use <code>default=datetime.now</code> to auto-set on create.</td></tr>
+            <tr><td><code>DateField()</code></td><td>DATE</td><td>Date only (no time).</td></tr>
             <tr><td><code>BooleanField()</code></td><td>BOOLEAN</td><td>True / False.</td></tr>
           </tbody>
         </table>
@@ -4448,6 +4759,504 @@ searchTerm: <span class="type">string</span> = <span class="str">""</span>;
       <p>GameHub hired a security team for a penetration test. The team was given some documentation but <strong>not</strong> the full source code. What type of penetration test is this, and list the 5 phases of a penetration test in order.</p>
       <details class="answer"><summary>Model answer</summary>
         <div class="callout def"><p><strong>Gray box</strong> testing (partial internal knowledge). Phases: 1) Reconnaissance → 2) Scanning &amp; Enumeration → 3) Exploitation → 4) Post-Exploitation → 5) Reporting. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= 2022 PAST PAPER ================= -->
+  <section class="study-section memo" id="pp2022">
+    <div class="section-inner">
+      <p class="section-kicker"><span class="badge memo">Past paper</span></p>
+      <h2>2022 EO3 — fully worked paper</h2>
+      <p>80 marks · 2.5 hours. Below are the questions drawn from the <strong>L30–40 lecture material</strong>. Cloud hosting, distributed systems (ZeroNet/IPFS/BitTorrent) and onion routing questions are out of scope — same exclusions as 2021.</p>
+
+      <h3>Q2 (3) — Cookie wildcard stealing</h3>
+      <p>Cookies are used for session validation because HTTP is stateless, however, cookies cannot be set for multiple domains, but they can be set as a wildcard for subdomains. Briefly explain how cookie stealing can occur with reference to: <em>"User X logs in to www1.up.ac.za, a cookie gets set for *.up.ac.za. Then User X goes to wheatley.cs.up.ac.za/api/memo."</em></p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def">
+          <p>1. Since the cookie is set on a wildcard (<code>*.up.ac.za</code>), the browser sends it to <strong>every subdomain</strong> of up.ac.za — including wheatley. 2. When User X visits <code>wheatley.cs.up.ac.za/api/memo</code>, that server receives the login cookie from the UP Portal. 3. Wheatley is a <strong>shared hosting server</strong> — any student can host code there. A malicious student's page on wheatley can read that cookie and steal the user's session to www1.up.ac.za. → see <a href="#sec">Web Security</a>.</p>
+        </div>
+      </details>
+
+      <h3>Q3 (5) — Django model from JSON</h3>
+      <p>Given the JSON below, write a Django model called <code>Article</code> for the equivalent data.</p>
+<pre><code>{ <span class="str">"author"</span>: <span class="str">"Tech Desk"</span>, <span class="str">"title"</span>: <span class="str">"The great crypto crash..."</span>,
+  <span class="str">"url"</span>: <span class="str">"https://indianexpress.com/..."</span>, <span class="str">"publishedAt"</span>: <span class="str">"2022-06-15T10:47:02Z"</span> }</code></pre>
+      <p><strong>Note:</strong> Pay attention to data types. You may assume all import statements have been declared.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">class</span> <span class="type">Article</span>(models.Model):
+    author      = models.TextField()
+    title       = models.TextField()
+    url         = models.URLField()
+    publishedAt = models.DateTimeField()</code></pre>
+        <div class="callout mistake"><p>The failing script used <code>class Members</code> instead of <code>Article</code>, and <code>CharField(max_length=255)</code> for everything. Correct types: <code>TextField</code> for open-ended text, <code>URLField</code> for URLs, <code>DateTimeField</code> for ISO timestamps. → see <a href="#django">Django</a>.</p></div>
+      </details>
+
+      <h3>Q5 (5) — Bootstrap fill-in-the-blank</h3>
+      <p>Given the HTML with blanks [A]–[E], identify the correct Bootstrap classes. Image fills 1/4 of screen; heading fills the rest. Buttons on "Follow" rows are blue; "Following" is already green.</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Blank</th><th>Answer</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>[A] outer wrapper</td><td><code>container</code></td><td>Fixed-width centred container.</td></tr>
+            <tr><td>[B] heading column (sibling of col-3)</td><td><code>col-9</code></td><td>3 + 9 = 12 (full row).</td></tr>
+            <tr><td>[C] scope on &lt;thead&gt; &lt;th&gt;</td><td><code>col</code></td><td><code>scope="col"</code> = this header labels a column.</td></tr>
+            <tr><td>[D] scope on &lt;tbody&gt; &lt;th&gt;</td><td><code>row</code></td><td><code>scope="row"</code> = this header labels a row (the row number).</td></tr>
+            <tr><td>[E] colour modifier for Follow button</td><td><code>btn-primary</code></td><td>Blue = primary. The base <code>btn</code> was already present.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout mistake"><p>The student lost 1 mark writing <code>primary</code> instead of <code>btn-primary</code>. Always use the full modifier name. → see <a href="#bs">Bootstrap</a>.</p></div>
+      </details>
+
+      <h3>Q6 (3) — XSS + CSRF fix</h3>
+      <p>Facebook's portal is vulnerable to XSS, uses MySQLi + PHP with normal queries, and has a static CSRF token. How do you fix these two problems?</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def">
+          <p><strong>XSS:</strong> Escape all user-supplied input before rendering it in HTML, and use <strong>prepared statements</strong> (parameterised queries) so input can't be injected into SQL. <strong>CSRF:</strong> Replace the static token with a <strong>dynamic token</strong> — generate a unique, unpredictable token for every request/form and verify it server-side. → see <a href="#sec">Web Security</a>.</p>
+        </div>
+      </details>
+
+      <h3>Q7 (10) — Ionic: check network, then POST</h3>
+      <p>Write an Ionic Angular function <code>getArticles</code> that checks if the device has an active internet connection and then makes a Native HTTP POST to <code>https://articles.com/latest</code>. It returns JSON with keys <code>status</code>, <code>data</code>, <code>timestamp</code>. Ensure the data is displayed using the given template (shown below). All dependencies are injected.</p>
+<pre><code>&lt;ion-content&gt;
+  &lt;ion-item *ngFor=<span class="str">"let a of articles"</span>&gt;
+    ID: {{ a.id }} &lt;br&gt; Title: {{ a.title }} &lt;br&gt; Source: {{ a.source }}
+  &lt;/ion-item&gt;
+&lt;/ion-content&gt;</code></pre>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>articles: <span class="type">any</span>[] = [];
+
+<span class="fn">getArticles</span>() {
+  <span class="kw">let</span> connectSubscription = <span class="kw">this</span>.network.onConnect().subscribe(() =&gt; {
+    <span class="kw">this</span>.http.post(<span class="str">'https://articles.com/latest'</span>, {}, {})
+      .then((data) =&gt; {
+        <span class="kw">this</span>.articles = data.data;  <span class="cm">// bind 'data' key from response to class field</span>
+      });
+  });
+  connectSubscription.unsubscribe();  <span class="cm">// avoid repeated calls on reconnect</span>
+}</code></pre>
+        <div class="callout mistake"><p>Common errors: using GET instead of POST; forgetting <code>unsubscribe()</code>; writing <code>return data.data</code> inside the callback (returns from the callback, not the outer function). → see <a href="#ionic">Ionic &amp; Mobile</a>.</p></div>
+      </details>
+
+      <h3>Q9 (10) — MongoDB: filter-then-aggregate</h3>
+      <p>The <code>UserData</code> collection in the <code>ud</code> database has documents with fields: <code>Name</code>, <code>Email</code>, <code>Age</code>, <code>Status</code> ("Active" or "Inactive"). Write MongoDB code that finds the average <code>Age</code> of <strong>active</strong> staff members, from oldest to youngest, and writes the result to the <code>AverageAge</code> collection.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>db.UserData.aggregate([
+  { $match: { Status: <span class="str">"Active"</span> } },                              <span class="cm">// filter inactive first</span>
+  { $group: { _id: <span class="str">"$Status"</span>, _average: { $avg: <span class="str">"$Age"</span> } } },  <span class="cm">// compute average</span>
+  { $sort:  { _average: -<span class="num">1</span> } },                                  <span class="cm">// -1 = descending = oldest first</span>
+  { $out:   <span class="str">"AverageAge"</span> }
+]);</code></pre>
+        <div class="callout mistake"><p><strong>Key difference from 2021:</strong> <code>$match</code> comes FIRST to exclude Inactive staff before grouping. The real script got 7/10 by forgetting <code>$match</code> entirely and using invalid syntax like <code>_Status:$Active</code>. → see <a href="#mongo">MongoDB</a>.</p></div>
+      </details>
+
+      <h3>Q10 (2) — What is wrong with this Android HTTP code?</h3>
+<pre><code><span class="type">OkHttpClient</span> client = <span class="kw">new</span> <span class="type">OkHttpClient</span>(<span class="str">"http://someAPI.com"</span>);
+<span class="type">String</span> run(<span class="type">String</span> url) <span class="kw">throws</span> <span class="type">IOException</span> {
+    <span class="type">Request</span> request = <span class="kw">new</span> <span class="type">Request.Builder</span>().url(url).build();
+    <span class="type">Response</span> response = client.newCall(request).execute();
+    <span class="type">String</span> res = response.body().string();
+    client.disconnect();
+    <span class="kw">return</span> res;
+}</code></pre>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def">
+          <p>1. <code>new OkHttpClient("http://someAPI.com")</code> — the <code>OkHttpClient</code> constructor takes <strong>no arguments</strong>. The URL belongs in the <code>Request.Builder</code>, not the client. 2. <code>client.disconnect()</code> — <code>OkHttpClient</code> has no <code>disconnect()</code> method. That belongs to the older <code>HttpURLConnection</code> API. This is an illegal mixing of two different HTTP implementations. → see <a href="#ionic">Ionic &amp; Mobile</a>.</p>
+        </div>
+      </details>
+
+      <h3>Q11 (4) — Convert cookie code to DOM storage</h3>
+      <p>The cookie code below has a long-lived API key (1 day) and a short-TTL token (20 minutes). Write the equivalent using DOM storage. The hint says "short TTL".</p>
+<pre><code>document.cookie = <span class="str">"APIKEY=1206e9f5-...;"</span> + expires + <span class="str">";path=/"</span>;       <span class="cm">// 1 day</span>
+document.cookie = <span class="str">"TOKEN=jhew7i9823n;"</span> + expiresToken + <span class="str">";path=/"</span>;   <span class="cm">// 20 min</span></code></pre>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">const</span> d = <span class="kw">new</span> Date(); d.setTime(d.getTime() + (<span class="num">1</span>*<span class="num">24</span>*<span class="num">60</span>*<span class="num">60</span>*<span class="num">1000</span>));
+<span class="kw">const</span> tokenDate = <span class="kw">new</span> Date(); tokenDate.setTime(tokenDate.getTime() + (<span class="num">20</span>*<span class="num">60</span>*<span class="num">1000</span>));
+
+<span class="cm">// APIKEY: long-lived → localStorage (survives browser close)</span>
+localStorage.setItem(<span class="str">'APIKEY'</span>, JSON.stringify({ value: <span class="str">'1206e9f5-...'</span>, expires: d }));
+
+<span class="cm">// TOKEN: short TTL (20 min) → sessionStorage (cleared when tab closes)</span>
+sessionStorage.setItem(<span class="str">'TOKEN'</span>, JSON.stringify({ value: <span class="str">'jhew7i9823n'</span>, expires: tokenDate }));</code></pre>
+        <div class="callout mistake"><p>Using <code>localStorage</code> for TOKEN when the hint says "short TTL" loses 1 mark. DOM storage has no built-in TTL — store the expiry as data inside <code>JSON.stringify</code>. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q12 (10) — TypeScript nested interfaces</h3>
+      <p>You are building a news system. Create TypeScript interfaces for the JSON below. A custom type called <em>URL</em> is provided. You are <strong>not allowed to create a nested typed object</strong> (must be separate named interfaces).</p>
+<pre><code>{ <span class="str">"source"</span>: { <span class="str">"id"</span>: <span class="str">"the-verge"</span>, <span class="str">"name"</span>: <span class="str">"The Verge"</span> },
+  <span class="str">"author"</span>: { <span class="str">"name"</span>: <span class="str">"Jay Peters"</span>, <span class="str">"affiliation"</span>: <span class="str">"The Verge"</span>, <span class="str">"numberOfArticles"</span>: <span class="num">154</span> },
+  <span class="str">"title"</span>: <span class="str">"Apple will stream MLS..."</span>, <span class="str">"description"</span>: <span class="str">"..."</span>,
+  <span class="str">"url"</span>: <span class="str">"https://www.theverge.com/..."</span>,
+  <span class="str">"images"</span>: [<span class="str">"https://cdn.vox-cdn.com/..."</span>],
+  <span class="str">"publishedAt"</span>: <span class="str">"2022-06-14T16:30:22Z"</span> }</code></pre>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">interface</span> <span class="type">Source</span> {
+  id:   <span class="type">string</span>,
+  name: <span class="type">string</span>
+}
+
+<span class="kw">interface</span> <span class="type">Author</span> {
+  name:             <span class="type">string</span>,
+  affiliation:      <span class="type">string</span>,
+  numberOfArticles: <span class="type">number</span>
+}
+
+<span class="kw">interface</span> <span class="type">Article</span> {
+  source:      <span class="type">Source</span>,   <span class="cm">// type = the Source interface</span>
+  author:      <span class="type">Author</span>,   <span class="cm">// type = the Author interface</span>
+  title:       <span class="type">string</span>,
+  description: <span class="type">string</span>,
+  url:         <span class="type">URL</span>,      <span class="cm">// provided custom URL type — not string</span>
+  images:      <span class="type">URL</span>[],    <span class="cm">// array of URLs — not string[]</span>
+  publishedAt: <span class="type">Date</span>
+}</code></pre>
+        <div class="callout mistake"><p>Real script (8.5/10): used <code>export interface</code> (drop export), <code>images: string[]</code> instead of <code>URL[]</code> (URL type was provided for all URL fields). → see <a href="#ts">TypeScript</a>.</p></div>
+      </details>
+
+      <h3>Q13 (2) — Network Firewall vs WAF</h3>
+      <p>With reference to the OSI model, what is the difference between a Network Firewall and a Web Application Firewall (WAF)?</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def">
+          <p><strong>Network Firewall</strong> operates at OSI <strong>layers 3–4</strong> (Network + Transport) — it monitors IP addresses, ports and protocols. <strong>WAF</strong> operates at OSI <strong>layer 7</strong> (Application) — it inspects HTTP/HTTPS traffic content (URLs, headers, body) to block application-layer attacks like SQLi and XSS. → see <a href="#sec">Web Security</a>.</p>
+        </div>
+      </details>
+
+      <h3>Q14 (5) — Android native: onScroll + Toast</h3>
+      <p>You need to check how much a user has scrolled on a page, and tell them the distance as a toast. Someone else created <code>calcDist(xDist, yDist)</code>. Implement the appropriate method.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>@<span class="type">Override</span>
+<span class="kw">public boolean</span> <span class="fn">onScroll</span>(<span class="type">MotionEvent</span> event1, <span class="type">MotionEvent</span> event2,
+                          <span class="kw">float</span> distanceX, <span class="kw">float</span> distanceY) {
+    <span class="type">Context</span> context  = getApplicationContext();
+    <span class="kw">int</span>     duration = <span class="type">Toast</span>.LENGTH_SHORT;
+    <span class="type">Toast</span>.makeText(context,
+        calcDist(distanceX, distanceY).toString(), duration).show();
+    <span class="kw">return true</span>;
+}</code></pre>
+        <div class="explain">
+          <span class="explain-title">Marks breakdown</span>
+          <ul>
+            <li>Correct method signature with <code>MotionEvent</code> params — 1 mark</li>
+            <li><code>getApplicationContext()</code> — 0.5 mark</li>
+            <li><code>Toast.LENGTH_SHORT</code> — 0.5 mark</li>
+            <li><code>Toast.makeText(...).show()</code> with correct args — 2.5 marks</li>
+            <li><code>return true</code> — 0.5 mark</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= MOCK TEST 3 ================= -->
+  <section class="study-section practice" id="mock3">
+    <div class="section-inner">
+      <p class="section-kicker"><span class="badge practice">Practice</span></p>
+      <h2>Mock Test 3 — "NewsFlash" portal (2022 style)</h2>
+      <p>80 marks · 2.5 hours · same question types as the 2022 EO3 — nested interfaces, $match-first aggregation, DOM storage, fill-in-blank Bootstrap, WAF, cookie stealing. Attempt each before checking.</p>
+
+      <h3>Q1 (3 marks) — XSS &amp; CSRF</h3>
+      <p>NewsFlash uses PHP + MySQL and their CSRF token is hardcoded as <code>"csrfToken123"</code>. They also directly insert user-submitted article titles into the page DOM. Briefly explain how to fix both security issues.</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p><strong>XSS:</strong> Escape (sanitise) all user-submitted content before rendering it in HTML. Use prepared statements/parameterised queries for database operations. <strong>CSRF:</strong> Replace the static <code>"csrfToken123"</code> with a dynamic token — generate a fresh, cryptographically unpredictable token per session/request and verify it server-side. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q2 (3 marks) — Cookie wildcard &amp; DOM storage</h3>
+      <p>NewsFlash sets a cookie for <code>*.newsflash.co.za</code> when a journalist logs in at <code>staff.newsflash.co.za</code>. A junior developer then visits <code>preview.newsflash.co.za</code>, which is a shared server open to contributors. Explain the security risk.</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p>The wildcard cookie is sent by the browser to <strong>every subdomain</strong> of newsflash.co.za, including <code>preview.newsflash.co.za</code>. Since preview is a shared server, any contributor who hosts code there can read the journalist's login cookie and impersonate them on <code>staff.newsflash.co.za</code>. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q3 (10 marks) — TypeScript nested interfaces</h3>
+      <p>You are building the NewsFlash article model. Create TypeScript interfaces for the JSON below. A custom type <em>URL</em> is provided. You are <strong>not allowed to create a nested typed object</strong> — each nested JSON object must be its own interface.</p>
+<pre><code>{
+  <span class="str">"source"</span>: { <span class="str">"id"</span>: <span class="str">"bbc-news"</span>, <span class="str">"country"</span>: <span class="str">"gb"</span> },
+  <span class="str">"journalist"</span>: { <span class="str">"username"</span>: <span class="str">"jdoe"</span>, <span class="str">"verified"</span>: <span class="kw">true</span>, <span class="str">"articleCount"</span>: <span class="num">47</span> },
+  <span class="str">"headline"</span>: <span class="str">"Markets rally after rate cut announcement"</span>,
+  <span class="str">"summary"</span>: <span class="str">"Central banks across..."</span>,
+  <span class="str">"articleUrl"</span>: <span class="str">"https://bbc.co.uk/news/12345"</span>,
+  <span class="str">"thumbnails"</span>: [<span class="str">"https://img.bbc.co.uk/1.jpg"</span>, <span class="str">"https://img.bbc.co.uk/2.jpg"</span>],
+  <span class="str">"publishedAt"</span>: <span class="str">"2022-07-01T09:15:00Z"</span>,
+  <span class="str">"breakingNews"</span>: <span class="kw">false</span>
+}</code></pre>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">interface</span> <span class="type">NewsSource</span> {
+  id:      <span class="type">string</span>,
+  country: <span class="type">string</span>
+}
+
+<span class="kw">interface</span> <span class="type">Journalist</span> {
+  username:     <span class="type">string</span>,
+  verified:     <span class="type">boolean</span>,
+  articleCount: <span class="type">number</span>
+}
+
+<span class="kw">interface</span> <span class="type">NewsArticle</span> {
+  source:       <span class="type">NewsSource</span>,  <span class="cm">// type = the NewsSource interface</span>
+  journalist:   <span class="type">Journalist</span>,  <span class="cm">// type = the Journalist interface</span>
+  headline:     <span class="type">string</span>,
+  summary:      <span class="type">string</span>,
+  articleUrl:   <span class="type">URL</span>,         <span class="cm">// URL type provided — not string</span>
+  thumbnails:   <span class="type">URL</span>[],        <span class="cm">// array of URLs</span>
+  publishedAt:  <span class="type">Date</span>,
+  breakingNews: <span class="type">boolean</span>
+}</code></pre>
+        <div class="callout tip"><p>Map each nested <code>{}</code> to its own interface. Use the provided <code>URL</code> type for <em>all</em> URL-valued fields. <code>publishedAt</code> is an ISO timestamp → <code>Date</code>. → see <a href="#ts">TypeScript</a>.</p></div>
+      </details>
+
+      <h3>Q4 (4 marks) — DOM storage conversion</h3>
+      <p>NewsFlash stores a session token (expires in 30 minutes) and a persistent user preference (expires in 7 days) as cookies. Convert them to the correct DOM storage equivalent, storing the expiry with the value.</p>
+<pre><code>document.cookie = <span class="str">"SESSION_TOKEN=abc123;"</span> + sessionExpires + <span class="str">";path=/"</span>;   <span class="cm">// 30 min</span>
+document.cookie = <span class="str">"THEME=dark;"</span> + themeExpires + <span class="str">";path=/"</span>;             <span class="cm">// 7 days</span></code></pre>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">const</span> sessionExpDate = <span class="kw">new</span> Date(); sessionExpDate.setTime(sessionExpDate.getTime() + (<span class="num">30</span>*<span class="num">60</span>*<span class="num">1000</span>));
+<span class="kw">const</span> themeExpDate   = <span class="kw">new</span> Date(); themeExpDate.setTime(themeExpDate.getTime() + (<span class="num">7</span>*<span class="num">24</span>*<span class="num">60</span>*<span class="num">60</span>*<span class="num">1000</span>));
+
+<span class="cm">// Short TTL (30 min) → sessionStorage</span>
+sessionStorage.setItem(<span class="str">'SESSION_TOKEN'</span>, JSON.stringify({ value: <span class="str">'abc123'</span>, expires: sessionExpDate }));
+
+<span class="cm">// Long-lived (7 days) → localStorage (persists after browser close)</span>
+localStorage.setItem(<span class="str">'THEME'</span>, JSON.stringify({ value: <span class="str">'dark'</span>, expires: themeExpDate }));</code></pre>
+        <div class="callout tip"><p>Short TTL = <code>sessionStorage</code>. Long-lived = <code>localStorage</code>. Always wrap with <code>JSON.stringify</code> to store the expiry alongside the value. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q5 (5 marks) — Bootstrap fill-in-the-blank</h3>
+      <p>Fill in the blanks [A]–[E] for this Bootstrap 5 news layout:</p>
+<pre><code>&lt;div class=<span class="str">"[A]"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-4"</span>&gt;&lt;img class=<span class="str">"img-fluid"</span> src=<span class="str">"news.jpg"</span>&gt;&lt;/div&gt;
+    &lt;div class=<span class="str">"[B]"</span>&gt;&lt;h1&gt;Latest Headlines&lt;/h1&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;table class=<span class="str">"table [C]"</span>&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th scope=<span class="str">"[D]"</span>&gt;Title&lt;/th&gt;&lt;th scope=<span class="str">"[D]"</span>&gt;Author&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Story...&lt;/td&gt;&lt;td&gt;
+      &lt;button class=<span class="str">"btn [E]"</span>&gt;Read&lt;/button&gt;
+    &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Blank</th><th>Answer</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>[A]</td><td><code>container-fluid</code></td><td>Full-width wrapper.</td></tr>
+            <tr><td>[B]</td><td><code>col-8</code></td><td>4 + 8 = 12.</td></tr>
+            <tr><td>[C]</td><td><code>table-striped</code></td><td>Alternating row shading (common news table style).</td></tr>
+            <tr><td>[D]</td><td><code>col</code></td><td><code>scope="col"</code> on &lt;thead&gt; &lt;th&gt;.</td></tr>
+            <tr><td>[E]</td><td><code>btn-primary</code></td><td>Standard blue action button.</td></tr>
+          </tbody>
+        </table></div>
+      </details>
+
+      <h3>Q6 (10 marks) — MongoDB: filter-then-aggregate</h3>
+      <p>The <code>Articles</code> collection in the <code>news</code> database has fields: <code>Author</code>, <code>Category</code>, <code>Views</code>, <code>Status</code> ("Published" or "Draft"). Write MongoDB code that finds the <strong>total views per Category for Published articles only</strong>, sorted highest to lowest, and saves the result to the <code>CategoryViews</code> collection.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>db.Articles.aggregate([
+  { $match: { Status: <span class="str">"Published"</span> } },                            <span class="cm">// filter drafts out first</span>
+  { $group: { _id: <span class="str">"$Category"</span>, TotalViews: { $sum: <span class="str">"$Views"</span> } } },
+  { $sort:  { TotalViews: -<span class="num">1</span> } },
+  { $out:   <span class="str">"CategoryViews"</span> }
+]);</code></pre>
+        <div class="callout tip"><p>Filter-then-group: whenever the question restricts by a condition (<em>published only, active only</em>), <code>$match</code> must come before <code>$group</code>. → see <a href="#mongo">MongoDB</a>.</p></div>
+      </details>
+
+      <h3>Q7 (5 marks) — Django model from JSON</h3>
+      <p>Given this JSON, write a Django model called <code>NewsItem</code>. Pay attention to data types.</p>
+<pre><code>{ <span class="str">"reporter"</span>: <span class="str">"Sarah Jones"</span>, <span class="str">"headline"</span>: <span class="str">"Markets surge..."</span>,
+  <span class="str">"sourceUrl"</span>: <span class="str">"https://reuters.com/article/123"</span>,
+  <span class="str">"createdAt"</span>: <span class="str">"2022-07-01T08:30:00Z"</span>, <span class="str">"approved"</span>: <span class="kw">true</span> }</code></pre>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">class</span> <span class="type">NewsItem</span>(models.Model):
+    reporter  = models.TextField()
+    headline  = models.TextField()
+    sourceUrl = models.URLField()
+    createdAt = models.DateTimeField()
+    approved  = models.BooleanField()</code></pre>
+        <div class="callout tip"><p>No max_length given → <code>TextField</code>. A URL → <code>URLField</code>. ISO timestamp → <code>DateTimeField</code>. Boolean → <code>BooleanField</code>. → see <a href="#django">Django</a>.</p></div>
+      </details>
+
+      <h3>Q8 (10 marks) — Ionic: check network, then POST &amp; display</h3>
+      <p>Write an Ionic Angular function <code>loadNews()</code> that checks for an active internet connection and then makes a Native HTTP POST to <code>https://api.newsflash.co.za/articles</code>. The response has keys <code>status</code>, <code>articles</code>, <code>count</code>. Store the articles in <code>this.news</code>. Show each article's <code>title</code> and <code>author</code> in a list. All dependencies injected.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>news: <span class="type">any</span>[] = [];
+
+<span class="fn">loadNews</span>() {
+  <span class="kw">let</span> sub = <span class="kw">this</span>.network.onConnect().subscribe(() =&gt; {
+    <span class="kw">this</span>.http.post(<span class="str">'https://api.newsflash.co.za/articles'</span>, {}, {})
+      .then((data) =&gt; {
+        <span class="kw">this</span>.news = data.articles;  <span class="cm">// key is 'articles' per the response spec</span>
+      });
+  });
+  sub.unsubscribe();
+}</code></pre>
+<pre><code>&lt;ion-list&gt;
+  &lt;ion-item *ngFor=<span class="str">"let n of news"</span>&gt;
+    &lt;ion-label&gt;&lt;h2&gt;{{ n.title }}&lt;/h2&gt;&lt;p&gt;{{ n.author }}&lt;/p&gt;&lt;/ion-label&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-list&gt;</code></pre>
+      </details>
+
+      <h3>Q9 (2 marks) — Network Firewall vs WAF (OSI)</h3>
+      <p>NewsFlash's security team is deciding whether to deploy a Network Firewall or a WAF. What is the difference between them with reference to the OSI model?</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p>Network Firewall = OSI layers 3–4 (IP/ports/protocols). WAF = OSI layer 7 (HTTP content — URLs, headers, cookies) blocking application-layer attacks like XSS and SQLi. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= MOCK TEST 4 ================= -->
+  <section class="study-section practice" id="mock4">
+    <div class="section-inner">
+      <p class="section-kicker"><span class="badge practice">Practice</span></p>
+      <h2>Mock Test 4 — "StockTrack" platform (2022 style, harder)</h2>
+      <p>80 marks · 2.5 hours · deeper versions of 2022-style questions. Attempt fully before checking.</p>
+
+      <h3>Q1 (3 marks) — Cookies &amp; DOM storage</h3>
+      <p>a) What HTTP header does the browser use to send a cookie back to the server? b) A user's session should expire when they close their browser tab. Which DOM storage type should be used? c) DOM storage stores data only as strings — how do you store an object with multiple fields?</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p>a) <code>Cookie</code> (request header). b) <code>sessionStorage</code>. c) Use <code>JSON.stringify(object)</code> to serialise the object to a string for storage, and <code>JSON.parse(item)</code> to deserialise it on retrieval. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q2 (2 marks) — WAF vs Network Firewall</h3>
+      <p>StockTrack is being attacked with SQL injection through their search form. Would a Network Firewall or a WAF be the appropriate defence? Justify with reference to the OSI model.</p>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="callout def"><p>A <strong>WAF (Layer 7)</strong> is appropriate. SQL injection is an application-layer attack carried inside valid HTTP requests. A Network Firewall operates at layers 3–4 and inspects packets/ports — it cannot read the HTTP body where the injection lives. The WAF reads the HTTP request content and can detect/block the malicious input. → see <a href="#sec">Web Security</a>.</p></div>
+      </details>
+
+      <h3>Q3 (12 marks) — TypeScript nested interfaces</h3>
+      <p>Build TypeScript interfaces for the StockTrack API response below. A custom type <em>URL</em> is provided. Do <strong>not</strong> nest types inline — each object must be a separate interface.</p>
+<pre><code>{
+  <span class="str">"exchange"</span>: { <span class="str">"code"</span>: <span class="str">"JSE"</span>, <span class="str">"country"</span>: <span class="str">"ZA"</span>, <span class="str">"active"</span>: <span class="kw">true</span> },
+  <span class="str">"stock"</span>: {
+    <span class="str">"ticker"</span>: <span class="str">"NPN"</span>, <span class="str">"name"</span>: <span class="str">"Naspers"</span>, <span class="str">"sector"</span>: <span class="str">"Technology"</span>,
+    <span class="str">"marketCap"</span>: <span class="num">850000000000</span>
+  },
+  <span class="str">"price"</span>: <span class="num">2845.50</span>,
+  <span class="str">"currency"</span>: <span class="str">"ZAR"</span>,
+  <span class="str">"chartUrls"</span>: [<span class="str">"https://charts.jse.co.za/1d.png"</span>, <span class="str">"https://charts.jse.co.za/7d.png"</span>],
+  <span class="str">"lastUpdated"</span>: <span class="str">"2022-07-01T15:30:00Z"</span>,
+  <span class="str">"isSuspended"</span>: <span class="kw">false</span>
+}</code></pre>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">interface</span> <span class="type">Exchange</span> {
+  code:    <span class="type">string</span>,
+  country: <span class="type">string</span>,
+  active:  <span class="type">boolean</span>
+}
+
+<span class="kw">interface</span> <span class="type">Stock</span> {
+  ticker:    <span class="type">string</span>,
+  name:      <span class="type">string</span>,
+  sector:    <span class="type">string</span>,
+  marketCap: <span class="type">number</span>
+}
+
+<span class="kw">interface</span> <span class="type">StockQuote</span> {
+  exchange:    <span class="type">Exchange</span>,
+  stock:       <span class="type">Stock</span>,
+  price:       <span class="type">number</span>,
+  currency:    <span class="type">string</span>,
+  chartUrls:   <span class="type">URL</span>[],      <span class="cm">// array of URLs — use the provided URL type</span>
+  lastUpdated: <span class="type">Date</span>,
+  isSuspended: <span class="type">boolean</span>
+}</code></pre>
+        <div class="callout tip"><p>Nested <code>{}</code>s become separate named interfaces. Use <code>URL[]</code> for arrays of URLs. <code>number</code> for all numeric values (both int and float). <code>boolean</code> for true/false flags. → see <a href="#ts">TypeScript</a>.</p></div>
+      </details>
+
+      <h3>Q4 (5 marks) — Django model from JSON</h3>
+      <p>Write a Django model called <code>StockPrice</code> for the JSON below. Pay attention to data types.</p>
+<pre><code>{ <span class="str">"ticker"</span>: <span class="str">"NPN"</span>, <span class="str">"companyName"</span>: <span class="str">"Naspers Limited"</span>,
+  <span class="str">"infoUrl"</span>: <span class="str">"https://www.naspers.com"</span>,
+  <span class="str">"openPrice"</span>: <span class="num">2845.50</span>, <span class="str">"closePrice"</span>: <span class="num">2860.00</span>,
+  <span class="str">"recordedAt"</span>: <span class="str">"2022-07-01T15:30:00Z"</span>, <span class="str">"isSuspended"</span>: <span class="kw">false</span> }</code></pre>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code><span class="kw">class</span> <span class="type">StockPrice</span>(models.Model):
+    ticker      = models.CharField(max_length=<span class="num">10</span>)  <span class="cm"># short code — max_length given by context</span>
+    companyName = models.TextField()
+    infoUrl     = models.URLField()
+    openPrice   = models.DecimalField(max_digits=<span class="num">10</span>, decimal_places=<span class="num">2</span>)
+    closePrice  = models.DecimalField(max_digits=<span class="num">10</span>, decimal_places=<span class="num">2</span>)
+    recordedAt  = models.DateTimeField()
+    isSuspended = models.BooleanField()</code></pre>
+        <div class="callout tip"><p><code>DecimalField</code> is the proper type for financial prices (<code>FloatField</code> has rounding errors). <code>URLField</code> for the URL. <code>DateTimeField</code> for the timestamp. <code>BooleanField</code> for the flag. → see <a href="#django">Django</a>.</p></div>
+      </details>
+
+      <h3>Q5 (5 marks) — Bootstrap fill-in-the-blank</h3>
+      <p>Fill in blanks [A]–[E] for a stock dashboard layout.</p>
+<pre><code>&lt;div class=<span class="str">"[A]"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-2"</span>&gt;&lt;img class=<span class="str">"[B]"</span> src=<span class="str">"logo.png"</span>&gt;&lt;/div&gt;
+    &lt;div class=<span class="str">"[C]"</span>&gt;&lt;h1&gt;StockTrack&lt;/h1&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;table class=<span class="str">"table table-bordered [D]"</span>&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th scope=<span class="str">"col"</span>&gt;Ticker&lt;/th&gt;&lt;th scope=<span class="str">"col"</span>&gt;Price&lt;/th&gt;
+      &lt;th scope=<span class="str">"col"</span>&gt;Action&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;&lt;tr&gt;&lt;th scope=<span class="str">"row"</span>&gt;NPN&lt;/th&gt;&lt;td&gt;R2845&lt;/td&gt;
+      &lt;td&gt;&lt;button class=<span class="str">"btn [E]"</span>&gt;Alert me&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+      <details class="answer"><summary>Model answer</summary>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Blank</th><th>Answer</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>[A]</td><td><code>container-fluid</code></td><td>Full-width wrapper.</td></tr>
+            <tr><td>[B]</td><td><code>img-responsive</code> (BS3) or <code>img-fluid</code> (BS5)</td><td>Makes image scale within its column.</td></tr>
+            <tr><td>[C]</td><td><code>col-10</code></td><td>2 + 10 = 12.</td></tr>
+            <tr><td>[D]</td><td><code>table-striped</code></td><td>Alternating row shading.</td></tr>
+            <tr><td>[E]</td><td><code>btn-warning</code></td><td>Yellow = warning/notification. (Any valid colour accepted if justified.)</td></tr>
+          </tbody>
+        </table></div>
+      </details>
+
+      <h3>Q6 (10 marks) — MongoDB: complex filter-then-aggregate</h3>
+      <p>The <code>Trades</code> collection in the <code>stock</code> database has fields: <code>Trader</code>, <code>Ticker</code>, <code>Volume</code>, <code>Value</code>, <code>TradeType</code> ("BUY" or "SELL"). Write MongoDB code that finds the total <code>Value</code> traded per <code>Ticker</code> for <strong>BUY trades only</strong>, keeping only tickers where total value exceeds 1 000 000, sorted highest first, saved to <code>TopBuys</code>.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>db.Trades.aggregate([
+  { $match: { TradeType: <span class="str">"BUY"</span> } },                            <span class="cm">// filter SELL trades out first</span>
+  { $group: { _id: <span class="str">"$Ticker"</span>, TotalValue: { $sum: <span class="str">"$Value"</span> } } },
+  { $match: { TotalValue: { $gt: <span class="num">1000000</span> } } },               <span class="cm">// filter on computed total (after group)</span>
+  { $sort:  { TotalValue: -<span class="num">1</span> } },
+  { $out:   <span class="str">"TopBuys"</span> }
+]);</code></pre>
+        <div class="callout tip"><p>Two <code>$match</code> stages: first filters by type (before group), second filters by computed total (after group). Always use the right placement for each filter. → see <a href="#mongo">MongoDB</a>.</p></div>
+      </details>
+
+      <h3>Q7 (10 marks) — Ionic: network check + POST + display</h3>
+      <p>Write an Ionic Angular function <code>loadPrices()</code> that checks for a network connection, then POSTs to <code>https://api.stocktrack.co.za/prices</code> with body <code>{ exchange: "JSE", limit: 20 }</code>. The response has keys <code>status</code>, <code>data</code> (array), <code>timestamp</code>. Store data in <code>this.prices</code>. If no data is returned show a Toast "No prices available". Display a list of <code>price.ticker</code> and <code>price.value</code>.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>prices: <span class="type">any</span>[] = [];
+
+<span class="fn">loadPrices</span>() {
+  <span class="kw">let</span> sub = <span class="kw">this</span>.network.onConnect().subscribe(() =&gt; {
+    <span class="kw">this</span>.http.post(<span class="str">'https://api.stocktrack.co.za/prices'</span>,
+      { exchange: <span class="str">'JSE'</span>, limit: <span class="num">20</span> }, {})
+      .then(<span class="kw">async</span> (data) =&gt; {
+        <span class="kw">this</span>.prices = data.data;
+        <span class="kw">if</span> (<span class="kw">this</span>.prices.length === <span class="num">0</span>) {
+          <span class="kw">await</span> Toast.show({ text: <span class="str">'No prices available'</span> });
+        }
+      });
+  });
+  sub.unsubscribe();
+}</code></pre>
+<pre><code>&lt;ion-list&gt;
+  &lt;ion-item *ngFor=<span class="str">"let p of prices"</span>&gt;
+    &lt;ion-label&gt;&lt;h2&gt;{{ p.ticker }}&lt;/h2&gt;&lt;p&gt;R{{ p.value }}&lt;/p&gt;&lt;/ion-label&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-list&gt;</code></pre>
+        <div class="callout tip"><p>Network check with <code>onConnect().subscribe()</code>, unsubscribe after, POST with body, bind <code>data.data</code>, then check length for Toast. → see <a href="#ionic">Ionic &amp; Mobile</a>.</p></div>
+      </details>
+
+      <h3>Q8 (5 marks) — Android: onScroll with custom Toast</h3>
+      <p>Implement the <code>onScroll</code> method for StockTrack's chart view. It should show a toast with the formatted distance "Distance: X units" where X comes from the provided <code>calcDist(xDist, yDist)</code> method.</p>
+      <details class="answer"><summary>Model answer</summary>
+<pre><code>@<span class="type">Override</span>
+<span class="kw">public boolean</span> <span class="fn">onScroll</span>(<span class="type">MotionEvent</span> e1, <span class="type">MotionEvent</span> e2,
+                          <span class="kw">float</span> distanceX, <span class="kw">float</span> distanceY) {
+    <span class="type">Context</span> ctx = getApplicationContext();
+    <span class="type">String</span> msg  = <span class="str">"Distance: "</span> + calcDist(distanceX, distanceY).toString() + <span class="str">" units"</span>;
+    <span class="type">Toast</span>.makeText(ctx, msg, <span class="type">Toast</span>.LENGTH_SHORT).show();
+    <span class="kw">return true</span>;
+}</code></pre>
+        <div class="callout tip"><p>Always: correct signature with two <code>MotionEvent</code> params + two <code>float</code> params → <code>getApplicationContext()</code> → <code>Toast.makeText(context, message, duration).show()</code> → <code>return true</code>. → see <a href="#ionic">Ionic &amp; Mobile</a>.</p></div>
       </details>
     </div>
   </section>
