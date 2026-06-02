@@ -44,6 +44,11 @@
         <li><a href="#mongo">MongoDB (L38)</a></li>
         <li><a href="#sec">Web Security (L39)</a></li>
       </ul>
+      <p class="nav-title">Practical References</p>
+      <ul class="nav-list">
+        <li><a href="#ng-ref">Angular — full reference</a></li>
+        <li><a href="#ionic-ref">Ionic — full reference</a></li>
+      </ul>
       <p class="nav-title">Exam Practice</p>
       <ul class="nav-list">
         <li><a href="#pp2021">2021 Past Paper</a></li>
@@ -1530,6 +1535,1289 @@ urlpatterns = [
           <li>Using the removed <code>url()</code> import on Django 4+ — use <code>path()</code>/<code>re_path()</code>.</li>
         </ul>
       </div>
+    </div>
+  </details>
+
+  <!-- ================= ANGULAR FULL REFERENCE ================= -->
+  <details class="collapsible" id="ng-ref">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">Angular</span>
+          <h2>Angular — Complete Practical Reference</h2>
+          <p>Every pattern from the L31 slides, Angular Tutorial, and Tutorial 8 — explained thoroughly so you can write any Angular code confidently in an exam.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="w3links">
+        <a class="w3link" href="https://angular.dev/guide/templates">Template syntax</a>
+        <a class="w3link" href="https://angular.dev/guide/directives">Directives</a>
+        <a class="w3link" href="https://angular.dev/guide/routing">Routing</a>
+        <a class="w3link" href="https://angular.dev/guide/forms/reactive-forms">Reactive forms</a>
+      </div>
+
+      <!-- ---- COMPONENT ANATOMY ---- -->
+      <h3>1 — Component anatomy: the three parts</h3>
+      <p>Every Angular component is one TypeScript class decorated with <code>@Component</code>. It always has three logical parts:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Part</th><th>What it is</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Import</td><td>Bring in Angular tools and any services/modules this component needs</td><td><code>import { Component, OnInit } from '@angular/core';</code></td></tr>
+            <tr><td>Decorator <code>@Component({...})</code></td><td>Configuration object — tells Angular the HTML tag, template file and style file</td><td><code>selector, templateUrl, styleUrls, imports</code></td></tr>
+            <tr><td>Class</td><td>Your TypeScript class — holds all variables (data) and methods (logic)</td><td><code>export class HomeComponent { ... }</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+<pre><code><span class="kw">import</span> { Component, OnInit } <span class="kw">from</span> <span class="str">'@angular/core'</span>;
+<span class="kw">import</span> { FormsModule } <span class="kw">from</span> <span class="str">'@angular/forms'</span>;    <span class="cm">// needed for [(ngModel)]</span>
+
+<span class="dec">@Component</span>({
+  selector:    <span class="str">'app-home'</span>,          <span class="cm">// use as &lt;app-home&gt; in parent HTML</span>
+  templateUrl: <span class="str">'./home.component.html'</span>, <span class="cm">// path to the HTML template</span>
+  styleUrls:   [<span class="str">'./home.component.css'</span>], <span class="cm">// array of CSS files</span>
+  imports: [FormsModule],              <span class="cm">// standalone v17+ — list what this component needs</span>
+})
+<span class="kw">export class</span> <span class="type">HomeComponent</span> <span class="kw">implements</span> <span class="type">OnInit</span> {
+
+  <span class="cm">// === DATA FIELDS ===</span>
+  counter: <span class="type">number</span> = <span class="num">0</span>;
+  name: <span class="type">string</span> = <span class="str">""</span>;
+  items: <span class="type">string</span>[] = [];
+
+  <span class="cm">// constructor runs FIRST — use only for dependency injection</span>
+  constructor() {}
+
+  <span class="cm">// ngOnInit runs AFTER constructor — use for startup logic like API calls</span>
+  ngOnInit(): <span class="type">void</span> {
+    <span class="kw">this</span>.loadData();
+  }
+
+  count() { <span class="kw">this</span>.counter++; }
+
+  loadData() { <span class="kw">this</span>.items = [<span class="str">'A'</span>, <span class="str">'B'</span>, <span class="str">'C'</span>]; }
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Key points</span>
+        <ul>
+          <li><code>selector: 'app-home'</code> — you embed this component in another template by writing <code>&lt;app-home&gt;&lt;/app-home&gt;</code>.</li>
+          <li><code>implements OnInit</code> — signals the component has an <code>ngOnInit()</code> method. Angular calls it once, after the constructor, when inputs are ready. Always put API calls here, not in the constructor.</li>
+          <li><code>imports: [FormsModule]</code> — in standalone mode (Angular 17+), you must explicitly list every module the template uses here. In the older NgModule style this goes in <code>app.module.ts</code> instead.</li>
+          <li><code>this.counter++</code> — use <code>this.</code> to refer to any field or method from inside the class.</li>
+        </ul>
+      </div>
+
+      <!-- ---- DATA BINDING ---- -->
+      <h3>2 — The four types of data binding</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Binding type</th><th>Syntax</th><th>Direction</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td>Interpolation</td><td><code>{{ expression }}</code></td><td>Class → template</td><td>Renders a value as text. Evaluates any TS expression.</td></tr>
+            <tr><td>Property binding</td><td><code>[attr]="expression"</code></td><td>Class → template</td><td>Sets an HTML attribute/DOM property from a class value.</td></tr>
+            <tr><td>Event binding</td><td><code>(event)="handler()"</code></td><td>Template → class</td><td>Listens for a DOM event and runs a class method.</td></tr>
+            <tr><td>Two-way binding</td><td><code>[(ngModel)]="field"</code></td><td>Both ways</td><td>Keeps an input and a class field perfectly in sync.</td></tr>
+          </tbody>
+        </table>
+      </div>
+<pre><code><span class="cm">&lt;!-- 1. Interpolation — shows the current value of counter as text --&gt;</span>
+&lt;p&gt;You clicked {{ counter }} times.&lt;/p&gt;
+&lt;p&gt;{{ 2 + 2 }}&lt;/p&gt;                        <span class="cm">&lt;!-- expressions work too → 4 --&gt;</span>
+
+<span class="cm">&lt;!-- 2. Property binding — square brackets bind a DOM property --&gt;</span>
+&lt;button [disabled]=<span class="str">"counter === 0"</span>&gt;Reset&lt;/button&gt;     <span class="cm">&lt;!-- disabled when counter=0 --&gt;</span>
+&lt;img [src]=<span class="str">"imageUrl"</span>&gt;                                   <span class="cm">&lt;!-- src set from class field --&gt;</span>
+
+<span class="cm">&lt;!-- 3. Event binding — round brackets listen for a browser event --&gt;</span>
+&lt;button (click)=<span class="str">"count()"</span>&gt;Click Me&lt;/button&gt;
+&lt;input (keyup)=<span class="str">"onKey($event)"</span>&gt;    <span class="cm">&lt;!-- $event passes the browser event object --&gt;</span>
+
+<span class="cm">&lt;!-- 4. Two-way binding — banana-in-a-box [()] --&gt;</span>
+&lt;input type=<span class="str">"text"</span> [(ngModel)]=<span class="str">"name"</span>&gt;    <span class="cm">&lt;!-- requires FormsModule in imports --&gt;</span>
+&lt;p&gt;Hi {{ name }}!&lt;/p&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>{{ counter }}</code> — every time Angular re-renders (e.g. after a click), it reads the current value of <code>counter</code> and puts it in the DOM. You can also put any expression: <code>{{ 2+2 }}</code>, <code>{{ name.toUpperCase() }}</code>.</li>
+          <li><code>[disabled]="counter === 0"</code> — if the expression evaluates to <code>true</code> the button is disabled, <code>false</code> enables it. The expression is live.</li>
+          <li><code>(click)="count()"</code> — when the button is clicked the browser fires a click event; Angular catches it and calls <code>count()</code> on the class.</li>
+          <li><code>[(ngModel)]="name"</code> — combines <code>[value]="name"</code> (class→input) and <code>(input)="name=$event.target.value"</code> (input→class) into one shorthand. Typing in the box updates <code>name</code>, and any code change to <code>name</code> updates the box.</li>
+        </ul>
+      </div>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ FormsModule is required for [(ngModel)]</span>
+        <p>In Angular 17+ standalone components, add <code>FormsModule</code> to the <code>imports</code> array in <code>@Component</code>. In the old NgModule style, add it to <code>imports</code> in <code>app.module.ts</code>. Without it you get a template compilation error.</p>
+      </div>
+
+      <!-- ---- ngIf ---- -->
+      <h3>3 — Conditional rendering: *ngIf and ng-template</h3>
+      <p>Angular gives you three ways to show/hide elements conditionally — know all three because the exam can ask for any.</p>
+<pre><code><span class="cm">&lt;!-- Method 1: *ngIf shorthand on a single element (no else) --&gt;</span>
+&lt;p *ngIf=<span class="str">"counter &gt; 5"</span>&gt;You are clicking too much!&lt;/p&gt;
+
+<span class="cm">&lt;!-- Method 2: ng-template with [ngIf] and an else branch --&gt;</span>
+&lt;ng-template [ngIf]=<span class="str">"counter &gt; 5"</span> [ngIfElse]=<span class="str">"notEnough"</span>&gt;
+  &lt;p&gt;Clicking too much!&lt;/p&gt;
+&lt;/ng-template&gt;
+&lt;ng-template #notEnough&gt;
+  &lt;p&gt;Not clicking enough.&lt;/p&gt;
+&lt;/ng-template&gt;
+
+<span class="cm">&lt;!-- Method 3: *ngIf with else on the same line --&gt;</span>
+&lt;p *ngIf=<span class="str">"counter &gt; 5; else notEnough"</span>&gt;Clicking too much!&lt;/p&gt;
+&lt;ng-template #notEnough&gt;&lt;p&gt;Not clicking enough.&lt;/p&gt;&lt;/ng-template&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does</span>
+        <ul>
+          <li><code>*ngIf="counter &gt; 5"</code> — Angular evaluates the expression. If truthy, the element (and all its children) are added to the DOM. If falsy, they are completely removed (not just hidden).</li>
+          <li><code>&lt;ng-template&gt;</code> — a special Angular element that does not render any HTML by itself; it is a container for conditional/loop content.</li>
+          <li><code>[ngIfElse]="notEnough"</code> — points to a template by its reference variable name (<code>#notEnough</code>). When the condition is false, Angular renders that template instead.</li>
+          <li><code>#notEnough</code> — the hash declares a <strong>template reference variable</strong>: a local name for a template, used to point at it from <code>[ngIfElse]</code>.</li>
+        </ul>
+      </div>
+      <div class="callout exam">
+        <span class="callout-title">🎯 The 2021 exam expected ng-template style</span>
+        <p>When the question says "use templates", write two separate <code>&lt;ng-template [ngIf]="..."&gt;</code> blocks (one for true, one for false) rather than the shorthand. That is exactly the pattern in the 2021 Q14 answer.</p>
+      </div>
+
+      <!-- ---- ngFor ---- -->
+      <h3>4 — Looping: *ngFor — all features</h3>
+<pre><code><span class="cm">// TypeScript — an array of objects</span>
+music = [
+  { title: <span class="str">'Track 1'</span>, album: <span class="str">'Album A'</span>, rank: <span class="num">500</span> },
+  { title: <span class="str">'Track 2'</span>, album: <span class="str">'Album B'</span>, rank: <span class="num">302</span> },
+];</code></pre>
+<pre><code><span class="cm">&lt;!-- Basic loop --&gt;</span>
+&lt;div *ngFor=<span class="str">"let m of music"</span>&gt;
+  &lt;p&gt;{{ m.title }} — {{ m.album }}&lt;/p&gt;
+&lt;/div&gt;
+
+<span class="cm">&lt;!-- With index --&gt;</span>
+&lt;div *ngFor=<span class="str">"let m of music; let i = index"</span>&gt;
+  &lt;p&gt;#{{ i + 1 }}: {{ m.title }}&lt;/p&gt;
+&lt;/div&gt;
+
+<span class="cm">&lt;!-- With first/last flags (useful for styling) --&gt;</span>
+&lt;div *ngFor=<span class="str">"let m of music; let first = first; let last = last"</span>
+     [class.highlight]=<span class="str">"first"</span>&gt;
+  {{ m.title }}
+&lt;/div&gt;
+
+<span class="cm">&lt;!-- Nested: loop inside a loop --&gt;</span>
+&lt;div *ngFor=<span class="str">"let category of categories"</span>&gt;
+  &lt;h3&gt;{{ category.name }}&lt;/h3&gt;
+  &lt;p *ngFor=<span class="str">"let item of category.items"</span>&gt;{{ item }}&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>*ngFor="let m of music"</code> — Angular repeats the host element (and everything inside) once per element in <code>music</code>. Each iteration, <code>m</code> is the current object.</li>
+          <li><code>; let i = index</code> — a local variable <code>i</code> giving the 0-based position. Add 1 to show 1-based counts.</li>
+          <li><code>; let first = first</code> — a boolean that is <code>true</code> only on the first iteration; useful for removing a top border.</li>
+          <li><code>[class.highlight]="first"</code> — combines property binding with the loop; applies the CSS class only on the first item.</li>
+          <li>Nested loops work normally — just put another <code>*ngFor</code> on an inner element, referencing a property of the outer loop variable.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Only one structural directive per element</span>
+        <p>You cannot write <code>*ngIf</code> and <code>*ngFor</code> on the <em>same</em> element. If you need to conditionally loop, wrap the <code>*ngFor</code> element in an <code>&lt;ng-container *ngIf="..."&gt;</code> (ng-container renders nothing, just groups logic).</p>
+      </div>
+
+      <!-- ---- ngStyle / ngClass ---- -->
+      <h3>5 — Dynamic styling: [ngStyle], [ngClass] and [class.x]</h3>
+<pre><code><span class="cm">&lt;!-- [ngStyle]: set one or more inline CSS properties from expressions --&gt;</span>
+&lt;p [ngStyle]=<span class="str">"{'color': counter &gt; 10 ? 'red' : 'green',
+               'font-size': counter + 'px'}"</span>&gt;Status&lt;/p&gt;
+
+<span class="cm">&lt;!-- [class.x]: toggle a single class on/off --&gt;</span>
+&lt;p [class.active]=<span class="str">"counter &gt; 10"</span>&gt;Active when counter &gt; 10&lt;/p&gt;
+
+<span class="cm">&lt;!-- [ngClass]: add/remove multiple classes from a method or object literal --&gt;</span>
+&lt;p [ngClass]=<span class="str">"setClasses()"</span>&gt;Multiple classes&lt;/p&gt;
+
+<span class="cm">&lt;!-- inline object (no method needed) --&gt;</span>
+&lt;p [ngClass]=<span class="str">"{ active: counter &gt; 6, bold: counter &gt; 10 }"</span>&gt;Inline&lt;/p&gt;</code></pre>
+<pre><code><span class="cm">// TypeScript method returning a class map</span>
+setClasses() {
+  <span class="kw">return</span> {
+    active:    <span class="kw">this</span>.counter &gt; <span class="num">6</span>,    <span class="cm">// adds 'active' CSS class when true</span>
+    notactive: <span class="kw">this</span>.counter &lt; <span class="num">6</span>,    <span class="cm">// adds 'notactive' CSS class when true</span>
+    bold:      <span class="kw">this</span>.counter &gt; <span class="num">10</span>    <span class="cm">// adds 'bold' CSS class when true</span>
+  };
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does</span>
+        <ul>
+          <li><code>[ngStyle]="{'color': ... }"</code> — takes an object whose keys are CSS property names (as strings, use camelCase or 'kebab-case') and values are expressions. Recomputed on every change.</li>
+          <li><code>[class.active]="condition"</code> — the simplest toggle: adds the named class when true, removes it when false.</li>
+          <li><code>[ngClass]="setClasses()"</code> — calls a method each change-detection cycle; the returned object says which class names are active.</li>
+          <li>The ternary in <code>[ngStyle]</code> (<code>a ? 'red' : 'green'</code>) is the exact pattern the 2021 exam used for the colour-by-count requirement.</li>
+        </ul>
+      </div>
+
+      <!-- ---- LIFECYCLE HOOKS ---- -->
+      <h3>6 — Lifecycle hooks</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Hook</th><th>When it runs</th><th>Common use</th></tr></thead>
+          <tbody>
+            <tr><td><code>constructor()</code></td><td>Object created — before inputs arrive</td><td>Dependency injection only</td></tr>
+            <tr><td><code>ngOnInit()</code></td><td>After first <code>ngOnChanges</code>, inputs set</td><td>API calls, initialise data</td></tr>
+            <tr><td><code>ngOnChanges()</code></td><td>Any <code>@Input()</code> value changes</td><td>React to parent-passed data changes</td></tr>
+            <tr><td><code>ngOnDestroy()</code></td><td>Component removed from DOM</td><td>Unsubscribe Observables, clear timers</td></tr>
+          </tbody>
+        </table>
+      </div>
+<pre><code><span class="kw">import</span> { Component, OnInit, OnDestroy } <span class="kw">from</span> <span class="str">'@angular/core'</span>;
+
+<span class="kw">export class</span> <span class="type">MyComponent</span> <span class="kw">implements</span> <span class="type">OnInit</span>, <span class="type">OnDestroy</span> {
+
+  <span class="cm">// constructor: only inject services — no logic</span>
+  constructor(<span class="kw">private</span> myService: <span class="type">MyService</span>) {}
+
+  <span class="cm">// ngOnInit: runs once when the component is ready to use</span>
+  ngOnInit(): <span class="type">void</span> {
+    <span class="kw">this</span>.myService.getData().subscribe(data =&gt; <span class="kw">this</span>.data = data);
+  }
+
+  <span class="cm">// ngOnDestroy: clean up before removal to avoid memory leaks</span>
+  ngOnDestroy(): <span class="type">void</span> {
+    <span class="kw">this</span>.subscription.unsubscribe();
+  }
+}</code></pre>
+
+      <!-- ---- @Input ---- -->
+      <h3>7 — Passing data between components: @Input()</h3>
+      <p><code>@Input()</code> lets a parent component pass data down to a child component. It is how Tutorial 8 sends a <code>category</code> from the parent list to the <code>category-item</code> child.</p>
+<pre><code><span class="cm">// CHILD component: category-item.component.ts</span>
+<span class="kw">import</span> { Component, Input } <span class="kw">from</span> <span class="str">'@angular/core'</span>;
+<span class="kw">import</span> { Category } <span class="kw">from</span> <span class="str">'../interfaces/category'</span>;
+
+<span class="kw">export class</span> <span class="type">CategoryItemComponent</span> {
+  <span class="dec">@Input</span>() category!: <span class="type">Category</span>;  <span class="cm">// ! means "definitely not null when used"</span>
+}
+
+<span class="cm">&lt;!-- CHILD template: show the input data --&gt;</span>
+&lt;ion-card&gt;
+  &lt;img [src]=<span class="str">"category.strCategoryThumb"</span>&gt;
+  &lt;h2&gt;{{ category.strCategory }}&lt;/h2&gt;
+&lt;/ion-card&gt;</code></pre>
+<pre><code><span class="cm">&lt;!-- PARENT template: passes 'category' from the loop into the child --&gt;</span>
+&lt;app-category-item *ngFor=<span class="str">"let cat of categories"</span>
+                   [category]=<span class="str">"cat"</span>&gt;&lt;/app-category-item&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does</span>
+        <ul>
+          <li><code>@Input() category!: Category</code> — decorates a class field as an input slot. The <code>!</code> tells TypeScript "trust me, this will always be set by the parent before use".</li>
+          <li><code>[category]="cat"</code> in the parent — property binding on the child's selector: passes the current loop item into the child's <code>@Input()</code> field each iteration.</li>
+          <li>The child can now display and use that data in its own template.</li>
+        </ul>
+      </div>
+
+      <!-- ---- ROUTING ---- -->
+      <h3>8 — Routing: navigating between components</h3>
+<pre><code><span class="cm">// app-routing.module.ts — define URL paths and which component they show</span>
+<span class="kw">import</span> { Routes, RouterModule } <span class="kw">from</span> <span class="str">'@angular/router'</span>;
+<span class="kw">import</span> { HomeComponent } <span class="kw">from</span> <span class="str">'./home/home.component'</span>;
+<span class="kw">import</span> { DetailComponent } <span class="kw">from</span> <span class="str">'./detail/detail.component'</span>;
+
+<span class="kw">const</span> routes: <span class="type">Routes</span> = [
+  { path: <span class="str">'home'</span>,       component: <span class="type">HomeComponent</span> },
+  { path: <span class="str">'detail/:id'</span>, component: <span class="type">DetailComponent</span> },  <span class="cm">// :id is a URL param</span>
+  { path: <span class="str">''</span>,           redirectTo: <span class="str">'home'</span>, pathMatch: <span class="str">'full'</span> },
+];</code></pre>
+<pre><code><span class="cm">&lt;!-- In HTML: navigate with routerLink --&gt;</span>
+&lt;a [routerLink]=<span class="str">"['/home']"</span>&gt;Go Home&lt;/a&gt;
+&lt;a [routerLink]=<span class="str">"['/detail', item.id]"</span>&gt;View Detail&lt;/a&gt;
+
+<span class="cm">&lt;!-- Required in the template where routes are displayed --&gt;</span>
+&lt;router-outlet&gt;&lt;/router-outlet&gt;</code></pre>
+<pre><code><span class="cm">// In TypeScript: programmatic navigation with Router</span>
+<span class="kw">import</span> { Router } <span class="kw">from</span> <span class="str">'@angular/router'</span>;
+
+constructor(<span class="kw">private</span> router: <span class="type">Router</span>) {}
+
+goToDetail(id: <span class="type">number</span>) {
+  <span class="kw">this</span>.router.navigate([<span class="str">'/detail'</span>, id]);
+}
+
+<span class="cm">// Sending query parameters (Tutorial 8 style: pass data between tabs)</span>
+sendCategory(name: <span class="type">string</span>) {
+  <span class="kw">this</span>.router.navigate([<span class="str">'/tabs/tab2'</span>], { queryParams: { category: name } });
+}
+
+<span class="cm">// Reading query parameters in the destination component</span>
+<span class="kw">import</span> { ActivatedRoute } <span class="kw">from</span> <span class="str">'@angular/router'</span>;
+
+constructor(<span class="kw">private</span> route: <span class="type">ActivatedRoute</span>) {}
+
+ngOnInit() {
+  <span class="kw">this</span>.route.queryParams.subscribe(params =&gt; {
+    <span class="kw">const</span> category = params[<span class="str">'category'</span>];   <span class="cm">// read the sent value</span>
+    <span class="kw">this</span>.loadMeals(category);
+  });
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>path: 'detail/:id'</code> — the <code>:id</code> is a wildcard URL segment; it matches any value at that position and you can read it via <code>ActivatedRoute.snapshot.params['id']</code>.</li>
+          <li><code>&lt;router-outlet&gt;</code> — the placeholder where Angular renders the component matching the current URL. Without it nothing appears.</li>
+          <li><code>router.navigate(['/detail', id])</code> — constructs the URL <code>/detail/42</code> (for example) and navigates to it.</li>
+          <li><code>{ queryParams: { category: name } }</code> — appends a query string, e.g. <code>/tabs/tab2?category=Seafood</code>.</li>
+          <li><code>route.queryParams.subscribe(...)</code> — reads the query string asynchronously. It stays live, so if the user navigates with a different category the callback re-fires automatically.</li>
+        </ul>
+      </div>
+
+      <!-- ---- SERVICES ---- -->
+      <h3>9 — Services and dependency injection</h3>
+      <p>A service is a class decorated with <code>@Injectable()</code> that holds reusable logic (usually API calls). You declare it once and inject it into any component that needs it.</p>
+<pre><code><span class="cm">// jokes.service.ts</span>
+<span class="kw">import</span> { Injectable } <span class="kw">from</span> <span class="str">'@angular/core'</span>;
+<span class="kw">import</span> { HttpClient } <span class="kw">from</span> <span class="str">'@angular/common/http'</span>;
+<span class="kw">import</span> { Observable } <span class="kw">from</span> <span class="str">'rxjs'</span>;
+
+<span class="dec">@Injectable</span>()          <span class="cm">// marks this class as injectable (can be injected into components)</span>
+<span class="kw">export class</span> <span class="type">JokesService</span> {
+
+  endpoint = <span class="str">'https://v2.jokeapi.dev/joke/'</span>;
+
+  <span class="cm">// Angular provides an HttpClient instance via the constructor parameter</span>
+  constructor(<span class="kw">private</span> http: <span class="type">HttpClient</span>) {}
+
+  getRandomJoke(): <span class="type">Observable</span>&lt;<span class="type">any</span>&gt; {
+    <span class="kw">return this</span>.http.get(<span class="kw">this</span>.endpoint + <span class="str">'Programming?safe-mode&type=single'</span>);
+  }
+}</code></pre>
+<pre><code><span class="cm">// jokes.component.ts — inject and use the service</span>
+<span class="kw">import</span> { HttpClientModule } <span class="kw">from</span> <span class="str">'@angular/common/http'</span>;
+<span class="kw">import</span> { JokesService } <span class="kw">from</span> <span class="str">'../services/jokes.service'</span>;
+
+<span class="dec">@Component</span>({
+  selector: <span class="str">'app-jokes'</span>,
+  templateUrl: <span class="str">'./jokes.component.html'</span>,
+  providers: [<span class="type">JokesService</span>],              <span class="cm">// create a JokesService instance here</span>
+  imports: [<span class="type">HttpClientModule</span>],            <span class="cm">// needed for HttpClient to work</span>
+})
+<span class="kw">export class</span> <span class="type">JokesComponent</span> {
+  jokes: <span class="type">any</span>[] = [];
+
+  <span class="cm">// Angular DI hands us a JokesService instance</span>
+  constructor(<span class="kw">private</span> jokesService: <span class="type">JokesService</span>) {}
+
+  getRandom() {
+    <span class="kw">this</span>.jokes = [];
+    <span class="kw">this</span>.jokesService.getRandomJoke().subscribe(result =&gt; {
+      <span class="kw">this</span>.jokes.push({ id: result.id, text: result.joke, category: result.category });
+    });
+  }
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>@Injectable()</code> — marks the service so Angular's DI system knows it can be instantiated and injected.</li>
+          <li><code>constructor(private http: HttpClient)</code> — Angular sees <code>HttpClient</code> as the type and injects a ready-made instance automatically. You never write <code>new HttpClient()</code>.</li>
+          <li><code>http.get(url)</code> — returns an <strong>Observable</strong> (not the data yet). Think of it as a promise that can fire multiple values. Nothing happens until you <code>.subscribe()</code>.</li>
+          <li><code>providers: [JokesService]</code> in <code>@Component</code> — tells Angular to create one instance of <code>JokesService</code> tied to this component's lifetime.</li>
+          <li><code>jokesService.getRandomJoke().subscribe(result =&gt; { ... })</code> — subscribes to the Observable. When the HTTP response arrives, Angular calls the callback with the data. <code>result</code> is the parsed JSON body.</li>
+        </ul>
+      </div>
+
+      <!-- ---- REACTIVE FORMS ---- -->
+      <h3>10 — Reactive forms: FormBuilder, FormGroup, Validators</h3>
+<pre><code><span class="kw">import</span> { FormBuilder, FormGroup, Validators } <span class="kw">from</span> <span class="str">'@angular/forms'</span>;
+
+<span class="kw">export class</span> <span class="type">SearchComponent</span> {
+  myForm: <span class="type">FormGroup</span>;
+
+  constructor(<span class="kw">public</span> formBuilder: <span class="type">FormBuilder</span>) {
+    <span class="cm">// build the form — each field: [initialValue, validators]</span>
+    <span class="kw">this</span>.myForm = formBuilder.group({
+      title: [<span class="str">""</span>, Validators.compose([
+        Validators.maxLength(<span class="num">30</span>),              <span class="cm">// max 30 characters</span>
+        Validators.pattern(<span class="str">"[a-zA-Z ]*"</span>),     <span class="cm">// letters and spaces only</span>
+        Validators.required                    <span class="cm">// must not be empty</span>
+      ])],
+      email: [<span class="str">""</span>, [Validators.required, Validators.email]],
+      age:   [<span class="num">0</span>,  [Validators.min(<span class="num">18</span>), Validators.max(<span class="num">120</span>)]]
+    });
+  }
+
+  search() {
+    <span class="kw">if</span> (<span class="kw">this</span>.myForm.valid) {
+      <span class="kw">const</span> title = <span class="kw">this</span>.myForm.controls[<span class="str">'title'</span>].value;
+      console.log(<span class="str">'Searching for:'</span>, title);
+    }
+  }
+}</code></pre>
+<pre><code><span class="cm">&lt;!-- HTML template --&gt;</span>
+&lt;form [formGroup]=<span class="str">"myForm"</span>&gt;
+  &lt;input formControlName=<span class="str">"title"</span>
+         [class.invalid]=<span class="str">"!myForm.controls['title'].valid"</span>&gt;
+
+  &lt;p *ngIf=<span class="str">"myForm.controls['title'].hasError('maxlength')"</span>&gt;
+    Title is too long.
+  &lt;/p&gt;
+  &lt;p *ngIf=<span class="str">"myForm.controls['title'].hasError('required') &amp;&amp; myForm.controls['title'].touched"</span>&gt;
+    Title is required.
+  &lt;/p&gt;
+
+  &lt;button [disabled]=<span class="str">"!myForm.valid"</span> (click)=<span class="str">"search()"</span>&gt;Search&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>formBuilder.group({ ... })</code> — creates a <code>FormGroup</code> containing named <code>FormControl</code> objects. Each control has an initial value and a list of validators.</li>
+          <li><code>Validators.compose([...])</code> — combines multiple validators for one field into one. You can also pass an array directly: <code>[Validators.required, Validators.email]</code>.</li>
+          <li><code>[formGroup]="myForm"</code> on the form — connects the HTML <code>&lt;form&gt;</code> to the TypeScript <code>FormGroup</code>.</li>
+          <li><code>formControlName="title"</code> on the input — connects this specific input to the <code>title</code> field in the group.</li>
+          <li><code>[class.invalid]="!myForm.controls['title'].valid"</code> — adds the CSS class <code>invalid</code> when the field fails any validator (real-time feedback).</li>
+          <li><code>hasError('maxlength')</code> — checks for a specific validator failure to show a precise error message.</li>
+          <li><code>this.myForm.valid</code> — <code>true</code> only when <em>all</em> fields pass all their validators; use this to enable/disable the submit button.</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Validator</th><th>What it checks</th></tr></thead>
+          <tbody>
+            <tr><td><code>Validators.required</code></td><td>Not empty</td></tr>
+            <tr><td><code>Validators.minLength(n)</code></td><td>At least n characters</td></tr>
+            <tr><td><code>Validators.maxLength(n)</code></td><td>At most n characters</td></tr>
+            <tr><td><code>Validators.pattern("regex")</code></td><td>Matches the regex</td></tr>
+            <tr><td><code>Validators.email</code></td><td>Valid email format</td></tr>
+            <tr><td><code>Validators.min(n)</code></td><td>Numeric value ≥ n</td></tr>
+            <tr><td><code>Validators.max(n)</code></td><td>Numeric value ≤ n</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ---- INTERFACES ---- -->
+      <h3>11 — Interfaces in Angular (data models)</h3>
+<pre><code><span class="cm">// interfaces/joke.ts — create one file per interface</span>
+<span class="kw">export interface</span> <span class="type">Joke</span> {
+  id: <span class="type">number</span>;
+  text: <span class="type">string</span>;
+  category: <span class="type">string</span>;
+}
+
+<span class="cm">// Tutorial 8 interfaces:</span>
+<span class="kw">export interface</span> <span class="type">Category</span> {
+  idCategory: <span class="type">string</span> | <span class="type">number</span>;
+  strCategory: <span class="type">string</span>;
+  strCategoryThumb: <span class="type">string</span>;
+  strCategoryDescription: <span class="type">string</span>;
+}
+
+<span class="kw">export interface</span> <span class="type">MealSummary</span> {
+  idMeal: <span class="type">string</span>;
+  strMeal: <span class="type">string</span>;
+  strMealThumb: <span class="type">string</span>;
+}
+
+<span class="cm">// Using an interface as an array type in a component:</span>
+categories: <span class="type">Category</span>[] = [];
+meals: <span class="type">MealSummary</span>[] = [];</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does</span>
+        <ul>
+          <li>An interface is just a shape contract for TypeScript — it does not produce any real JavaScript code, only enforces types during compilation.</li>
+          <li>Export from its own file and import it wherever needed: <code>import { Category } from '../interfaces/category';</code>.</li>
+          <li>Use it as a type annotation on arrays: <code>categories: Category[] = [];</code>. Angular then autocompletes and type-checks every property access.</li>
+        </ul>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ================= IONIC FULL REFERENCE ================= -->
+  <details class="collapsible" id="ionic-ref">
+    <summary>
+      <div class="summary-head">
+        <div class="summary-title">
+          <span class="tag lect">Ionic</span>
+          <h2>Ionic — Complete Practical Reference</h2>
+          <p>Every UI component, every Capacitor plugin, every Android XML attribute, and all native concepts — explained thoroughly from the L33–36 slides and Tutorial 8.</p>
+        </div>
+        <span class="summary-toggle"></span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="w3links">
+        <a class="w3link" href="https://ionicframework.com/docs/components">Ionic component docs</a>
+        <a class="w3link" href="https://capacitorjs.com/docs/apis">Capacitor plugin APIs</a>
+        <a class="w3link" href="https://developer.android.com/reference/android/widget/EditText">EditText reference</a>
+        <a class="w3link" href="https://developer.android.com/guide/topics/manifest/manifest-intro">AndroidManifest guide</a>
+      </div>
+
+      <!-- ---- STRUCTURE ---- -->
+      <h3>1 — Project structure and pages</h3>
+      <p>An Ionic/Angular project follows the same structure as a plain Angular project, but adds Ionic's component library on top. The key files in a Tabs-template project:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>File</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><code>app.component.html</code></td><td>Root template — the <code>&lt;ion-app&gt;</code> wrapper, split-pane, side menu, router-outlet</td></tr>
+            <tr><td><code>app.module.ts</code></td><td>Root module — declares components, imports IonicModule, routing modules</td></tr>
+            <tr><td><code>tabs/tabs.page.html</code></td><td>Bottom tab bar definition</td></tr>
+            <tr><td><code>tab1/tab1.page.ts+html</code></td><td>First tab — your feature page logic and template</td></tr>
+            <tr><td><code>capacitor.config.ts</code></td><td>Capacitor settings — app ID, plugin config</td></tr>
+            <tr><td><code>android/app/src/main/AndroidManifest.xml</code></td><td>Android app permissions and activity declarations</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ---- IONIC UI COMPONENTS ---- -->
+      <h3>2 — All Ionic UI components</h3>
+      <div class="callout tip">
+        <span class="callout-title">💡 Ionic components are Angular components</span>
+        <p>All <code>ion-*</code> tags are Angular components provided by <code>IonicModule</code>. They work exactly like HTML tags but with extra attributes and built-in mobile styling. Import them in your component's <code>imports</code> array.</p>
+      </div>
+
+      <h4>ion-list, ion-item, ion-label, ion-card</h4>
+<pre><code><span class="cm">&lt;!-- List of items (like a mobile table) --&gt;</span>
+&lt;ion-list&gt;
+  &lt;ion-item *ngFor=<span class="str">"let p of planes"</span>&gt;
+    &lt;ion-label&gt;
+      &lt;h2&gt;{{ p.manufacturer }}&lt;/h2&gt;      <span class="cm">&lt;!-- large text --&gt;</span>
+      &lt;h3&gt;{{ p.model }}&lt;/h3&gt;             <span class="cm">&lt;!-- medium text --&gt;</span>
+      &lt;p&gt;{{ p.year }}&lt;/p&gt;                <span class="cm">&lt;!-- small muted text --&gt;</span>
+    &lt;/ion-label&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-list&gt;
+
+<span class="cm">&lt;!-- Card (like a Bootstrap card) --&gt;</span>
+&lt;ion-card *ngFor=<span class="str">"let p of planes"</span>&gt;
+  &lt;img [src]=<span class="str">"p.image_url"</span> alt=<span class="str">"plane"</span>&gt;
+  &lt;ion-card-header&gt;
+    &lt;ion-card-title&gt;{{ p.manufacturer }}&lt;/ion-card-title&gt;
+    &lt;ion-card-subtitle&gt;{{ p.model }}&lt;/ion-card-subtitle&gt;
+  &lt;/ion-card-header&gt;
+  &lt;ion-card-content&gt;
+    Some extra description text goes here.
+  &lt;/ion-card-content&gt;
+&lt;/ion-card&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does</span>
+        <ul>
+          <li><code>&lt;ion-list&gt;</code> — the wrapper; renders as a vertically stacked list with dividers.</li>
+          <li><code>&lt;ion-item&gt;</code> — each row; can have a click handler: <code>(click)="doSomething(p)"</code>.</li>
+          <li><code>&lt;ion-label&gt;&lt;h2&gt;/&lt;h3&gt;/&lt;p&gt;</code> — tiered text inside an item: h2=title, h3=subtitle, p=description (automatic sizing).</li>
+          <li><code>&lt;ion-card&gt;</code> — elevated card panel; header/subtitle/content sub-components work similarly to Bootstrap cards.</li>
+        </ul>
+      </div>
+
+      <h4>ion-input — all types and label positions</h4>
+<pre><code><span class="cm">&lt;!-- All inputType values --&gt;</span>
+&lt;ion-item&gt;&lt;ion-label&gt;Text&lt;/ion-label&gt;
+  &lt;ion-input type=<span class="str">"text"</span>     placeholder=<span class="str">"Enter text"</span>&gt;&lt;/ion-input&gt;&lt;/ion-item&gt;
+&lt;ion-item&gt;&lt;ion-label&gt;Password&lt;/ion-label&gt;
+  &lt;ion-input type=<span class="str">"password"</span> placeholder=<span class="str">"Enter password"</span>&gt;&lt;/ion-input&gt;&lt;/ion-item&gt;
+&lt;ion-item&gt;&lt;ion-label&gt;Email&lt;/ion-label&gt;
+  &lt;ion-input type=<span class="str">"email"</span>    placeholder=<span class="str">"you@example.com"</span>&gt;&lt;/ion-input&gt;&lt;/ion-item&gt;
+&lt;ion-item&gt;&lt;ion-label&gt;Number&lt;/ion-label&gt;
+  &lt;ion-input type=<span class="str">"number"</span>   min=<span class="str">"0"</span>&gt;&lt;/ion-input&gt;&lt;/ion-item&gt;
+&lt;ion-item&gt;&lt;ion-label&gt;Search&lt;/ion-label&gt;
+  &lt;ion-input type=<span class="str">"search"</span>&gt;&lt;/ion-input&gt;&lt;/ion-item&gt;
+&lt;ion-item&gt;&lt;ion-label&gt;Phone&lt;/ion-label&gt;
+  &lt;ion-input type=<span class="str">"tel"</span>&gt;&lt;/ion-input&gt;&lt;/ion-item&gt;
+&lt;ion-item&gt;&lt;ion-label&gt;URL&lt;/ion-label&gt;
+  &lt;ion-input type=<span class="str">"url"</span>&gt;&lt;/ion-input&gt;&lt;/ion-item&gt;
+
+<span class="cm">&lt;!-- Label positions --&gt;</span>
+&lt;ion-item&gt;&lt;ion-label position=<span class="str">"floating"</span>&gt;Floats up when focused&lt;/ion-label&gt;
+  &lt;ion-input&gt;&lt;/ion-input&gt;&lt;/ion-item&gt;
+&lt;ion-item&gt;&lt;ion-label position=<span class="str">"fixed"</span>&gt;Always beside the input&lt;/ion-label&gt;
+  &lt;ion-input&gt;&lt;/ion-input&gt;&lt;/ion-item&gt;
+&lt;ion-item&gt;&lt;ion-label position=<span class="str">"stacked"</span>&gt;Always above the input&lt;/ion-label&gt;
+  &lt;ion-input&gt;&lt;/ion-input&gt;&lt;/ion-item&gt;
+
+<span class="cm">&lt;!-- Two-way binding with ngModel (disabled/readonly) --&gt;</span>
+&lt;ion-input [(ngModel)]=<span class="str">"searchTerm"</span> [disabled]=<span class="str">"loading"</span>&gt;&lt;/ion-input&gt;</code></pre>
+
+      <h4>ion-tabs — the bottom tab bar</h4>
+<pre><code><span class="cm">&lt;!-- tabs/tabs.page.html --&gt;</span>
+&lt;ion-tabs&gt;
+  &lt;ion-tab-bar slot=<span class="str">"bottom"</span>&gt;
+
+    &lt;ion-tab-button tab=<span class="str">"tab1"</span>&gt;
+      &lt;ion-icon name=<span class="str">"home"</span>&gt;&lt;/ion-icon&gt;
+      &lt;ion-label&gt;Home&lt;/ion-label&gt;
+      &lt;ion-badge&gt;6&lt;/ion-badge&gt;          <span class="cm">&lt;!-- notification count badge --&gt;</span>
+    &lt;/ion-tab-button&gt;
+
+    &lt;ion-tab-button tab=<span class="str">"tab2"</span>&gt;
+      &lt;ion-icon name=<span class="str">"search"</span>&gt;&lt;/ion-icon&gt;
+      &lt;ion-label&gt;Search&lt;/ion-label&gt;
+    &lt;/ion-tab-button&gt;
+
+    <span class="cm">&lt;!-- Comment out to hide a tab from the bar (Tutorial 8: detail page) --&gt;</span>
+    <span class="cm">&lt;!-- &lt;ion-tab-button tab="tab3"&gt;...&lt;/ion-tab-button&gt; --&gt;</span>
+
+  &lt;/ion-tab-bar&gt;
+&lt;/ion-tabs&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does</span>
+        <ul>
+          <li><code>slot="bottom"</code> — positions the tab bar at the bottom of the screen (mobile convention).</li>
+          <li><code>tab="tab1"</code> — the value must match a route name defined in <code>tabs.routes.ts</code>.</li>
+          <li><code>&lt;ion-badge&gt;6&lt;/ion-badge&gt;</code> — shows a number bubble (e.g. notification count) on the icon.</li>
+          <li>To hide a tab from the bar but still route to it (e.g. a detail page opened by tap), comment out or remove its <code>&lt;ion-tab-button&gt;</code>.</li>
+        </ul>
+      </div>
+
+      <h4>Toast</h4>
+<pre><code><span class="cm">// Method 1 — @capacitor/toast (modern, preferred)</span>
+<span class="kw">import</span> { Toast } <span class="kw">from</span> <span class="str">'@capacitor/toast'</span>;
+<span class="kw">async</span> <span class="fn">showToast</span>(message: <span class="type">string</span>) {
+  <span class="kw">await</span> Toast.show({ text: message });
+}
+
+<span class="cm">// Method 2 — ToastController (Ionic Native / older code)</span>
+<span class="kw">import</span> { ToastController } <span class="kw">from</span> <span class="str">'@ionic/angular'</span>;
+constructor(<span class="kw">public</span> toastController: <span class="type">ToastController</span>) {}
+
+<span class="kw">async</span> <span class="fn">presentToast</span>(message: <span class="type">string</span>) {
+  <span class="kw">const</span> toast = <span class="kw">await</span> <span class="kw">this</span>.toastController.create({
+    message: message,
+    duration: <span class="num">2000</span>,         <span class="cm">// milliseconds — 2000 = 2 seconds</span>
+    position: <span class="str">'bottom'</span>,     <span class="cm">// 'top' | 'middle' | 'bottom'</span>
+    color: <span class="str">'success'</span>        <span class="cm">// optional colour</span>
+  });
+  <span class="kw">await</span> toast.present();
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does</span>
+        <ul>
+          <li><strong>Method 1</strong> — the Capacitor native plugin. Fires a platform-native notification bubble. Simpler API, works on device.</li>
+          <li><strong>Method 2</strong> — the Ionic-component controller approach. Use this in questions whose scaffold injects <code>ToastController</code> via the constructor.</li>
+          <li><code>duration: 2000</code> — the toast disappears automatically after 2 seconds. Use 0 to keep it until dismissed.</li>
+        </ul>
+      </div>
+
+      <h4>Alert</h4>
+<pre><code><span class="kw">import</span> { AlertController } <span class="kw">from</span> <span class="str">'@ionic/angular'</span>;
+constructor(<span class="kw">public</span> alertController: <span class="type">AlertController</span>) {}
+
+<span class="kw">async</span> <span class="fn">presentAlert</span>() {
+  <span class="kw">const</span> alert = <span class="kw">await</span> <span class="kw">this</span>.alertController.create({
+    header:    <span class="str">'Use this lightsabre?'</span>,
+    subHeader: <span class="str">'This action cannot be undone'</span>,
+    message:   <span class="str">'Are you sure?'</span>,
+    buttons:   [<span class="str">'Disagree'</span>, <span class="str">'Agree'</span>]        <span class="cm">// or array of {text, handler}</span>
+  });
+  <span class="kw">await</span> alert.present();
+}
+
+<span class="cm">// With handler functions on buttons:</span>
+buttons: [
+  { text: <span class="str">'Cancel'</span>, role: <span class="str">'cancel'</span> },
+  { text: <span class="str">'Delete'</span>, role: <span class="str">'destructive'</span>, handler: () =&gt; { <span class="kw">this</span>.delete(); } }
+]</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does</span>
+        <ul>
+          <li><code>header</code> = big title text, <code>subHeader</code> = smaller subtitle, <code>message</code> = body text.</li>
+          <li>Buttons can be plain strings (no callback) or objects with <code>handler</code> functions and <code>role</code> values.</li>
+          <li><code>role: 'cancel'</code> — marks the cancel button so hardware back gesture also dismisses it. <code>role: 'destructive'</code> renders the button red on iOS.</li>
+        </ul>
+      </div>
+
+      <h4>Action Sheet</h4>
+<pre><code><span class="cm">// Method 1 — @capacitor/action-sheet (planes app style)</span>
+<span class="kw">import</span> { ActionSheet } <span class="kw">from</span> <span class="str">'@capacitor/action-sheet'</span>;
+
+<span class="kw">async</span> <span class="fn">showActions</span>(item: <span class="type">any</span>) {
+  <span class="kw">const</span> result = <span class="kw">await</span> ActionSheet.showActions({
+    title: <span class="str">'Please select an option'</span>,
+    options: [
+      { title: <span class="str">'Share'</span> },
+      { title: <span class="str">'Notify'</span> }
+    ]
+  });
+  <span class="kw">if</span> (result.index === <span class="num">0</span>) <span class="kw">this</span>.share(item);
+  <span class="else">else</span> <span class="kw">this</span>.push(item);
+}
+
+<span class="cm">// Method 2 — ActionSheetController (Ionic component style)</span>
+<span class="kw">import</span> { ActionSheetController } <span class="kw">from</span> <span class="str">'@ionic/angular'</span>;
+constructor(<span class="kw">public</span> actionSheetController: <span class="type">ActionSheetController</span>) {}
+
+<span class="kw">async</span> <span class="fn">presentActionSheet</span>() {
+  <span class="kw">const</span> actionSheet = <span class="kw">await</span> <span class="kw">this</span>.actionSheetController.create({
+    header: <span class="str">'Options'</span>,
+    buttons: [
+      { text: <span class="str">'Delete'</span>, role: <span class="str">'destructive'</span>, icon: <span class="str">'trash'</span>,
+        handler: () =&gt; { console.log(<span class="str">'Delete'</span>); } },
+      { text: <span class="str">'Share'</span>,  icon: <span class="str">'share'</span>,
+        handler: () =&gt; { console.log(<span class="str">'Share'</span>); } },
+      { text: <span class="str">'Cancel'</span>, icon: <span class="str">'close'</span>, role: <span class="str">'cancel'</span> }
+    ]
+  });
+  <span class="kw">await</span> actionSheet.present();
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does</span>
+        <ul>
+          <li>An action sheet slides up from the bottom with a list of choices — the mobile equivalent of a right-click context menu.</li>
+          <li><code>role: 'destructive'</code> renders the button in red (dangerous action). <code>role: 'cancel'</code> is always last; it closes the sheet without doing anything.</li>
+          <li><code>result.index</code> in the Capacitor version gives the 0-based position of the tapped option — use it in an <code>if/else</code> or <code>switch</code>.</li>
+        </ul>
+      </div>
+
+      <h4>Modal</h4>
+<pre><code><span class="kw">import</span> { ModalController } <span class="kw">from</span> <span class="str">'@ionic/angular'</span>;
+<span class="kw">import</span> { ModalPage } <span class="kw">from</span> <span class="str">'../modal/modal.page'</span>;
+
+constructor(<span class="kw">public</span> modalController: <span class="type">ModalController</span>) {}
+
+<span class="kw">async</span> <span class="fn">presentModal</span>() {
+  <span class="kw">const</span> modal = <span class="kw">await</span> <span class="kw">this</span>.modalController.create({
+    component: <span class="type">ModalPage</span>,             <span class="cm">// which component to show</span>
+    componentProps: { data: <span class="kw">this</span>.selectedItem }  <span class="cm">// data to pass in</span>
+  });
+  <span class="kw">await</span> modal.present();
+  <span class="kw">const</span> { data } = <span class="kw">await</span> modal.onDidDismiss();  <span class="cm">// wait for it to close</span>
+  console.log(<span class="str">'Modal returned:'</span>, data);
+}</code></pre>
+
+      <h4>Popover</h4>
+<pre><code><span class="kw">import</span> { PopoverController } <span class="kw">from</span> <span class="str">'@ionic/angular'</span>;
+<span class="kw">import</span> { PopoverPage } <span class="kw">from</span> <span class="str">'../popover/popover.page'</span>;
+
+constructor(<span class="kw">public</span> popoverController: <span class="type">PopoverController</span>) {}
+
+<span class="kw">async</span> <span class="fn">presentPopover</span>(ev: <span class="type">any</span>) {  <span class="cm">// ev = the click event for positioning</span>
+  <span class="kw">const</span> popover = <span class="kw">await</span> <span class="kw">this</span>.popoverController.create({
+    component: <span class="type">PopoverPage</span>,
+    event: ev,               <span class="cm">// attaches popover near the clicked element</span>
+    translucent: <span class="kw">true</span>
+  });
+  <span class="kw">await</span> popover.present();
+}</code></pre>
+
+      <h4>ion-checkbox, ion-chip, ion-badge, ion-select, ion-searchbar</h4>
+<pre><code><span class="cm">&lt;!-- Checkbox in a list --&gt;</span>
+&lt;ion-list&gt;
+  &lt;ion-item *ngFor=<span class="str">"let entry of form"</span>&gt;
+    &lt;ion-label&gt;{{ entry.val }}&lt;/ion-label&gt;
+    &lt;ion-checkbox slot=<span class="str">"end"</span> [(ngModel)]=<span class="str">"entry.isChecked"</span>&gt;&lt;/ion-checkbox&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-list&gt;
+
+<span class="cm">&lt;!-- Chip (tag label) --&gt;</span>
+&lt;ion-chip color=<span class="str">"primary"</span>&gt;
+  &lt;ion-icon name=<span class="str">"person"</span>&gt;&lt;/ion-icon&gt;
+  &lt;ion-label&gt;John&lt;/ion-label&gt;
+&lt;/ion-chip&gt;
+
+<span class="cm">&lt;!-- Badge (notification count) --&gt;</span>
+&lt;ion-badge color=<span class="str">"danger"</span>&gt;11&lt;/ion-badge&gt;
+
+<span class="cm">&lt;!-- Select / dropdown --&gt;</span>
+&lt;ion-item&gt;
+  &lt;ion-label&gt;Hair Colour&lt;/ion-label&gt;
+  &lt;ion-select [(ngModel)]=<span class="str">"hairColour"</span> okText=<span class="str">"OK"</span> cancelText=<span class="str">"Cancel"</span>&gt;
+    &lt;ion-select-option value=<span class="str">"brown"</span>&gt;Brown&lt;/ion-select-option&gt;
+    &lt;ion-select-option value=<span class="str">"black"</span>&gt;Black&lt;/ion-select-option&gt;
+  &lt;/ion-select&gt;
+&lt;/ion-item&gt;
+
+<span class="cm">&lt;!-- Search bar --&gt;</span>
+&lt;ion-searchbar [(ngModel)]=<span class="str">"searchTerm"</span>
+               showCancelButton=<span class="str">"focus"</span>
+               (ionInput)=<span class="str">"onSearch($event)"</span>&gt;&lt;/ion-searchbar&gt;</code></pre>
+
+      <h4>ion-content, ion-fab (Floating Action Button), ion-grid</h4>
+<pre><code><span class="cm">&lt;!-- ion-content: the scrollable body of a page --&gt;</span>
+&lt;ion-content [scrollEvents]=<span class="str">"true"</span> (ionScrollEnd)=<span class="str">"onScroll()"</span>&gt;
+  &lt;h1&gt;Page content here&lt;/h1&gt;
+  &lt;div slot=<span class="str">"fixed"</span>&gt;Fixed overlay content (not scrolled)&lt;/div&gt;
+&lt;/ion-content&gt;
+
+<span class="cm">&lt;!-- ion-fab: floating button in the corner --&gt;</span>
+&lt;ion-fab vertical=<span class="str">"bottom"</span> horizontal=<span class="str">"end"</span> slot=<span class="str">"fixed"</span>&gt;
+  &lt;ion-fab-button (click)=<span class="str">"addItem()"</span>&gt;
+    &lt;ion-icon name=<span class="str">"add"</span>&gt;&lt;/ion-icon&gt;
+  &lt;/ion-fab-button&gt;
+&lt;/ion-fab&gt;
+
+<span class="cm">&lt;!-- ion-grid: 12-column grid (like Bootstrap but Ionic-flavoured) --&gt;</span>
+&lt;ion-grid&gt;
+  &lt;ion-row&gt;
+    &lt;ion-col size=<span class="str">"6"</span>&gt;Half width&lt;/ion-col&gt;
+    &lt;ion-col size=<span class="str">"3"</span>&gt;Quarter&lt;/ion-col&gt;
+    &lt;ion-col size=<span class="str">"3"</span>&gt;Quarter&lt;/ion-col&gt;
+  &lt;/ion-row&gt;
+&lt;/ion-grid&gt;</code></pre>
+
+      <h3>3 — Capacitor plugins: full reference</h3>
+
+      <h4>CapacitorHttp — GET and POST</h4>
+<pre><code><span class="kw">import</span> { CapacitorHttp, HttpOptions, HttpResponse } <span class="kw">from</span> <span class="str">'@capacitor/core'</span>;
+
+<span class="cm">// ---- GET request ----</span>
+<span class="kw">const</span> doGet = <span class="kw">async</span> () =&gt; {
+  <span class="kw">const</span> options: <span class="type">HttpOptions</span> = {
+    url: <span class="str">'https://example.com/api/data'</span>,
+    headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },
+    params: { id: <span class="str">'123'</span>, limit: <span class="str">'10'</span> }  <span class="cm">// appended as ?id=123&amp;limit=10</span>
+  };
+  <span class="kw">const</span> response: <span class="type">HttpResponse</span> = <span class="kw">await</span> CapacitorHttp.get(options);
+  console.log(response.data);            <span class="cm">// parsed JSON body</span>
+  console.log(response.status);         <span class="cm">// HTTP status code (200, 404…)</span>
+};
+
+<span class="cm">// ---- POST request ----</span>
+<span class="kw">async</span> <span class="fn">getData</span>() {
+  <span class="kw">const</span> options: <span class="type">HttpOptions</span> = {
+    url: <span class="str">'https://wheatley.cs.up.ac.za/api/'</span>,
+    headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },
+    data: {                              <span class="cm">// JSON body sent with the request</span>
+      studentnum: <span class="str">"u12345678"</span>,
+      apikey:     <span class="str">"abc123"</span>,
+      type:       <span class="str">"GetAllPlanes"</span>,
+      limit:      <span class="num">10</span>,
+      return:     <span class="str">"*"</span>
+    }
+  };
+  <span class="kw">const</span> response: <span class="type">HttpResponse</span> = <span class="kw">await</span> CapacitorHttp.post(options);
+  <span class="kw">this</span>.planes = response.data.data;    <span class="cm">// .data is the body; .data.data is the array</span>
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">What this does, line by line</span>
+        <ul>
+          <li><code>HttpOptions</code> — a typed object defining the request. Must have at least <code>url</code>.</li>
+          <li><code>headers: { 'Content-Type': 'application/json' }</code> — tells the server you're sending JSON. Required for POST requests that send a JSON body.</li>
+          <li><code>params</code> (GET) — key-value pairs appended to the URL as a query string. They appear as <code>?key=value&amp;key2=value2</code>.</li>
+          <li><code>data</code> (POST) — the JSON body. Passed as a plain JS object (not a string); Capacitor serialises it.</li>
+          <li><code>response.data</code> — the parsed JSON body of the response. If the API wraps its payload in a <code>data</code> key, you access it as <code>response.data.data</code>.</li>
+          <li><code>await</code> before the call — pauses the function until the HTTP response arrives. The function must be marked <code>async</code>.</li>
+        </ul>
+      </div>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ Enable CapacitorHttp in capacitor.config.ts</span>
+<pre><code><span class="cm">// capacitor.config.ts — must set enabled:true or HTTP calls may fail on device</span>
+plugins: {
+  CapacitorHttp: { enabled: <span class="kw">true</span> }
+}</code></pre>
+      </div>
+
+      <h4>Filesystem</h4>
+<pre><code><span class="kw">import</span> { Filesystem, Directory, Encoding } <span class="kw">from</span> <span class="str">'@capacitor/filesystem'</span>;
+
+<span class="cm">// Write a text file</span>
+<span class="kw">await</span> Filesystem.writeFile({
+  path:      <span class="str">'secrets/text.txt'</span>,   <span class="cm">// relative path; folders created automatically</span>
+  data:      <span class="str">'Hello world'</span>,
+  directory: Directory.Documents,  <span class="cm">// where: Documents | Data | Cache | External</span>
+  encoding:  Encoding.UTF8         <span class="cm">// UTF8 = plain text; omit for base64</span>
+});
+
+<span class="cm">// Read a text file</span>
+<span class="kw">const</span> result = <span class="kw">await</span> Filesystem.readFile({
+  path: <span class="str">'secrets/text.txt'</span>, directory: Directory.Documents, encoding: Encoding.UTF8
+});
+console.log(result.data);          <span class="cm">// the file contents as a string</span>
+
+<span class="cm">// Delete a file</span>
+<span class="kw">await</span> Filesystem.deleteFile({
+  path: <span class="str">'secrets/text.txt'</span>, directory: Directory.Documents
+});</code></pre>
+      <p>AndroidManifest.xml permissions required:</p>
+<pre><code>&lt;uses-permission android:name=<span class="str">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;
+&lt;uses-permission android:name=<span class="str">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</code></pre>
+
+      <h4>Geolocation</h4>
+<pre><code><span class="kw">import</span> { Geolocation } <span class="kw">from</span> <span class="str">'@capacitor/geolocation'</span>;
+
+<span class="kw">const</span> getPosition = <span class="kw">async</span> () =&gt; {
+  <span class="kw">const</span> coords = <span class="kw">await</span> Geolocation.getCurrentPosition();
+  console.log(<span class="str">'Latitude:'</span>,  coords.coords.latitude);
+  console.log(<span class="str">'Longitude:'</span>, coords.coords.longitude);
+  console.log(<span class="str">'Accuracy:'</span>,  coords.coords.accuracy);
+};</code></pre>
+      <p>AndroidManifest.xml permissions required:</p>
+<pre><code>&lt;uses-permission android:name=<span class="str">"android.permission.ACCESS_COARSE_LOCATION"</span> /&gt;
+&lt;uses-permission android:name=<span class="str">"android.permission.ACCESS_FINE_LOCATION"</span> /&gt;
+&lt;uses-feature android:name=<span class="str">"android.hardware.location.gps"</span> /&gt;</code></pre>
+
+      <h4>Local Notifications</h4>
+<pre><code><span class="kw">import</span> { LocalNotifications } <span class="kw">from</span> <span class="str">'@capacitor/local-notifications'</span>;
+
+<span class="kw">async</span> <span class="fn">push</span>(item: <span class="type">any</span>) {
+  <span class="kw">const</span> res = <span class="kw">await</span> LocalNotifications.requestPermissions();  <span class="cm">// ask user</span>
+  <span class="kw">if</span> (res.display === <span class="str">"granted"</span>) {
+    LocalNotifications.schedule({
+      notifications: [{
+        channelId: <span class="str">"1"</span>,
+        title:  item.model,
+        body:   <span class="str">'Check this out!'</span>,
+        id:     <span class="num">1</span>,                                 <span class="cm">// unique numeric id</span>
+        schedule: { at: <span class="kw">new</span> Date(Date.now() + <span class="num">100</span>) }  <span class="cm">// fire in 100ms</span>
+      }]
+    });
+  } <span class="kw">else</span> {
+    <span class="kw">this</span>.showToast(<span class="str">'Notification permission denied'</span>);
+  }
+}</code></pre>
+      <p>AndroidManifest.xml permissions + capacitor.config.ts:</p>
+<pre><code><span class="cm">&lt;!-- AndroidManifest.xml --&gt;</span>
+&lt;uses-permission android:name=<span class="str">"android.permission.SCHEDULE_EXACT_ALARM"</span> /&gt;
+&lt;uses-permission android:name=<span class="str">"android.permission.POST_NOTIFICATIONS"</span> /&gt;</code></pre>
+<pre><code><span class="cm">// capacitor.config.ts</span>
+plugins: {
+  LocalNotifications: {
+    smallIcon:  <span class="str">"ic_stat_icon_config_sample"</span>,
+    iconColor:  <span class="str">"#488AFF"</span>,
+    sound:      <span class="str">"beep.wav"</span>
+  }
+}</code></pre>
+
+      <h4>Share</h4>
+<pre><code><span class="kw">import</span> { Share } <span class="kw">from</span> <span class="str">'@capacitor/share'</span>;
+
+<span class="kw">async</span> <span class="fn">shareItem</span>(item: <span class="type">any</span>) {
+  <span class="kw">await</span> Share.share({
+    title:       item.model,
+    text:        <span class="str">'Check this cool item I found!'</span>,
+    url:         item.image_url,
+    dialogTitle: <span class="str">'Share with buddies'</span>
+  });
+}</code></pre>
+
+      <h4>Network status</h4>
+<pre><code><span class="kw">import</span> { Network } <span class="kw">from</span> <span class="str">'@capacitor/network'</span>;
+
+<span class="cm">// Check once</span>
+<span class="kw">const</span> status = <span class="kw">await</span> Network.getStatus();
+console.log(<span class="str">'Connected:'</span>, status.connected);       <span class="cm">// true/false</span>
+console.log(<span class="str">'Type:'</span>,      status.connectionType);   <span class="cm">// 'wifi' | 'cellular' | 'none'</span>
+
+<span class="cm">// Listen for changes</span>
+Network.addListener(<span class="str">'networkStatusChange'</span>, status =&gt; {
+  console.log(<span class="str">'Network changed:'</span>, status);
+});</code></pre>
+
+      <!-- ---- ANDROID BUILDING BLOCKS ---- -->
+      <h3>4 — Android building blocks — theory</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Block</th><th>What it is</th><th>Key point</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Activity</strong></td><td>A single screen — a Java/Kotlin class</td><td>Every screen the user sees is one Activity</td></tr>
+            <tr><td><strong>View</strong></td><td>A UI element (button, label, image)</td><td>Views are arranged in a ViewGroup layout</td></tr>
+            <tr><td><strong>Intent</strong></td><td>A message to start another component</td><td>Start activity, launch service, dial phone, open URL</td></tr>
+            <tr><td><strong>Service</strong></td><td>Background work with no UI</td><td>Runs even when the user switches apps</td></tr>
+            <tr><td><strong>Content Provider</strong></td><td>Shares data between apps</td><td>Used by contacts, media, calendar APIs</td></tr>
+            <tr><td><strong>Fragment</strong></td><td>A reusable piece of a screen</td><td>Multiple fragments can be in one Activity simultaneously</td></tr>
+            <tr><td><strong>Manifest</strong></td><td><code>AndroidManifest.xml</code></td><td>Declares activities, permissions, providers, features</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ---- ANDROIDMANIFEST ---- -->
+      <h3>5 — AndroidManifest.xml — structure and permissions</h3>
+<pre><code>&lt;?xml version=<span class="str">"1.0"</span> encoding=<span class="str">"utf-8"</span>?&gt;
+&lt;manifest xmlns:android=<span class="str">"http://schemas.android.com/apk/res/android"</span>
+    package=<span class="str">"io.ionic.starter"</span>&gt;
+
+    <span class="cm">&lt;!-- === PERMISSIONS (must be declared or the OS blocks the feature) === --&gt;</span>
+    &lt;uses-permission android:name=<span class="str">"android.permission.INTERNET"</span> /&gt;
+    &lt;uses-permission android:name=<span class="str">"android.permission.ACCESS_FINE_LOCATION"</span> /&gt;
+    &lt;uses-permission android:name=<span class="str">"android.permission.ACCESS_COARSE_LOCATION"</span> /&gt;
+    &lt;uses-permission android:name=<span class="str">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;
+    &lt;uses-permission android:name=<span class="str">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;
+    &lt;uses-permission android:name=<span class="str">"android.permission.SCHEDULE_EXACT_ALARM"</span> /&gt;
+    &lt;uses-permission android:name=<span class="str">"android.permission.POST_NOTIFICATIONS"</span> /&gt;
+    &lt;uses-permission android:name=<span class="str">"android.permission.CAMERA"</span> /&gt;
+
+    <span class="cm">&lt;!-- === HARDWARE FEATURES === --&gt;</span>
+    &lt;uses-feature android:name=<span class="str">"android.hardware.location.gps"</span> /&gt;
+    &lt;uses-feature android:name=<span class="str">"android.hardware.camera"</span> /&gt;
+
+    &lt;application
+        android:label=<span class="str">"@string/app_name"</span>
+        android:icon=<span class="str">"@mipmap/ic_launcher"</span>&gt;
+
+        <span class="cm">&lt;!-- === ACTIVITY (one per screen) === --&gt;</span>
+        &lt;activity
+            android:name=<span class="str">".MainActivity"</span>
+            android:exported=<span class="str">"true"</span>&gt;
+            &lt;intent-filter&gt;
+                <span class="cm">&lt;!-- LAUNCHER = this is the app's entry point --&gt;</span>
+                &lt;action android:name=<span class="str">"android.intent.action.MAIN"</span> /&gt;
+                &lt;category android:name=<span class="str">"android.intent.category.LAUNCHER"</span> /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+
+    &lt;/application&gt;
+&lt;/manifest&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What each part does</span>
+        <ul>
+          <li><code>&lt;uses-permission android:name="..."&gt;</code> — declares a permission the app needs. The OS grants or denies it. If you use a Capacitor plugin that needs a permission (e.g. Geolocation) and don't add it here, the plugin will silently fail or throw an error.</li>
+          <li><code>&lt;uses-feature android:name="..."&gt;</code> — declares a hardware feature the app needs. Google Play uses this to filter which devices can install the app.</li>
+          <li><code>android:name=".MainActivity"</code> — the dot-prefix means "relative to the manifest's package". This Activity is what opens when the user taps the app icon.</li>
+          <li><code>&lt;intent-filter&gt;</code> — tells Android what kinds of intents this activity can respond to. <code>action.MAIN</code> + <code>category.LAUNCHER</code> = "start this when the user taps the icon".</li>
+          <li><code>android:exported="true"</code> — required since Android 12; allows the Activity to be launched from outside the app (needed for the launcher).</li>
+        </ul>
+      </div>
+
+      <!-- ---- ANDROID XML VIEWS ---- -->
+      <h3>6 — Android XML layouts: every attribute you need</h3>
+      <p>Android UIs are defined in XML layout files. Understanding the common attributes is what the 2021 Q8 (EditText) and Q7 (SearchView) exam questions tested.</p>
+
+      <h4>Universal layout attributes — every View has these</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Attribute</th><th>Values</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td><code>android:id</code></td><td><code>@+id/myName</code></td><td>Assigns a unique ID. The <code>+</code> means "create this ID if it doesn't exist". Omit <code>+</code> (<code>@id/</code>) when only referencing an existing ID.</td></tr>
+            <tr><td><code>android:layout_width</code></td><td><code>fill_parent</code> / <code>match_parent</code> / <code>wrap_content</code> / <code>64dp</code></td><td>How wide. fill_parent (old name) = match_parent (new name) = fill the parent container. wrap_content = only as wide as the content needs.</td></tr>
+            <tr><td><code>android:layout_height</code></td><td>same as width</td><td>How tall.</td></tr>
+            <tr><td><code>android:text</code></td><td><code>"Hello"</code> / <code>@string/name</code></td><td>The text content (label, button text).</td></tr>
+            <tr><td><code>android:hint</code></td><td><code>"Enter name"</code></td><td>Placeholder text shown when the field is empty (like HTML <code>placeholder</code>).</td></tr>
+            <tr><td><code>android:padding</code></td><td><code>8dp</code></td><td>Inner space on all sides. Also: <code>paddingTop/Bottom/Left/Right</code>.</td></tr>
+            <tr><td><code>android:margin</code></td><td><code>8dp</code></td><td>Outer space (via layout_margin). Also: <code>layout_marginTop</code> etc.</td></tr>
+            <tr><td><code>android:visibility</code></td><td><code>visible</code> / <code>invisible</code> / <code>gone</code></td><td>visible=show, invisible=hidden but takes space, gone=removed (no space).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>EditText — the exam Q8 widget, fully explained</h4>
+<pre><code><span class="cm">&lt;!-- Minimal single-line text input --&gt;</span>
+&lt;EditText
+    android:id=<span class="str">"@+id/username"</span>
+    android:layout_width=<span class="str">"match_parent"</span>
+    android:layout_height=<span class="str">"wrap_content"</span>
+    android:hint=<span class="str">"Enter username"</span> /&gt;
+
+<span class="cm">&lt;!-- Multi-line with autocorrect and sentence capitalisation (2021 Q8) --&gt;</span>
+&lt;EditText
+    android:id=<span class="str">"@+id/multiline"</span>
+    android:layout_width=<span class="str">"fill_parent"</span>
+    android:layout_height=<span class="str">"wrap_content"</span>
+    android:minLines=<span class="str">"3"</span>
+    android:inputType=<span class="str">"textMultiLine|textAutoCorrect|textCapSentences"</span> /&gt;
+
+<span class="cm">&lt;!-- Password input --&gt;</span>
+&lt;EditText
+    android:id=<span class="str">"@+id/password"</span>
+    android:layout_width=<span class="str">"match_parent"</span>
+    android:layout_height=<span class="str">"wrap_content"</span>
+    android:inputType=<span class="str">"textPassword"</span> /&gt;</code></pre>
+
+      <div class="explain">
+        <span class="explain-title">Attribute-by-attribute breakdown (the exam Q8)</span>
+        <ul>
+          <li><code>android:id="@+id/multiline"</code> — creates the ID "multiline" so Java/Kotlin code can find this view with <code>findViewById(R.id.multiline)</code>. The <code>@+id/</code> is mandatory for new IDs.</li>
+          <li><code>android:layout_width="fill_parent"</code> — expands to fill the full width of its parent. <code>fill_parent</code> is the old name; modern Android uses <code>match_parent</code> (both work, but <code>fill_parent</code> was the name in the 2021 exam answer).</li>
+          <li><code>android:layout_height="wrap_content"</code> — the height grows with the text, not a fixed size.</li>
+          <li><code>android:minLines="3"</code> — shows at least 3 lines tall by default, even if empty.</li>
+          <li><code>android:inputType="textMultiLine|textAutoCorrect|textCapSentences"</code> — the pipe (<code>|</code>) combines flags: <code>textMultiLine</code> allows multiple lines, <code>textAutoCorrect</code> turns on spell-check, <code>textCapSentences</code> auto-capitalises the start of each sentence. All three were required by the 2021 question.</li>
+        </ul>
+      </div>
+
+      <h4>All android:inputType flag values</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Flag</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td><code>text</code></td><td>Plain single-line text (default)</td></tr>
+            <tr><td><code>textMultiLine</code></td><td>Multi-line text input</td></tr>
+            <tr><td><code>textPassword</code></td><td>Hides characters with dots/asterisks</td></tr>
+            <tr><td><code>textVisiblePassword</code></td><td>Password keyboard but characters visible</td></tr>
+            <tr><td><code>textEmailAddress</code></td><td>Shows @ key; validates email format</td></tr>
+            <tr><td><code>number</code></td><td>Numeric keyboard, positive integers</td></tr>
+            <tr><td><code>numberDecimal</code></td><td>Numeric with decimal point</td></tr>
+            <tr><td><code>numberSigned</code></td><td>Numbers including negative sign</td></tr>
+            <tr><td><code>phone</code></td><td>Phone number keyboard</td></tr>
+            <tr><td><code>textUri</code></td><td>URL input (shows .com key)</td></tr>
+            <tr><td><code>date</code></td><td>Date input</td></tr>
+            <tr><td><code>textCapSentences</code></td><td>Auto-capitalise start of each sentence</td></tr>
+            <tr><td><code>textCapWords</code></td><td>Auto-capitalise start of each word</td></tr>
+            <tr><td><code>textAutoCorrect</code></td><td>Enable autocorrect/spell-check</td></tr>
+            <tr><td><code>textNoSuggestions</code></td><td>Disable autocorrect</td></tr>
+            <tr><td><code>textAutoComplete</code></td><td>Enable autocomplete suggestions</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout tip">
+        <span class="callout-title">💡 Combining flags</span>
+        <p>Combine multiple flags with <code>|</code> (bitwise OR): <code>textMultiLine|textAutoCorrect|textCapSentences</code>. You can combine as many as make sense together — just be careful not to mix contradictory ones (e.g. <code>textPassword</code> and <code>textMultiLine</code>).</p>
+      </div>
+
+      <h4>Other common XML Views</h4>
+<pre><code><span class="cm">&lt;!-- TextView: display-only text --&gt;</span>
+&lt;TextView
+    android:id=<span class="str">"@+id/label"</span>
+    android:layout_width=<span class="str">"wrap_content"</span>
+    android:layout_height=<span class="str">"wrap_content"</span>
+    android:text=<span class="str">"Hello World"</span>
+    android:textSize=<span class="str">"18sp"</span>
+    android:textColor=<span class="str">"#FF0000"</span> /&gt;
+
+<span class="cm">&lt;!-- Button --&gt;</span>
+&lt;Button
+    android:id=<span class="str">"@+id/btnSubmit"</span>
+    android:layout_width=<span class="str">"wrap_content"</span>
+    android:layout_height=<span class="str">"wrap_content"</span>
+    android:text=<span class="str">"Submit"</span>
+    android:onClick=<span class="str">"onSubmitClicked"</span> /&gt;
+
+<span class="cm">&lt;!-- ImageView --&gt;</span>
+&lt;ImageView
+    android:id=<span class="str">"@+id/photo"</span>
+    android:layout_width=<span class="str">"match_parent"</span>
+    android:layout_height=<span class="str">"200dp"</span>
+    android:src=<span class="str">"@drawable/logo"</span>
+    android:scaleType=<span class="str">"centerCrop"</span> /&gt;
+
+<span class="cm">&lt;!-- CheckBox --&gt;</span>
+&lt;CheckBox
+    android:id=<span class="str">"@+id/cbAgree"</span>
+    android:layout_width=<span class="str">"wrap_content"</span>
+    android:layout_height=<span class="str">"wrap_content"</span>
+    android:text=<span class="str">"I agree to the terms"</span>
+    android:checked=<span class="str">"false"</span> /&gt;</code></pre>
+
+      <h4>Layouts: LinearLayout and RelativeLayout</h4>
+<pre><code><span class="cm">&lt;!-- LinearLayout: stacks children vertically or horizontally --&gt;</span>
+&lt;LinearLayout
+    xmlns:android=<span class="str">"http://schemas.android.com/apk/res/android"</span>
+    android:layout_width=<span class="str">"match_parent"</span>
+    android:layout_height=<span class="str">"match_parent"</span>
+    android:orientation=<span class="str">"vertical"</span>          <span class="cm">&lt;!-- vertical or horizontal --&gt;</span>
+    android:padding=<span class="str">"16dp"</span>&gt;
+
+    &lt;TextView android:layout_width=<span class="str">"wrap_content"</span>
+              android:layout_height=<span class="str">"wrap_content"</span>
+              android:text=<span class="str">"Name:"</span> /&gt;
+
+    &lt;EditText android:layout_width=<span class="str">"match_parent"</span>
+              android:layout_height=<span class="str">"wrap_content"</span>
+              android:hint=<span class="str">"Enter name"</span> /&gt;
+
+&lt;/LinearLayout&gt;
+
+<span class="cm">&lt;!-- RelativeLayout: children positioned relative to each other/parent --&gt;</span>
+&lt;RelativeLayout
+    android:layout_width=<span class="str">"match_parent"</span>
+    android:layout_height=<span class="str">"match_parent"</span>&gt;
+
+    &lt;Button android:id=<span class="str">"@+id/btnOK"</span>
+            android:layout_width=<span class="str">"wrap_content"</span>
+            android:layout_height=<span class="str">"wrap_content"</span>
+            android:text=<span class="str">"OK"</span>
+            android:layout_alignParentBottom=<span class="str">"true"</span>  <span class="cm">&lt;!-- sticks to bottom of parent --&gt;</span>
+            android:layout_centerHorizontal=<span class="str">"true"</span> /&gt; <span class="cm">&lt;!-- centred left-right --&gt;</span>
+
+&lt;/RelativeLayout&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Key layout concepts</span>
+        <ul>
+          <li><code>LinearLayout orientation="vertical"</code> — children are stacked top to bottom. Switch to "horizontal" for left-to-right.</li>
+          <li><code>match_parent</code> on a child's width inside a vertical LinearLayout = "fill the full width".</li>
+          <li><code>RelativeLayout</code> — position children using constraints: <code>layout_below="@id/other"</code>, <code>layout_toRightOf="@id/label"</code>, <code>layout_alignParentBottom="true"</code>.</li>
+          <li>Dimensions use <code>dp</code> (density-independent pixels — scales with screen density) for sizes and <code>sp</code> (scale-independent pixels — also respects user's font size preference) for text.</li>
+        </ul>
+      </div>
+
+      <!-- ---- SEARCHVIEW ---- -->
+      <h3>7 — SearchView and onQueryTextChange — the 2021 Q7 question explained</h3>
+      <p>Android's <code>SearchView</code> is a UI component that provides a text-search box. The method <code>onQueryTextChange</code> is called automatically every time the user types a character. You override it to implement predictive/live search.</p>
+<pre><code><span class="cm">&lt;!-- 1. Declare a SearchView in the layout XML --&gt;</span>
+&lt;SearchView
+    android:id=<span class="str">"@+id/searchView"</span>
+    android:layout_width=<span class="str">"match_parent"</span>
+    android:layout_height=<span class="str">"wrap_content"</span>
+    android:queryHint=<span class="str">"Search games..."</span> /&gt;</code></pre>
+<pre><code><span class="cm">// 2. In your Java Activity, set the OnQueryTextListener</span>
+<span class="type">SearchView</span> searchView = (<span class="type">SearchView</span>) findViewById(<span class="type">R</span>.id.searchView);
+
+searchView.setOnQueryTextListener(<span class="kw">new</span> <span class="type">SearchView.OnQueryTextListener</span>() {
+
+    <span class="cm">// Called when user submits (presses Search button)</span>
+    @<span class="type">Override</span>
+    <span class="kw">public boolean</span> <span class="fn">onQueryTextSubmit</span>(<span class="type">String</span> query) {
+        getResults(query.toLowerCase(), <span class="kw">false</span>);
+        <span class="kw">return true</span>;
+    }
+
+    <span class="cm">// Called on EVERY keystroke — the predictive text method from the exam</span>
+    @<span class="type">Override</span>
+    <span class="kw">public boolean</span> <span class="fn">onQueryTextChange</span>(<span class="type">String</span> input) {
+        searchText = input.replace(<span class="str">" "</span>, <span class="str">"+"</span>).toLowerCase();
+        <span class="kw">if</span> (input.length() &gt; <span class="num">2</span>) {
+            <span class="kw">if</span> (getResults(searchText, <span class="kw">false</span>) == <span class="kw">null</span>) {
+                <span class="kw">if</span> (getResults(searchText, <span class="kw">true</span>) == <span class="kw">null</span>) {
+                    <span class="kw">return false</span>;
+                }
+            }
+            <span class="kw">return true</span>;
+        }
+        <span class="kw">return false</span>;
+    }
+});</code></pre>
+      <div class="explain">
+        <span class="explain-title">Walkthrough of onQueryTextChange (the 2021 Q7 answer)</span>
+        <ol>
+          <li><code>@Override</code> — Java annotation meaning "this method overrides one from the interface/superclass". Required when implementing an interface method.</li>
+          <li><code>public boolean onQueryTextChange(String input)</code> — Android calls this with the full current text after every keystroke. Return <code>true</code> if you handled the query, <code>false</code> if not.</li>
+          <li><code>searchText = input.replace(" ", "+").toLowerCase();</code> — two transformations in one chain: (a) replace every space with <code>+</code> because the hypothetical <code>getResults</code> function doesn't accept spaces; (b) lowercase because it only works with lowercase. The result is stored back into <code>searchText</code> — this is the key bit the real exam script got wrong by writing <code>searchText.toLowerCase()</code> without reassigning (String is immutable in Java).</li>
+          <li><code>if (input.length() &gt; 2)</code> — don't search for 1–2 characters; that would trigger too often and return too many results.</li>
+          <li><code>getResults(searchText, false)</code> — first attempt: search without category expansion. It returns null when nothing found.</li>
+          <li>If null, try <code>getResults(searchText, true)</code> — second attempt: expand to categories. If that is also null, return <code>false</code> (no match at all).</li>
+          <li>If the first call succeeded (not null), the inner <code>if</code> is skipped and we fall through to <code>return true</code>.</li>
+        </ol>
+      </div>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ Java's String is immutable</span>
+        <p><code>myString.toLowerCase()</code> does NOT change <code>myString</code> — it returns a new String. You must write <code>myString = myString.toLowerCase();</code> to actually update the variable. This is different from JavaScript/TypeScript.</p>
+      </div>
+
+      <!-- ---- IONIC NATIVE LEGACY ---- -->
+      <h3>8 — Ionic Native (Cordova) — the 2021 exam stack</h3>
+      <p>The 2021 Q15 used Ionic 5 with Cordova + Ionic Native — older than Capacitor. The key difference is that plugins are injected via the constructor rather than imported as static classes.</p>
+<pre><code><span class="cm">// Install commands (older style)</span>
+<span class="cm">// npm install @ionic-native/http</span>
+<span class="cm">// npm install @ionic-native/native-storage</span>
+
+<span class="cm">// Component TypeScript — HTTP + NativeStorage injected</span>
+<span class="kw">import</span> { HTTP } <span class="kw">from</span> <span class="str">'@ionic-native/http/ngx'</span>;
+<span class="kw">import</span> { NativeStorage } <span class="kw">from</span> <span class="str">'@ionic-native/native-storage/ngx'</span>;
+
+<span class="kw">export class</span> <span class="type">MyPage</span> {
+  id: <span class="type">number</span>; name: <span class="type">string</span>; screenshots: <span class="type">string</span>[] = [];
+
+  constructor(<span class="kw">public</span> http: <span class="type">HTTP</span>, <span class="kw">public</span> nativeStorage: <span class="type">NativeStorage</span>) {}
+
+  doPost() {
+    <span class="kw">this</span>.nativeStorage.getItem(<span class="str">'apikey'</span>).then(apikey =&gt; {
+      <span class="kw">this</span>.http.sendRequest(<span class="str">'https://test.games.com/metadata'</span>, {
+        method:  <span class="str">'post'</span>,
+        data:    { id: <span class="num">216</span>, apikey: apikey },
+        headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> }
+      }).then(response =&gt; {
+        <span class="kw">const</span> body = JSON.parse(response.data); <span class="cm">// body is a STRING, must parse</span>
+        <span class="kw">this</span>.id          = body.data.id;
+        <span class="kw">this</span>.name        = body.data.name;
+        <span class="kw">this</span>.screenshots = body.data.screenshots;
+      });
+    });
+  }
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Key differences from Capacitor</span>
+        <ul>
+          <li>Plugins are classes injected through the constructor (<code>public http: HTTP</code>) rather than static imports.</li>
+          <li><code>nativeStorage.getItem('key')</code> returns a Promise — you must <code>.then(value =&gt; { ... })</code> to use the value inside the callback.</li>
+          <li><code>sendRequest(...)</code> also returns a Promise — chained inside the first <code>.then</code>.</li>
+          <li>The response body (<code>response.data</code>) comes back as a <strong>raw string</strong> — you must <code>JSON.parse(response.data)</code> to get an object. Capacitor does this for you automatically.</li>
+        </ul>
+      </div>
+
     </div>
   </details>
 
