@@ -31,6 +31,10 @@
   <!-- ================= SIDEBAR ================= -->
   <aside class="sidebar">
     <div class="panel nav-panel">
+      <p class="nav-title">Quick index</p>
+      <ul class="nav-list">
+        <li><a href="#slide-index">Slide → notes index</a></li>
+      </ul>
       <p class="nav-title">Frameworks &amp; Languages</p>
       <ul class="nav-list">
         <li><a href="#ts">TypeScript (L30)</a></li>
@@ -72,6 +76,326 @@
 
   <!-- ================= CONTENT ================= -->
   <div class="content">
+
+  <!-- ===================== SLIDE INDEX ===================== -->
+  <section class="study-section" id="slide-index" style="border-left-color: var(--violet);">
+    <div class="section-inner">
+      <p class="section-kicker"><span class="badge scope">Master index</span></p>
+      <h2>Slide → Notes → External links: everything, in one place</h2>
+      <p>Every topic from every lecture slide, where to find it in these notes, and the relevant W3Schools / official docs link. Use this as your first stop in an exam to locate anything quickly.</p>
+
+      <!-- ── L30 TypeScript ── -->
+      <details class="collapsible" style="margin-top:18px">
+        <summary>
+          <div class="summary-head">
+            <div class="summary-title">
+              <span class="tag lect">L30</span>
+              <h2 style="font-size:1.2rem;margin:6px 0 2px">TypeScript</h2>
+              <p>Primitives · Implicit vs Explicit · Enums · Union / Literal types · Interfaces · Classes · Functions · Arrays · Tuples · Generics · for…in vs for…of · Export/Import · <strong>Nested interfaces (2022)</strong></p>
+            </div>
+            <span class="summary-toggle"></span>
+          </div>
+        </summary>
+        <div class="collapsible-body">
+          <div class="table-wrap"><table>
+            <thead><tr><th>Slide topic</th><th>Where in the notes</th><th>External link</th></tr></thead>
+            <tbody>
+              <tr><td>What TypeScript is, tsc compiler, tsconfig.json</td><td><a href="#ts">TypeScript → What &amp; why</a></td><td><a href="https://www.w3schools.com/typescript/index.php" target="_blank">W3S TS overview ↗</a></td></tr>
+              <tr><td>Primitive types: string, number, boolean, any, void, null, undefined</td><td><a href="#ts">TypeScript → Primitive types table</a></td><td><a href="https://www.w3schools.com/typescript/typescript_simple_types.php" target="_blank">W3S simple types ↗</a></td></tr>
+              <tr><td>Implicit vs explicit typing, type inference</td><td><a href="#ts">TypeScript → Implicit vs explicit</a></td><td><a href="https://www.w3schools.com/typescript/typescript_simple_types.php" target="_blank">W3S simple types ↗</a></td></tr>
+              <tr><td>Enums (numeric auto-increment, string enums)</td><td><a href="#ts">TypeScript → Enums</a></td><td><a href="https://www.w3schools.com/typescript/typescript_enums.php" target="_blank">W3S enums ↗</a></td></tr>
+              <tr><td>Custom union types, string-literal types (<code>type Style = 'a' | 'b'</code>)</td><td><a href="#ts">TypeScript → Custom union types</a></td><td><a href="https://www.w3schools.com/typescript/typescript_aliases_and_interfaces.php" target="_blank">W3S aliases ↗</a></td></tr>
+              <tr><td>Interfaces — the big exam question (Module, 2021 Q5)</td><td><a href="#ts">TypeScript → Interfaces — the big one</a></td><td><a href="https://www.w3schools.com/typescript/typescript_aliases_and_interfaces.php" target="_blank">W3S interfaces ↗</a></td></tr>
+              <tr><td><strong>Nested interfaces</strong> (Article/Source/Author, 2022 Q12)</td><td><a href="#ts">TypeScript → Nested interfaces (2022)</a></td><td><a href="https://www.typescriptlang.org/docs/handbook/2/objects.html" target="_blank">TS handbook ↗</a></td></tr>
+              <tr><td>Classes, constructor shorthand (<code>public x: T</code>), access modifiers</td><td><a href="#ts">TypeScript → Classes</a></td><td><a href="https://www.w3schools.com/typescript/typescript_classes.php" target="_blank">W3S classes ↗</a></td></tr>
+              <tr><td>Typed functions, tuples, generics</td><td><a href="#ts">TypeScript → Functions / tuples / generics</a></td><td><a href="https://www.w3schools.com/typescript/typescript_functions.php" target="_blank">W3S functions ↗</a></td></tr>
+              <tr><td>for…in (indices) vs for…of (values)</td><td><a href="#ts">TypeScript → Loops</a></td><td><a href="https://www.w3schools.com/typescript/typescript_simple_types.php" target="_blank">W3S ↗</a></td></tr>
+              <tr><td>Export / import, module system</td><td><a href="#ts">TypeScript → Modules</a></td><td><a href="https://www.typescriptlang.org/docs/handbook/modules.html" target="_blank">TS modules ↗</a></td></tr>
+              <tr><td>Practical example: home.component.ts (Angular tutorial)</td><td><a href="#ex-angular">Angular Example → home.component.ts</a></td><td>—</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <!-- ── L31 Angular ── -->
+      <details class="collapsible" style="margin-top:10px">
+        <summary>
+          <div class="summary-head">
+            <div class="summary-title">
+              <span class="tag lect">L31</span>
+              <h2 style="font-size:1.2rem;margin:6px 0 2px">Angular</h2>
+              <p>Component anatomy · 4 data bindings · ngModel · ngIf / ng-template · ngFor · ngStyle / ngClass · ngSwitch · Routing · Services · Reactive forms · @Input · Lifecycle hooks</p>
+            </div>
+            <span class="summary-toggle"></span>
+          </div>
+        </summary>
+        <div class="collapsible-body">
+          <div class="table-wrap"><table>
+            <thead><tr><th>Slide topic</th><th>Where in the notes</th><th>External link</th></tr></thead>
+            <tbody>
+              <tr><td>Project structure, ng new, ng serve, ng generate</td><td><a href="#ng">Angular → Overview</a>, <a href="#ng-ref">Angular ref → Component anatomy</a></td><td><a href="https://angular.dev/tutorials/learn-angular" target="_blank">angular.dev tutorial ↗</a></td></tr>
+              <tr><td>Component: @Component decorator, selector, templateUrl, styleUrls</td><td><a href="#ng">Angular → Anatomy of a component</a></td><td><a href="https://angular.dev/guide/components" target="_blank">angular.dev components ↗</a></td></tr>
+              <tr><td>app.module.ts: NgModule, declarations, imports, providers, bootstrap</td><td><a href="#ex-angular">Angular Example → app.module.ts</a></td><td>—</td></tr>
+              <tr><td>Routing: Routes array, RouterModule.forRoot, router-outlet, routerLink</td><td><a href="#ng">Angular → Routing</a>, <a href="#ng-ref">Angular ref → Routing</a></td><td><a href="https://angular.dev/guide/routing" target="_blank">angular.dev routing ↗</a></td></tr>
+              <tr><td>Interpolation {{ }}, property binding [ ], event binding ( ), two-way [( )]</td><td><a href="#ng">Angular → Data binding</a></td><td><a href="https://angular.dev/guide/templates" target="_blank">angular.dev templates ↗</a></td></tr>
+              <tr><td>[(ngModel)] two-way binding — requires FormsModule</td><td><a href="#ng">Angular → Data binding → Two-way</a></td><td><a href="https://angular.dev/guide/forms" target="_blank">angular.dev forms ↗</a></td></tr>
+              <tr><td>*ngIf, ng-template, [ngIfElse], #reference variables</td><td><a href="#ng">Angular → Conditionals</a></td><td><a href="https://angular.dev/guide/directives" target="_blank">angular.dev directives ↗</a></td></tr>
+              <tr><td>*ngFor — loop, index, first/last, nested</td><td><a href="#ng">Angular → *ngFor</a></td><td><a href="https://angular.dev/guide/directives" target="_blank">angular.dev directives ↗</a></td></tr>
+              <tr><td>[ngStyle] inline CSS from condition; [ngClass] / [class.x]</td><td><a href="#ng">Angular → Dynamic styling</a></td><td><a href="https://angular.dev/guide/directives" target="_blank">angular.dev directives ↗</a></td></tr>
+              <tr><td>[ngSwitch], *ngSwitchCase, *ngSwitchDefault</td><td><a href="#ex-angular">Angular Example → app.component.html</a></td><td>—</td></tr>
+              <tr><td>Lifecycle hooks: constructor vs ngOnInit, ngOnDestroy</td><td><a href="#ng-ref">Angular ref → Lifecycle hooks</a></td><td><a href="https://angular.dev/guide/lifecycle-hooks" target="_blank">angular.dev hooks ↗</a></td></tr>
+              <tr><td>@Input() decorator, parent → child data passing</td><td><a href="#ng-ref">Angular ref → @Input()</a></td><td><a href="https://angular.dev/guide/components/inputs" target="_blank">angular.dev inputs ↗</a></td></tr>
+              <tr><td>Query parameters: router.navigate, ActivatedRoute.queryParams</td><td><a href="#ng-ref">Angular ref → Routing (query params)</a></td><td>—</td></tr>
+              <tr><td>Services, @Injectable, HttpClient, Observable.subscribe</td><td><a href="#ng-ref">Angular ref → Services</a></td><td>—</td></tr>
+              <tr><td>Reactive forms: FormBuilder, FormGroup, Validators</td><td><a href="#ng-ref">Angular ref → Reactive forms</a></td><td><a href="https://angular.dev/guide/forms/reactive-forms" target="_blank">angular.dev reactive forms ↗</a></td></tr>
+              <tr><td><strong>2021 Q14 cart template</strong> (ngFor + ngIf + ngStyle)</td><td><a href="#ng">Angular → Worked example (Q14)</a>, <a href="#pp2021">2021 paper Q14</a></td><td>—</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <!-- ── L32 React ── -->
+      <details class="collapsible" style="margin-top:10px">
+        <summary>
+          <div class="summary-head">
+            <div class="summary-title">
+              <span class="tag lect">L32</span>
+              <h2 style="font-size:1.2rem;margin:6px 0 2px">React</h2>
+              <p>Components · Props · useState hook · Events · Rendering lists (key prop) · Conditional rendering · Declarative vs Imperative · React vs Angular</p>
+            </div>
+            <span class="summary-toggle"></span>
+          </div>
+        </summary>
+        <div class="collapsible-body">
+          <div class="table-wrap"><table>
+            <thead><tr><th>Slide topic</th><th>Where in the notes</th><th>External link</th></tr></thead>
+            <tbody>
+              <tr><td>What React is: library vs framework, component-based, state-driven, declarative, JSX</td><td><a href="#react">React → What is React?</a></td><td><a href="https://www.w3schools.com/react/default.asp" target="_blank">W3S React ↗</a></td></tr>
+              <tr><td>Function components with typed props (TypeScript)</td><td><a href="#react">React → Components &amp; props</a></td><td><a href="https://react.dev/learn/your-first-component" target="_blank">react.dev ↗</a></td></tr>
+              <tr><td>useState hook: [value, setter], initial value, re-render</td><td><a href="#react">React → State — useState</a></td><td><a href="https://react.dev/reference/react/useState" target="_blank">react.dev useState ↗</a></td></tr>
+              <tr><td>Event handling: onClick, passing vs calling handlers</td><td><a href="#react">React → Events</a></td><td>—</td></tr>
+              <tr><td>Rendering lists with .map(), unique key prop</td><td><a href="#react">React → Rendering lists</a></td><td>—</td></tr>
+              <tr><td>Conditional rendering: &amp;&amp;, ternary, if statement</td><td><a href="#react">React → Conditionals</a></td><td>—</td></tr>
+              <tr><td>React vs Angular comparison table</td><td><a href="#react">React → React vs Angular</a></td><td>—</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <!-- ── L33–36 Ionic ── -->
+      <details class="collapsible" style="margin-top:10px">
+        <summary>
+          <div class="summary-head">
+            <div class="summary-title">
+              <span class="tag lect">L33–36</span>
+              <h2 style="font-size:1.2rem;margin:6px 0 2px">Ionic &amp; Hybrid Mobile</h2>
+              <p>Hybrid concept · Framework comparison · All UI components · Capacitor plugins · NativeStorage · Android building blocks · AndroidManifest · XML layouts · SearchView · onScroll · OkHttpClient · 2021 &amp; 2022 exam patterns</p>
+            </div>
+            <span class="summary-toggle"></span>
+          </div>
+        </summary>
+        <div class="collapsible-body">
+          <div class="table-wrap"><table>
+            <thead><tr><th>Slide topic</th><th>Lecture</th><th>Where in the notes</th><th>External link</th></tr></thead>
+            <tbody>
+              <tr><td>Hybrid mobile concept, advantages, disadvantages</td><td>L33</td><td><a href="#ionic">Ionic → Hybrid mobile concept</a></td><td>—</td></tr>
+              <tr><td>Framework comparison: Flutter, React Native, Cordova, Xamarin, Ionic</td><td>L33</td><td><a href="#ionic">Ionic → Framework comparison</a></td><td>—</td></tr>
+              <tr><td>ionic start, ionic serve, ionic cap add/run, npx cap sync</td><td>L33</td><td><a href="#ionic">Ionic → (version callout)</a>, <a href="#ionic-ref">Ionic ref → Section A</a></td><td><a href="https://ionicframework.com/docs/intro/cli" target="_blank">Ionic docs ↗</a></td></tr>
+              <tr><td>ion-list, ion-item, ion-label, ion-card, ion-card-header/content</td><td>L34</td><td><a href="#ionic-ref">Ionic ref → UI components → list/card</a></td><td><a href="https://ionicframework.com/docs/api/list" target="_blank">Ionic list ↗</a></td></tr>
+              <tr><td>ion-input (all types + label positions: floating/fixed/stacked)</td><td>L34</td><td><a href="#ionic-ref">Ionic ref → UI components → ion-input</a></td><td><a href="https://ionicframework.com/docs/api/input" target="_blank">Ionic input ↗</a></td></tr>
+              <tr><td>ion-tabs, ion-tab-bar, ion-tab-button, ion-badge (notification)</td><td>L34</td><td><a href="#ionic-ref">Ionic ref → UI components → tabs</a></td><td><a href="https://ionicframework.com/docs/api/tabs" target="_blank">Ionic tabs ↗</a></td></tr>
+              <tr><td>Toast (Capacitor Toast.show + ToastController)</td><td>L34</td><td><a href="#ionic-ref">Ionic ref → UI → Toast</a></td><td><a href="https://ionicframework.com/docs/api/toast" target="_blank">Ionic toast ↗</a></td></tr>
+              <tr><td>Alert (AlertController.create: header, subHeader, message, buttons)</td><td>L34</td><td><a href="#ionic-ref">Ionic ref → UI → Alert</a></td><td><a href="https://ionicframework.com/docs/api/alert" target="_blank">Ionic alert ↗</a></td></tr>
+              <tr><td>Action Sheet (Capacitor ActionSheet + ActionSheetController, role: 'destructive'/'cancel')</td><td>L34</td><td><a href="#ionic-ref">Ionic ref → UI → Action Sheet</a></td><td><a href="https://ionicframework.com/docs/api/action-sheet" target="_blank">Ionic action sheet ↗</a></td></tr>
+              <tr><td>Modal (ModalController, componentProps, onDidDismiss)</td><td>L34</td><td><a href="#ionic-ref">Ionic ref → UI → Modal</a></td><td><a href="https://ionicframework.com/docs/api/modal" target="_blank">Ionic modal ↗</a></td></tr>
+              <tr><td>Popover (PopoverController, event positioning)</td><td>L34</td><td><a href="#ionic-ref">Ionic ref → UI → Popover</a></td><td><a href="https://ionicframework.com/docs/api/popover" target="_blank">Ionic popover ↗</a></td></tr>
+              <tr><td>ion-checkbox, ion-chip, ion-badge, ion-select, ion-searchbar, ion-fab, ion-grid</td><td>L34</td><td><a href="#ionic-ref">Ionic ref → UI → misc components</a></td><td><a href="https://ionicframework.com/docs/components" target="_blank">Ionic components ↗</a></td></tr>
+              <tr><td>Android building blocks: Activity, View, Intent, Service, Content Provider, Fragment, Manifest</td><td>L35</td><td><a href="#ionic-ref">Ionic ref → Section 4 Android blocks</a></td><td>—</td></tr>
+              <tr><td>AndroidManifest.xml: permissions, uses-feature, activity, intent-filter</td><td>L35</td><td><a href="#ionic-ref">Ionic ref → Section 5 Manifest</a></td><td><a href="https://developer.android.com/guide/topics/manifest/manifest-intro" target="_blank">Android manifest ↗</a></td></tr>
+              <tr><td>Filesystem plugin: writeFile, readFile, deleteFile, Directory, Encoding</td><td>L35</td><td><a href="#ionic-ref">Ionic ref → Filesystem</a></td><td><a href="https://capacitorjs.com/docs/apis/filesystem" target="_blank">Capacitor filesystem ↗</a></td></tr>
+              <tr><td>Geolocation plugin: getCurrentPosition, coords.latitude/longitude</td><td>L35</td><td><a href="#ionic-ref">Ionic ref → Geolocation</a></td><td><a href="https://capacitorjs.com/docs/apis/geolocation" target="_blank">Capacitor geolocation ↗</a></td></tr>
+              <tr><td>Local Notifications: requestPermissions, schedule, capacitor.config</td><td>L35</td><td><a href="#ionic-ref">Ionic ref → Local Notifications</a></td><td><a href="https://capacitorjs.com/docs/apis/local-notifications" target="_blank">Capacitor notifications ↗</a></td></tr>
+              <tr><td>Share plugin: Share.share(title, text, url, dialogTitle)</td><td>L35</td><td><a href="#ionic-ref">Ionic ref → Share</a></td><td><a href="https://capacitorjs.com/docs/apis/share" target="_blank">Capacitor share ↗</a></td></tr>
+              <tr><td>Network plugin: getStatus, addListener (Capacitor)</td><td>L35</td><td><a href="#ionic-ref">Ionic ref → Network status</a></td><td><a href="https://capacitorjs.com/docs/apis/network" target="_blank">Capacitor network ↗</a></td></tr>
+              <tr><td>CapacitorHttp GET and POST: HttpOptions, url/headers/data/params, response.data</td><td>L35/L36</td><td><a href="#ionic-ref">Ionic ref → CapacitorHttp GET and POST</a></td><td><a href="https://capacitorjs.com/docs/apis/http" target="_blank">Capacitor HTTP ↗</a></td></tr>
+              <tr><td><strong>NativeStorage</strong>: getItem / setItem / remove / clear (2021 exam)</td><td>L35 (implicit)</td><td><a href="#ionic-ref">Ionic ref → Section 3b NativeStorage</a></td><td><a href="https://ionicframework.com/docs/native/native-storage" target="_blank">Ionic Native storage ↗</a></td></tr>
+              <tr><td>Reactive forms in Ionic: FormBuilder, FormGroup, Validators, formControlName</td><td>L36</td><td><a href="#ionic">Ionic → Reactive forms</a>, <a href="#ng-ref">Angular ref → Reactive forms</a></td><td>—</td></tr>
+              <tr><td>Android XML layouts: EditText, inputType flags, fill_parent, wrap_content, minLines</td><td>L35</td><td><a href="#ionic-ref">Ionic ref → Section 6 Android XML layouts</a></td><td><a href="https://developer.android.com/reference/android/widget/EditText" target="_blank">EditText ref ↗</a></td></tr>
+              <tr><td>SearchView + onQueryTextChange (2021 Q7)</td><td>L35</td><td><a href="#ionic-ref">Ionic ref → Section D + Section 7</a></td><td>—</td></tr>
+              <tr><td>Network check + POST pattern — onConnect().subscribe (2022 Q7)</td><td>L35 (implicit)</td><td><a href="#ionic-ref">Ionic ref → Section B + Network check</a></td><td>—</td></tr>
+              <tr><td>onScroll + Toast.makeText (2022 Q14)</td><td>L35 (implicit)</td><td><a href="#ionic-ref">Ionic ref → Section F + Android onScroll</a></td><td>—</td></tr>
+              <tr><td>OkHttpClient bugs — what's wrong? (2022 Q10)</td><td>L35</td><td><a href="#ionic-ref">Ionic ref → Section G + Android OkHttpClient</a></td><td>—</td></tr>
+              <tr><td>Ionic Native (2021 stack): sendRequest, NativeStorage, JSON.parse(response.data)</td><td>L35 (implicit)</td><td><a href="#ionic-ref">Ionic ref → Section 8 Ionic Native</a></td><td>—</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <!-- ── L37 Bootstrap ── -->
+      <details class="collapsible" style="margin-top:10px">
+        <summary>
+          <div class="summary-head">
+            <div class="summary-title">
+              <span class="tag lect">L37</span>
+              <h2 style="font-size:1.2rem;margin:6px 0 2px">Bootstrap</h2>
+              <p>CDN setup · 12-column grid · Containers · Tables · Buttons · Dropdowns · Images · Carousel · Tabs &amp; Pills · Navigation bar · Modals · Alerts · Progress bar · Spinner · scope="col/row" (2022) · BS3 vs BS5</p>
+            </div>
+            <span class="summary-toggle"></span>
+          </div>
+        </summary>
+        <div class="collapsible-body">
+          <div class="table-wrap"><table>
+            <thead><tr><th>Slide topic</th><th>Where in the notes</th><th>External link</th></tr></thead>
+            <tbody>
+              <tr><td>CDN setup: CSS → jQuery → bootstrap.js (order matters), viewport meta</td><td><a href="#bs">Bootstrap → Install</a>, <a href="#ex-bootstrap">Bootstrap Example → HelloWorld.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_get_started.asp" target="_blank">W3S Bootstrap start ↗</a></td></tr>
+              <tr><td>container vs container-fluid</td><td><a href="#bs">Bootstrap → 12-column grid</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_grid_basic.php" target="_blank">W3S grid ↗</a></td></tr>
+              <tr><td>Grid: row, col-xs-*, col-sm-*, col-md-*, col-lg-* (numbers add to 12)</td><td><a href="#bs">Bootstrap → 12-column grid</a>, <a href="#ex-bootstrap">Bootstrap Example → GridExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_grid_basic.php" target="_blank">W3S grid ↗</a></td></tr>
+              <tr><td>Tables: table, table-striped, table-bordered, table-hover, table-dark, scope="col/row"</td><td><a href="#bs">Bootstrap → Common components</a>, <a href="#ex-bootstrap">Bootstrap Example → TableExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_tables.asp" target="_blank">W3S tables ↗</a></td></tr>
+              <tr><td>Buttons: btn + btn-default/primary/success/info/warning/danger/link, btn-lg/sm/xs</td><td><a href="#bs">Bootstrap → Common components</a>, <a href="#ex-bootstrap">Bootstrap Example → ButtonsExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_buttons.asp" target="_blank">W3S buttons ↗</a></td></tr>
+              <tr><td>Dropdowns: dropdown, dropdown-toggle, dropdown-menu, caret</td><td><a href="#ex-bootstrap">Bootstrap Example → DropdownExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_dropdowns.asp" target="_blank">W3S dropdowns ↗</a></td></tr>
+              <tr><td>Images: img-responsive, img-thumbnail, img-rounded, img-circle</td><td><a href="#bs">Bootstrap → Common components</a>, <a href="#ex-bootstrap">Bootstrap Example → ImageCrop</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_images.asp" target="_blank">W3S images ↗</a></td></tr>
+              <tr><td>Carousel: data-ride, carousel-indicators, carousel-inner, item, carousel-control, glyphicons</td><td><a href="#ex-bootstrap">Bootstrap Example → CarouselExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_carousel.asp" target="_blank">W3S carousel ↗</a></td></tr>
+              <tr><td>Tabs: nav nav-tabs; Pills: nav nav-pills, nav-stacked; dropdown inside nav</td><td><a href="#ex-bootstrap">Bootstrap Example → TabExample / PillsExample</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_tabs_pills.asp" target="_blank">W3S tabs/pills ↗</a></td></tr>
+              <tr><td>Navbar: navbar-default/inverse, navbar-brand, navbar-nav, active, navbar-fixed-top, navbar-right, collapsible hamburger</td><td><a href="#ex-bootstrap">Bootstrap Example → NavBarExample 1–4</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_navbar.asp" target="_blank">W3S navbar ↗</a></td></tr>
+              <tr><td>Modal: data-toggle, data-target, modal fade, data-backdrop, data-dismiss, modal-header/body/footer</td><td><a href="#ex-bootstrap">Bootstrap Example → ModalExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_modal.asp" target="_blank">W3S modal ↗</a></td></tr>
+              <tr><td>Alerts: alert alert-primary/danger/success/warning</td><td><a href="#bs">Bootstrap → Other useful components</a></td><td><a href="https://www.w3schools.com/bootstrap5/bootstrap_alerts.php" target="_blank">W3S alerts ↗</a></td></tr>
+              <tr><td>Progress bar, spinner, badge, breadcrumb</td><td><a href="#bs">Bootstrap → Other useful components</a></td><td><a href="https://www.w3schools.com/bootstrap5/bootstrap_progressbars.php" target="_blank">W3S progress ↗</a></td></tr>
+              <tr><td><strong>scope="col" / scope="row"</strong> on &lt;th&gt; (2022 Q5)</td><td><a href="#bs">Bootstrap → Fill-in-the-blank (2022)</a></td><td>—</td></tr>
+              <tr><td>Bootstrap 3 → Bootstrap 5 key differences (col-xs→col, img-responsive→img-fluid, etc.)</td><td><a href="#bs">Bootstrap → BS3 → BS5 differences</a></td><td><a href="https://www.w3schools.com/bootstrap5/index.php" target="_blank">W3S Bootstrap 5 ↗</a></td></tr>
+              <tr><td>Practical examples (all 12 HTML files)</td><td><a href="#ex-bootstrap">Bootstrap Examples section</a></td><td>—</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <!-- ── L38 MongoDB ── -->
+      <details class="collapsible" style="margin-top:10px">
+        <summary>
+          <div class="summary-head">
+            <div class="summary-title">
+              <span class="tag lect">L38</span>
+              <h2 style="font-size:1.2rem;margin:6px 0 2px">MongoDB</h2>
+              <p>Big Data · NoSQL types · SQL vs MongoDB terminology · Insert / Find / Sort / Projection / Update / Remove · Aggregation pipeline · $match before $group (2022)</p>
+            </div>
+            <span class="summary-toggle"></span>
+          </div>
+        </summary>
+        <div class="collapsible-body">
+          <div class="table-wrap"><table>
+            <thead><tr><th>Slide topic</th><th>Where in the notes</th><th>External link</th></tr></thead>
+            <tbody>
+              <tr><td>Why NoSQL: SQL problems (schema, hypermedia, scale), dynamic schema</td><td><a href="#mongo">MongoDB → Why NoSQL</a></td><td><a href="https://www.w3schools.com/mongodb/mongodb_intro.php" target="_blank">W3S MongoDB intro ↗</a></td></tr>
+              <tr><td>NoSQL types: key-value (Dynamo), document (MongoDB), wide-column (Cassandra), graph (Neo4j)</td><td><a href="#mongo">MongoDB → Why NoSQL</a></td><td>—</td></tr>
+              <tr><td>SQL → MongoDB terminology: Table→Collection, Row→Document, Column→Field, PK→_id</td><td><a href="#mongo">MongoDB → Terminology table</a></td><td><a href="https://www.w3schools.com/mongodb/mongodb_intro.php" target="_blank">W3S ↗</a></td></tr>
+              <tr><td>insert (single + array), use / selectDB</td><td><a href="#mongo">MongoDB → CRUD</a>, <a href="#ex-mongo">MongoDB Example → Mongo.js</a></td><td><a href="https://www.w3schools.com/mongodb/mongodb_insert.php" target="_blank">W3S insert ↗</a></td></tr>
+              <tr><td>find: {} all, exact match, $lt $lte $gt $gte $ne $or, AND (implicit multi-key)</td><td><a href="#mongo">MongoDB → CRUD</a>, <a href="#ex-mongo">MongoDB Example → Mongo.js</a></td><td><a href="https://www.w3schools.com/mongodb/mongodb_find.php" target="_blank">W3S find ↗</a></td></tr>
+              <tr><td>sort (1=asc, -1=desc), projection (1=show, 0=hide)</td><td><a href="#mongo">MongoDB → CRUD</a></td><td><a href="https://www.w3schools.com/mongodb/mongodb_query_sort.php" target="_blank">W3S sort ↗</a></td></tr>
+              <tr><td>update with $set (IMPORTANT: without $set the whole doc is replaced)</td><td><a href="#mongo">MongoDB → CRUD</a></td><td><a href="https://www.w3schools.com/mongodb/mongodb_update.php" target="_blank">W3S update ↗</a></td></tr>
+              <tr><td>remove (filter), remove ({}), drop (whole collection)</td><td><a href="#mongo">MongoDB → CRUD</a></td><td><a href="https://www.w3schools.com/mongodb/mongodb_delete.php" target="_blank">W3S delete ↗</a></td></tr>
+              <tr><td>Aggregation pipeline: $group (_id, $avg/$sum/$min/$max), $match, $sort, $out</td><td><a href="#mongo">MongoDB → Aggregation pipeline</a></td><td><a href="https://www.w3schools.com/mongodb/mongodb_aggregations_intro.php" target="_blank">W3S aggregation ↗</a></td></tr>
+              <tr><td><strong>$match BEFORE $group</strong> — filter first then aggregate (2022 Q9)</td><td><a href="#mongo">MongoDB → $match before $group (2022)</a></td><td>—</td></tr>
+              <tr><td>PHP driver: MongoClient, selectDB, collection, find cursor, foreach</td><td><a href="#ex-mongo">MongoDB Example → Mongo.php</a></td><td>—</td></tr>
+              <tr><td>2021 Q10: average age per office (group first)</td><td><a href="#pp2021">2021 paper Q10</a></td><td>—</td></tr>
+              <tr><td>2022 Q9: average age active staff (match first, then group)</td><td><a href="#pp2022">2022 paper Q9</a></td><td>—</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <!-- ── L39 Security ── -->
+      <details class="collapsible" style="margin-top:10px">
+        <summary>
+          <div class="summary-head">
+            <div class="summary-title">
+              <span class="tag lect">L39</span>
+              <h2 style="font-size:1.2rem;margin:6px 0 2px">Advanced Web Security</h2>
+              <p>LFI · RFI · SSRF · XXE · Pen testing · Cookies &amp; DOM storage · XSS · CSRF · Cookie wildcard stealing (2022) · Network Firewall vs WAF / OSI (2022) · DOM storage conversion (2022)</p>
+            </div>
+            <span class="summary-toggle"></span>
+          </div>
+        </summary>
+        <div class="collapsible-body">
+          <div class="table-wrap"><table>
+            <thead><tr><th>Slide topic</th><th>Where in the notes</th><th>External link</th></tr></thead>
+            <tbody>
+              <tr><td>LFI: path traversal (../../), PHP wrappers, vulnerable include(), defences (whitelist, open_basedir)</td><td><a href="#sec">Security → LFI</a></td><td><a href="https://portswigger.net/web-security/file-path-traversal" target="_blank">PortSwigger LFI ↗</a></td></tr>
+              <tr><td>RFI: allow_url_include, remote shell, defences; LFI vs RFI comparison table</td><td><a href="#sec">Security → RFI</a></td><td>—</td></tr>
+              <tr><td>SSRF: internal network scan, cloud metadata (169.254.169.254), port scanning, defences</td><td><a href="#sec">Security → SSRF</a></td><td><a href="https://portswigger.net/web-security/ssrf" target="_blank">PortSwigger SSRF ↗</a></td></tr>
+              <tr><td>XXE: DOCTYPE external entity, file disclosure, defences (disable DTD, prefer JSON) — 2021 Q13</td><td><a href="#sec">Security → XXE</a></td><td><a href="https://portswigger.net/web-security/xxe" target="_blank">PortSwigger XXE ↗</a></td></tr>
+              <tr><td>Penetration testing: black/white/gray box; 5 phases</td><td><a href="#sec">Security → Penetration testing</a></td><td><a href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP Top 10 ↗</a></td></tr>
+              <tr><td>Cookies: Set-Cookie header, 4KB max, sessionStorage vs localStorage — 2021 Q4</td><td><a href="#sec">Security → Cookies &amp; DOM storage</a></td><td>—</td></tr>
+              <tr><td><strong>XSS</strong>: user input in DOM, fix = escape + prepared statements — 2022 Q1</td><td><a href="#sec">Security → XSS &amp; CSRF</a></td><td>—</td></tr>
+              <tr><td><strong>CSRF</strong>: static vs dynamic token, fix = generate fresh token per request — 2022 Q1</td><td><a href="#sec">Security → XSS &amp; CSRF</a></td><td>—</td></tr>
+              <tr><td><strong>Cookie wildcard stealing</strong>: *.domain, shared server, session hijack — 2022 Q2</td><td><a href="#sec">Security → Cookie wildcard stealing</a></td><td>—</td></tr>
+              <tr><td><strong>Network Firewall (L3–4) vs WAF (L7)</strong> OSI model — 2022 Q13</td><td><a href="#sec">Security → Network Firewall vs WAF</a></td><td>—</td></tr>
+              <tr><td><strong>DOM storage conversion</strong>: sessionStorage vs localStorage, JSON.stringify with expiry — 2022 Q11</td><td><a href="#sec">Security → Converting cookies to DOM storage</a></td><td>—</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <!-- ── L40 Django ── -->
+      <details class="collapsible" style="margin-top:10px">
+        <summary>
+          <div class="summary-head">
+            <div class="summary-title">
+              <span class="tag lect">L40</span>
+              <h2 style="font-size:1.2rem;margin:6px 0 2px">Django</h2>
+              <p>MTV architecture · Models (all field types) · Views (render, requests.post/get) · Templates (extends, block, for, if, | safe) · Forms (ModelForm, csrf_token) · URLs (path, include) · Admin · Django from JSON (2022)</p>
+            </div>
+            <span class="summary-toggle"></span>
+          </div>
+        </summary>
+        <div class="collapsible-body">
+          <div class="table-wrap"><table>
+            <thead><tr><th>Slide topic</th><th>Where in the notes</th><th>External link</th></tr></thead>
+            <tbody>
+              <tr><td>MTV architecture: Model (data), Template (HTML), View (logic)</td><td><a href="#django">Django → Overview &amp; MTV</a></td><td><a href="https://www.w3schools.com/django/index.php" target="_blank">W3S Django ↗</a></td></tr>
+              <tr><td>Setup: pip install, startproject, startapp, makemigrations, migrate, createsuperuser, runserver</td><td><a href="#django">Django → (migrations callout)</a></td><td><a href="https://docs.djangoproject.com/en/stable/intro/tutorial01/" target="_blank">Django tutorial ↗</a></td></tr>
+              <tr><td>Models: CharField, IntegerField, PositiveIntegerField, ForeignKey (CASCADE), BooleanField, DateTimeField, blank=True vs null=True, __str__</td><td><a href="#django">Django → Models</a>, <a href="#ex-django-cars">Cars project → models.py</a></td><td><a href="https://www.w3schools.com/django/django_models.php" target="_blank">W3S models ↗</a></td></tr>
+              <tr><td><strong>TextField, URLField, DateTimeField</strong> — new field types from 2022 Q3</td><td><a href="#django">Django → Models (2022 Article callout + field types table)</a></td><td>—</td></tr>
+              <tr><td><strong>Django model from JSON</strong> — pick correct field type from value shape (2022 Q3)</td><td><a href="#django">Django → Models (2022 callout)</a>, <a href="#pp2022">2022 paper Q3</a></td><td>—</td></tr>
+              <tr><td>Views: def view(request), requests.post().json(), render(request, template, data)</td><td><a href="#django">Django → Views</a>, <a href="#ex-django-cars">Cars project → views.py</a></td><td><a href="https://www.w3schools.com/django/django_views.php" target="_blank">W3S views ↗</a></td></tr>
+              <tr><td>ModelForm: class Meta, model, fields, is_valid(), save()</td><td><a href="#django">Django → Forms</a>, <a href="#ex-django-cars">Cars project → forms.py</a></td><td><a href="https://www.w3schools.com/django/django_add_records.php" target="_blank">W3S forms ↗</a></td></tr>
+              <tr><td>Templates: {% extends %}, {% block content %}, {{ var }}, {% for %}, {% if/else/endif %}, {% csrf_token %}, {{ form.as_p }}, {{ data | safe }}</td><td><a href="#django">Django → Templates</a>, <a href="#ex-django-cars">Cars templates</a>, <a href="#ex-django-covid">Covid templates</a></td><td><a href="https://www.w3schools.com/django/django_template_tags.php" target="_blank">W3S template tags ↗</a></td></tr>
+              <tr><td>URLs: path('', view, name=), include('app.urls'), project-level urls.py</td><td><a href="#django">Django → URLs</a>, <a href="#ex-django-cars">Cars project → urls.py</a></td><td>—</td></tr>
+              <tr><td>Admin: admin.site.register(Model)</td><td><a href="#django">Django → (admin callout)</a>, <a href="#ex-django-cars">Cars project → admin.py</a></td><td>—</td></tr>
+              <tr><td>Practical: Cars project (ForeignKey, viewMakes, DataTables)</td><td><a href="#ex-django-cars">Django: Cars Project section</a></td><td>—</td></tr>
+              <tr><td>Practical: Covid project (GET request, Bootstrap 5, {{ | safe }}, jQuery filter)</td><td><a href="#ex-django-covid">Django: Covid Project section</a></td><td>—</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <!-- ── Past Papers & Mocks ── -->
+      <details class="collapsible" style="margin-top:10px">
+        <summary>
+          <div class="summary-head">
+            <div class="summary-title">
+              <span class="tag new">Exam practice</span>
+              <h2 style="font-size:1.2rem;margin:6px 0 2px">Past papers &amp; mock tests</h2>
+              <p>2021 paper (9 in-scope questions) · 2022 paper (11 in-scope questions) · 4 mock tests</p>
+            </div>
+            <span class="summary-toggle"></span>
+          </div>
+        </summary>
+        <div class="collapsible-body">
+          <div class="table-wrap"><table>
+            <thead><tr><th>Paper / Mock</th><th>Key topics tested</th><th>Link</th></tr></thead>
+            <tbody>
+              <tr><td>2021 EO3</td><td>Cookies/DOM storage · TypeScript Module interface · Android SearchView · EditText XML · Bootstrap classes · MongoDB avg per office · XXE · Angular cart template · Ionic NativeStorage POST</td><td><a href="#pp2021">2021 Past Paper</a></td></tr>
+              <tr><td>2022 EO3</td><td>Cookie wildcard stealing · Django Article model (URLField/DateTimeField) · Bootstrap fill-in-blank (scope=) · XSS+CSRF · Ionic network check POST · MongoDB active-staff avg · OkHttpClient bugs · DOM storage conversion · TypeScript nested interfaces · WAF vs Network Firewall · Android onScroll Toast</td><td><a href="#pp2022">2022 Past Paper</a></td></tr>
+              <tr><td>Mock 1 — HealthTrack</td><td>Cookies · LFI · TypeScript Exercise interface · Bootstrap dashboard · Angular workout list · MongoDB calories aggregation · Ionic POST + list</td><td><a href="#mock1">Mock Test 1</a></td></tr>
+              <tr><td>Mock 2 — GameHub</td><td>SSRF · LFI vs RFI · TypeScript Game interface · Angular wishlist · Bootstrap 3-col cards · MongoDB filtered genres · Ionic search + Toast · Pen testing</td><td><a href="#mock2">Mock Test 2</a></td></tr>
+              <tr><td>Mock 3 — NewsFlash (2022 style)</td><td>XSS+CSRF · Cookie wildcard · TypeScript nested interfaces · DOM storage conversion · Bootstrap fill-blank · MongoDB filter-then-group · Django NewsItem model · Ionic network check · WAF</td><td><a href="#mock3">Mock Test 3</a></td></tr>
+              <tr><td>Mock 4 — StockTrack (2022 style, harder)</td><td>Cookies+JSON.stringify · WAF reasoning · TypeScript 3-level interfaces · Django DecimalField · Bootstrap fill-blank · MongoDB two-$match pipeline · Ionic network+Toast · Android onScroll formatted message</td><td><a href="#mock4">Mock Test 4</a></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+    </div>
+  </section>
 
   <!-- SCOPE / HOW TO USE -->
   <section class="study-section scope" id="scope">
@@ -2352,7 +2676,7 @@ meals: <span class="type">MealSummary</span>[] = [];</code></pre>
         <div class="summary-title">
           <span class="tag lect">Ionic</span>
           <h2>Ionic — Complete Practical Reference</h2>
-          <p>Every UI component, every Capacitor plugin, every Android XML attribute, and all native concepts — explained thoroughly from the L33–36 slides and Tutorial 8.</p>
+          <p>Every UI component, every Capacitor plugin, every Android XML attribute, all native concepts — plus step-by-step guides on exactly how to approach every question type that has appeared in past papers.</p>
         </div>
         <span class="summary-toggle"></span>
       </div>
@@ -2364,6 +2688,432 @@ meals: <span class="type">MealSummary</span>[] = [];</code></pre>
         <a class="w3link" href="https://developer.android.com/reference/android/widget/EditText">EditText reference</a>
         <a class="w3link" href="https://developer.android.com/guide/topics/manifest/manifest-intro">AndroidManifest guide</a>
       </div>
+
+      <!-- =================== HOW TO READ IONIC EXAM QUESTIONS =================== -->
+      <h3>0 — How to read an Ionic exam question (read this first)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 The exam always asks one of six things — identify which one immediately</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>If the question says…</th><th>Question type</th><th>Jump to</th></tr></thead>
+          <tbody>
+            <tr><td>"Write a function that makes a POST/GET request and displays data" + gives you a template</td><td>HTTP function + template</td><td>Section A below</td></tr>
+            <tr><td>"Check for internet connection, then make a request"</td><td>Network check + POST</td><td>Section B below</td></tr>
+            <tr><td>"Retrieve an API key from NativeStorage, then POST"</td><td>NativeStorage + sendRequest (2021 style)</td><td>Section C below</td></tr>
+            <tr><td>"Write an Android method for predictive text search"</td><td>SearchView / onQueryTextChange</td><td>Section D below</td></tr>
+            <tr><td>"Configure an Android input as follows: multiline, autocorrect…"</td><td>EditText XML</td><td>Section E below</td></tr>
+            <tr><td>"Show scroll distance as a toast" / "implement onScroll"</td><td>Android onScroll + Toast</td><td>Section F below</td></tr>
+            <tr><td>"What is wrong with this code?" (OkHttpClient/HttpURLConnection)</td><td>Code review — identify two bugs</td><td>Section G below</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- CLUE-READING GUIDE -->
+      <h3>Reading the clues the question gives you</h3>
+      <p>Every Ionic question tells you several critical pieces of information. Extract them <em>before</em> you write a single line.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Clue in the question</th><th>What it means for your code</th></tr></thead>
+          <tbody>
+            <tr><td>"Make a <strong>POST</strong> request"</td><td>Use <code>CapacitorHttp.post(options)</code> or <code>this.http.post(url,{},{})</code> — NOT get</td></tr>
+            <tr><td>"Make a <strong>GET</strong> request"</td><td>Use <code>CapacitorHttp.get(options)</code> — no body, use <code>params</code> instead of <code>data</code></td></tr>
+            <tr><td>"Returns JSON with keys <strong>'status', 'data', 'timestamp'</strong>"</td><td>The array is at <code>response.data.data</code> — one <code>.data</code> for the response body, another for the API key</td></tr>
+            <tr><td>"Returns JSON with key <strong>'articles'</strong>"</td><td>The array is at <code>response.data.articles</code> — read the exact key name</td></tr>
+            <tr><td>"Bind result to <code>this.articles</code>"</td><td>Write <code>this.articles = response.data.data</code> (or whatever the key is)</td></tr>
+            <tr><td>"The HTML is given below" + shows <code>*ngFor="let a of articles"</code></td><td>Your class field MUST be named <code>articles</code> — the template is fixed, you cannot rename it</td></tr>
+            <tr><td>"<strong>Check internet connection</strong> first"</td><td>Wrap in <code>this.network.onConnect().subscribe(...)</code> + unsubscribe</td></tr>
+            <tr><td>"<strong>Retrieve the API key from NativeStorage</strong>"</td><td>Use <code>this.nativeStorage.getItem('key').then(apikey =&gt; { ... })</code></td></tr>
+            <tr><td>"All dependencies injected via the constructor"</td><td>Don't import at the top — use <code>this.http</code>, <code>this.nativeStorage</code> etc. directly</td></tr>
+            <tr><td>"Show a <strong>Toast</strong> if no results"</td><td>Add <code>if (this.array.length === 0) await Toast.show({ text: '...' })</code> after binding</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- =================== SECTION A: HTTP POST + TEMPLATE =================== -->
+      <h3>Section A — HTTP POST function + display template (the big question)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2021 Q15 (13 marks), 2022 Q7 (10 marks) — most common Ionic question type</span>
+        <p>The question gives you a template (HTML) and asks you to write the TypeScript function that fetches data and binds it. <strong>Read the template first</strong> — it tells you the variable names and data structure.</p>
+      </div>
+
+      <h4>Step 1 — read the template to understand what you need</h4>
+<pre><code><span class="cm">&lt;!-- GIVEN template — read it to find variable names and field names --&gt;</span>
+&lt;ion-content&gt;
+  &lt;ion-item *ngFor=<span class="str">"let a of articles"</span>&gt;   <span class="cm">&lt;!-- class field must be 'articles' --&gt;</span>
+    ID: {{ a.id }} &lt;br&gt;                     <span class="cm">&lt;!-- objects have .id, .title, .source --&gt;</span>
+    Title: {{ a.title }} &lt;br&gt;
+    Source: {{ a.source }}
+  &lt;/ion-item&gt;
+&lt;/ion-content&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">What to extract from the template</span>
+        <ul>
+          <li><code>let a of articles</code> — the class field that holds the data is called <code>articles</code>. You must name it exactly this.</li>
+          <li><code>a.id</code>, <code>a.title</code>, <code>a.source</code> — the response objects must have these keys. This tells you which key to pull from the API response.</li>
+        </ul>
+      </div>
+
+      <h4>Step 2 — decode the response shape from the question text</h4>
+      <p>The question says: <em>"returns JSON data with the following keys <code>'status'</code>, <code>'data'</code>, <code>'timestamp'</code>"</em></p>
+<pre><code><span class="cm">// The raw JSON response looks like this:</span>
+{
+  <span class="str">"status"</span>:    <span class="str">"ok"</span>,
+  <span class="str">"data"</span>:      [ { id: <span class="num">1</span>, title: <span class="str">"..."</span>, source: <span class="str">"..."</span> }, ... ],  <span class="cm">// ← our array</span>
+  <span class="str">"timestamp"</span>: <span class="str">"2022-07-01T12:00:00Z"</span>
+}
+<span class="cm">// So this.articles = response.data.data</span>
+<span class="cm">//                              ^body  ^the 'data' key in the body</span></code></pre>
+
+      <h4>Step 3 — write the full function (Capacitor style)</h4>
+<pre><code><span class="kw">import</span> { CapacitorHttp, HttpOptions, HttpResponse } <span class="kw">from</span> <span class="str">'@capacitor/core'</span>;
+
+articles: <span class="type">any</span>[] = [];  <span class="cm">// must match the template's loop variable name</span>
+
+<span class="kw">async</span> <span class="fn">getArticles</span>() {                     <span class="cm">// 'async' needed to use 'await'</span>
+  <span class="kw">const</span> options: <span class="type">HttpOptions</span> = {
+    url:     <span class="str">'https://articles.com/latest'</span>,    <span class="cm">// copy URL exactly from question</span>
+    headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },  <span class="cm">// always include for POST</span>
+    data:    { <span class="cm">/* body fields from question */</span> }  <span class="cm">// if question gives a body</span>
+  };
+  <span class="kw">const</span> response: <span class="type">HttpResponse</span> = <span class="kw">await</span> CapacitorHttp.post(options);
+  <span class="kw">this</span>.articles = response.data.data;  <span class="cm">// .data = body object; .data.data = the array</span>
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Every line explained</span>
+        <ul>
+          <li><code>articles: any[] = []</code> — declare and initialise the array at class level. Start empty so the template doesn't crash before the data arrives.</li>
+          <li><code>async getArticles()</code> — the function name from the question. <code>async</code> is <em>required</em> because you use <code>await</code> inside.</li>
+          <li><code>HttpOptions</code> — a TypeScript type for the options object. Gives you autocomplete and type safety.</li>
+          <li><code>url</code> — copy the URL verbatim from the question. Never guess or change it.</li>
+          <li><code>headers: { 'Content-Type': 'application/json' }</code> — tells the server "I'm sending JSON". Required on every POST. Even if the question doesn't mention headers, include this.</li>
+          <li><code>data</code> — the POST body. If the question specifies body fields, list them here as a plain object. If not mentioned, you can omit this key or use <code>{}</code>.</li>
+          <li><code>await CapacitorHttp.post(options)</code> — sends the request. <code>await</code> pauses until the response arrives. Without <code>await</code>, you'd try to use an unresolved Promise.</li>
+          <li><code>response.data</code> — this is the parsed JSON body (Capacitor auto-parses it). If the API wraps its data in a <code>data</code> key, you need <code>response.data.data</code>. Always match the key name from the question.</li>
+          <li><code>this.articles = ...</code> — assigns the array to the class field. The template re-renders automatically because Angular watches class fields.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ The most common marks lost on this question</span>
+        <ul class="compact-list">
+          <li><strong>Wrong field name</strong> — e.g. naming the class field <code>data</code> when the template says <code>articles</code>. The template is fixed, your field name must match.</li>
+          <li><strong>Forgetting <code>async</code></strong> — if you write <code>await</code> inside a non-async function, it's a compile error.</li>
+          <li><strong>Wrong response path</strong> — writing <code>response.data</code> when the array is at <code>response.data.data</code> (or vice versa). Extract the key name from the question's JSON description.</li>
+          <li><strong>Using GET instead of POST</strong> — read "POST" vs "GET" very carefully. They're different Capacitor methods.</li>
+          <li><strong>Putting <code>return data</code> inside a callback</strong> — if you use <code>.then()</code> instead of <code>await</code>, a <code>return</code> inside the callback returns from the <em>callback</em>, not the outer function. Use <code>this.articles = data</code> instead.</li>
+        </ul>
+      </div>
+
+      <h4>How to write the template if the question asks for it too</h4>
+<pre><code><span class="cm">&lt;!-- Standard ion-list display template — adapt field names from the question --&gt;</span>
+&lt;ion-list&gt;
+  &lt;ion-item *ngFor=<span class="str">"let a of articles"</span>&gt;         <span class="cm">&lt;!-- loop variable matches class field --&gt;</span>
+    &lt;ion-label&gt;
+      &lt;h2&gt;{{ a.title }}&lt;/h2&gt;                    <span class="cm">&lt;!-- h2 = main info --&gt;</span>
+      &lt;p&gt;{{ a.source }}&lt;/p&gt;                      <span class="cm">&lt;!-- p = secondary info --&gt;</span>
+    &lt;/ion-label&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-list&gt;
+
+<span class="cm">&lt;!-- If the question also wants a coloured status message --&gt;</span>
+&lt;p [ngStyle]=<span class="str">"{'color': articles.length === 0 ? 'red' : 'green'}"</span>&gt;
+  Found {{ articles.length }} articles
+&lt;/p&gt;</code></pre>
+
+      <!-- =================== SECTION B: NETWORK CHECK =================== -->
+      <h3>Section B — Network connectivity check + POST (2022 style)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2022 Q7 (10 marks) — adds a network check wrapper around the POST</span>
+        <p>The question will say something like "check if the device has an active internet connection, then make a POST". This adds three lines around the normal POST function: subscribe, the request inside, unsubscribe after.</p>
+      </div>
+
+      <h4>The exact pattern — learn it as a template</h4>
+<pre><code><span class="cm">// Plugin: @ionic-native/network (injected as this.network)</span>
+articles: <span class="type">any</span>[] = [];
+
+<span class="fn">getArticles</span>() {                                          <span class="cm">// NOT async when using .subscribe()</span>
+
+  <span class="cm">// Step 1: subscribe to the "connected" event</span>
+  <span class="kw">let</span> connectSubscription = <span class="kw">this</span>.network.onConnect().subscribe(() =&gt; {
+
+    <span class="cm">// Step 2: inside the callback, make the request</span>
+    <span class="kw">this</span>.http.post(<span class="str">'https://articles.com/latest'</span>, {}, {})
+      .then((data) =&gt; {
+        <span class="kw">this</span>.articles = data.data;    <span class="cm">// bind to class field INSIDE .then()</span>
+      });
+
+  });
+
+  <span class="cm">// Step 3: unsubscribe immediately to prevent repeated calls</span>
+  connectSubscription.unsubscribe();
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Every line explained</span>
+        <ul>
+          <li><code>this.network.onConnect()</code> — returns an Observable that fires when the device gains network connectivity. This is from the Ionic Native Network plugin (<code>@ionic-native/network</code>).</li>
+          <li><code>.subscribe(() =&gt; { ... })</code> — registers the callback that runs when connected. Everything that should happen "when we have internet" goes inside here.</li>
+          <li><code>let connectSubscription = ...</code> — store the subscription so you can cancel it later.</li>
+          <li><code>this.http.post(url, body, headers)</code> — the Ionic Native HTTP plugin (different from Capacitor's). Takes three arguments: URL, body object, headers object. Empty objects <code>{}</code> for no body / no extra headers.</li>
+          <li><code>.then((data) =&gt; { this.articles = data.data; })</code> — inside the Promise callback, bind the data. <code>data.data</code> is the response body's <code>data</code> key — match this to what the question says.</li>
+          <li><code>connectSubscription.unsubscribe()</code> — <strong>critical</strong>: stops listening for future connect events. Without this, every time the device reconnects (e.g. after a tunnel), the callback fires again, making a new request. This was worth 1 of the 10 marks in 2022.</li>
+        </ul>
+      </div>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ This is NOT the same as Capacitor's Network plugin</span>
+        <p>The Network plugin from 2022 is <code>@ionic-native/network</code> — it uses <code>onConnect().subscribe()</code>. The Capacitor equivalent is <code>@capacitor/network</code> which uses <code>Network.addListener('networkStatusChange', ...)</code>. The 2022 exam used the Ionic Native one (injected via constructor as <code>this.network</code>).</p>
+      </div>
+
+      <h4>Full function with Toast if no results (common variation)</h4>
+<pre><code>articles: <span class="type">any</span>[] = [];
+
+<span class="fn">getArticles</span>() {
+  <span class="kw">let</span> sub = <span class="kw">this</span>.network.onConnect().subscribe(() =&gt; {
+    <span class="kw">this</span>.http.post(<span class="str">'https://articles.com/latest'</span>, {}, {})
+      .then(<span class="kw">async</span> (data) =&gt; {              <span class="cm">// mark callback async for await inside</span>
+        <span class="kw">this</span>.articles = data.data;
+        <span class="kw">if</span> (<span class="kw">this</span>.articles.length === <span class="num">0</span>) {
+          <span class="kw">await</span> Toast.show({ text: <span class="str">'No articles found'</span> });
+        }
+      });
+  });
+  sub.unsubscribe();
+}</code></pre>
+
+      <!-- =================== SECTION C: NATIVESTORAGE =================== -->
+      <h3>Section C — NativeStorage + sendRequest (2021 exam stack)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2021 Q15 (13 marks) — retrieve a saved key, use it in a POST, bind multiple fields</span>
+        <p>This uses Ionic 5 / Cordova plugins injected via the constructor. Two nested Promises: first get the stored key, then make the HTTP request inside the callback.</p>
+      </div>
+
+      <h4>How to recognise this pattern</h4>
+      <ul>
+        <li>The question says "retrieve the API key from <strong>NativeStorage</strong>" or "the API key is stored".</li>
+        <li>The scaffold shows <code>constructor(public http: HTTP, public nativeStorage: NativeStorage) {}</code> (capital H HTTP, not CapacitorHttp).</li>
+        <li>The response comes back as a <strong>string</strong> that you must <code>JSON.parse()</code>.</li>
+      </ul>
+
+      <h4>The exact pattern</h4>
+<pre><code><span class="cm">// Class fields — one per binding shown in the given template</span>
+id: <span class="type">number</span>;
+name: <span class="type">string</span>;
+screenshots: <span class="type">string</span>[] = [];
+
+doPost() {                                     <span class="cm">// not async — uses .then() chains</span>
+
+  <span class="cm">// Step 1: get the stored key (returns a Promise)</span>
+  <span class="kw">this</span>.nativeStorage.getItem(<span class="str">'apikey'</span>).then(apikey =&gt; {
+
+    <span class="cm">// Step 2: inside the first .then, make the request (also a Promise)</span>
+    <span class="kw">this</span>.http.sendRequest(<span class="str">'https://test.games.com/metadata'</span>, {
+      method:  <span class="str">'post'</span>,
+      data:    { id: <span class="num">216</span>, apikey: apikey },    <span class="cm">// use the retrieved key here</span>
+      headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> }
+    }).then(response =&gt; {
+
+      <span class="cm">// Step 3: body is a RAW STRING — you must JSON.parse it</span>
+      <span class="kw">const</span> body = JSON.parse(response.data);
+
+      <span class="cm">// Step 4: bind every field the template shows</span>
+      <span class="kw">this</span>.id          = body.data.id;
+      <span class="kw">this</span>.name        = body.data.name;
+      <span class="kw">this</span>.screenshots = body.data.screenshots;
+
+    });
+  });
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Every line explained</span>
+        <ul>
+          <li><strong>Class fields</strong> — declare every variable that appears in <code>{{ }}</code> in the given template. If the template shows <code>{{ id }}</code>, <code>{{ name }}</code> and loops <code>*ngFor="let s of screenshots"</code>, you need fields for all three.</li>
+          <li><code>this.nativeStorage.getItem('apikey')</code> — looks up a value stored under the key <code>'apikey'</code> in the device's native key-value store. Returns a Promise. The key name is usually given in the question.</li>
+          <li><code>.then(apikey =&gt; { ... })</code> — runs when the stored value is retrieved. The value arrives as <code>apikey</code>. Everything that needs the key lives inside this callback.</li>
+          <li><code>this.http.sendRequest(url, options)</code> — Ionic Native HTTP's generic request method. Pass <code>method: 'post'</code>, <code>data</code> (body), <code>headers</code>.</li>
+          <li><code>.then(response =&gt; { ... })</code> — the second Promise callback. <code>response.data</code> is a raw string (unlike Capacitor which auto-parses).</li>
+          <li><code>JSON.parse(response.data)</code> — converts the raw string to a JavaScript object. Without this, <code>body.data.id</code> would be undefined.</li>
+          <li>Bind every field individually. The template expects each binding — missing any loses marks.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Critical mistakes (real script scored 2/13 here)</span>
+        <ul class="compact-list">
+          <li>Forgetting <code>JSON.parse(response.data)</code> — the Ionic Native HTTP plugin does not auto-parse. Capacitor does. Know which you're using.</li>
+          <li>Writing <code>return data.data</code> inside the callback — returns from the <em>callback</em>, not the outer function. Use <code>this.field = data.data</code>.</li>
+          <li>Not binding all three template fields — each <code>this.x = body.data.x</code> line is worth marks separately.</li>
+          <li>Using <code>async/await</code> syntax with Ionic Native (it uses Promises, but mixing is fine — just use <code>.then()</code> consistently).</li>
+        </ul>
+      </div>
+
+      <!-- =================== SECTION D: SEARCHVIEW =================== -->
+      <h3>Section D — SearchView predictive text / onQueryTextChange (2021 Q7)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2021 Q7 (6 marks) — Android Java, called on every keystroke</span>
+      </div>
+
+      <h4>How to recognise this question</h4>
+      <ul>
+        <li>The question says "SearchView", "predictive text", "every time the user types", or "onQueryTextChange".</li>
+        <li>It gives you a function like <code>getResults(searchText, searchCategories)</code> that you must call correctly.</li>
+        <li>The question specifies: only search after X characters; replace spaces with <code>+</code>; use lowercase; try two fallback options.</li>
+      </ul>
+
+      <h4>The template — fill it in from the question</h4>
+<pre><code>@<span class="type">Override</span>
+<span class="kw">public boolean</span> <span class="fn">onQueryTextChange</span>(<span class="type">String</span> input) {
+
+  <span class="cm">// Step 1: clean the input</span>
+  searchText = input
+    .replace(<span class="str">" "</span>, <span class="str">"+"</span>)        <span class="cm">// replace spaces (question might say which char)</span>
+    .toLowerCase();          <span class="cm">// must reassign — String is immutable in Java!</span>
+
+  <span class="cm">// Step 2: minimum length check (question tells you the number)</span>
+  <span class="kw">if</span> (input.length() &gt; <span class="num">2</span>) {
+
+    <span class="cm">// Step 3: try the primary search</span>
+    <span class="kw">if</span> (getResults(searchText, <span class="kw">false</span>) == <span class="kw">null</span>) {  <span class="cm">// null = no results</span>
+
+      <span class="cm">// Step 4: if nothing found, try the fallback</span>
+      <span class="kw">if</span> (getResults(searchText, <span class="kw">true</span>) == <span class="kw">null</span>) {
+        <span class="kw">return false</span>;   <span class="cm">// both searches failed — not handled</span>
+      }
+    }
+    <span class="kw">return true</span>;    <span class="cm">// at least one search found results</span>
+  }
+  <span class="kw">return false</span>;   <span class="cm">// input too short — not handled</span>
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Filling in the blanks from the question</span>
+        <ul>
+          <li><strong>Input cleaning:</strong> the question tells you what to replace (spaces → <code>+</code>) and that it must be lowercase. Always chain: <code>input.replace(" ", "+").toLowerCase()</code> and <strong>reassign the result</strong>.</li>
+          <li><strong>Minimum length:</strong> the question says "more than 2 characters" → <code>input.length() &gt; 2</code>. If it said "at least 3" → same thing.</li>
+          <li><strong>Return value of getResults:</strong> the question says "returns null if no results" → compare with <code>== null</code>. Do not compare with <code>== false</code>.</li>
+          <li><strong>The two boolean parameters:</strong> the question usually says "first try without category search, then with". The first call uses <code>false</code>, the fallback uses <code>true</code>.</li>
+        </ul>
+      </div>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ Java String immutability — the #1 mistake</span>
+        <p>In Java, <code>String</code> objects cannot be modified. <code>searchText.toLowerCase()</code> creates a new String and returns it — it does NOT change <code>searchText</code>. You must write <code>searchText = searchText.toLowerCase();</code> to actually update the variable. The 2021 real script lost 1.5 marks for this.</p>
+      </div>
+
+      <!-- =================== SECTION E: EDITTEXT XML =================== -->
+      <h3>Section E — EditText XML configuration (2021 Q8)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2021 Q8 (3 marks) — Android layout XML, not TypeScript</span>
+        <p>The question gives you a list of requirements (multiline, ID, minimum lines, autocorrect, etc.) and asks you to write the XML element. Each requirement maps to one attribute.</p>
+      </div>
+
+      <h4>How to decode the requirements</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Requirement in the question</th><th>XML attribute</th></tr></thead>
+          <tbody>
+            <tr><td>"The input should allow for <strong>multiple lines</strong>"</td><td><code>android:inputType="textMultiLine"</code></td></tr>
+            <tr><td>"The input should have ID '<strong>multiline</strong>'"</td><td><code>android:id="@+id/multiline"</code> — the <code>@+id/</code> prefix creates the ID</td></tr>
+            <tr><td>"By default, a minimum of <strong>3 lines</strong> should be shown"</td><td><code>android:minLines="3"</code></td></tr>
+            <tr><td>"Should correct <strong>spelling errors</strong> automatically"</td><td>Add <code>textAutoCorrect</code> to inputType flags</td></tr>
+            <tr><td>"Should <strong>capitalise new sentences</strong> automatically"</td><td>Add <code>textCapSentences</code> to inputType flags</td></tr>
+            <tr><td>Width should "<strong>fill the parent</strong>"</td><td><code>android:layout_width="fill_parent"</code> (or <code>match_parent</code>)</td></tr>
+            <tr><td>"Wrap to the height of the content"</td><td><code>android:layout_height="wrap_content"</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Combining multiple inputType flags</h4>
+<pre><code><span class="cm">&lt;!-- Multiple behaviours are combined with | (pipe/OR) --&gt;</span>
+android:inputType=<span class="str">"textMultiLine|textAutoCorrect|textCapSentences"</span>
+
+<span class="cm">&lt;!-- Other examples you might need: --&gt;</span>
+android:inputType=<span class="str">"textPassword"</span>                  <span class="cm">&lt;!-- password only --&gt;</span>
+android:inputType=<span class="str">"textEmailAddress"</span>              <span class="cm">&lt;!-- email keyboard --&gt;</span>
+android:inputType=<span class="str">"number"</span>                        <span class="cm">&lt;!-- numeric only --&gt;</span>
+android:inputType=<span class="str">"textMultiLine|textCapWords"</span>    <span class="cm">&lt;!-- multiline + capitalise each word --&gt;</span></code></pre>
+
+      <h4>The complete answer for the 2021 Q8 question</h4>
+<pre><code>&lt;EditText
+    android:id=<span class="str">"@+id/multiline"</span>                                           <span class="cm">&lt;!-- 1 mark --&gt;</span>
+    android:layout_width=<span class="str">"fill_parent"</span>                                    <span class="cm">&lt;!-- part mark --&gt;</span>
+    android:layout_height=<span class="str">"wrap_content"</span>
+    android:minLines=<span class="str">"3"</span>                                                  <span class="cm">&lt;!-- 1 mark --&gt;</span>
+    android:inputType=<span class="str">"textMultiLine|textAutoCorrect|textCapSentences"</span> /&gt; <span class="cm">&lt;!-- 1 mark --&gt;</span></code></pre>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ Mistakes to avoid</span>
+        <ul class="compact-list">
+          <li>Writing <code>android:id="multiline"</code> without <code>@+id/</code> — the ID reference system won't work. Always prefix with <code>@+id/</code>.</li>
+          <li>Forgetting the <code>|</code> between inputType flags — each flag is separate; without <code>|</code> you're trying to set one value "textMultiLinetextAutoCorrect" which doesn't exist.</li>
+          <li>Mixing contradictory flags like <code>textPassword|textMultiLine</code> — these conflict.</li>
+        </ul>
+      </div>
+
+      <!-- =================== SECTION F: ONSCROLL =================== -->
+      <h3>Section F — Android onScroll + Toast (2022 Q14)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2022 Q14 (5 marks) — override onScroll, show result as a Toast</span>
+        <p>The question will mention "scroll distance", "GestureDetector", and a provided helper method. You must implement the callback with the exact Java signature.</p>
+      </div>
+
+      <h4>Decode the question into a template</h4>
+      <p>When the question says: <em>"check how much the user has scrolled and tell them the distance as a toast, using the provided <code>calcDist(xDist, yDist)</code> method"</em></p>
+<pre><code>@<span class="type">Override</span>                                    <span class="cm">// overrides GestureDetector.OnGestureListener</span>
+<span class="kw">public boolean</span> <span class="fn">onScroll</span>(
+    <span class="type">MotionEvent</span> event1,                      <span class="cm">// start of the scroll gesture</span>
+    <span class="type">MotionEvent</span> event2,                      <span class="cm">// current position</span>
+    <span class="kw">float</span> distanceX,                         <span class="cm">// horizontal distance scrolled</span>
+    <span class="kw">float</span> distanceY) {                       <span class="cm">// vertical distance scrolled</span>
+
+  <span class="type">Context</span> context  = getApplicationContext();       <span class="cm">// always needed for Toast</span>
+  <span class="kw">int</span>     duration = <span class="type">Toast</span>.LENGTH_SHORT;            <span class="cm">// or Toast.LENGTH_LONG</span>
+  <span class="type">Toast</span>.makeText(
+      context,
+      calcDist(distanceX, distanceY).toString(),    <span class="cm">// convert result to String</span>
+      duration
+  ).show();                                         <span class="cm">// .show() is mandatory</span>
+
+  <span class="kw">return true</span>;   <span class="cm">// event was handled</span>
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Mark-by-mark breakdown</span>
+        <ul>
+          <li><code>@Override public boolean onScroll(MotionEvent, MotionEvent, float, float)</code> — the correct signature. Getting it wrong loses ~1 mark. You must have both <code>MotionEvent</code>s and both <code>float</code>s.</li>
+          <li><code>getApplicationContext()</code> — gets the Context needed by Toast. Worth 0.5 marks.</li>
+          <li><code>Toast.LENGTH_SHORT</code> — the duration constant. Worth 0.5 marks.</li>
+          <li><code>Toast.makeText(context, message, duration).show()</code> — the three-argument factory + <code>.show()</code>. Worth ~2.5 marks. Missing <code>.show()</code> means the toast is created but never displayed.</li>
+          <li><code>calcDist(distanceX, distanceY).toString()</code> — calls the provided method and converts to String. Toast needs a String or CharSequence. Worth 0.5–1 mark.</li>
+          <li><code>return true</code> — signals that the event was handled. Worth 0.5 marks.</li>
+        </ul>
+      </div>
+
+      <h4>What if the message needs a prefix string?</h4>
+<pre><code><span class="cm">// If the question says "show 'Distance: X units'":</span>
+<span class="type">String</span> msg = <span class="str">"Distance: "</span> + calcDist(distanceX, distanceY).toString() + <span class="str">" units"</span>;
+<span class="type">Toast</span>.makeText(context, msg, duration).show();</code></pre>
+
+      <!-- =================== SECTION G: CODE REVIEW =================== -->
+      <h3>Section G — Android code review: "What is wrong?" (2022 Q10)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2022 Q10 (2 marks) — identify two specific bugs in given Java code</span>
+        <p>The question gives you broken code and asks what is wrong. There are always exactly as many bugs as there are marks. Read every line looking for: wrong constructor arguments, non-existent methods, wrong class used.</p>
+      </div>
+      <p>The two things that are wrong with the 2022 code, and what to look for in general:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Bug pattern</th><th>How to spot it</th><th>What to say</th></tr></thead>
+          <tbody>
+            <tr><td>Constructor given arguments it doesn't accept</td><td><code>new OkHttpClient("http://...")</code> — the URL is in the wrong place</td><td>"OkHttpClient constructor takes no arguments; the URL belongs in Request.Builder, not the client"</td></tr>
+            <tr><td>Method called on the wrong class</td><td><code>client.disconnect()</code> — OkHttpClient has no disconnect method</td><td>"disconnect() belongs to HttpURLConnection, not OkHttpClient — illegal mixing of two HTTP implementations"</td></tr>
+            <tr><td>Response read after connection closed</td><td>Calling <code>.disconnect()</code> before <code>return res</code></td><td>"The connection is closed before the result is returned" (alternative explanation for the same bug)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>General code review checklist</h4>
+      <ul>
+        <li>Does the constructor accept those arguments? (<code>OkHttpClient</code> takes none)</li>
+        <li>Does that method exist on that class? (<code>client.disconnect()</code> doesn't exist on <code>OkHttpClient</code>)</li>
+        <li>Is the correct class being used for the whole implementation? (mixing <code>OkHttpClient</code> with <code>HttpURLConnection</code> methods is wrong)</li>
+        <li>Is the return/response used after the connection is closed?</li>
+        <li>Is <code>async</code> missing when <code>await</code> is used (TypeScript)?</li>
+      </ul>
 
       <!-- ---- STRUCTURE ---- -->
       <h3>1 — Project structure and pages</h3>
@@ -2813,6 +3563,158 @@ console.log(<span class="str">'Type:'</span>,      status.connectionType);   <sp
 Network.addListener(<span class="str">'networkStatusChange'</span>, status =&gt; {
   console.log(<span class="str">'Network changed:'</span>, status);
 });</code></pre>
+
+      <!-- ---- NATIVE STORAGE ---- -->
+      <h3>3b — NativeStorage (Ionic Native / 2021 exam plugin)</h3>
+      <div class="callout exam">
+        <span class="callout-title">🎯 2021 Q15 used this — it is NOT the same as Capacitor Preferences or localStorage</span>
+        <p><strong>NativeStorage</strong> (<code>@ionic-native/native-storage</code>) is a Cordova-era plugin that stores key-value pairs in the device's native storage layer (Android SharedPreferences / iOS NSUserDefaults). It was the standard in Ionic 4/5. The 2021 exam expected you to call <code>this.nativeStorage.getItem('key')</code> — injected through the constructor.</p>
+      </div>
+
+      <h4>What NativeStorage is and why it exists</h4>
+      <p>On a mobile app you often need to persist data between app launches — things like a user's API key, their login token, or preferences. The options are:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Storage method</th><th>Ionic version</th><th>How you use it</th><th>Where it stores</th></tr></thead>
+          <tbody>
+            <tr><td><strong>NativeStorage</strong></td><td>Ionic 4/5 (Cordova) — <strong>the 2021 exam</strong></td><td>Injected via constructor: <code>this.nativeStorage.getItem()</code></td><td>Native device storage (SharedPreferences / NSUserDefaults)</td></tr>
+            <tr><td><strong>Capacitor Preferences</strong></td><td>Ionic 7/8 (Capacitor) — current</td><td>Static import: <code>Preferences.get({ key: '...' })</code></td><td>Native device storage (same underlying layer)</td></tr>
+            <tr><td><strong>localStorage / sessionStorage</strong></td><td>Any — web only</td><td><code>localStorage.setItem('key', value)</code></td><td>Browser WebStorage — not available on native device</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>All NativeStorage methods — with full code</h4>
+<pre><code><span class="cm">// 0. Import and inject (constructor injection — NOT a static import)</span>
+<span class="kw">import</span> { NativeStorage } <span class="kw">from</span> <span class="str">'@ionic-native/native-storage/ngx'</span>;
+
+constructor(<span class="kw">public</span> nativeStorage: <span class="type">NativeStorage</span>) {}
+
+<span class="cm">// ── 1. setItem — save a value under a key ──────────────────────────────</span>
+<span class="kw">this</span>.nativeStorage.setItem(<span class="str">'apikey'</span>, <span class="str">'abc123xyz'</span>)
+  .then(()  =&gt; console.log(<span class="str">'Saved!'</span>))
+  .catch((err) =&gt; console.error(<span class="str">'Error saving'</span>, err));
+
+<span class="cm">// ── 2. getItem — read a value back out ────────────────────────────────</span>
+<span class="kw">this</span>.nativeStorage.getItem(<span class="str">'apikey'</span>)
+  .then((value) =&gt; {
+    console.log(<span class="str">'Got key:'</span>, value);   <span class="cm">// value = 'abc123xyz'</span>
+    <span class="cm">// use 'value' here — it only exists inside this callback</span>
+  })
+  .catch((err) =&gt; console.error(<span class="str">'Key not found'</span>, err));
+
+<span class="cm">// ── 3. remove — delete one key ────────────────────────────────────────</span>
+<span class="kw">this</span>.nativeStorage.remove(<span class="str">'apikey'</span>)
+  .then(()  =&gt; console.log(<span class="str">'Removed!'</span>));
+
+<span class="cm">// ── 4. clear — delete ALL stored keys ───────────────────────────────</span>
+<span class="kw">this</span>.nativeStorage.clear()
+  .then(()  =&gt; console.log(<span class="str">'All cleared!'</span>));</code></pre>
+      <div class="explain">
+        <span class="explain-title">What each method does, line by line</span>
+        <ul>
+          <li><code>setItem(key, value)</code> — stores <code>value</code> (can be a string, number, or object) under <code>key</code> on the device. Returns a Promise that resolves when done. Use <code>.then()</code> to confirm success.</li>
+          <li><code>getItem(key)</code> — retrieves the value stored under <code>key</code>. Returns a Promise. The value arrives inside the <code>.then(value =&gt; { ... })</code> callback. If the key doesn't exist the catch fires.</li>
+          <li><code>remove(key)</code> — deletes the single entry for that key.</li>
+          <li><code>clear()</code> — wipes all entries. Use carefully — it removes everything the app stored.</li>
+          <li>All four methods return <strong>Promises</strong> — you must use <code>.then()</code> (or <code>await</code>) to handle the result. Calling them without handling the Promise means you never know if it succeeded.</li>
+        </ul>
+      </div>
+
+      <h4>The exam pattern — NativeStorage → HTTP POST → bind fields</h4>
+      <p>The 2021 Q15 exam pattern chains two Promises: first get the key, then (inside that callback) make the HTTP request, then (inside that callback) bind the result.</p>
+<pre><code><span class="cm">// Full 2021-style pattern — two nested Promises</span>
+<span class="kw">import</span> { HTTP }           <span class="kw">from</span> <span class="str">'@ionic-native/http/ngx'</span>;
+<span class="kw">import</span> { NativeStorage }  <span class="kw">from</span> <span class="str">'@ionic-native/native-storage/ngx'</span>;
+
+<span class="cm">// ── Class fields — one for each {{ variable }} in the given template ──</span>
+id:          <span class="type">number</span>;
+name:        <span class="type">string</span>;
+screenshots: <span class="type">string</span>[] = [];
+
+constructor(
+  <span class="kw">public</span> http:          <span class="type">HTTP</span>,          <span class="cm">// Ionic Native HTTP plugin</span>
+  <span class="kw">public</span> nativeStorage: <span class="type">NativeStorage</span>  <span class="cm">// NativeStorage plugin</span>
+) {}
+
+doPost() {
+
+  <span class="cm">// ── Step 1: get the stored API key ────────────────────────────────</span>
+  <span class="kw">this</span>.nativeStorage.getItem(<span class="str">'apikey'</span>)   <span class="cm">// key name from the question</span>
+    .then(apikey =&gt; {                     <span class="cm">// 'apikey' = the retrieved value</span>
+
+      <span class="cm">// ── Step 2: use the key in the HTTP request ─────────────────</span>
+      <span class="kw">this</span>.http.sendRequest(<span class="str">'https://test.games.com/metadata'</span>, {
+        method:  <span class="str">'post'</span>,
+        data:    { id: <span class="num">216</span>, apikey: apikey },  <span class="cm">// pass key into the body</span>
+        headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> }
+      }).then(response =&gt; {              <span class="cm">// 'response' = the HTTP response object</span>
+
+        <span class="cm">// ── Step 3: parse the STRING body (Ionic Native does NOT auto-parse) ─</span>
+        <span class="kw">const</span> body = JSON.parse(response.data);
+
+        <span class="cm">// ── Step 4: bind every field the template uses ────────────────</span>
+        <span class="kw">this</span>.id          = body.data.id;
+        <span class="kw">this</span>.name        = body.data.name;
+        <span class="kw">this</span>.screenshots = body.data.screenshots;
+      });
+    });
+}</code></pre>
+      <div class="explain">
+        <span class="explain-title">Why everything is nested</span>
+        <ul>
+          <li>You <strong>cannot use the API key outside the <code>.then()</code></strong> — the Promise hasn't resolved yet when the outer function continues. Every line that depends on the retrieved key must be inside the callback.</li>
+          <li>The HTTP request also returns a Promise, so it's nested inside the first <code>.then()</code> — this is called Promise chaining. The response only exists inside the second <code>.then()</code>.</li>
+          <li><code>JSON.parse(response.data)</code> — Ionic Native's HTTP plugin returns the response body as a raw string, not an object. You must parse it yourself. Capacitor's CapacitorHttp does this automatically.</li>
+        </ul>
+      </div>
+      <div class="callout mistake">
+        <span class="callout-title">⚠️ The most common NativeStorage mistakes</span>
+        <ul class="compact-list">
+          <li><strong>Using it outside the callback:</strong> <code>this.nativeStorage.getItem('key'); this.http.post(..., apikey)</code> — the <code>getItem</code> hasn't finished yet, so <code>apikey</code> is undefined. The HTTP call must go <em>inside</em> the <code>.then()</code>.</li>
+          <li><strong>Forgetting JSON.parse:</strong> <code>response.data.id</code> will be <code>undefined</code> because <code>response.data</code> is a string like <code>'{"data":{"id":1}}'</code>, not an object. Call <code>JSON.parse(response.data)</code> first.</li>
+          <li><strong>Confusing NativeStorage with localStorage:</strong> <code>localStorage.getItem('apikey')</code> works in a browser but not reliably in a Capacitor/Cordova native app — use NativeStorage for native, Preferences for modern Capacitor.</li>
+          <li><strong>Static import instead of injection:</strong> NativeStorage is injected via constructor, not imported statically. You use <code>this.nativeStorage</code>, not <code>NativeStorage.getItem()</code>.</li>
+        </ul>
+      </div>
+
+      <h4>Capacitor equivalent — Preferences (modern Ionic 7/8)</h4>
+<pre><code><span class="kw">import</span> { Preferences } <span class="kw">from</span> <span class="str">'@capacitor/preferences'</span>;  <span class="cm">// static import, no constructor</span>
+
+<span class="cm">// Save</span>
+<span class="kw">await</span> Preferences.set({ key: <span class="str">'apikey'</span>, value: <span class="str">'abc123xyz'</span> });
+
+<span class="cm">// Get</span>
+<span class="kw">const</span> { value } = <span class="kw">await</span> Preferences.get({ key: <span class="str">'apikey'</span> });
+console.log(value);  <span class="cm">// 'abc123xyz' — already a string</span>
+
+<span class="cm">// Remove</span>
+<span class="kw">await</span> Preferences.remove({ key: <span class="str">'apikey'</span> });
+
+<span class="cm">// Clear all</span>
+<span class="kw">await</span> Preferences.clear();</code></pre>
+      <div class="explain">
+        <span class="explain-title">Differences from NativeStorage</span>
+        <ul>
+          <li>Static class — imported at the top of the file and called directly. No constructor injection.</li>
+          <li>Uses <code>await</code> instead of <code>.then()</code> chains — cleaner, less nesting.</li>
+          <li>Only stores <strong>strings</strong>. To store an object: <code>Preferences.set({ key: 'x', value: JSON.stringify(obj) })</code>; to read it back: <code>JSON.parse(value)</code>.</li>
+          <li>Both Preferences and NativeStorage store data that persists between app launches — it survives closing the app.</li>
+        </ul>
+      </div>
+
+      <h4>Quick comparison: which to use when?</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Situation</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td>Exam gives you a constructor with <code>NativeStorage</code> injected</td><td><code>this.nativeStorage.getItem('key').then(...)</code></td></tr>
+            <tr><td>Exam uses modern Capacitor (no constructor injection shown)</td><td><code>const { value } = await Preferences.get({ key: '...' })</code></td></tr>
+            <tr><td>Data should only last for this browser session</td><td><code>sessionStorage.setItem('key', value)</code></td></tr>
+            <tr><td>Data should persist in the browser but not on native</td><td><code>localStorage.setItem('key', value)</code></td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <!-- ---- ANDROID BUILDING BLOCKS ---- -->
       <h3>4 — Android building blocks — theory</h3>
