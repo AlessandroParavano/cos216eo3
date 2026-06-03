@@ -249,11 +249,11 @@
             <tbody>
               <tr><td>CDN setup: CSS → jQuery → bootstrap.js (order matters), viewport meta</td><td><a href="#bs">Bootstrap → Install</a>, <a href="#ex-bootstrap">Bootstrap Example → HelloWorld.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_get_started.asp" target="_blank">W3S Bootstrap start ↗</a></td></tr>
               <tr><td>container vs container-fluid</td><td><a href="#bs">Bootstrap → 12-column grid</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_grid_basic.php" target="_blank">W3S grid ↗</a></td></tr>
-              <tr><td>Grid: row, col-xs-*, col-sm-*, col-md-*, col-lg-* (numbers add to 12)</td><td><a href="#bs">Bootstrap → 12-column grid</a>, <a href="#ex-bootstrap">Bootstrap Example → GridExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_grid_basic.php" target="_blank">W3S grid ↗</a></td></tr>
+              <tr><td>Grid: row, col-* (all sizes), col-sm-*, col-md-*, col-lg-*, col-xl-* — BS4. BS3 slides used col-xs-*/col-md-*</td><td><a href="#bs">Bootstrap → 12-column grid</a>, <a href="#ex-bootstrap">Bootstrap Example → GridExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_grid_basic.php" target="_blank">W3S grid ↗</a></td></tr>
               <tr><td>Tables: table, table-striped, table-bordered, table-hover, table-dark, scope="col/row"</td><td><a href="#bs">Bootstrap → Common components</a>, <a href="#ex-bootstrap">Bootstrap Example → TableExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_tables.asp" target="_blank">W3S tables ↗</a></td></tr>
-              <tr><td>Buttons: btn + btn-default/primary/success/info/warning/danger/link, btn-lg/sm/xs</td><td><a href="#bs">Bootstrap → Common components</a>, <a href="#ex-bootstrap">Bootstrap Example → ButtonsExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_buttons.asp" target="_blank">W3S buttons ↗</a></td></tr>
+              <tr><td>Buttons: btn + btn-secondary (was btn-default)/primary/success/info/warning/danger/link</td><td><a href="#bs">Bootstrap → Common components</a>, <a href="#ex-bootstrap">Bootstrap Example → ButtonsExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_buttons.asp" target="_blank">W3S buttons ↗</a></td></tr>
               <tr><td>Dropdowns: dropdown, dropdown-toggle, dropdown-menu, caret</td><td><a href="#ex-bootstrap">Bootstrap Example → DropdownExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_dropdowns.asp" target="_blank">W3S dropdowns ↗</a></td></tr>
-              <tr><td>Images: img-responsive, img-thumbnail, img-rounded, img-circle</td><td><a href="#bs">Bootstrap → Common components</a>, <a href="#ex-bootstrap">Bootstrap Example → ImageCrop</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_images.asp" target="_blank">W3S images ↗</a></td></tr>
+              <tr><td>Images: img-fluid (was img-responsive), img-thumbnail, rounded (was img-rounded), rounded-circle (was img-circle)</td><td><a href="#bs">Bootstrap → Common components</a>, <a href="#ex-bootstrap">Bootstrap Example → ImageCrop</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_images.asp" target="_blank">W3S images ↗</a></td></tr>
               <tr><td>Carousel: data-ride, carousel-indicators, carousel-inner, item, carousel-control, glyphicons</td><td><a href="#ex-bootstrap">Bootstrap Example → CarouselExample.html</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_carousel.asp" target="_blank">W3S carousel ↗</a></td></tr>
               <tr><td>Tabs: nav nav-tabs; Pills: nav nav-pills, nav-stacked; dropdown inside nav</td><td><a href="#ex-bootstrap">Bootstrap Example → TabExample / PillsExample</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_tabs_pills.asp" target="_blank">W3S tabs/pills ↗</a></td></tr>
               <tr><td>Navbar: navbar-default/inverse, navbar-brand, navbar-nav, active, navbar-fixed-top, navbar-right, collapsible hamburger</td><td><a href="#ex-bootstrap">Bootstrap Example → NavBarExample 1–4</a></td><td><a href="https://www.w3schools.com/bootstrap/bootstrap_navbar.asp" target="_blank">W3S navbar ↗</a></td></tr>
@@ -1471,108 +1471,180 @@ articles: <span class="type">any</span>[] = [];
     </summary>
     <div class="collapsible-body">
       <div class="w3links">
-        <a class="w3link" href="https://www.w3schools.com/bootstrap/bootstrap_ver.asp">W3Schools Bootstrap 3</a>
-        <a class="w3link" href="https://www.w3schools.com/bootstrap5/index.php">W3Schools Bootstrap 5</a>
-        <a class="w3link" href="https://getbootstrap.com/docs/3.4/css/">Bootstrap 3.4 grid docs</a>
+        <a class="w3link" href="https://www.w3schools.com/bootstrap4/index.php">W3Schools Bootstrap 4</a>
+        <a class="w3link" href="https://getbootstrap.com/docs/4.6/getting-started/introduction/">Bootstrap 4 docs</a>
+        <a class="w3link" href="https://www.w3schools.com/bootstrap4/bootstrap_grid_basic.asp">BS4 grid</a>
+        <a class="w3link" href="https://www.w3schools.com/bootstrap4/bootstrap_tables.asp">BS4 tables</a>
       </div>
 
       <div class="callout def">
-        <span class="callout-title">📌 Version — this matters for the marks</span>
-        <p>The L37 slides and the 2021 exam answer use <strong>Bootstrap 3</strong> — you can tell because the accepted answer uses <code>col-xs-*</code>, <code>img-responsive</code> and <code>navbar-default</code>, and loads <strong>jQuery</strong>. <strong>Answer the exam in Bootstrap 3.</strong> A "Bootstrap 3 → 5 changes" table is below so you don't accidentally write v5 classes.</p>
+        <span class="callout-title">📌 Version guide — know which year used which</span>
+        <p>These notes teach <strong>Bootstrap 4</strong> as the primary version. The 2022 exam used Bootstrap 4 classes (<code>col-3</code>, <code>img-fluid</code>). The 2021 exam used Bootstrap 3 classes (<code>col-md-*</code>, <code>img-responsive</code>) which are from the older lecture slides. <strong>The rule: look at what classes are already in the question's code</strong> — match the version you see.</p>
+        <ul class="compact-list" style="margin-top:8px">
+          <li><code>col-3</code> / <code>img-fluid</code> / <code>rounded-circle</code> → <strong>Bootstrap 4</strong> (write these in your answers)</li>
+          <li><code>col-md-3</code> / <code>img-responsive</code> / <code>img-circle</code> → Bootstrap 3 (only for 2021 Q9)</li>
+        </ul>
       </div>
 
       <h3>Overview</h3>
       <ul>
         <li>Free, open-source front-end CSS/JS framework; released 2011 (originally "Twitter Blueprint"), by Mark Otto &amp; Jacob Thornton.</li>
         <li>Gives <strong>responsive, mobile-first</strong> design from a single codebase: grid, buttons, forms, tables, navbars, modals, etc.</li>
-        <li>Bootstrap 3/4 depend on <strong>jQuery</strong> for JS components; Bootstrap 5 dropped jQuery.</li>
+        <li>Bootstrap 4 uses <strong>Flexbox</strong> for its grid (Bootstrap 3 used floats) and still requires <strong>jQuery</strong> for interactive components. Bootstrap 5 dropped jQuery.</li>
       </ul>
 
-      <h3>Install (Bootstrap 3 via CDN)</h3>
-<pre><code><span class="cm">&lt;!-- viewport meta is REQUIRED for responsiveness --&gt;</span>
+      <h3>Install — Bootstrap 4 via CDN</h3>
+<pre><code><span class="cm">&lt;!-- viewport meta is REQUIRED for responsiveness — always put in &lt;head&gt; --&gt;</span>
 &lt;meta name=<span class="str">"viewport"</span> content=<span class="str">"width=device-width, initial-scale=1"</span>&gt;
 
+<span class="cm">&lt;!-- 1. Bootstrap 4 CSS — goes in &lt;head&gt; --&gt;</span>
 &lt;link rel=<span class="str">"stylesheet"</span>
-  href=<span class="str">"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"</span>&gt;
-&lt;script src=<span class="str">"https://code.jquery.com/jquery-3.5.1.min.js"</span>&gt;&lt;/script&gt;
-&lt;script src=<span class="str">"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"</span>&gt;&lt;/script&gt;</code></pre>
+  href=<span class="str">"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"</span>&gt;
+
+<span class="cm">&lt;!-- 2. jQuery (Bootstrap 4 requires it) — before &lt;/body&gt; --&gt;</span>
+&lt;script src=<span class="str">"https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"</span>&gt;&lt;/script&gt;
+
+<span class="cm">&lt;!-- 3. Bootstrap 4 JS bundle — after jQuery, before &lt;/body&gt; --&gt;</span>
+&lt;script src=<span class="str">"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"</span>&gt;&lt;/script&gt;</code></pre>
       <div class="explain">
         <span class="explain-title">What each line does</span>
         <ul>
-          <li>The <code>&lt;meta name="viewport"...&gt;</code> tag tells phones to use their real screen width instead of pretending to be a desktop — without it Bootstrap's responsiveness won't work.</li>
-          <li>The <code>&lt;link rel="stylesheet" ...bootstrap.min.css&gt;</code> loads all of Bootstrap's ready-made CSS classes from a CDN (a public hosted copy).</li>
-          <li>The <code>jquery...min.js</code> script loads jQuery, which Bootstrap 3's interactive parts (modals, dropdowns) depend on.</li>
-          <li>The <code>bootstrap.min.js</code> script loads Bootstrap's own JavaScript. It must come <em>after</em> jQuery.</li>
+          <li><code>&lt;meta name="viewport"...&gt;</code> — without this, phones render the page at desktop width then zoom out, breaking all responsive behaviour.</li>
+          <li>Bootstrap CSS link — loads all the CSS classes (<code>btn</code>, <code>container</code>, <code>col-*</code>, etc.) from jsDelivr CDN.</li>
+          <li>jQuery — Bootstrap 4's dropdowns, modals, tooltips and popovers all need jQuery. Load it <em>before</em> bootstrap.bundle.js.</li>
+          <li><code>bootstrap.bundle.min.js</code> — Bootstrap's own JS plus Popper.js (for positioning dropdowns/tooltips). Must come <em>after</em> jQuery.</li>
         </ul>
       </div>
-
-      <h3>The 12-column grid — the whole question</h3>
       <div class="callout tip">
-        <span class="callout-title">💡 Rules</span>
-        <p>A <code>.container</code> (or <code>.container-fluid</code>) holds <code>.row</code>s; each <code>.row</code> holds columns whose numbers <strong>add up to 12</strong>. <code>col-md-3</code> = 3/12 = a quarter on medium+ screens.</p>
+        <span class="callout-title">💡 Bootstrap 3 CDN (for 2021 Q9 only)</span>
+        <p>The 2021 exam used Bootstrap 3. Its CDN is different: <code>https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css</code>. You can recognise Bootstrap 3 code by classes like <code>col-xs-*</code>, <code>col-md-*</code>, <code>img-responsive</code>, and <code>navbar-default</code>.</p>
+      </div>
+
+      <h3>The 12-column grid — the core of every question</h3>
+      <div class="callout tip">
+        <span class="callout-title">💡 The rule</span>
+        <p>A <code>.container</code> (or <code>.container-fluid</code>) holds <code>.row</code>s; each <code>.row</code> holds columns whose class numbers <strong>must add up to 12</strong>. <code>col-3</code> = 3/12 = 25% width.</p>
       </div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Class</th><th>Screen</th><th>Breakpoint</th></tr></thead>
+          <thead><tr><th>Bootstrap 4 class</th><th>Applies at</th><th>Breakpoint</th><th>Bootstrap 3 equivalent</th></tr></thead>
           <tbody>
-            <tr><td><code>col-xs-*</code></td><td>Phones</td><td>&lt; 768px (Bootstrap 3)</td></tr>
-            <tr><td><code>col-sm-*</code></td><td>Tablets</td><td>≥ 768px</td></tr>
-            <tr><td><code>col-md-*</code></td><td>Desktops</td><td>≥ 992px</td></tr>
-            <tr><td><code>col-lg-*</code></td><td>Large desktops</td><td>≥ 1200px</td></tr>
+            <tr><td><code>col-*</code></td><td>All screen sizes</td><td>&lt; 576px and up</td><td><code>col-xs-*</code></td></tr>
+            <tr><td><code>col-sm-*</code></td><td>Small tablets+</td><td>≥ 576px</td><td><code>col-sm-*</code></td></tr>
+            <tr><td><code>col-md-*</code></td><td>Tablets+</td><td>≥ 768px</td><td><code>col-md-*</code></td></tr>
+            <tr><td><code>col-lg-*</code></td><td>Desktops+</td><td>≥ 992px</td><td><code>col-lg-*</code></td></tr>
+            <tr><td><code>col-xl-*</code></td><td>Large desktops+</td><td>≥ 1200px</td><td>— (new in BS4)</td></tr>
           </tbody>
         </table>
       </div>
-<pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
+<pre><code><span class="cm">&lt;!-- Bootstrap 4 grid — col-* (no breakpoint prefix) applies at ALL screen sizes --&gt;</span>
+&lt;div class=<span class="str">"container-fluid"</span>&gt;
   &lt;div class=<span class="str">"row"</span>&gt;
-    &lt;div class=<span class="str">"col-md-3"</span>&gt;Quarter&lt;/div&gt;   <span class="cm">&lt;!-- 3/12 = 25% --&gt;</span>
-    &lt;div class=<span class="str">"col-md-6"</span>&gt;Half&lt;/div&gt;      <span class="cm">&lt;!-- 6/12 = 50% --&gt;</span>
-    &lt;div class=<span class="str">"col-md-3"</span>&gt;Quarter&lt;/div&gt;   <span class="cm">&lt;!-- 3/12 = 25% --&gt;</span>
+    &lt;div class=<span class="str">"col-3"</span>&gt;Quarter (3/12)&lt;/div&gt;
+    &lt;div class=<span class="str">"col-6"</span>&gt;Half (6/12)&lt;/div&gt;
+    &lt;div class=<span class="str">"col-3"</span>&gt;Quarter (3/12)&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-<span class="cm">&lt;!-- container = fixed width centred; container-fluid = full width --&gt;</span></code></pre>
+
+<span class="cm">&lt;!-- Use col-md-* to stack on mobile but sit side-by-side on desktops --&gt;</span>
+&lt;div class=<span class="str">"container"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-12 col-md-3"</span>&gt;Full width on phone, quarter on desktop&lt;/div&gt;
+    &lt;div class=<span class="str">"col-12 col-md-9"</span>&gt;Full width on phone, three-quarters on desktop&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
       <div class="explain">
         <span class="explain-title">What this does, line by line</span>
         <ul>
-          <li><code>&lt;div class="container-fluid"&gt;</code> — the outer wrapper that spans the full width of the screen (use <code>container</code> instead for a centred, fixed width).</li>
-          <li><code>&lt;div class="row"&gt;</code> — a horizontal row that will hold columns. Columns must live inside a row.</li>
-          <li>The three <code>col-md-*</code> divs — split the row into pieces. The numbers (3 + 6 + 3) add up to 12, the full width. So you get a quarter, then a half, then a quarter, sitting side by side on medium-and-larger screens.</li>
-          <li>On a phone (smaller than <code>md</code>) these columns stack vertically by default, which is what makes the layout responsive.</li>
+          <li><code>container-fluid</code> — full width, edge to edge. <code>container</code> — fixed width with centred margins. Both exist in all Bootstrap versions.</li>
+          <li><code>row</code> — a horizontal flex container. Columns live inside rows; rows live inside containers.</li>
+          <li><code>col-3</code> — takes 3 of the 12 columns, i.e. 25%, at <em>every</em> screen size. In Bootstrap 3 this needed a breakpoint: <code>col-xs-3</code>.</li>
+          <li><code>col-12 col-md-3</code> — stacks full-width on small screens (<code>col-12</code>) and becomes a quarter on medium+ screens (<code>col-md-3</code>). Multiple column classes can be combined on one element.</li>
         </ul>
       </div>
 
-      <h3>Common components (Bootstrap 3)</h3>
-<pre><code><span class="cm">&lt;!-- Tables --&gt;</span>
+      <h3>Common components — Bootstrap 4</h3>
+<pre><code><span class="cm">&lt;!-- Tables — same as Bootstrap 3 --&gt;</span>
 &lt;table class=<span class="str">"table table-striped table-bordered table-hover"</span>&gt;...&lt;/table&gt;
-&lt;table class=<span class="str">"table table-dark"</span>&gt;...&lt;/table&gt;
+&lt;table class=<span class="str">"table table-dark table-striped"</span>&gt;...&lt;/table&gt;
 
-<span class="cm">&lt;!-- Buttons (colour = meaning) --&gt;</span>
-&lt;button class=<span class="str">"btn btn-primary"</span>&gt;Blue / main&lt;/button&gt;
+<span class="cm">&lt;!-- Buttons — btn-secondary replaces btn-default in Bootstrap 4 --&gt;</span>
+&lt;button class=<span class="str">"btn btn-primary"</span>&gt;Blue (main)&lt;/button&gt;
+&lt;button class=<span class="str">"btn btn-secondary"</span>&gt;Grey (was btn-default in BS3)&lt;/button&gt;
 &lt;button class=<span class="str">"btn btn-success"</span>&gt;Green&lt;/button&gt;
 &lt;button class=<span class="str">"btn btn-danger"</span>&gt;Red&lt;/button&gt;
 &lt;button class=<span class="str">"btn btn-warning"</span>&gt;Yellow&lt;/button&gt;
+&lt;button class=<span class="str">"btn btn-info"</span>&gt;Cyan&lt;/button&gt;
+&lt;button class=<span class="str">"btn btn-light"</span>&gt;Light&lt;/button&gt;
+&lt;button class=<span class="str">"btn btn-dark"</span>&gt;Dark&lt;/button&gt;
+&lt;button class=<span class="str">"btn btn-link"</span>&gt;Link style&lt;/button&gt;
 
-<span class="cm">&lt;!-- Images (Bootstrap 3) --&gt;</span>
-&lt;img class=<span class="str">"img-responsive"</span>&gt;   <span class="cm">&lt;!-- scales with container --&gt;</span>
-&lt;img class=<span class="str">"img-thumbnail"</span>&gt;    <span class="cm">&lt;!-- bordered thumbnail --&gt;</span>
-&lt;img class=<span class="str">"img-rounded"</span>&gt;      <span class="cm">&lt;!-- rounded corners --&gt;</span>
-&lt;img class=<span class="str">"img-circle"</span>&gt;       <span class="cm">&lt;!-- circular --&gt;</span></code></pre>
+<span class="cm">&lt;!-- Images — Bootstrap 4 --&gt;</span>
+&lt;img class=<span class="str">"img-fluid"</span>&gt;        <span class="cm">&lt;!-- responsive: scales with column (was img-responsive in BS3) --&gt;</span>
+&lt;img class=<span class="str">"img-thumbnail"</span>&gt;   <span class="cm">&lt;!-- bordered thumbnail (same in BS3 and BS4) --&gt;</span>
+&lt;img class=<span class="str">"rounded"</span>&gt;         <span class="cm">&lt;!-- rounded corners (was img-rounded in BS3) --&gt;</span>
+&lt;img class=<span class="str">"rounded-circle"</span>&gt;  <span class="cm">&lt;!-- circular crop (was img-circle in BS3) --&gt;</span></code></pre>
       <div class="explain">
-        <span class="explain-title">What these classes do</span>
+        <span class="explain-title">Key Bootstrap 4 changes from Bootstrap 3</span>
         <ul>
-          <li><strong>Tables:</strong> <code>table</code> is the base style; add <code>table-striped</code> for alternating row shading, <code>table-bordered</code> for lines around every cell, <code>table-hover</code> to highlight the row under the cursor, and <code>table-dark</code> for a dark theme.</li>
-          <li><strong>Buttons:</strong> always start with the base <code>btn</code>, then add a colour that signals meaning — <code>btn-primary</code> (main action, blue), <code>btn-success</code> (green), <code>btn-danger</code> (red), <code>btn-warning</code> (yellow). The colour alone (<code>btn-success</code>) without <code>btn</code> won't look right.</li>
-          <li><strong>Images:</strong> <code>img-responsive</code> makes the image shrink to fit its column; the others give a bordered thumbnail, rounded corners, or a circle.</li>
+          <li><code>img-fluid</code> replaces <code>img-responsive</code>. Both make the image shrink to fit — just different names.</li>
+          <li><code>rounded</code> replaces <code>img-rounded</code>; <code>rounded-circle</code> replaces <code>img-circle</code>. In BS4, rounded corners apply to any element, not just images.</li>
+          <li><code>btn-secondary</code> replaces <code>btn-default</code> for the plain grey button.</li>
+          <li>Tables: <code>table-striped</code>, <code>table-bordered</code>, <code>table-hover</code>, <code>table-dark</code> all work the same in BS3 and BS4.</li>
         </ul>
       </div>
 
-      <h3>Worked example — the 2021 conversion (Q9)</h3>
-      <p>Plain HTML in, Bootstrap 3 out. The brief said "the image thumbnail should fill a quarter of the screen" → <code>col-*-3</code>, and the layout is image (1/4) beside heading (3/4), then a striped/bordered table with coloured buttons.</p>
-<pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
+      <h3>Navbar — Bootstrap 4</h3>
+<pre><code><span class="cm">&lt;!-- Bootstrap 4 navbar (light bg, dark text) --&gt;</span>
+&lt;nav class=<span class="str">"navbar navbar-light bg-light"</span>&gt;
+  &lt;div class=<span class="str">"container-fluid"</span>&gt;
+    &lt;a class=<span class="str">"navbar-brand"</span> href=<span class="str">"#"</span>&gt;MySite&lt;/a&gt;
+    &lt;ul class=<span class="str">"navbar-nav"</span>&gt;
+      &lt;li class=<span class="str">"nav-item active"</span>&gt;&lt;a class=<span class="str">"nav-link"</span> href=<span class="str">"#"</span>&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=<span class="str">"nav-item"</span>&gt;&lt;a class=<span class="str">"nav-link"</span> href=<span class="str">"#"</span>&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+<span class="cm">&lt;!-- Dark navbar --&gt;</span>
+&lt;nav class=<span class="str">"navbar navbar-dark bg-dark"</span>&gt; ... &lt;/nav&gt;
+
+<span class="cm">&lt;!-- Collapsible / responsive navbar (hamburger menu on mobile) --&gt;</span>
+&lt;nav class=<span class="str">"navbar navbar-expand-md navbar-dark bg-dark"</span>&gt;
+  &lt;a class=<span class="str">"navbar-brand"</span> href=<span class="str">"#"</span>&gt;MySite&lt;/a&gt;
+  &lt;button class=<span class="str">"navbar-toggler"</span> type=<span class="str">"button"</span>
+          data-toggle=<span class="str">"collapse"</span> data-target=<span class="str">"#navMenu"</span>&gt;
+    &lt;span class=<span class="str">"navbar-toggler-icon"</span>&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class=<span class="str">"collapse navbar-collapse"</span> id=<span class="str">"navMenu"</span>&gt;
+    &lt;ul class=<span class="str">"navbar-nav ml-auto"</span>&gt;           <span class="cm">&lt;!-- ml-auto = push links to the right --&gt;</span>
+      &lt;li class=<span class="str">"nav-item"</span>&gt;&lt;a class=<span class="str">"nav-link"</span> href=<span class="str">"#"</span>&gt;Login&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+      <div class="explain">
+        <span class="explain-title">Bootstrap 4 navbar vs Bootstrap 3 navbar</span>
+        <ul>
+          <li>BS4: <code>navbar-light bg-light</code> (light scheme) / <code>navbar-dark bg-dark</code> (dark scheme). BS3 used <code>navbar-default</code> / <code>navbar-inverse</code>.</li>
+          <li>BS4: links are <code>&lt;li class="nav-item"&gt;&lt;a class="nav-link"&gt;</code>. BS3 just used <code>&lt;li&gt;&lt;a&gt;</code>.</li>
+          <li>BS4: collapsible uses <code>navbar-expand-md</code> on the <code>nav</code> and <code>navbar-toggler</code> + <code>navbar-toggler-icon</code>. BS3 used <code>navbar-toggle</code> + icon-bars.</li>
+          <li><code>ml-auto</code> pushes links to the right (Bootstrap 4's margin utility). BS3 used <code>navbar-right</code> on the <code>&lt;ul&gt;</code>.</li>
+          <li><code>fixed-top</code> replaces <code>navbar-fixed-top</code> for a fixed navbar.</li>
+        </ul>
+      </div>
+
+      <h3>Worked example — 2021 Q9 (Bootstrap 3 — the actual exam)</h3>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ The 2021 exam used Bootstrap 3</span>
+        <p>The 2021 Q9 code already contained no Bootstrap classes — you were adding from scratch. The expected answer used Bootstrap 3 syntax. Recognise it when you see it; don't write BS4 classes into a BS3 question.</p>
+      </div>
+<pre><code><span class="cm">&lt;!-- 2021 Q9 correct answer — Bootstrap 3 syntax --&gt;</span>
+&lt;div class=<span class="str">"container-fluid"</span>&gt;
   &lt;div class=<span class="str">"row"</span>&gt;
-    &lt;div class=<span class="str">"col-md-3"</span>&gt;                 <span class="cm">&lt;!-- quarter --&gt;</span>
-      &lt;img src=<span class="str">"game.jpg"</span> class=<span class="str">"img-responsive"</span>&gt;
+    &lt;div class=<span class="str">"col-md-3"</span>&gt;                    <span class="cm">&lt;!-- BS3: needs breakpoint prefix --&gt;</span>
+      &lt;img src=<span class="str">"game.jpg"</span> class=<span class="str">"img-responsive"</span>&gt;  <span class="cm">&lt;!-- BS3: img-responsive --&gt;</span>
     &lt;/div&gt;
-    &lt;div class=<span class="str">"col-md-9"</span>&gt;                 <span class="cm">&lt;!-- three quarters --&gt;</span>
+    &lt;div class=<span class="str">"col-md-9"</span>&gt;
       &lt;h1&gt;Player Rankings&lt;/h1&gt;
       &lt;h2&gt;Super Mario World&lt;/h2&gt;
     &lt;/div&gt;
@@ -1586,63 +1658,107 @@ articles: <span class="type">any</span>[] = [];
       &lt;/tbody&gt;
     &lt;/table&gt;
   &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="cm">&lt;!-- Bootstrap 4 equivalent of the same layout --&gt;</span>
+&lt;div class=<span class="str">"container-fluid"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-md-3"</span>&gt;                    <span class="cm">&lt;!-- col-md-3 still valid in BS4 --&gt;</span>
+      &lt;img src=<span class="str">"game.jpg"</span> class=<span class="str">"img-fluid"</span>&gt;   <span class="cm">&lt;!-- BS4: img-fluid --&gt;</span>
+    &lt;/div&gt;
+    &lt;div class=<span class="str">"col-md-9"</span>&gt;
+      &lt;h1&gt;Player Rankings&lt;/h1&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
       <div class="explain">
-        <span class="explain-title">What this does, line by line (full Q9 answer)</span>
+        <span class="explain-title">What the 2021 Q9 answer does (Bootstrap 3 line by line)</span>
         <ol>
-          <li><code>&lt;div class="container-fluid"&gt;</code> — full-width wrapper for the whole layout.</li>
-          <li>First <code>&lt;div class="row"&gt;</code> — the top strip holding the image and the headings side by side.</li>
-          <li><code>&lt;div class="col-md-3"&gt;</code> with the image inside (<code>img-responsive</code> so it scales) — takes 3/12 = a quarter, matching the "image fills a quarter" brief.</li>
-          <li><code>&lt;div class="col-md-9"&gt;</code> with the headings — takes the remaining 9/12 = three quarters. 3 + 9 = 12.</li>
-          <li>Second <code>&lt;div class="row"&gt;</code> — a new row underneath for the table.</li>
-          <li><code>&lt;table class="table table-striped table-bordered"&gt;</code> — turns the plain table into a striped, bordered Bootstrap table.</li>
-          <li>Each <code>&lt;button class="btn btn-primary"&gt;</code> / <code>btn-success</code> — styles the existing buttons; primary (blue) for "Follow", success (green) for the already-"Following" state, matching the screenshot.</li>
+          <li><code>container-fluid</code> — full-width wrapper.</li>
+          <li><code>col-md-3</code> (BS3) — 3/12 of the row on medium+ screens. The BS4 equivalent for "all sizes" is just <code>col-3</code>.</li>
+          <li><code>img-responsive</code> (BS3) — makes the image scale with its column. BS4 uses <code>img-fluid</code>.</li>
+          <li><code>table table-striped table-bordered</code> — unchanged across BS3 and BS4.</li>
+          <li><code>btn btn-primary / btn-success</code> — unchanged across BS3 and BS4.</li>
         </ol>
       </div>
       <div class="callout mistake">
         <span class="callout-title">⚠️ Exact errors the 2021 script made</span>
         <ul class="compact-list">
-          <li>Used <code>col-xs-4</code> for both the image and heading — that makes them <em>equal</em> width (4/12 each) and leaves a gap. "Quarter + rest" must be <code>col-*-3</code> + <code>col-*-9</code>.</li>
-          <li>Put grid <code>col-md-*</code> classes on <code>&lt;td&gt;</code> cells — columns belong in a <code>.row</code>, not table cells.</li>
-          <li>Wrote <code>class="btn-success"</code> without the base <code>btn</code> class — you need <strong>both</strong>: <code>class="btn btn-success"</code>.</li>
+          <li>Used <code>col-xs-4</code> for <em>both</em> divs — makes them equal width. "1/4 + 3/4" must be <code>col-*-3</code> + <code>col-*-9</code>.</li>
+          <li>Put <code>col-md-*</code> classes on <code>&lt;td&gt;</code> cells — grid columns belong in <code>.row</code> divs, not inside table cells.</li>
+          <li>Wrote <code>class="btn-success"</code> without the base <code>btn</code> class — always need both: <code>class="btn btn-success"</code>.</li>
         </ul>
       </div>
 
-      <h3>Fill-in-the-blank Bootstrap — 2022 Q5 pattern</h3>
+      <h3>Fill-in-the-blank — 2022 Q5 <span class="badge" style="background:var(--soft-green);color:var(--green);font-size:0.78rem;padding:2px 8px;border-radius:4px">Bootstrap 4</span></h3>
       <div class="callout exam">
         <span class="callout-title">🎯 2022 Q5 — fill in [A] [B] [C] [D] [E] (5 marks)</span>
-        <p>Instead of adding classes to plain HTML, 2022 gave you the code with blanks to identify. Know the exact answer for each type of blank.</p>
+        <p>The code already contains <code>col-3</code> and <code>img-fluid</code> — both Bootstrap 4 syntax. Your blank answers must also be Bootstrap 4. The answer <code>[A] = container</code> gives a fixed-width centred layout (not full-width <code>container-fluid</code>).</p>
       </div>
+<pre><code>&lt;div class=<span class="str">"[A]"</span>&gt;
+  &lt;div class=<span class="str">"row"</span>&gt;
+    &lt;div class=<span class="str">"col-3"</span>&gt;                   <span class="cm">&lt;!-- already filled in: col-3 = BS4, applies all sizes --&gt;</span>
+      &lt;img class=<span class="str">"img-fluid img-thumbnail"</span> src=<span class="str">"game.jpg"</span>&gt;  <span class="cm">&lt;!-- img-fluid = BS4 --&gt;</span>
+    &lt;/div&gt;
+    &lt;div class=<span class="str">"[B]"</span>&gt;&lt;h1&gt;Player Rankings&lt;/h1&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;table class=<span class="str">"table"</span>&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th scope=<span class="str">"[C]"</span>&gt;#&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;&lt;tr&gt;
+      &lt;th scope=<span class="str">"[D]"</span>&gt;1&lt;/th&gt;
+      &lt;td&gt;&lt;button class=<span class="str">"btn [E]"</span>&gt;Follow&lt;/button&gt;&lt;/td&gt;
+    &lt;/tr&gt;&lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Blank</th><th>Answer</th><th>Why</th></tr></thead>
           <tbody>
-            <tr><td>[A] outer wrapper</td><td><code>container</code></td><td>Fixed-width centred container. (<code>container-fluid</code> = full width.)</td></tr>
-            <tr><td>[B] sibling of col-3</td><td><code>col-9</code></td><td>Must add to 12. col-3 + col-9 = 12.</td></tr>
-            <tr><td>[C] <code>&lt;th scope="[C]"&gt;</code></td><td><code>col</code></td><td><code>scope="col"</code> means this <code>&lt;th&gt;</code> is a column header. Accessibility + semantics.</td></tr>
-            <tr><td>[D] <code>&lt;th scope="[D]"&gt;</code> in <code>&lt;tbody&gt;</code></td><td><code>row</code></td><td><code>scope="row"</code> means this <code>&lt;th&gt;</code> is a row header (the row number).</td></tr>
-            <tr><td>[E] blue Follow button</td><td><code>btn-primary</code></td><td>Blue = primary. Note: <code>btn</code> base class was already there.</td></tr>
+            <tr><td>[A] outer wrapper</td><td><code>container</code></td><td>Fixed-width centred. (<code>container-fluid</code> = full viewport width. Both in BS4.)</td></tr>
+            <tr><td>[B] sibling of col-3</td><td><code>col-9</code></td><td>3 + 9 = 12.</td></tr>
+            <tr><td>[C] scope on &lt;thead&gt; &lt;th&gt;</td><td><code>col</code></td><td><code>scope="col"</code> = this header labels a column.</td></tr>
+            <tr><td>[D] scope on &lt;tbody&gt; &lt;th&gt;</td><td><code>row</code></td><td><code>scope="row"</code> = this header labels a row.</td></tr>
+            <tr><td>[E] button colour</td><td><code>btn-primary</code></td><td>Blue = primary. Base <code>btn</code> is already there.</td></tr>
           </tbody>
         </table>
       </div>
       <div class="callout tip">
-        <span class="callout-title">💡 scope="col" vs scope="row" — know this</span>
-        <p><code>scope="col"</code> on a <code>&lt;th&gt;</code> in <code>&lt;thead&gt;</code> = this header labels a <strong>column</strong>. <code>scope="row"</code> on a <code>&lt;th&gt;</code> in <code>&lt;tbody&gt;</code> = this header labels a <strong>row</strong> (often the row number or identifier). The student lost 1 mark by writing <code>btn-primary</code> without the <code>btn-</code> prefix they missed — <em>but the <code>btn</code> base was already in the code</em>, so only the colour modifier was needed.</p>
+        <span class="callout-title">💡 container vs container-fluid</span>
+        <ul class="compact-list">
+          <li><code>container</code> — fixed max-width, centred with side margins. The 2022 Q5 used this.</li>
+          <li><code>container-fluid</code> — 100% viewport width, no side margins. The 2021 Q9 used this.</li>
+          <li>The brief / screenshot tells you which to pick. Full-screen layout → <code>container-fluid</code>. Centred boxed layout → <code>container</code>.</li>
+        </ul>
       </div>
 
-      <h3>Bootstrap 3 → 5 differences (don't mix them up)</h3>
+      <h3>Bootstrap 3 → Bootstrap 4: every class that changed</h3>
+      <p>This is the complete list of what changed between the version the 2021 exam used and the version these notes teach. Use it to translate older code.</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Purpose</th><th>Bootstrap 3 (exam)</th><th>Bootstrap 5</th></tr></thead>
+          <thead><tr><th>Purpose</th><th>Bootstrap 3 (2021 exam)</th><th>Bootstrap 4 (standard)</th></tr></thead>
           <tbody>
-            <tr><td>Phone column</td><td><code>col-xs-6</code></td><td><code>col-6</code> (xs dropped)</td></tr>
-            <tr><td>Responsive image</td><td><code>img-responsive</code></td><td><code>img-fluid</code></td></tr>
-            <tr><td>Default navbar</td><td><code>navbar-default</code></td><td><code>navbar navbar-expand-lg</code></td></tr>
-            <tr><td>JS data attributes</td><td><code>data-toggle</code>, <code>data-target</code></td><td><code>data-bs-toggle</code>, <code>data-bs-target</code></td></tr>
-            <tr><td>jQuery</td><td>Required</td><td>Not used (vanilla JS)</td></tr>
-            <tr><td>Extra breakpoint</td><td>—</td><td><code>col-xxl-*</code> (≥1400px)</td></tr>
+            <tr><td>Phone column (all sizes)</td><td><code>col-xs-6</code></td><td><code>col-6</code> (xs prefix dropped)</td></tr>
+            <tr><td>Responsive / fluid image</td><td><code>img-responsive</code></td><td><code>img-fluid</code></td></tr>
+            <tr><td>Rounded corners image</td><td><code>img-rounded</code></td><td><code>rounded</code></td></tr>
+            <tr><td>Circular image</td><td><code>img-circle</code></td><td><code>rounded-circle</code></td></tr>
+            <tr><td>Default (grey) button</td><td><code>btn-default</code></td><td><code>btn-secondary</code></td></tr>
+            <tr><td>Light navbar</td><td><code>navbar-default</code></td><td><code>navbar-light bg-light</code></td></tr>
+            <tr><td>Dark navbar</td><td><code>navbar-inverse</code></td><td><code>navbar-dark bg-dark</code></td></tr>
+            <tr><td>Fixed navbar</td><td><code>navbar-fixed-top</code></td><td><code>fixed-top</code></td></tr>
+            <tr><td>Right-align navbar links</td><td><code>navbar-right</code></td><td><code>ml-auto</code> on the <code>&lt;ul&gt;</code></td></tr>
+            <tr><td>Hamburger toggle</td><td><code>navbar-toggle</code></td><td><code>navbar-toggler</code></td></tr>
+            <tr><td>Nav link</td><td><code>&lt;li&gt;&lt;a href&gt;</code></td><td><code>&lt;li class="nav-item"&gt;&lt;a class="nav-link"&gt;</code></td></tr>
+            <tr><td>JS data attributes</td><td><code>data-toggle data-target</code></td><td><code>data-toggle data-target</code> (same in BS4)</td></tr>
+            <tr><td>jQuery</td><td>Required</td><td>Required (same in BS4)</td></tr>
+            <tr><td>Grid system</td><td>Float-based</td><td>Flexbox-based (more powerful)</td></tr>
+            <tr><td>Extra breakpoint</td><td>—</td><td><code>col-xl-*</code> ≥1200px added</td></tr>
+            <tr><td>Panel/Well/Thumbnail</td><td><code>panel</code>, <code>well</code></td><td><code>card</code> (replaces all three)</td></tr>
           </tbody>
         </table>
+      </div>
+      <div class="callout warn">
+        <span class="callout-title">⚠️ What did NOT change between BS3 and BS4</span>
+        <p>The following classes are the same in both versions: <code>container</code>, <code>container-fluid</code>, <code>row</code>, <code>col-sm-*</code>, <code>col-md-*</code>, <code>col-lg-*</code>, all <code>table-*</code> modifiers, all <code>btn-*</code> colours (except btn-default), <code>img-thumbnail</code>, <code>data-toggle</code>, <code>data-target</code>, <code>data-dismiss</code>. These are safe to use in either version.</p>
       </div>
     </div>
   </details>
@@ -5173,7 +5289,7 @@ admin.site.register(<span class="type">Make</span>)   <span class="cm"># makes M
     android:inputType=<span class="str">"textMultiLine|textAutoCorrect|textCapSentences"</span> /&gt;</code></pre>
       </details>
 
-      <h3>Q9 (13) — Add Bootstrap to the HTML</h3>
+      <h3>Q9 (13) — Add Bootstrap to the HTML <span class="badge" style="background:var(--soft-blue);color:var(--blue);font-size:0.78rem;padding:2px 8px;border-radius:4px">Bootstrap 3</span></h3>
       <details class="answer"><summary>Model answer</summary>
 <pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
   &lt;div class=<span class="str">"row"</span>&gt;
@@ -5311,7 +5427,7 @@ doPost() {
         </div>
       </details>
 
-      <h3>Q4 (8 marks) — Add Bootstrap to the dashboard</h3>
+      <h3>Q4 (8 marks) — Add Bootstrap to the dashboard <span class="badge" style="background:var(--soft-blue);color:var(--blue);font-size:0.78rem;padding:2px 8px;border-radius:4px">Bootstrap 3</span></h3>
       <p>You decided to use Bootstrap to make the HealthTrack dashboard responsive. You are given the following plain HTML:</p>
 <pre><code>&lt;div&gt;
   &lt;div&gt;
@@ -5330,8 +5446,8 @@ doPost() {
       <details class="answer"><summary>Model answer</summary>
 <pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
   &lt;div class=<span class="str">"row"</span>&gt;
-    &lt;div class=<span class="str">"col-md-3"</span>&gt;                <span class="cm">&lt;!-- quarter --&gt;</span>
-      &lt;img src=<span class="str">"workout.jpg"</span> class=<span class="str">"img-responsive"</span>&gt;
+    &lt;div class=<span class="str">"col-md-3"</span>&gt;                <span class="cm">&lt;!-- quarter: col-md-3 stacks on mobile, side-by-side on desktop --&gt;</span>
+      &lt;img src=<span class="str">"workout.jpg"</span> class=<span class="str">"img-fluid"</span>&gt;  <span class="cm">&lt;!-- Bootstrap 4: img-fluid --&gt;</span>
     &lt;/div&gt;
     &lt;div class=<span class="str">"col-md-9"</span>&gt;&lt;h1&gt;Fitness Stats&lt;/h1&gt;&lt;/div&gt;
   &lt;/div&gt;
@@ -5344,12 +5460,12 @@ doPost() {
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
         <div class="explain">
-          <span class="explain-title">What was added and why</span>
+          <span class="explain-title">What was added and why (Bootstrap 4)</span>
           <ul>
-            <li><code>container-fluid</code> on the outer div = full-width wrapper; <code>row</code> on each inner group = a grid row.</li>
-            <li>"Quarter + rest" = <code>col-md-3</code> (3/12) for the image and <code>col-md-9</code> (9/12) for the heading — they add to 12.</li>
-            <li><code>img-responsive</code> scales the image to its column (Bootstrap 3).</li>
-            <li><code>table table-striped table-bordered</code> gives the striped, bordered look; <code>btn btn-primary</code> makes the blue button — remember the base <code>btn</code>. → see <a href="#bs">Bootstrap</a>.</li>
+            <li><code>container-fluid</code> = full-width wrapper; <code>row</code> on each inner group = a grid row.</li>
+            <li>"Quarter + rest" = <code>col-md-3</code> (3/12) for the image + <code>col-md-9</code> (9/12) for the heading = 12 total.</li>
+            <li><code>img-fluid</code> — Bootstrap 4 class (replaces BS3's <code>img-responsive</code>) — makes the image scale to fit its column.</li>
+            <li><code>table table-striped table-bordered</code> gives the striped, bordered look; <code>btn btn-primary</code> makes the blue button — always need both base and colour class. → see <a href="#bs">Bootstrap</a>.</li>
           </ul>
         </div>
       </details>
@@ -5556,7 +5672,7 @@ exercises: <span class="type">any</span>[] = [];
         </div>
       </details>
 
-      <h3>Q5 (8 marks) — Bootstrap game-card grid</h3>
+      <h3>Q5 (8 marks) — Bootstrap game-card grid <span class="badge" style="background:var(--soft-blue);color:var(--blue);font-size:0.78rem;padding:2px 8px;border-radius:4px">Bootstrap 3</span></h3>
       <p>You are given the plain HTML below for a row of game cards and a high-scores table:</p>
 <pre><code>&lt;div&gt;
   &lt;div&gt;
@@ -5572,9 +5688,9 @@ exercises: <span class="type">any</span>[] = [];
       <details class="answer"><summary>Model answer</summary>
 <pre><code>&lt;div class=<span class="str">"container-fluid"</span>&gt;
   &lt;div class=<span class="str">"row"</span>&gt;
-    &lt;div class=<span class="str">"col-xs-12 col-md-4"</span>&gt;&lt;img src=<span class="str">"game1.jpg"</span> class=<span class="str">"img-thumbnail img-responsive"</span>&gt;&lt;p&gt;Batman&lt;/p&gt;&lt;/div&gt;
-    &lt;div class=<span class="str">"col-xs-12 col-md-4"</span>&gt;&lt;img src=<span class="str">"game2.jpg"</span> class=<span class="str">"img-thumbnail img-responsive"</span>&gt;&lt;p&gt;Witcher&lt;/p&gt;&lt;/div&gt;
-    &lt;div class=<span class="str">"col-xs-12 col-md-4"</span>&gt;&lt;img src=<span class="str">"game3.jpg"</span> class=<span class="str">"img-thumbnail img-responsive"</span>&gt;&lt;p&gt;FIFA&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=<span class="str">"col-12 col-md-4"</span>&gt;&lt;img src=<span class="str">"game1.jpg"</span> class=<span class="str">"img-thumbnail img-fluid"</span>&gt;&lt;p&gt;Batman&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=<span class="str">"col-12 col-md-4"</span>&gt;&lt;img src=<span class="str">"game2.jpg"</span> class=<span class="str">"img-thumbnail img-fluid"</span>&gt;&lt;p&gt;Witcher&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=<span class="str">"col-12 col-md-4"</span>&gt;&lt;img src=<span class="str">"game3.jpg"</span> class=<span class="str">"img-thumbnail img-fluid"</span>&gt;&lt;p&gt;FIFA&lt;/p&gt;&lt;/div&gt;
   &lt;/div&gt;
   &lt;table class=<span class="str">"table table-dark table-striped"</span>&gt;
     &lt;tr&gt;&lt;th&gt;Player&lt;/th&gt;&lt;th&gt;Score&lt;/th&gt;&lt;/tr&gt;
@@ -5586,8 +5702,8 @@ exercises: <span class="type">any</span>[] = [];
         <div class="explain">
           <span class="explain-title">What was added and why</span>
           <ul>
-            <li><code>col-xs-12 col-md-4</code> — two breakpoints on each card: <code>xs-12</code> = full width (one per row) on phones, <code>md-4</code> = 4/12 = three across on desktop. Three cards × 4 = 12.</li>
-            <li><code>img-thumbnail img-responsive</code> — bordered thumbnail that scales to its column.</li>
+            <li><code>col-12 col-md-4</code> — two breakpoints: <code>col-12</code> = full width on phones (Bootstrap 4: no <code>xs</code> prefix needed), <code>col-md-4</code> = 4/12 = three across on desktop. Three cards × 4 = 12.</li>
+            <li><code>img-thumbnail img-fluid</code> — bordered thumbnail that scales to its column.</li>
             <li><code>table table-dark table-striped</code> — dark, striped table; <code>btn btn-warning</code> = yellow, <code>btn btn-success</code> = green. → see <a href="#bs">Bootstrap</a>.</li>
           </ul>
         </div>
@@ -5694,20 +5810,21 @@ searchTerm: <span class="type">string</span> = <span class="str">""</span>;
         <div class="callout mistake"><p>The failing script used <code>class Members</code> instead of <code>Article</code>, and <code>CharField(max_length=255)</code> for everything. Correct types: <code>TextField</code> for open-ended text, <code>URLField</code> for URLs, <code>DateTimeField</code> for ISO timestamps. → see <a href="#django">Django</a>.</p></div>
       </details>
 
-      <h3>Q5 (5) — Bootstrap fill-in-the-blank</h3>
-      <p>Given the HTML with blanks [A]–[E], identify the correct Bootstrap classes. Image fills 1/4 of screen; heading fills the rest. Buttons on "Follow" rows are blue; "Following" is already green.</p>
+      <h3>Q5 (5) — Bootstrap fill-in-the-blank <span class="badge" style="background:var(--soft-green);color:var(--green);font-size:0.78rem;padding:2px 8px;border-radius:4px">Bootstrap 5</span></h3>
+      <p>Given the HTML with blanks [A]–[E], identify the correct Bootstrap classes. The code already contains <code>col-3</code> and <code>img-fluid</code> — these are <strong>Bootstrap 4</strong> syntax. Image fills 1/4 of screen; heading fills the rest. Buttons on "Follow" rows are blue; "Following" is already green.</p>
+      <div class="callout tip"><span class="callout-title">💡 How to confirm the version</span><p><code>col-3</code> (no breakpoint prefix) and <code>img-fluid</code> are both Bootstrap 4. Bootstrap 3 equivalents: <code>col-md-3</code> and <code>img-responsive</code>. The answer <code>[A] = container</code> (fixed-width centred, not full-width) — different from the 2021 Q9 which used <code>container-fluid</code>.</p></div>
       <details class="answer"><summary>Model answer</summary>
         <div class="table-wrap"><table>
-          <thead><tr><th>Blank</th><th>Answer</th><th>Why</th></tr></thead>
+          <thead><tr><th>Blank</th><th>Answer</th><th>Why (Bootstrap 5)</th></tr></thead>
           <tbody>
-            <tr><td>[A] outer wrapper</td><td><code>container</code></td><td>Fixed-width centred container.</td></tr>
-            <tr><td>[B] heading column (sibling of col-3)</td><td><code>col-9</code></td><td>3 + 9 = 12 (full row).</td></tr>
+            <tr><td>[A] outer wrapper</td><td><code>container</code></td><td>Fixed-width centred. The 2022 layout is not edge-to-edge — use <code>container</code>, not <code>container-fluid</code>.</td></tr>
+            <tr><td>[B] heading column (sibling of col-3)</td><td><code>col-9</code></td><td>3 + 9 = 12 (BS5: no breakpoint prefix needed, applies all sizes).</td></tr>
             <tr><td>[C] scope on &lt;thead&gt; &lt;th&gt;</td><td><code>col</code></td><td><code>scope="col"</code> = this header labels a column.</td></tr>
             <tr><td>[D] scope on &lt;tbody&gt; &lt;th&gt;</td><td><code>row</code></td><td><code>scope="row"</code> = this header labels a row (the row number).</td></tr>
-            <tr><td>[E] colour modifier for Follow button</td><td><code>btn-primary</code></td><td>Blue = primary. The base <code>btn</code> was already present.</td></tr>
+            <tr><td>[E] colour modifier for Follow button</td><td><code>btn-primary</code></td><td>Blue = primary. The base <code>btn</code> was already present in the code.</td></tr>
           </tbody>
         </table></div>
-        <div class="callout mistake"><p>The student lost 1 mark writing <code>primary</code> instead of <code>btn-primary</code>. Always use the full modifier name. → see <a href="#bs">Bootstrap</a>.</p></div>
+        <div class="callout mistake"><p>The student lost 1 mark writing <code>primary</code> instead of <code>btn-primary</code>. The base class was there — only the colour modifier was blank. → see <a href="#bs">Bootstrap</a>.</p></div>
       </details>
 
       <h3>Q6 (3) — XSS + CSRF fix</h3>
@@ -5921,7 +6038,7 @@ localStorage.setItem(<span class="str">'THEME'</span>, JSON.stringify({ value: <
         <div class="callout tip"><p>Short TTL = <code>sessionStorage</code>. Long-lived = <code>localStorage</code>. Always wrap with <code>JSON.stringify</code> to store the expiry alongside the value. → see <a href="#sec">Web Security</a>.</p></div>
       </details>
 
-      <h3>Q5 (5 marks) — Bootstrap fill-in-the-blank</h3>
+      <h3>Q5 (5 marks) — Bootstrap fill-in-the-blank <span class="badge" style="background:var(--soft-green);color:var(--green);font-size:0.78rem;padding:2px 8px;border-radius:4px">Bootstrap 5</span></h3>
       <p>Fill in the blanks [A]–[E] for this Bootstrap 5 news layout:</p>
 <pre><code>&lt;div class=<span class="str">"[A]"</span>&gt;
   &lt;div class=<span class="str">"row"</span>&gt;
@@ -6081,7 +6198,7 @@ localStorage.setItem(<span class="str">'THEME'</span>, JSON.stringify({ value: <
         <div class="callout tip"><p><code>DecimalField</code> is the proper type for financial prices (<code>FloatField</code> has rounding errors). <code>URLField</code> for the URL. <code>DateTimeField</code> for the timestamp. <code>BooleanField</code> for the flag. → see <a href="#django">Django</a>.</p></div>
       </details>
 
-      <h3>Q5 (5 marks) — Bootstrap fill-in-the-blank</h3>
+      <h3>Q5 (5 marks) — Bootstrap fill-in-the-blank <span class="badge" style="background:var(--soft-green);color:var(--green);font-size:0.78rem;padding:2px 8px;border-radius:4px">Bootstrap 5</span></h3>
       <p>Fill in blanks [A]–[E] for a stock dashboard layout.</p>
 <pre><code>&lt;div class=<span class="str">"[A]"</span>&gt;
   &lt;div class=<span class="str">"row"</span>&gt;
